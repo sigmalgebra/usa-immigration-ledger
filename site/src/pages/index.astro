@@ -1,0 +1,184 @@
+---
+import Base from "../layouts/Base.astro";
+import Chart from "../components/Chart.astro";
+import Fig from "../components/Fig.astro";
+import {
+  change, checks, compact, firstPeriod, latestPeriod, pct, periods, quarterLabel, recordSince, sources, value,
+  type Measure,
+} from "../lib/ledger";
+import { seriesSpec } from "../lib/specs";
+
+// Every comparison below is computed from the ledger on each build, so the words follow the data after a refresh.
+const L = latestPeriod();
+const F = firstPeriod();
+const span = (() => { const q = (p: string) => +p.slice(2, 6) * 4 + +p.slice(-1); return (q(L) - q(F) + 1) / 4; })();
+const years = span % 1 >= 0.5 ? `nearly ${Math.ceil(span)}` : `${Math.floor(span)}`;
+const nSources = sources().length;
+const argmax = (s: string, m: Measure, ps = periods(s, m)) => ps.reduce((a, b) => (value(s, b, m) > value(s, a, m) ? b : a));
+const argmin = (s: string, m: Measure, ps = periods(s, m)) => ps.reduce((a, b) => (value(s, b, m) < value(s, a, m) ? b : a));
+const since = (p: string | null, never: string) => (p ? `the fewest since ${quarterLabel(p)}` : never);
+
+// Anchor on the lowest of the last four quarters: comparing the latest quarter to a lower one just before it says nothing.
+const R = argmin("total", "approved", periods("total", "approved").slice(-4));
+const apprLow = recordSince("total", "approved", R, "low");
+const pendHigh = recordSince("total", "pending", L, "high");
+const pendMultiple = value("total", L, "pending") / value("total", F, "pending");
+const compPeak = argmax("total", "completed");
+const compFirst = periods("total", "completed")[0];
+const recPeak = argmax("total", "received");
+
+const natLow = recordSince("n-400", "approved", L, "low");
+const natPrevLow = argmin("n-400", "approved", periods("n-400", "approved").filter((p) => p < L));
+const natYearAgo = periods("n-400", "approved").filter((p) => p < L).at(-4)!;
+
+const asyLowest = argmin("i-589", "approved");
+const asyRecPeak = argmax("i-589", "received");
+const asyRecLow = recordSince("i-589", "received", L, "low");
+
+const otherWaitYears = value("i-130-other-relative", L, "median_processing_months") / 12;
+const errorCount = checks().filter((c) => c.severity === "warn").length;
+const repeated = checks().filter((c) => c.check === "repeated-processing-time" && c.subject.endsWith("FY2024Q3")).length;
+---
+<Base
+  title="USA Immigration Ledger"
+  description={`USCIS approved ${compact(value("total", R, "approved"))} cases in ${quarterLabel(R)}, ${since(apprLow, "the fewest on record")}, while ${compact(value("total", L, "pending"))} wait. ${years} years of the agency's own spreadsheets, rebuilt cell by cell.`}
+>
+  <p class="kicker">Investigation · USCIS caseload, {quarterLabel(F)} to {quarterLabel(L)}</p>
+  <h1>
+    USCIS approved fewer cases {R === L ? "last quarter" : `in ${quarterLabel(R)}`} than in any quarter since {apprLow ? quarterLabel(apprLow) : quarterLabel(F)}.
+    {pendHigh === null ? ` A record ${compact(value("total", L, "pending"))} are waiting.` : ` ${compact(value("total", L, "pending"))} are waiting.`}
+  </h1>
+  <p class="dek">
+    We rebuilt {years} years of the agency's quarterly reports, cell by cell, from {nSources} government files,
+    including reports USCIS has since deleted, recovered from the Internet Archive. Every number on this page links
+    to the exact cell it came from.
+  </p>
+  <p class="byline">Data through {quarterLabel(L)} (fiscal {L.slice(0, 6)}, quarter {L.slice(-1)}) · Methodology and caveats are <a href="/methodology/">here</a></p>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="label">Cases approved, {quarterLabel(R)}</div>
+      <div class="value"><Fig s="total" p={R} m="approved" /></div>
+      <div class="delta">{since(apprLow, `fewest since ${quarterLabel(F)}`)}</div>
+    </div>
+    <div class="tile">
+      <div class="label">Cases pending, end of {quarterLabel(L)}</div>
+      <div class="value"><Fig s="total" p={L} m="pending" display={(n) => compact(n)} /></div>
+      <div class="delta">{pendMultiple.toFixed(1)}× the {compact(value("total", F, "pending"))} of {quarterLabel(F)}</div>
+    </div>
+    <div class="tile">
+      <div class="label">Naturalizations approved, {quarterLabel(L)}</div>
+      <div class="value"><Fig s="n-400" p={L} m="approved" /></div>
+      <div class="delta">{natLow ? `fewest since ${quarterLabel(natLow)}` : `fewest of any quarter since ${quarterLabel(F)}`}</div>
+    </div>
+    <div class="tile">
+      <div class="label">Asylum applications approved, {quarterLabel(asyLowest)}</div>
+      <div class="value"><Fig s="i-589" p={asyLowest} m="approved" /></div>
+      <div class="delta">fewest of any quarter since {quarterLabel(F)}</div>
+    </div>
+  </div>
+
+  <section class="prose">
+    <p>
+      U.S. Citizenship and Immigration Services decides green cards, citizenship, work permits, asylum
+      claims filed outside immigration court, and dozens of other benefits. Every quarter it publishes a spreadsheet
+      counting, for each form, how many cases came in, how many were approved or denied, and how many are still
+      waiting. It deletes old ones. We recovered every quarter back to {quarterLabel(F)}.
+    </p>
+    <p>
+      In {quarterLabel(R)} the agency approved <Fig s="total" p={R} m="approved" /> applications and petitions,
+      {" "}{since(apprLow, `the fewest of any quarter since ${quarterLabel(F)}`)}{R !== L ? <>, and <Fig s="total" p={L} m="approved" /> in {quarterLabel(L)}</> : ""}. The queue kept growing:
+      {" "}<Fig s="total" p={L} m="pending" /> cases were pending at the end of the quarter,
+      {" "}{pendHigh === null ? "the most in any report since our records begin" : `the most since ${quarterLabel(pendHigh)}`},
+      against <Fig s="total" p={F} m="pending" /> in {quarterLabel(F)}.
+    </p>
+    <p>
+      The slowdown is recent. Since {quarterLabel(compFirst)} USCIS also prints total completions (approvals plus
+      denials and other outcomes). They peaked at <Fig s="total" p={compPeak} m="completed" /> in
+      {" "}{quarterLabel(compPeak)} and were <Fig s="total" p={L} m="completed" /> in {quarterLabel(L)}, down
+      {" "}{pct(-change("total", "completed", compPeak, L))}. Filings fell too, from <Fig s="total" p={recPeak} m="received" /> in
+      {" "}{quarterLabel(recPeak)} to <Fig s="total" p={L} m="received" />, but not as fast as decisions.
+    </p>
+  </section>
+
+  <Chart
+    spec={seriesSpec("total", ["received", "approved"])}
+    title="Applications received and approved per quarter, all USCIS forms"
+    subtitle={`USCIS service-wide total, ${quarterLabel(F)} to ${quarterLabel(L)}.`}
+  />
+  <Chart spec={seriesSpec("total", ["pending"], { area: true })} title="Cases pending at the end of each quarter, all USCIS forms" />
+
+  <section class="prose">
+    <h2>Citizenship: {natPrevLow === "FY2020Q3" && !natLow ? "fewer approvals than during the pandemic shutdown" : "approvals at a low"}</h2>
+    <p>
+      USCIS approved <Fig s="n-400" p={L} m="approved" /> naturalization applications (Form N-400) in
+      {" "}{quarterLabel(L)}, {natLow ? `the fewest since ${quarterLabel(natLow)}` : `the fewest in any quarter since ${quarterLabel(F)}`}.
+      The previous low was <Fig s="n-400" p={natPrevLow} m="approved" /> in {quarterLabel(natPrevLow)}
+      {natPrevLow === "FY2020Q3" ? ", when USCIS offices were closed to the public for COVID-19" : ""}. A year earlier, in {quarterLabel(natYearAgo)}, it approved
+      {" "}<Fig s="n-400" p={natYearAgo} m="approved" />. Pending applications rose to
+      {" "}<Fig s="n-400" p={L} m="pending" />, and the median decided case took
+      {" "}<Fig s="n-400" p={L} m="median_processing_months" /> months.
+    </p>
+  </section>
+  <Chart spec={seriesSpec("n-400", ["received", "approved"])} title="Naturalization (N-400): received and approved per quarter" subtitle="Excludes military naturalizations, reported separately." />
+
+  <section class="prose">
+    <h2>Asylum: approvals near zero</h2>
+    <p>
+      For affirmative asylum, claims filed with USCIS rather than in immigration court, the agency approved
+      {" "}<Fig s="i-589" p={asyLowest} m="approved" /> applications in {quarterLabel(asyLowest)}, the fewest of any
+      quarter since {quarterLabel(F)}. New filings fell from <Fig s="i-589" p={asyRecPeak} m="received" /> in
+      {" "}{quarterLabel(asyRecPeak)} to <Fig s="i-589" p={L} m="received" /> in {quarterLabel(L)}
+      {asyRecLow ? `, the fewest since ${quarterLabel(asyRecLow)}` : ""}. The backlog barely moved:
+      {" "}<Fig s="i-589" p={L} m="pending" /> cases at the end of {quarterLabel(L)}, against
+      {" "}<Fig s="i-589" p={F} m="pending" /> in {quarterLabel(F)}.
+    </p>
+  </section>
+  <Chart spec={seriesSpec("i-589", ["pending"], { area: true })} title="Affirmative asylum (I-589): applications pending" />
+
+  <section class="prose">
+    <h2>Families: a {otherWaitYears.toFixed(1)}-year median wait, before the visa line</h2>
+    <p>
+      Since {quarterLabel("FY2025Q1")} USCIS reports relative petitions in two rows. For spouses, parents and minor
+      children of citizens, the median decided case in {quarterLabel(L)} took
+      {" "}<Fig s="i-130-immediate-relative" p={L} m="median_processing_months" /> months. For every other relative,
+      such as siblings and adult children, it took <Fig s="i-130-other-relative" p={L} m="median_processing_months" /> months,
+      with <Fig s="i-130-other-relative" p={L} m="pending" /> petitions waiting. Approval only gets
+      them into a second line, for a visa number: see <a href="/visa-queue/">the visa queue</a>.
+    </p>
+
+    <h2>What the spreadsheets get wrong</h2>
+    <p>
+      Rebuilding the series exposed {errorCount} problems in the source files that a reader of any single
+      spreadsheet would miss. The FY2024Q3 report repeats the previous quarter's median processing times, to seven or
+      more significant digits, for {repeated} forms. Two snapshots of the family visa queue carry the wrong date in
+      their titles. Several older files print numbers with no label at all. We kept every printed value and flagged it
+      rather than "fixing" it. <a href="/source-errors/">Read the full list.</a>
+    </p>
+
+    <h2>What this does not tell you</h2>
+    <ul>
+      <li>
+        <strong>Why.</strong> The reports count cases. They don't explain policy, staffing or processing changes, and
+        we don't attribute the decline to any of them. <a href="/methodology/#questions">Our open questions for USCIS</a>.
+      </li>
+      <li>
+        <strong>Exact comparability across every year.</strong> USCIS has split, merged and renamed rows, and its
+        total line has excluded some work in some years (its FY2021Q4 footnote: immigrant visas and EOIR adjustments
+        are "not included in the Total - All Forms line"). Later reports also restate earlier quarters; we use the
+        latest printing and keep every earlier one in the <a href="/data/v1/revisions.csv">revisions file</a>. Each
+        series page lists its breaks.
+      </li>
+      <li>
+        <strong>Your case.</strong> A median is the middle decided case, not a promise. Check{" "}
+        <a href="https://egov.uscis.gov/processing-times/">USCIS's official processing times</a> for your field office.
+      </li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Check our work.</strong> Click any underlined number to open the archived government file it came from.
+      Hover to see the exact cell. The <a href="/data/">full dataset</a> is free to download, with all {nSources}{" "}
+      source files, their SHA-256 hashes, and the code that parses them.</p>
+    </div>
+  </section>
+</Base>

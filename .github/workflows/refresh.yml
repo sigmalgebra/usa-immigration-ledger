@@ -1,0 +1,52 @@
+# Weekly: look for new USCIS files. If any appear, rebuild the data and open a pull request for a human to review.
+# Never pushes to main. Never crawls travel.state.gov (State Dept files are added by hand: see README).
+name: Refresh data
+on:
+  schedule:
+    - cron: "17 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r pipeline/requirements.txt
+      - name: Crawl uscis.gov
+        id: crawl
+        run: |
+          PYTHONPATH=pipeline python -m usdata crawl | tee crawl.txt
+          if git status --porcelain archive | grep -q .; then echo "new=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Build and test
+        if: steps.crawl.outputs.new == 'true'
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          PYTHONPATH=pipeline python -m usdata build 2>&1 | tee build.txt
+          python -m pytest -q 2>&1 | tee -a build.txt
+      - name: Open pull request
+        if: steps.crawl.outputs.new == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch="data/refresh-$(date -u +%Y%m%d)"
+          git config user.name "immigration-ledger-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add archive site/public/data
+          git commit -m "Data refresh $(date -u +%Y-%m-%d)"
+          git push -u origin "$branch"
+          {
+            echo "New files from uscis.gov:"; echo '```'; cat crawl.txt; echo '```'
+            echo "Build and tests (${{ steps.build.outcome }}):"; echo '```'; tail -n 60 build.txt; echo '```'
+            echo "If the build failed on unmapped rows, add them to catalog/uscis-forms.toml in this branch."
+          } > body.md
+          gh pr create --title "Data refresh $(date -u +%Y-%m-%d)" --body-file body.md

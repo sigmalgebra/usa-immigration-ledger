@@ -1,0 +1,78 @@
+---
+import Base from "../layouts/Base.astro";
+import { latestPeriod, quarterLabel, sources } from "../lib/ledger";
+import { readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
+
+const root = join(process.cwd(), "public", "data", "v1");
+const files: { path: string; kb: number }[] = [];
+const walk = (dir: string) => {
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name);
+    if (statSync(p).isDirectory()) walk(p);
+    else files.push({ path: p.slice(root.length + 1).replaceAll("\\", "/"), kb: Math.ceil(statSync(p).size / 1024) });
+  }
+};
+walk(root);
+files.sort((a, b) => a.path.localeCompare(b.path));
+const DESCRIBE: Record<string, string> = {
+  "uscis-forms/facts.csv": "Every USCIS form figure, long format, one row per number, with source file and cell. Start here.",
+  "uscis-forms/wide.csv": "Spreadsheet-friendly: one row per form and quarter, one column per measure. No provenance columns.",
+  "uscis-forms/series.json": "The same data as JSON, grouped by series, with titles and notes.",
+  "uscis-i130-awaiting/facts.csv": "Approved family petitions awaiting a visa, by country and preference, each snapshot.",
+  "state-iv/facts.csv": "State Department monthly immigrant visa issuances by country and visa class.",
+  "sources.csv": "Every source file: original URL, SHA-256, retrieval time, and its path in the archive.",
+  "revisions.csv": "Numbers the government later restated: old value, new value, both cells.",
+  "checks.json": "Every consistency check and its result (the “errors we found” page).",
+  "datapackage.json": "Frictionless Data descriptor: field types and definitions.",
+};
+const L = latestPeriod();
+const n = sources().length;
+const year = new Date().getUTCFullYear();
+---
+<Base title="Download the data" description="Free download: USCIS caseload data since 2013 and State Department visa issuances as tidy CSV, with cell-level provenance and SHA-256-verified source files.">
+  <p class="kicker">Open data · CC0</p>
+  <h1>Download the data</h1>
+  <p class="dek">
+    Tidy, citable and free, through {quarterLabel(L)}. Every row names the government file and cell it came from, so
+    you can check any number yourself. Built from {n} source files.
+  </p>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>File</th><th>What's in it</th><th class="num">Size</th></tr></thead>
+      <tbody>
+        {files.filter((f) => !f.path.endsWith("compact.json")).map((f) => (
+          <tr><td><a href={`/data/v1/${f.path}`} download><code>{f.path}</code></a></td><td>{DESCRIBE[f.path] ?? ""}</td><td class="num">{f.kb} KB</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Columns in <code>facts.csv</code></h2>
+  <table>
+    <tbody>
+      <tr><td><code>series_id</code></td><td>Stable identifier, e.g. <code>n-400</code>, <code>i-485-employment</code>. Titles and notes are in <code>series.json</code>.</td></tr>
+      <tr><td><code>period</code></td><td><code>FY2026Q3</code> = April–June 2026. U.S. fiscal years start October 1. State Department rows use months (<code>2024-09</code>).</td></tr>
+      <tr><td><code>measure</code></td><td><code>received</code>, <code>approved</code>, <code>denied</code>, <code>completed</code>, <code>pending</code>, <code>median_processing_months</code>, <code>awaiting_visa</code>, <code>issuances</code></td></tr>
+      <tr><td><code>window</code></td><td><code>quarter</code>, <code>fytd</code> (fiscal year to date), <code>snapshot</code> (a stock on the last day, e.g. pending), <code>month</code></td></tr>
+      <tr><td><code>value</code></td><td>The number. Empty when the source printed no number.</td></tr>
+      <tr><td><code>status</code></td><td><code>reported</code>; <code>estimate</code> (USCIS printed a fraction); <code>dash</code> (USCIS: “zero or rounds to 0”); <code>na</code>; <code>null</code>; <code>blank</code>; <code>withheld</code> (privacy suppression, “D”).</td></tr>
+      <tr><td><code>source_id</code>, <code>cell</code>, <code>raw</code></td><td>Join <code>source_id</code> to <code>sources.csv</code>; <code>cell</code> is the exact location; <code>raw</code> is the text as printed.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Use it from code</h2>
+  <pre><code>{`import pandas as pd
+facts = pd.read_csv("${Astro.site}data/v1/uscis-forms/facts.csv")
+n400 = facts.query("series_id == 'n-400' and measure == 'completed' and window == 'quarter'")`}</code></pre>
+
+  <h2>How to cite</h2>
+  <p><code>USA Immigration Ledger ({year}). US immigration ledger: USCIS caseload and State Department visa issuances, data through {L}. {Astro.site?.toString()}data/. Source data: U.S. Citizenship and Immigration Services; U.S. Department of State.</code></p>
+  <p class="note">The derived dataset is dedicated to the public domain (CC0). The underlying files are U.S. government works. Original files, byte-for-byte, are in the <a href="https://github.com/sigmalgebra/usa-immigration-ledger/tree/main/archive">GitHub archive</a>, since USCIS removes old versions from its site.</p>
+</Base>
+
+<style>
+  pre { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px; overflow-x: auto; font-size: 14px; }
+  pre code { border: 0; padding: 0; background: none; }
+</style>

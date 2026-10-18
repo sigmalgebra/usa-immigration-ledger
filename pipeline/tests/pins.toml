@@ -1,0 +1,164 @@
+# Hand-verified values. Each pin was read by a person straight from the archived file at the named cell
+# (Excel: Sheet!A1; CSV: 1-based line number and column letter), not through our parser.
+# test_pipeline.py re-reads the raw cell independently AND checks that the ledger holds the same value at the same cell.
+# One pin per layout era at least: FY2013 four-quarter CSV, FY2019 CSV, FY2019-FY2021 PDF, FY2021Q4 CSV,
+# FY2022-23 CSV, FY2024 fractional XLSX, FY2026 XLSX, I-130 awaiting, State Dept XLSX and PDF.
+# PDF pins can't be re-read by cell without our own position logic, so the test instead checks that `pdf_text`
+# appears on that page in plain text extraction, which is independent of how we rebuild the table.
+
+[[pin]]
+what = "Service-wide pending, end of FY2026Q3 (the headline number)"
+series = "total"
+period = "FY2026Q3"
+measure = "pending"
+window = "snapshot"
+value = "12807907"
+file = "quarterly_all_forms_fy2026_q3_v1.xlsx"
+cell = "FY26Q3_All_Forms!G6"
+
+[[pin]]
+what = "I-130 immediate relatives pending, FY2026Q3"
+series = "i-130-immediate-relative"
+period = "FY2026Q3"
+measure = "pending"
+window = "snapshot"
+value = "786723"
+file = "quarterly_all_forms_fy2026_q3_v1.xlsx"
+cell = "FY26Q3_All_Forms!G9"
+
+[[pin]]
+what = "Fractional (estimated) approvals in the FY2024Q1 total"
+series = "total"
+period = "FY2024Q1"
+measure = "approved"
+window = "quarter"
+value = "2475577.752151262"
+file = "quarterly_all_forms_fy2024_q1.xlsx"
+cell = "FY24Q1AllForms!D6"
+
+[[pin]]
+what = "I-129F median processing time FY2024Q3, identical to FY2024Q2 (a source copy error we flag)"
+series = "i-129f"
+period = "FY2024Q3"
+measure = "median_processing_months"
+window = "quarter"
+value = "8.5479358"
+file = "quarterly_all_forms_fy2024_q3.xlsx"
+cell = "FY24Q3_All_Forms!H8"
+
+[[pin]]
+what = "FY2019Q1 total received, as restated in the FY2019Q4 PDF (latest printing wins; first printed as 1,644,628)"
+series = "total"
+period = "FY2019Q1"
+measure = "received"
+window = "quarter"
+value = "1763425"
+file = "Quarterly_All_Forms_FY19Q4.pdf"
+cell = "page 1!C106"
+pdf_text = "1,763,425"
+
+[[pin]]
+what = "I-600 received FY2023Q4, printed under the glued label 'I-6007' (I-600 + footnote 7)"
+series = "i-600"
+period = "FY2023Q4"
+measure = "received"
+window = "quarter"
+value = "244"
+file = "quarterly_all_forms_fy2023_q4.csv"
+line = 10
+col = "C"
+
+[[pin]]
+what = "FY2021Q4 total received (three-row header layout)"
+series = "total"
+period = "FY2021Q4"
+measure = "received"
+window = "quarter"
+value = "2343364"
+file = "Quarterly_All_Forms_FY2021Q4.csv"
+line = 10
+col = "C"
+
+[[pin]]
+what = "FY2022Q2 total received ('Forms Received' printed on the band row)"
+series = "total"
+period = "FY2022Q2"
+measure = "received"
+window = "quarter"
+value = "2132619"
+file = "Quarterly_All_Forms_FY2022_Q2.csv"
+line = 10
+col = "C"
+
+[[pin]]
+what = "Approved I-130s awaiting a visa, Mexico, all preferences, FY2026Q3"
+series = "i130-awaiting/mexico/total"
+period = "FY2026Q3"
+measure = "awaiting_visa"
+window = "snapshot"
+value = "352758"
+file = "i130_awaiting_a_visa_availability_fy2026_q3_v1.xlsx"
+cell = "I130_approvals_awaiting_vis!G10"
+
+[[pin]]
+what = "State Dept November 2023 Egypt IR5, second row (kept apart, not merged)"
+series = "state-iv/egypt/ir5-row-2"
+period = "2023-11"
+measure = "issuances"
+window = "month"
+value = "1"
+file = "28NOVEMBER_2023_-_IV_Issuances_by_FSC_or_Place_of_Birth_and_Visa_Class.xlsx"
+cell = "Sheet1!C383"
+
+[[pin]]
+what = "Oldest quarter: total pending at end of FY2013Q1 (four-quarter CSV)"
+series = "total"
+period = "FY2013Q1"
+measure = "pending"
+window = "snapshot"
+value = "2844803"
+file = "AllForm-2013Q4.csv"
+line = 6
+col = "G"
+
+[[pin]]
+what = "Naturalizations (N-400, non-military) approved in FY2026Q3: fewest in any quarter since FY2013"
+series = "n-400"
+period = "FY2026Q3"
+measure = "approved"
+window = "quarter"
+value = "54974"
+file = "quarterly_all_forms_fy2026_q3_v1.xlsx"
+cell = "FY26Q3_All_Forms!D56"
+
+[[pin]]
+what = "Naturalizations approved in FY2020Q3, the COVID office-closure quarter (PDF-only report)"
+series = "n-400"
+period = "FY2020Q3"
+measure = "approved"
+window = "quarter"
+value = "78008"
+file = "Quarterly_All_Forms_FY2020Q4.pdf"
+cell = "page 1!L369"
+pdf_text = "78,008"
+
+[[pin]]
+what = "Affirmative asylum (I-589) approvals in FY2026Q2: 66, printed under the glued label 'I-58912'"
+series = "i-589"
+period = "FY2026Q2"
+measure = "approved"
+window = "quarter"
+value = "66"
+file = "quarterly_all_forms_fy2026_q2_v1.xlsx"
+cell = "FY26Q2_All_Forms!D33"
+
+[[pin]]
+what = "State Dept March 2017 grand total (oldest State month; PDF, last of 60 pages)"
+series = "state-iv/grand-total/all"
+period = "2017-03"
+measure = "issuances"
+window = "month"
+value = "51657"
+file = "March_2017_-_IV_Issuances_by_FSC_and_Visa_Class_-_Worldwide.pdf"
+cell = "page 60!C467"
+pdf_text = "51,657"

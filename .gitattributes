@@ -1,0 +1,5 @@
+# Archived government files are evidence: byte-exact, never line-ending converted (their SHA-256 must not change).
+archive/raw/** binary
+# Published data is generated with LF endings; keep it that way on every OS so `build --check` is stable.
+site/public/data/** text eol=lf
+archive/manifest.jsonl text eol=lf

@@ -1,0 +1,70 @@
+---
+// Static SVG at build time (readable without JavaScript, in feeds and screenshots); the browser
+// re-renders the same spec at its real width with a crosshair and tooltip.
+import { parseHTML } from "linkedom";
+import { lineChart, type LineSpec } from "../lib/chart";
+
+interface Props {
+  spec: LineSpec;
+  title: string;
+  subtitle?: string;
+  table?: boolean;
+}
+const { spec, title, subtitle, table = true } = Astro.props;
+const { document } = parseHTML("<!doctype html><html><body></body></html>");
+const svg = (lineChart(spec, { width: 720, document }) as unknown as Element).outerHTML;
+const legend = spec.series.length > 1 ? spec.series : [];
+const periods = [...new Set(spec.points.filter((p) => p.y !== null).map((p) => p.label))];
+---
+<figure class="chart">
+  <figcaption>
+    <span class="chart-title">{title}</span>
+    {subtitle && <span class="chart-sub">{subtitle}</span>}
+  </figcaption>
+  {legend.length > 0 && (
+    <ul class="legend">
+      {legend.map((s) => <li><span class={`key s${s.slot}`}></span>{s.label}</li>)}
+    </ul>
+  )}
+  <div class="plot" data-spec={JSON.stringify(spec)} set:html={svg} />
+  {table && (
+    <details class="table-view">
+      <summary>Show the numbers</summary>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Quarter</th>{spec.series.map((s) => <th class="num">{s.label}</th>)}</tr></thead>
+          <tbody>
+            {periods.map((label) => (
+              <tr>
+                <td>{label}</td>
+                {spec.series.map((s) => {
+                  const p = spec.points.find((x) => x.label === label && x.s === s.key);
+                  return <td class="num" title={p?.cite}>{p?.y == null ? "—" : p.y.toLocaleString("en-US", { maximumFractionDigits: 1 })}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  )}
+</figure>
+
+<script>
+  import { lineChart } from "../lib/chart";
+
+  const render = (host: HTMLElement) => {
+    const spec = JSON.parse(host.dataset.spec!);
+    const width = Math.max(300, Math.floor(host.clientWidth));
+    host.replaceChildren(lineChart(spec, { width, interactive: true }) as unknown as Node);
+  };
+  const hosts = [...document.querySelectorAll<HTMLElement>(".plot[data-spec]")];
+  const ro = new ResizeObserver((entries) => {
+    for (const e of entries) {
+      const host = e.target as HTMLElement;
+      const w = Math.floor(host.clientWidth);
+      if (host.dataset.w !== String(w)) { host.dataset.w = String(w); render(host); }
+    }
+  });
+  hosts.forEach((h) => ro.observe(h));
+</script>

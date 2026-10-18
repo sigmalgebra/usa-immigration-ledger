@@ -1,0 +1,649 @@
+series_id,period,measure,window,value,status,source_id,cell,raw
+i130-awaiting/china/f1,FY2021Q4,awaiting_visa,snapshot,926,reported,277a3973b70b,"line 11, column B",926
+i130-awaiting/china/f1,FY2022Q2,awaiting_visa,snapshot,958,reported,5e5d953d3c1e,"line 12, column B", 958 
+i130-awaiting/china/f1,FY2022Q4,awaiting_visa,snapshot,977,reported,811011d48188,"line 12, column B", 977 
+i130-awaiting/china/f1,FY2023Q1,awaiting_visa,snapshot,984,reported,153022cbd65c,"line 10, column B",984
+i130-awaiting/china/f1,FY2023Q2,awaiting_visa,snapshot,994,reported,80364637b39b,"line 9, column B",994
+i130-awaiting/china/f1,FY2023Q3,awaiting_visa,snapshot,990,reported,bbdc38356dbb,"line 8, column B",990
+i130-awaiting/china/f1,FY2023Q4,awaiting_visa,snapshot,981,reported,07c4d7b1f243,"line 8, column B",981
+i130-awaiting/china/f1,FY2024Q1,awaiting_visa,snapshot,923,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B8,923
+i130-awaiting/china/f1,FY2024Q2,awaiting_visa,snapshot,904,reported,2070bb650796,I130_approvals_awaiting_visa!B8,904
+i130-awaiting/china/f1,FY2024Q3,awaiting_visa,snapshot,797,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B8,797
+i130-awaiting/china/f1,FY2024Q4,awaiting_visa,snapshot,724,reported,aa9c851b010e,I130_approvals_awaiting_visa!B8,724
+i130-awaiting/china/f1,FY2025Q1,awaiting_visa,snapshot,733,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B8,733
+i130-awaiting/china/f1,FY2025Q2,awaiting_visa,snapshot,722,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B8,722
+i130-awaiting/china/f1,FY2025Q3,awaiting_visa,snapshot,581,reported,fb7d2340000f,I130_approvals_awaiting_vis!B8,581
+i130-awaiting/china/f1,FY2025Q4,awaiting_visa,snapshot,529,reported,5dd80d837615,I130_approvals_awaiting_vis!B8,529
+i130-awaiting/china/f1,FY2026Q1,awaiting_visa,snapshot,434,reported,606fa3968007,I130_approvals_awaiting_vis!B8,434
+i130-awaiting/china/f1,FY2026Q2,awaiting_visa,snapshot,439,reported,80c374708aa9,I130_approvals_awaiting_vis!B8,439
+i130-awaiting/china/f1,FY2026Q3,awaiting_visa,snapshot,257,reported,30c1440d4e07,I130_approvals_awaiting_vis!B8,257
+i130-awaiting/china/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 11, column C", -   
+i130-awaiting/china/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 12, column C", -   
+i130-awaiting/china/f2a,FY2022Q4,awaiting_visa,snapshot,,dash,811011d48188,"line 12, column C", -   
+i130-awaiting/china/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 10, column C", -   
+i130-awaiting/china/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 9, column C", -   
+i130-awaiting/china/f2a,FY2023Q3,awaiting_visa,snapshot,3440,reported,bbdc38356dbb,"line 8, column C","3,440"
+i130-awaiting/china/f2a,FY2023Q4,awaiting_visa,snapshot,12196,reported,07c4d7b1f243,"line 8, column C","12,196"
+i130-awaiting/china/f2a,FY2024Q1,awaiting_visa,snapshot,5639,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C8,5639
+i130-awaiting/china/f2a,FY2024Q2,awaiting_visa,snapshot,3461,reported,2070bb650796,I130_approvals_awaiting_visa!C8,3461
+i130-awaiting/china/f2a,FY2024Q3,awaiting_visa,snapshot,2331,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C8,2331
+i130-awaiting/china/f2a,FY2024Q4,awaiting_visa,snapshot,2512,reported,aa9c851b010e,I130_approvals_awaiting_visa!C8,2512
+i130-awaiting/china/f2a,FY2025Q1,awaiting_visa,snapshot,2455,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C8,2455
+i130-awaiting/china/f2a,FY2025Q2,awaiting_visa,snapshot,2641,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C8,2641
+i130-awaiting/china/f2a,FY2025Q3,awaiting_visa,snapshot,2745,reported,fb7d2340000f,I130_approvals_awaiting_vis!C8,2745
+i130-awaiting/china/f2a,FY2025Q4,awaiting_visa,snapshot,1661,reported,5dd80d837615,I130_approvals_awaiting_vis!C8,1661
+i130-awaiting/china/f2a,FY2026Q1,awaiting_visa,snapshot,99,reported,606fa3968007,I130_approvals_awaiting_vis!C8,99
+i130-awaiting/china/f2a,FY2026Q2,awaiting_visa,snapshot,167,reported,80c374708aa9,I130_approvals_awaiting_vis!C8,167
+i130-awaiting/china/f2a,FY2026Q3,awaiting_visa,snapshot,107,reported,30c1440d4e07,I130_approvals_awaiting_vis!C8,107
+i130-awaiting/china/f2b,FY2021Q4,awaiting_visa,snapshot,5561,reported,277a3973b70b,"line 11, column D","5,561"
+i130-awaiting/china/f2b,FY2022Q2,awaiting_visa,snapshot,5999,reported,5e5d953d3c1e,"line 12, column D"," 5,999 "
+i130-awaiting/china/f2b,FY2022Q4,awaiting_visa,snapshot,6383,reported,811011d48188,"line 12, column D"," 6,383 "
+i130-awaiting/china/f2b,FY2023Q1,awaiting_visa,snapshot,6453,reported,153022cbd65c,"line 10, column D","6,453"
+i130-awaiting/china/f2b,FY2023Q2,awaiting_visa,snapshot,6667,reported,80364637b39b,"line 9, column D","6,667"
+i130-awaiting/china/f2b,FY2023Q3,awaiting_visa,snapshot,6700,reported,bbdc38356dbb,"line 8, column D","6,700"
+i130-awaiting/china/f2b,FY2023Q4,awaiting_visa,snapshot,6715,reported,07c4d7b1f243,"line 8, column D","6,715"
+i130-awaiting/china/f2b,FY2024Q1,awaiting_visa,snapshot,6572,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D8,6572
+i130-awaiting/china/f2b,FY2024Q2,awaiting_visa,snapshot,6323,reported,2070bb650796,I130_approvals_awaiting_visa!D8,6323
+i130-awaiting/china/f2b,FY2024Q3,awaiting_visa,snapshot,5684,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D8,5684
+i130-awaiting/china/f2b,FY2024Q4,awaiting_visa,snapshot,5469,reported,aa9c851b010e,I130_approvals_awaiting_visa!D8,5469
+i130-awaiting/china/f2b,FY2025Q1,awaiting_visa,snapshot,5480,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D8,5480
+i130-awaiting/china/f2b,FY2025Q2,awaiting_visa,snapshot,5380,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D8,5380
+i130-awaiting/china/f2b,FY2025Q3,awaiting_visa,snapshot,4713,reported,fb7d2340000f,I130_approvals_awaiting_vis!D8,4713
+i130-awaiting/china/f2b,FY2025Q4,awaiting_visa,snapshot,4567,reported,5dd80d837615,I130_approvals_awaiting_vis!D8,4567
+i130-awaiting/china/f2b,FY2026Q1,awaiting_visa,snapshot,4295,reported,606fa3968007,I130_approvals_awaiting_vis!D8,4295
+i130-awaiting/china/f2b,FY2026Q2,awaiting_visa,snapshot,4281,reported,80c374708aa9,I130_approvals_awaiting_vis!D8,4281
+i130-awaiting/china/f2b,FY2026Q3,awaiting_visa,snapshot,2815,reported,30c1440d4e07,I130_approvals_awaiting_vis!D8,2815
+i130-awaiting/china/f3,FY2021Q4,awaiting_visa,snapshot,4098,reported,277a3973b70b,"line 11, column E","4,098"
+i130-awaiting/china/f3,FY2022Q2,awaiting_visa,snapshot,4135,reported,5e5d953d3c1e,"line 12, column E"," 4,135 "
+i130-awaiting/china/f3,FY2022Q4,awaiting_visa,snapshot,4152,reported,811011d48188,"line 12, column E"," 4,152 "
+i130-awaiting/china/f3,FY2023Q1,awaiting_visa,snapshot,4156,reported,153022cbd65c,"line 10, column E","4,156"
+i130-awaiting/china/f3,FY2023Q2,awaiting_visa,snapshot,4179,reported,80364637b39b,"line 9, column E","4,179"
+i130-awaiting/china/f3,FY2023Q3,awaiting_visa,snapshot,4136,reported,bbdc38356dbb,"line 8, column E","4,136"
+i130-awaiting/china/f3,FY2023Q4,awaiting_visa,snapshot,4030,reported,07c4d7b1f243,"line 8, column E","4,030"
+i130-awaiting/china/f3,FY2024Q1,awaiting_visa,snapshot,3901,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E8,3901
+i130-awaiting/china/f3,FY2024Q2,awaiting_visa,snapshot,3313,reported,2070bb650796,I130_approvals_awaiting_visa!E8,3313
+i130-awaiting/china/f3,FY2024Q3,awaiting_visa,snapshot,3020,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E8,3020
+i130-awaiting/china/f3,FY2024Q4,awaiting_visa,snapshot,2985,reported,aa9c851b010e,I130_approvals_awaiting_visa!E8,2985
+i130-awaiting/china/f3,FY2025Q1,awaiting_visa,snapshot,2957,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E8,2957
+i130-awaiting/china/f3,FY2025Q2,awaiting_visa,snapshot,2799,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E8,2799
+i130-awaiting/china/f3,FY2025Q3,awaiting_visa,snapshot,1947,reported,fb7d2340000f,I130_approvals_awaiting_vis!E8,1947
+i130-awaiting/china/f3,FY2025Q4,awaiting_visa,snapshot,1850,reported,5dd80d837615,I130_approvals_awaiting_vis!E8,1850
+i130-awaiting/china/f3,FY2026Q1,awaiting_visa,snapshot,1750,reported,606fa3968007,I130_approvals_awaiting_vis!E8,1750
+i130-awaiting/china/f3,FY2026Q2,awaiting_visa,snapshot,1759,reported,80c374708aa9,I130_approvals_awaiting_vis!E8,1759
+i130-awaiting/china/f3,FY2026Q3,awaiting_visa,snapshot,1390,reported,30c1440d4e07,I130_approvals_awaiting_vis!E8,1390
+i130-awaiting/china/f4,FY2021Q4,awaiting_visa,snapshot,42297,reported,277a3973b70b,"line 11, column F","42,297"
+i130-awaiting/china/f4,FY2022Q2,awaiting_visa,snapshot,42650,reported,5e5d953d3c1e,"line 12, column F"," 42,650 "
+i130-awaiting/china/f4,FY2022Q4,awaiting_visa,snapshot,42967,reported,811011d48188,"line 12, column F"," 42,967 "
+i130-awaiting/china/f4,FY2023Q1,awaiting_visa,snapshot,43021,reported,153022cbd65c,"line 10, column F","43,021"
+i130-awaiting/china/f4,FY2023Q2,awaiting_visa,snapshot,43311,reported,80364637b39b,"line 9, column F","43,311"
+i130-awaiting/china/f4,FY2023Q3,awaiting_visa,snapshot,43170,reported,bbdc38356dbb,"line 8, column F","43,170"
+i130-awaiting/china/f4,FY2023Q4,awaiting_visa,snapshot,42921,reported,07c4d7b1f243,"line 8, column F","42,921"
+i130-awaiting/china/f4,FY2024Q1,awaiting_visa,snapshot,42606,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F8,42606
+i130-awaiting/china/f4,FY2024Q2,awaiting_visa,snapshot,41367,reported,2070bb650796,I130_approvals_awaiting_visa!F8,41367
+i130-awaiting/china/f4,FY2024Q3,awaiting_visa,snapshot,39694,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F8,39694
+i130-awaiting/china/f4,FY2024Q4,awaiting_visa,snapshot,38847,reported,aa9c851b010e,I130_approvals_awaiting_visa!F8,38847
+i130-awaiting/china/f4,FY2025Q1,awaiting_visa,snapshot,39067,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F8,39067
+i130-awaiting/china/f4,FY2025Q2,awaiting_visa,snapshot,39296,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F8,39296
+i130-awaiting/china/f4,FY2025Q3,awaiting_visa,snapshot,37640,reported,fb7d2340000f,I130_approvals_awaiting_vis!F8,37640
+i130-awaiting/china/f4,FY2025Q4,awaiting_visa,snapshot,37866,reported,5dd80d837615,I130_approvals_awaiting_vis!F8,37866
+i130-awaiting/china/f4,FY2026Q1,awaiting_visa,snapshot,37981,reported,606fa3968007,I130_approvals_awaiting_vis!F8,37981
+i130-awaiting/china/f4,FY2026Q2,awaiting_visa,snapshot,38123,reported,80c374708aa9,I130_approvals_awaiting_vis!F8,38123
+i130-awaiting/china/f4,FY2026Q3,awaiting_visa,snapshot,33751,reported,30c1440d4e07,I130_approvals_awaiting_vis!F8,33751
+i130-awaiting/china/total,FY2021Q4,awaiting_visa,snapshot,52882,reported,277a3973b70b,"line 11, column G","52,882"
+i130-awaiting/china/total,FY2022Q2,awaiting_visa,snapshot,53742,reported,5e5d953d3c1e,"line 12, column G"," 53,742 "
+i130-awaiting/china/total,FY2022Q4,awaiting_visa,snapshot,54479,reported,811011d48188,"line 12, column G"," 54,479 "
+i130-awaiting/china/total,FY2023Q1,awaiting_visa,snapshot,54614,reported,153022cbd65c,"line 10, column G","54,614"
+i130-awaiting/china/total,FY2023Q2,awaiting_visa,snapshot,55151,reported,80364637b39b,"line 9, column G","55,151"
+i130-awaiting/china/total,FY2023Q3,awaiting_visa,snapshot,58436,reported,bbdc38356dbb,"line 8, column G","58,436"
+i130-awaiting/china/total,FY2023Q4,awaiting_visa,snapshot,66843,reported,07c4d7b1f243,"line 8, column G","66,843"
+i130-awaiting/china/total,FY2024Q1,awaiting_visa,snapshot,59641,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G8,59641
+i130-awaiting/china/total,FY2024Q2,awaiting_visa,snapshot,55368,reported,2070bb650796,I130_approvals_awaiting_visa!G8,55368
+i130-awaiting/china/total,FY2024Q3,awaiting_visa,snapshot,51526,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G8,51526
+i130-awaiting/china/total,FY2024Q4,awaiting_visa,snapshot,50537,reported,aa9c851b010e,I130_approvals_awaiting_visa!G8,50537
+i130-awaiting/china/total,FY2025Q1,awaiting_visa,snapshot,50692,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G8,50692
+i130-awaiting/china/total,FY2025Q2,awaiting_visa,snapshot,50838,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G8,50838
+i130-awaiting/china/total,FY2025Q3,awaiting_visa,snapshot,47626,reported,fb7d2340000f,I130_approvals_awaiting_vis!G8,47626
+i130-awaiting/china/total,FY2025Q4,awaiting_visa,snapshot,46473,reported,5dd80d837615,I130_approvals_awaiting_vis!G8,46473
+i130-awaiting/china/total,FY2026Q1,awaiting_visa,snapshot,44559,reported,606fa3968007,I130_approvals_awaiting_vis!G8,44559
+i130-awaiting/china/total,FY2026Q2,awaiting_visa,snapshot,44769,reported,80c374708aa9,I130_approvals_awaiting_vis!G8,44769
+i130-awaiting/china/total,FY2026Q3,awaiting_visa,snapshot,38320,reported,30c1440d4e07,I130_approvals_awaiting_vis!G8,38320
+i130-awaiting/india/f1,FY2021Q4,awaiting_visa,snapshot,636,reported,277a3973b70b,"line 12, column B",636
+i130-awaiting/india/f1,FY2022Q2,awaiting_visa,snapshot,678,reported,5e5d953d3c1e,"line 13, column B", 678 
+i130-awaiting/india/f1,FY2022Q4,awaiting_visa,snapshot,724,reported,811011d48188,"line 13, column B", 724 
+i130-awaiting/india/f1,FY2023Q1,awaiting_visa,snapshot,732,reported,153022cbd65c,"line 11, column B",732
+i130-awaiting/india/f1,FY2023Q2,awaiting_visa,snapshot,750,reported,80364637b39b,"line 10, column B",750
+i130-awaiting/india/f1,FY2023Q3,awaiting_visa,snapshot,764,reported,bbdc38356dbb,"line 9, column B",764
+i130-awaiting/india/f1,FY2023Q4,awaiting_visa,snapshot,756,reported,07c4d7b1f243,"line 9, column B",756
+i130-awaiting/india/f1,FY2024Q1,awaiting_visa,snapshot,707,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B9,707
+i130-awaiting/india/f1,FY2024Q2,awaiting_visa,snapshot,700,reported,2070bb650796,I130_approvals_awaiting_visa!B9,700
+i130-awaiting/india/f1,FY2024Q3,awaiting_visa,snapshot,632,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B9,632
+i130-awaiting/india/f1,FY2024Q4,awaiting_visa,snapshot,586,reported,aa9c851b010e,I130_approvals_awaiting_visa!B9,586
+i130-awaiting/india/f1,FY2025Q1,awaiting_visa,snapshot,593,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B9,593
+i130-awaiting/india/f1,FY2025Q2,awaiting_visa,snapshot,592,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B9,592
+i130-awaiting/india/f1,FY2025Q3,awaiting_visa,snapshot,490,reported,fb7d2340000f,I130_approvals_awaiting_vis!B9,490
+i130-awaiting/india/f1,FY2025Q4,awaiting_visa,snapshot,471,reported,5dd80d837615,I130_approvals_awaiting_vis!B9,471
+i130-awaiting/india/f1,FY2026Q1,awaiting_visa,snapshot,424,reported,606fa3968007,I130_approvals_awaiting_vis!B9,424
+i130-awaiting/india/f1,FY2026Q2,awaiting_visa,snapshot,427,reported,80c374708aa9,I130_approvals_awaiting_vis!B9,427
+i130-awaiting/india/f1,FY2026Q3,awaiting_visa,snapshot,319,reported,30c1440d4e07,I130_approvals_awaiting_vis!B9,319
+i130-awaiting/india/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 12, column C", -   
+i130-awaiting/india/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 13, column C", -   
+i130-awaiting/india/f2a,FY2022Q4,awaiting_visa,snapshot,,dash,811011d48188,"line 13, column C", -   
+i130-awaiting/india/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 11, column C", -   
+i130-awaiting/india/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 10, column C", -   
+i130-awaiting/india/f2a,FY2023Q3,awaiting_visa,snapshot,2806,reported,bbdc38356dbb,"line 9, column C","2,806"
+i130-awaiting/india/f2a,FY2023Q4,awaiting_visa,snapshot,9614,reported,07c4d7b1f243,"line 9, column C","9,614"
+i130-awaiting/india/f2a,FY2024Q1,awaiting_visa,snapshot,4147,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C9,4147
+i130-awaiting/india/f2a,FY2024Q2,awaiting_visa,snapshot,2471,reported,2070bb650796,I130_approvals_awaiting_visa!C9,2471
+i130-awaiting/india/f2a,FY2024Q3,awaiting_visa,snapshot,1206,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C9,1206
+i130-awaiting/india/f2a,FY2024Q4,awaiting_visa,snapshot,1312,reported,aa9c851b010e,I130_approvals_awaiting_visa!C9,1312
+i130-awaiting/india/f2a,FY2025Q1,awaiting_visa,snapshot,1255,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C9,1255
+i130-awaiting/india/f2a,FY2025Q2,awaiting_visa,snapshot,1338,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C9,1338
+i130-awaiting/india/f2a,FY2025Q3,awaiting_visa,snapshot,1353,reported,fb7d2340000f,I130_approvals_awaiting_vis!C9,1353
+i130-awaiting/india/f2a,FY2025Q4,awaiting_visa,snapshot,819,reported,5dd80d837615,I130_approvals_awaiting_vis!C9,819
+i130-awaiting/india/f2a,FY2026Q1,awaiting_visa,snapshot,43,reported,606fa3968007,I130_approvals_awaiting_vis!C9,43
+i130-awaiting/india/f2a,FY2026Q2,awaiting_visa,snapshot,103,reported,80c374708aa9,I130_approvals_awaiting_vis!C9,103
+i130-awaiting/india/f2a,FY2026Q3,awaiting_visa,snapshot,78,reported,30c1440d4e07,I130_approvals_awaiting_vis!C9,78
+i130-awaiting/india/f2b,FY2021Q4,awaiting_visa,snapshot,2038,reported,277a3973b70b,"line 12, column D","2,038"
+i130-awaiting/india/f2b,FY2022Q2,awaiting_visa,snapshot,2244,reported,5e5d953d3c1e,"line 13, column D"," 2,244 "
+i130-awaiting/india/f2b,FY2022Q4,awaiting_visa,snapshot,2440,reported,811011d48188,"line 13, column D"," 2,440 "
+i130-awaiting/india/f2b,FY2023Q1,awaiting_visa,snapshot,2467,reported,153022cbd65c,"line 11, column D","2,467"
+i130-awaiting/india/f2b,FY2023Q2,awaiting_visa,snapshot,2571,reported,80364637b39b,"line 10, column D","2,571"
+i130-awaiting/india/f2b,FY2023Q3,awaiting_visa,snapshot,2595,reported,bbdc38356dbb,"line 9, column D","2,595"
+i130-awaiting/india/f2b,FY2023Q4,awaiting_visa,snapshot,2597,reported,07c4d7b1f243,"line 9, column D","2,597"
+i130-awaiting/india/f2b,FY2024Q1,awaiting_visa,snapshot,2501,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D9,2501
+i130-awaiting/india/f2b,FY2024Q2,awaiting_visa,snapshot,2439,reported,2070bb650796,I130_approvals_awaiting_visa!D9,2439
+i130-awaiting/india/f2b,FY2024Q3,awaiting_visa,snapshot,2252,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D9,2252
+i130-awaiting/india/f2b,FY2024Q4,awaiting_visa,snapshot,2177,reported,aa9c851b010e,I130_approvals_awaiting_visa!D9,2177
+i130-awaiting/india/f2b,FY2025Q1,awaiting_visa,snapshot,2194,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D9,2194
+i130-awaiting/india/f2b,FY2025Q2,awaiting_visa,snapshot,2155,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D9,2155
+i130-awaiting/india/f2b,FY2025Q3,awaiting_visa,snapshot,1936,reported,fb7d2340000f,I130_approvals_awaiting_vis!D9,1936
+i130-awaiting/india/f2b,FY2025Q4,awaiting_visa,snapshot,1879,reported,5dd80d837615,I130_approvals_awaiting_vis!D9,1879
+i130-awaiting/india/f2b,FY2026Q1,awaiting_visa,snapshot,1817,reported,606fa3968007,I130_approvals_awaiting_vis!D9,1817
+i130-awaiting/india/f2b,FY2026Q2,awaiting_visa,snapshot,1803,reported,80c374708aa9,I130_approvals_awaiting_vis!D9,1803
+i130-awaiting/india/f2b,FY2026Q3,awaiting_visa,snapshot,1342,reported,30c1440d4e07,I130_approvals_awaiting_vis!D9,1342
+i130-awaiting/india/f3,FY2021Q4,awaiting_visa,snapshot,7912,reported,277a3973b70b,"line 12, column E","7,912"
+i130-awaiting/india/f3,FY2022Q2,awaiting_visa,snapshot,7992,reported,5e5d953d3c1e,"line 13, column E"," 7,992 "
+i130-awaiting/india/f3,FY2022Q4,awaiting_visa,snapshot,8069,reported,811011d48188,"line 13, column E"," 8,069 "
+i130-awaiting/india/f3,FY2023Q1,awaiting_visa,snapshot,8088,reported,153022cbd65c,"line 11, column E","8,088"
+i130-awaiting/india/f3,FY2023Q2,awaiting_visa,snapshot,8158,reported,80364637b39b,"line 10, column E","8,158"
+i130-awaiting/india/f3,FY2023Q3,awaiting_visa,snapshot,8095,reported,bbdc38356dbb,"line 9, column E","8,095"
+i130-awaiting/india/f3,FY2023Q4,awaiting_visa,snapshot,7951,reported,07c4d7b1f243,"line 9, column E","7,951"
+i130-awaiting/india/f3,FY2024Q1,awaiting_visa,snapshot,7659,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E9,7659
+i130-awaiting/india/f3,FY2024Q2,awaiting_visa,snapshot,6407,reported,2070bb650796,I130_approvals_awaiting_visa!E9,6407
+i130-awaiting/india/f3,FY2024Q3,awaiting_visa,snapshot,5819,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E9,5819
+i130-awaiting/india/f3,FY2024Q4,awaiting_visa,snapshot,5663,reported,aa9c851b010e,I130_approvals_awaiting_visa!E9,5663
+i130-awaiting/india/f3,FY2025Q1,awaiting_visa,snapshot,5607,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E9,5607
+i130-awaiting/india/f3,FY2025Q2,awaiting_visa,snapshot,5268,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E9,5268
+i130-awaiting/india/f3,FY2025Q3,awaiting_visa,snapshot,3729,reported,fb7d2340000f,I130_approvals_awaiting_vis!E9,3729
+i130-awaiting/india/f3,FY2025Q4,awaiting_visa,snapshot,3571,reported,5dd80d837615,I130_approvals_awaiting_vis!E9,3571
+i130-awaiting/india/f3,FY2026Q1,awaiting_visa,snapshot,3445,reported,606fa3968007,I130_approvals_awaiting_vis!E9,3445
+i130-awaiting/india/f3,FY2026Q2,awaiting_visa,snapshot,3453,reported,80c374708aa9,I130_approvals_awaiting_vis!E9,3453
+i130-awaiting/india/f3,FY2026Q3,awaiting_visa,snapshot,2848,reported,30c1440d4e07,I130_approvals_awaiting_vis!E9,2848
+i130-awaiting/india/f4,FY2021Q4,awaiting_visa,snapshot,63856,reported,277a3973b70b,"line 12, column F","63,856"
+i130-awaiting/india/f4,FY2022Q2,awaiting_visa,snapshot,64787,reported,5e5d953d3c1e,"line 13, column F"," 64,787 "
+i130-awaiting/india/f4,FY2022Q4,awaiting_visa,snapshot,65866,reported,811011d48188,"line 13, column F"," 65,866 "
+i130-awaiting/india/f4,FY2023Q1,awaiting_visa,snapshot,66045,reported,153022cbd65c,"line 11, column F","66,045"
+i130-awaiting/india/f4,FY2023Q2,awaiting_visa,snapshot,66887,reported,80364637b39b,"line 10, column F","66,887"
+i130-awaiting/india/f4,FY2023Q3,awaiting_visa,snapshot,67502,reported,bbdc38356dbb,"line 9, column F","67,502"
+i130-awaiting/india/f4,FY2023Q4,awaiting_visa,snapshot,67826,reported,07c4d7b1f243,"line 9, column F","67,826"
+i130-awaiting/india/f4,FY2024Q1,awaiting_visa,snapshot,67109,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F9,67109
+i130-awaiting/india/f4,FY2024Q2,awaiting_visa,snapshot,66359,reported,2070bb650796,I130_approvals_awaiting_visa!F9,66359
+i130-awaiting/india/f4,FY2024Q3,awaiting_visa,snapshot,66116,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F9,66116
+i130-awaiting/india/f4,FY2024Q4,awaiting_visa,snapshot,66378,reported,aa9c851b010e,I130_approvals_awaiting_visa!F9,66378
+i130-awaiting/india/f4,FY2025Q1,awaiting_visa,snapshot,65862,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F9,65862
+i130-awaiting/india/f4,FY2025Q2,awaiting_visa,snapshot,65395,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F9,65395
+i130-awaiting/india/f4,FY2025Q3,awaiting_visa,snapshot,64026,reported,fb7d2340000f,I130_approvals_awaiting_vis!F9,64026
+i130-awaiting/india/f4,FY2025Q4,awaiting_visa,snapshot,60800,reported,5dd80d837615,I130_approvals_awaiting_vis!F9,60800
+i130-awaiting/india/f4,FY2026Q1,awaiting_visa,snapshot,61077,reported,606fa3968007,I130_approvals_awaiting_vis!F9,61077
+i130-awaiting/india/f4,FY2026Q2,awaiting_visa,snapshot,61356,reported,80c374708aa9,I130_approvals_awaiting_vis!F9,61356
+i130-awaiting/india/f4,FY2026Q3,awaiting_visa,snapshot,61476,reported,30c1440d4e07,I130_approvals_awaiting_vis!F9,61476
+i130-awaiting/india/total,FY2021Q4,awaiting_visa,snapshot,74442,reported,277a3973b70b,"line 12, column G","74,442"
+i130-awaiting/india/total,FY2022Q2,awaiting_visa,snapshot,75701,reported,5e5d953d3c1e,"line 13, column G"," 75,701 "
+i130-awaiting/india/total,FY2022Q4,awaiting_visa,snapshot,77099,reported,811011d48188,"line 13, column G"," 77,099 "
+i130-awaiting/india/total,FY2023Q1,awaiting_visa,snapshot,77332,reported,153022cbd65c,"line 11, column G","77,332"
+i130-awaiting/india/total,FY2023Q2,awaiting_visa,snapshot,78366,reported,80364637b39b,"line 10, column G","78,366"
+i130-awaiting/india/total,FY2023Q3,awaiting_visa,snapshot,81762,reported,bbdc38356dbb,"line 9, column G","81,762"
+i130-awaiting/india/total,FY2023Q4,awaiting_visa,snapshot,88744,reported,07c4d7b1f243,"line 9, column G","88,744"
+i130-awaiting/india/total,FY2024Q1,awaiting_visa,snapshot,82123,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G9,82123
+i130-awaiting/india/total,FY2024Q2,awaiting_visa,snapshot,78376,reported,2070bb650796,I130_approvals_awaiting_visa!G9,78376
+i130-awaiting/india/total,FY2024Q3,awaiting_visa,snapshot,76025,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G9,76025
+i130-awaiting/india/total,FY2024Q4,awaiting_visa,snapshot,76116,reported,aa9c851b010e,I130_approvals_awaiting_visa!G9,76116
+i130-awaiting/india/total,FY2025Q1,awaiting_visa,snapshot,75511,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G9,75511
+i130-awaiting/india/total,FY2025Q2,awaiting_visa,snapshot,74748,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G9,74748
+i130-awaiting/india/total,FY2025Q3,awaiting_visa,snapshot,71534,reported,fb7d2340000f,I130_approvals_awaiting_vis!G9,71534
+i130-awaiting/india/total,FY2025Q4,awaiting_visa,snapshot,67540,reported,5dd80d837615,I130_approvals_awaiting_vis!G9,67540
+i130-awaiting/india/total,FY2026Q1,awaiting_visa,snapshot,66806,reported,606fa3968007,I130_approvals_awaiting_vis!G9,66806
+i130-awaiting/india/total,FY2026Q2,awaiting_visa,snapshot,67142,reported,80c374708aa9,I130_approvals_awaiting_vis!G9,67142
+i130-awaiting/india/total,FY2026Q3,awaiting_visa,snapshot,66063,reported,30c1440d4e07,I130_approvals_awaiting_vis!G9,66063
+i130-awaiting/mexico/f1,FY2021Q4,awaiting_visa,snapshot,56275,reported,277a3973b70b,"line 13, column B","56,275"
+i130-awaiting/mexico/f1,FY2022Q2,awaiting_visa,snapshot,54564,reported,5e5d953d3c1e,"line 14, column B"," 54,564 "
+i130-awaiting/mexico/f1,FY2022Q4,awaiting_visa,snapshot,53260,reported,811011d48188,"line 14, column B"," 53,260 "
+i130-awaiting/mexico/f1,FY2023Q1,awaiting_visa,snapshot,50989,reported,153022cbd65c,"line 12, column B","50,989"
+i130-awaiting/mexico/f1,FY2023Q2,awaiting_visa,snapshot,48435,reported,80364637b39b,"line 11, column B","48,435"
+i130-awaiting/mexico/f1,FY2023Q3,awaiting_visa,snapshot,48556,reported,bbdc38356dbb,"line 10, column B","48,556"
+i130-awaiting/mexico/f1,FY2023Q4,awaiting_visa,snapshot,47045,reported,07c4d7b1f243,"line 10, column B","47,045"
+i130-awaiting/mexico/f1,FY2024Q1,awaiting_visa,snapshot,40298,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B10,40298
+i130-awaiting/mexico/f1,FY2024Q2,awaiting_visa,snapshot,40349,reported,2070bb650796,I130_approvals_awaiting_visa!B10,40349
+i130-awaiting/mexico/f1,FY2024Q3,awaiting_visa,snapshot,37504,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B10,37504
+i130-awaiting/mexico/f1,FY2024Q4,awaiting_visa,snapshot,36752,reported,aa9c851b010e,I130_approvals_awaiting_visa!B10,36752
+i130-awaiting/mexico/f1,FY2025Q1,awaiting_visa,snapshot,31285,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B10,31285
+i130-awaiting/mexico/f1,FY2025Q2,awaiting_visa,snapshot,31329,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B10,31329
+i130-awaiting/mexico/f1,FY2025Q3,awaiting_visa,snapshot,30654,reported,fb7d2340000f,I130_approvals_awaiting_vis!B10,30654
+i130-awaiting/mexico/f1,FY2025Q4,awaiting_visa,snapshot,30454,reported,5dd80d837615,I130_approvals_awaiting_vis!B10,30454
+i130-awaiting/mexico/f1,FY2026Q1,awaiting_visa,snapshot,28460,reported,606fa3968007,I130_approvals_awaiting_vis!B10,28460
+i130-awaiting/mexico/f1,FY2026Q2,awaiting_visa,snapshot,26124,reported,80c374708aa9,I130_approvals_awaiting_vis!B10,26124
+i130-awaiting/mexico/f1,FY2026Q3,awaiting_visa,snapshot,22527,reported,30c1440d4e07,I130_approvals_awaiting_vis!B10,22527
+i130-awaiting/mexico/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 13, column C", -   
+i130-awaiting/mexico/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 14, column C", -   
+i130-awaiting/mexico/f2a,FY2022Q4,awaiting_visa,snapshot,34555,reported,811011d48188,"line 14, column C"," 34,555 "
+i130-awaiting/mexico/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 12, column C", -   
+i130-awaiting/mexico/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 11, column C", -   
+i130-awaiting/mexico/f2a,FY2023Q3,awaiting_visa,snapshot,49764,reported,bbdc38356dbb,"line 10, column C","49,764"
+i130-awaiting/mexico/f2a,FY2023Q4,awaiting_visa,snapshot,98639,reported,07c4d7b1f243,"line 10, column C","98,639"
+i130-awaiting/mexico/f2a,FY2024Q1,awaiting_visa,snapshot,42351,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C10,42351
+i130-awaiting/mexico/f2a,FY2024Q2,awaiting_visa,snapshot,22459,reported,2070bb650796,I130_approvals_awaiting_visa!C10,22459
+i130-awaiting/mexico/f2a,FY2024Q3,awaiting_visa,snapshot,15033,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C10,15033
+i130-awaiting/mexico/f2a,FY2024Q4,awaiting_visa,snapshot,17581,reported,aa9c851b010e,I130_approvals_awaiting_visa!C10,17581
+i130-awaiting/mexico/f2a,FY2025Q1,awaiting_visa,snapshot,17108,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C10,17108
+i130-awaiting/mexico/f2a,FY2025Q2,awaiting_visa,snapshot,17179,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C10,17179
+i130-awaiting/mexico/f2a,FY2025Q3,awaiting_visa,snapshot,18125,reported,fb7d2340000f,I130_approvals_awaiting_vis!C10,18125
+i130-awaiting/mexico/f2a,FY2025Q4,awaiting_visa,snapshot,8220,reported,5dd80d837615,I130_approvals_awaiting_vis!C10,8220
+i130-awaiting/mexico/f2a,FY2026Q1,awaiting_visa,snapshot,972,reported,606fa3968007,I130_approvals_awaiting_vis!C10,972
+i130-awaiting/mexico/f2a,FY2026Q2,awaiting_visa,snapshot,1036,reported,80c374708aa9,I130_approvals_awaiting_vis!C10,1036
+i130-awaiting/mexico/f2a,FY2026Q3,awaiting_visa,snapshot,256,reported,30c1440d4e07,I130_approvals_awaiting_vis!C10,256
+i130-awaiting/mexico/f2b,FY2021Q4,awaiting_visa,snapshot,84739,reported,277a3973b70b,"line 13, column D","84,739"
+i130-awaiting/mexico/f2b,FY2022Q2,awaiting_visa,snapshot,82686,reported,5e5d953d3c1e,"line 14, column D"," 82,686 "
+i130-awaiting/mexico/f2b,FY2022Q4,awaiting_visa,snapshot,73569,reported,811011d48188,"line 14, column D"," 73,569 "
+i130-awaiting/mexico/f2b,FY2023Q1,awaiting_visa,snapshot,49418,reported,153022cbd65c,"line 12, column D","49,418"
+i130-awaiting/mexico/f2b,FY2023Q2,awaiting_visa,snapshot,49635,reported,80364637b39b,"line 11, column D","49,635"
+i130-awaiting/mexico/f2b,FY2023Q3,awaiting_visa,snapshot,49687,reported,bbdc38356dbb,"line 10, column D","49,687"
+i130-awaiting/mexico/f2b,FY2023Q4,awaiting_visa,snapshot,48007,reported,07c4d7b1f243,"line 10, column D","48,007"
+i130-awaiting/mexico/f2b,FY2024Q1,awaiting_visa,snapshot,41459,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D10,41459
+i130-awaiting/mexico/f2b,FY2024Q2,awaiting_visa,snapshot,35470,reported,2070bb650796,I130_approvals_awaiting_visa!D10,35470
+i130-awaiting/mexico/f2b,FY2024Q3,awaiting_visa,snapshot,32579,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D10,32579
+i130-awaiting/mexico/f2b,FY2024Q4,awaiting_visa,snapshot,32814,reported,aa9c851b010e,I130_approvals_awaiting_visa!D10,32814
+i130-awaiting/mexico/f2b,FY2025Q1,awaiting_visa,snapshot,30227,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D10,30227
+i130-awaiting/mexico/f2b,FY2025Q2,awaiting_visa,snapshot,30275,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D10,30275
+i130-awaiting/mexico/f2b,FY2025Q3,awaiting_visa,snapshot,28761,reported,fb7d2340000f,I130_approvals_awaiting_vis!D10,28761
+i130-awaiting/mexico/f2b,FY2025Q4,awaiting_visa,snapshot,25056,reported,5dd80d837615,I130_approvals_awaiting_vis!D10,25056
+i130-awaiting/mexico/f2b,FY2026Q1,awaiting_visa,snapshot,21666,reported,606fa3968007,I130_approvals_awaiting_vis!D10,21666
+i130-awaiting/mexico/f2b,FY2026Q2,awaiting_visa,snapshot,20049,reported,80c374708aa9,I130_approvals_awaiting_vis!D10,20049
+i130-awaiting/mexico/f2b,FY2026Q3,awaiting_visa,snapshot,20046,reported,30c1440d4e07,I130_approvals_awaiting_vis!D10,20046
+i130-awaiting/mexico/f3,FY2021Q4,awaiting_visa,snapshot,57956,reported,277a3973b70b,"line 13, column E","57,956"
+i130-awaiting/mexico/f3,FY2022Q2,awaiting_visa,snapshot,57007,reported,5e5d953d3c1e,"line 14, column E"," 57,007 "
+i130-awaiting/mexico/f3,FY2022Q4,awaiting_visa,snapshot,56609,reported,811011d48188,"line 14, column E"," 56,609 "
+i130-awaiting/mexico/f3,FY2023Q1,awaiting_visa,snapshot,56504,reported,153022cbd65c,"line 12, column E","56,504"
+i130-awaiting/mexico/f3,FY2023Q2,awaiting_visa,snapshot,56530,reported,80364637b39b,"line 11, column E","56,530"
+i130-awaiting/mexico/f3,FY2023Q3,awaiting_visa,snapshot,56530,reported,bbdc38356dbb,"line 10, column E","56,530"
+i130-awaiting/mexico/f3,FY2023Q4,awaiting_visa,snapshot,55677,reported,07c4d7b1f243,"line 10, column E","55,677"
+i130-awaiting/mexico/f3,FY2024Q1,awaiting_visa,snapshot,52445,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E10,52445
+i130-awaiting/mexico/f3,FY2024Q2,awaiting_visa,snapshot,51849,reported,2070bb650796,I130_approvals_awaiting_visa!E10,51849
+i130-awaiting/mexico/f3,FY2024Q3,awaiting_visa,snapshot,49565,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E10,49565
+i130-awaiting/mexico/f3,FY2024Q4,awaiting_visa,snapshot,49192,reported,aa9c851b010e,I130_approvals_awaiting_visa!E10,49192
+i130-awaiting/mexico/f3,FY2025Q1,awaiting_visa,snapshot,47734,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E10,47734
+i130-awaiting/mexico/f3,FY2025Q2,awaiting_visa,snapshot,47378,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E10,47378
+i130-awaiting/mexico/f3,FY2025Q3,awaiting_visa,snapshot,46666,reported,fb7d2340000f,I130_approvals_awaiting_vis!E10,46666
+i130-awaiting/mexico/f3,FY2025Q4,awaiting_visa,snapshot,45913,reported,5dd80d837615,I130_approvals_awaiting_vis!E10,45913
+i130-awaiting/mexico/f3,FY2026Q1,awaiting_visa,snapshot,40817,reported,606fa3968007,I130_approvals_awaiting_vis!E10,40817
+i130-awaiting/mexico/f3,FY2026Q2,awaiting_visa,snapshot,40754,reported,80c374708aa9,I130_approvals_awaiting_vis!E10,40754
+i130-awaiting/mexico/f3,FY2026Q3,awaiting_visa,snapshot,40728,reported,30c1440d4e07,I130_approvals_awaiting_vis!E10,40728
+i130-awaiting/mexico/f4,FY2021Q4,awaiting_visa,snapshot,359297,reported,277a3973b70b,"line 13, column F","359,297"
+i130-awaiting/mexico/f4,FY2022Q2,awaiting_visa,snapshot,356708,reported,5e5d953d3c1e,"line 14, column F"," 356,708 "
+i130-awaiting/mexico/f4,FY2022Q4,awaiting_visa,snapshot,342650,reported,811011d48188,"line 14, column F"," 342,650 "
+i130-awaiting/mexico/f4,FY2023Q1,awaiting_visa,snapshot,340306,reported,153022cbd65c,"line 12, column F","340,306"
+i130-awaiting/mexico/f4,FY2023Q2,awaiting_visa,snapshot,340467,reported,80364637b39b,"line 11, column F","340,467"
+i130-awaiting/mexico/f4,FY2023Q3,awaiting_visa,snapshot,340697,reported,bbdc38356dbb,"line 10, column F","340,697"
+i130-awaiting/mexico/f4,FY2023Q4,awaiting_visa,snapshot,341281,reported,07c4d7b1f243,"line 10, column F","341,281"
+i130-awaiting/mexico/f4,FY2024Q1,awaiting_visa,snapshot,315212,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F10,315212
+i130-awaiting/mexico/f4,FY2024Q2,awaiting_visa,snapshot,313928,reported,2070bb650796,I130_approvals_awaiting_visa!F10,313928
+i130-awaiting/mexico/f4,FY2024Q3,awaiting_visa,snapshot,306750,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F10,306750
+i130-awaiting/mexico/f4,FY2024Q4,awaiting_visa,snapshot,305224,reported,aa9c851b010e,I130_approvals_awaiting_visa!F10,305224
+i130-awaiting/mexico/f4,FY2025Q1,awaiting_visa,snapshot,298641,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F10,298641
+i130-awaiting/mexico/f4,FY2025Q2,awaiting_visa,snapshot,298244,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F10,298244
+i130-awaiting/mexico/f4,FY2025Q3,awaiting_visa,snapshot,291319,reported,fb7d2340000f,I130_approvals_awaiting_vis!F10,291319
+i130-awaiting/mexico/f4,FY2025Q4,awaiting_visa,snapshot,286151,reported,5dd80d837615,I130_approvals_awaiting_vis!F10,286151
+i130-awaiting/mexico/f4,FY2026Q1,awaiting_visa,snapshot,269132,reported,606fa3968007,I130_approvals_awaiting_vis!F10,269132
+i130-awaiting/mexico/f4,FY2026Q2,awaiting_visa,snapshot,269198,reported,80c374708aa9,I130_approvals_awaiting_vis!F10,269198
+i130-awaiting/mexico/f4,FY2026Q3,awaiting_visa,snapshot,269201,reported,30c1440d4e07,I130_approvals_awaiting_vis!F10,269201
+i130-awaiting/mexico/total,FY2021Q4,awaiting_visa,snapshot,558267,reported,277a3973b70b,"line 13, column G","558,267"
+i130-awaiting/mexico/total,FY2022Q2,awaiting_visa,snapshot,550965,reported,5e5d953d3c1e,"line 14, column G"," 550,965 "
+i130-awaiting/mexico/total,FY2022Q4,awaiting_visa,snapshot,560643,reported,811011d48188,"line 14, column G"," 560,643 "
+i130-awaiting/mexico/total,FY2023Q1,awaiting_visa,snapshot,497217,reported,153022cbd65c,"line 12, column G","497,217"
+i130-awaiting/mexico/total,FY2023Q2,awaiting_visa,snapshot,495067,reported,80364637b39b,"line 11, column G","495,067"
+i130-awaiting/mexico/total,FY2023Q3,awaiting_visa,snapshot,545234,reported,bbdc38356dbb,"line 10, column G","545,234"
+i130-awaiting/mexico/total,FY2023Q4,awaiting_visa,snapshot,590649,reported,07c4d7b1f243,"line 10, column G","590,649"
+i130-awaiting/mexico/total,FY2024Q1,awaiting_visa,snapshot,491765,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G10,491765
+i130-awaiting/mexico/total,FY2024Q2,awaiting_visa,snapshot,464055,reported,2070bb650796,I130_approvals_awaiting_visa!G10,464055
+i130-awaiting/mexico/total,FY2024Q3,awaiting_visa,snapshot,441431,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G10,441431
+i130-awaiting/mexico/total,FY2024Q4,awaiting_visa,snapshot,441563,reported,aa9c851b010e,I130_approvals_awaiting_visa!G10,441563
+i130-awaiting/mexico/total,FY2025Q1,awaiting_visa,snapshot,424995,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G10,424995
+i130-awaiting/mexico/total,FY2025Q2,awaiting_visa,snapshot,424405,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G10,424405
+i130-awaiting/mexico/total,FY2025Q3,awaiting_visa,snapshot,415525,reported,fb7d2340000f,I130_approvals_awaiting_vis!G10,415525
+i130-awaiting/mexico/total,FY2025Q4,awaiting_visa,snapshot,395794,reported,5dd80d837615,I130_approvals_awaiting_vis!G10,395794
+i130-awaiting/mexico/total,FY2026Q1,awaiting_visa,snapshot,361047,reported,606fa3968007,I130_approvals_awaiting_vis!G10,361047
+i130-awaiting/mexico/total,FY2026Q2,awaiting_visa,snapshot,357161,reported,80c374708aa9,I130_approvals_awaiting_vis!G10,357161
+i130-awaiting/mexico/total,FY2026Q3,awaiting_visa,snapshot,352758,reported,30c1440d4e07,I130_approvals_awaiting_vis!G10,352758
+i130-awaiting/philippines/f1,FY2021Q4,awaiting_visa,snapshot,6017,reported,277a3973b70b,"line 14, column B","6,017"
+i130-awaiting/philippines/f1,FY2022Q2,awaiting_visa,snapshot,6194,reported,5e5d953d3c1e,"line 15, column B"," 6,194 "
+i130-awaiting/philippines/f1,FY2022Q4,awaiting_visa,snapshot,6353,reported,811011d48188,"line 15, column B"," 6,353 "
+i130-awaiting/philippines/f1,FY2023Q1,awaiting_visa,snapshot,6364,reported,153022cbd65c,"line 13, column B","6,364"
+i130-awaiting/philippines/f1,FY2023Q2,awaiting_visa,snapshot,6480,reported,80364637b39b,"line 12, column B","6,480"
+i130-awaiting/philippines/f1,FY2023Q3,awaiting_visa,snapshot,6536,reported,bbdc38356dbb,"line 11, column B","6,536"
+i130-awaiting/philippines/f1,FY2023Q4,awaiting_visa,snapshot,6567,reported,07c4d7b1f243,"line 11, column B","6,567"
+i130-awaiting/philippines/f1,FY2024Q1,awaiting_visa,snapshot,6429,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B11,6429
+i130-awaiting/philippines/f1,FY2024Q2,awaiting_visa,snapshot,6469,reported,2070bb650796,I130_approvals_awaiting_visa!B11,6469
+i130-awaiting/philippines/f1,FY2024Q3,awaiting_visa,snapshot,6443,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B11,6443
+i130-awaiting/philippines/f1,FY2024Q4,awaiting_visa,snapshot,6468,reported,aa9c851b010e,I130_approvals_awaiting_visa!B11,6468
+i130-awaiting/philippines/f1,FY2025Q1,awaiting_visa,snapshot,6500,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B11,6500
+i130-awaiting/philippines/f1,FY2025Q2,awaiting_visa,snapshot,6491,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B11,6491
+i130-awaiting/philippines/f1,FY2025Q3,awaiting_visa,snapshot,6255,reported,fb7d2340000f,I130_approvals_awaiting_vis!B11,6255
+i130-awaiting/philippines/f1,FY2025Q4,awaiting_visa,snapshot,6273,reported,5dd80d837615,I130_approvals_awaiting_vis!B11,6273
+i130-awaiting/philippines/f1,FY2026Q1,awaiting_visa,snapshot,5961,reported,606fa3968007,I130_approvals_awaiting_vis!B11,5961
+i130-awaiting/philippines/f1,FY2026Q2,awaiting_visa,snapshot,5878,reported,80c374708aa9,I130_approvals_awaiting_vis!B11,5878
+i130-awaiting/philippines/f1,FY2026Q3,awaiting_visa,snapshot,5754,reported,30c1440d4e07,I130_approvals_awaiting_vis!B11,5754
+i130-awaiting/philippines/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 14, column C", -   
+i130-awaiting/philippines/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 15, column C", -   
+i130-awaiting/philippines/f2a,FY2022Q4,awaiting_visa,snapshot,,dash,811011d48188,"line 15, column C", -   
+i130-awaiting/philippines/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 13, column C", -   
+i130-awaiting/philippines/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 12, column C", -   
+i130-awaiting/philippines/f2a,FY2023Q3,awaiting_visa,snapshot,3076,reported,bbdc38356dbb,"line 11, column C","3,076"
+i130-awaiting/philippines/f2a,FY2023Q4,awaiting_visa,snapshot,12580,reported,07c4d7b1f243,"line 11, column C","12,580"
+i130-awaiting/philippines/f2a,FY2024Q1,awaiting_visa,snapshot,7538,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C11,7538
+i130-awaiting/philippines/f2a,FY2024Q2,awaiting_visa,snapshot,3495,reported,2070bb650796,I130_approvals_awaiting_visa!C11,3495
+i130-awaiting/philippines/f2a,FY2024Q3,awaiting_visa,snapshot,583,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C11,583
+i130-awaiting/philippines/f2a,FY2024Q4,awaiting_visa,snapshot,693,reported,aa9c851b010e,I130_approvals_awaiting_visa!C11,693
+i130-awaiting/philippines/f2a,FY2025Q1,awaiting_visa,snapshot,681,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C11,681
+i130-awaiting/philippines/f2a,FY2025Q2,awaiting_visa,snapshot,891,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C11,891
+i130-awaiting/philippines/f2a,FY2025Q3,awaiting_visa,snapshot,1004,reported,fb7d2340000f,I130_approvals_awaiting_vis!C11,1004
+i130-awaiting/philippines/f2a,FY2025Q4,awaiting_visa,snapshot,294,reported,5dd80d837615,I130_approvals_awaiting_vis!C11,294
+i130-awaiting/philippines/f2a,FY2026Q1,awaiting_visa,snapshot,44,reported,606fa3968007,I130_approvals_awaiting_vis!C11,44
+i130-awaiting/philippines/f2a,FY2026Q2,awaiting_visa,snapshot,60,reported,80c374708aa9,I130_approvals_awaiting_vis!C11,60
+i130-awaiting/philippines/f2a,FY2026Q3,awaiting_visa,snapshot,28,reported,30c1440d4e07,I130_approvals_awaiting_vis!C11,28
+i130-awaiting/philippines/f2b,FY2021Q4,awaiting_visa,snapshot,21434,reported,277a3973b70b,"line 14, column D","21,434"
+i130-awaiting/philippines/f2b,FY2022Q2,awaiting_visa,snapshot,21871,reported,5e5d953d3c1e,"line 15, column D"," 21,871 "
+i130-awaiting/philippines/f2b,FY2022Q4,awaiting_visa,snapshot,22293,reported,811011d48188,"line 15, column D"," 22,293 "
+i130-awaiting/philippines/f2b,FY2023Q1,awaiting_visa,snapshot,22346,reported,153022cbd65c,"line 13, column D","22,346"
+i130-awaiting/philippines/f2b,FY2023Q2,awaiting_visa,snapshot,22611,reported,80364637b39b,"line 12, column D","22,611"
+i130-awaiting/philippines/f2b,FY2023Q3,awaiting_visa,snapshot,22656,reported,bbdc38356dbb,"line 11, column D","22,656"
+i130-awaiting/philippines/f2b,FY2023Q4,awaiting_visa,snapshot,22680,reported,07c4d7b1f243,"line 11, column D","22,680"
+i130-awaiting/philippines/f2b,FY2024Q1,awaiting_visa,snapshot,22382,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D11,22382
+i130-awaiting/philippines/f2b,FY2024Q2,awaiting_visa,snapshot,22402,reported,2070bb650796,I130_approvals_awaiting_visa!D11,22402
+i130-awaiting/philippines/f2b,FY2024Q3,awaiting_visa,snapshot,22269,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D11,22269
+i130-awaiting/philippines/f2b,FY2024Q4,awaiting_visa,snapshot,22090,reported,aa9c851b010e,I130_approvals_awaiting_visa!D11,22090
+i130-awaiting/philippines/f2b,FY2025Q1,awaiting_visa,snapshot,22099,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D11,22099
+i130-awaiting/philippines/f2b,FY2025Q2,awaiting_visa,snapshot,22112,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D11,22112
+i130-awaiting/philippines/f2b,FY2025Q3,awaiting_visa,snapshot,21207,reported,fb7d2340000f,I130_approvals_awaiting_vis!D11,21207
+i130-awaiting/philippines/f2b,FY2025Q4,awaiting_visa,snapshot,20358,reported,5dd80d837615,I130_approvals_awaiting_vis!D11,20358
+i130-awaiting/philippines/f2b,FY2026Q1,awaiting_visa,snapshot,19164,reported,606fa3968007,I130_approvals_awaiting_vis!D11,19164
+i130-awaiting/philippines/f2b,FY2026Q2,awaiting_visa,snapshot,18467,reported,80c374708aa9,I130_approvals_awaiting_vis!D11,18467
+i130-awaiting/philippines/f2b,FY2026Q3,awaiting_visa,snapshot,17609,reported,30c1440d4e07,I130_approvals_awaiting_vis!D11,17609
+i130-awaiting/philippines/f3,FY2021Q4,awaiting_visa,snapshot,16577,reported,277a3973b70b,"line 14, column E","16,577"
+i130-awaiting/philippines/f3,FY2022Q2,awaiting_visa,snapshot,16564,reported,5e5d953d3c1e,"line 15, column E"," 16,564 "
+i130-awaiting/philippines/f3,FY2022Q4,awaiting_visa,snapshot,16573,reported,811011d48188,"line 15, column E"," 16,573 "
+i130-awaiting/philippines/f3,FY2023Q1,awaiting_visa,snapshot,16561,reported,153022cbd65c,"line 13, column E","16,561"
+i130-awaiting/philippines/f3,FY2023Q2,awaiting_visa,snapshot,16585,reported,80364637b39b,"line 12, column E","16,585"
+i130-awaiting/philippines/f3,FY2023Q3,awaiting_visa,snapshot,16596,reported,bbdc38356dbb,"line 11, column E","16,596"
+i130-awaiting/philippines/f3,FY2023Q4,awaiting_visa,snapshot,16646,reported,07c4d7b1f243,"line 11, column E","16,646"
+i130-awaiting/philippines/f3,FY2024Q1,awaiting_visa,snapshot,16296,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E11,16296
+i130-awaiting/philippines/f3,FY2024Q2,awaiting_visa,snapshot,16326,reported,2070bb650796,I130_approvals_awaiting_visa!E11,16326
+i130-awaiting/philippines/f3,FY2024Q3,awaiting_visa,snapshot,16008,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E11,16008
+i130-awaiting/philippines/f3,FY2024Q4,awaiting_visa,snapshot,15913,reported,aa9c851b010e,I130_approvals_awaiting_visa!E11,15913
+i130-awaiting/philippines/f3,FY2025Q1,awaiting_visa,snapshot,15923,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E11,15923
+i130-awaiting/philippines/f3,FY2025Q2,awaiting_visa,snapshot,15543,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E11,15543
+i130-awaiting/philippines/f3,FY2025Q3,awaiting_visa,snapshot,14616,reported,fb7d2340000f,I130_approvals_awaiting_vis!E11,14616
+i130-awaiting/philippines/f3,FY2025Q4,awaiting_visa,snapshot,13601,reported,5dd80d837615,I130_approvals_awaiting_vis!E11,13601
+i130-awaiting/philippines/f3,FY2026Q1,awaiting_visa,snapshot,12786,reported,606fa3968007,I130_approvals_awaiting_vis!E11,12786
+i130-awaiting/philippines/f3,FY2026Q2,awaiting_visa,snapshot,12245,reported,80c374708aa9,I130_approvals_awaiting_vis!E11,12245
+i130-awaiting/philippines/f3,FY2026Q3,awaiting_visa,snapshot,10855,reported,30c1440d4e07,I130_approvals_awaiting_vis!E11,10855
+i130-awaiting/philippines/f4,FY2021Q4,awaiting_visa,snapshot,18781,reported,277a3973b70b,"line 14, column F","18,781"
+i130-awaiting/philippines/f4,FY2022Q2,awaiting_visa,snapshot,18879,reported,5e5d953d3c1e,"line 15, column F"," 18,879 "
+i130-awaiting/philippines/f4,FY2022Q4,awaiting_visa,snapshot,19013,reported,811011d48188,"line 15, column F"," 19,013 "
+i130-awaiting/philippines/f4,FY2023Q1,awaiting_visa,snapshot,19038,reported,153022cbd65c,"line 13, column F","19,038"
+i130-awaiting/philippines/f4,FY2023Q2,awaiting_visa,snapshot,19202,reported,80364637b39b,"line 12, column F","19,202"
+i130-awaiting/philippines/f4,FY2023Q3,awaiting_visa,snapshot,19307,reported,bbdc38356dbb,"line 11, column F","19,307"
+i130-awaiting/philippines/f4,FY2023Q4,awaiting_visa,snapshot,19361,reported,07c4d7b1f243,"line 11, column F","19,361"
+i130-awaiting/philippines/f4,FY2024Q1,awaiting_visa,snapshot,19271,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F11,19271
+i130-awaiting/philippines/f4,FY2024Q2,awaiting_visa,snapshot,17766,reported,2070bb650796,I130_approvals_awaiting_visa!F11,17766
+i130-awaiting/philippines/f4,FY2024Q3,awaiting_visa,snapshot,16885,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F11,16885
+i130-awaiting/philippines/f4,FY2024Q4,awaiting_visa,snapshot,16665,reported,aa9c851b010e,I130_approvals_awaiting_visa!F11,16665
+i130-awaiting/philippines/f4,FY2025Q1,awaiting_visa,snapshot,16732,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F11,16732
+i130-awaiting/philippines/f4,FY2025Q2,awaiting_visa,snapshot,15336,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F11,15336
+i130-awaiting/philippines/f4,FY2025Q3,awaiting_visa,snapshot,14206,reported,fb7d2340000f,I130_approvals_awaiting_vis!F11,14206
+i130-awaiting/philippines/f4,FY2025Q4,awaiting_visa,snapshot,13129,reported,5dd80d837615,I130_approvals_awaiting_vis!F11,13129
+i130-awaiting/philippines/f4,FY2026Q1,awaiting_visa,snapshot,11977,reported,606fa3968007,I130_approvals_awaiting_vis!F11,11977
+i130-awaiting/philippines/f4,FY2026Q2,awaiting_visa,snapshot,11758,reported,80c374708aa9,I130_approvals_awaiting_vis!F11,11758
+i130-awaiting/philippines/f4,FY2026Q3,awaiting_visa,snapshot,9573,reported,30c1440d4e07,I130_approvals_awaiting_vis!F11,9573
+i130-awaiting/philippines/total,FY2021Q4,awaiting_visa,snapshot,62809,reported,277a3973b70b,"line 14, column G","62,809"
+i130-awaiting/philippines/total,FY2022Q2,awaiting_visa,snapshot,63508,reported,5e5d953d3c1e,"line 15, column G"," 63,508 "
+i130-awaiting/philippines/total,FY2022Q4,awaiting_visa,snapshot,64232,reported,811011d48188,"line 15, column G"," 64,232 "
+i130-awaiting/philippines/total,FY2023Q1,awaiting_visa,snapshot,64309,reported,153022cbd65c,"line 13, column G","64,309"
+i130-awaiting/philippines/total,FY2023Q2,awaiting_visa,snapshot,64878,reported,80364637b39b,"line 12, column G","64,878"
+i130-awaiting/philippines/total,FY2023Q3,awaiting_visa,snapshot,68171,reported,bbdc38356dbb,"line 11, column G","68,171"
+i130-awaiting/philippines/total,FY2023Q4,awaiting_visa,snapshot,77834,reported,07c4d7b1f243,"line 11, column G","77,834"
+i130-awaiting/philippines/total,FY2024Q1,awaiting_visa,snapshot,71916,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G11,71916
+i130-awaiting/philippines/total,FY2024Q2,awaiting_visa,snapshot,66458,reported,2070bb650796,I130_approvals_awaiting_visa!G11,66458
+i130-awaiting/philippines/total,FY2024Q3,awaiting_visa,snapshot,62188,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G11,62188
+i130-awaiting/philippines/total,FY2024Q4,awaiting_visa,snapshot,61829,reported,aa9c851b010e,I130_approvals_awaiting_visa!G11,61829
+i130-awaiting/philippines/total,FY2025Q1,awaiting_visa,snapshot,61935,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G11,61935
+i130-awaiting/philippines/total,FY2025Q2,awaiting_visa,snapshot,60373,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G11,60373
+i130-awaiting/philippines/total,FY2025Q3,awaiting_visa,snapshot,57288,reported,fb7d2340000f,I130_approvals_awaiting_vis!G11,57288
+i130-awaiting/philippines/total,FY2025Q4,awaiting_visa,snapshot,53655,reported,5dd80d837615,I130_approvals_awaiting_vis!G11,53655
+i130-awaiting/philippines/total,FY2026Q1,awaiting_visa,snapshot,49932,reported,606fa3968007,I130_approvals_awaiting_vis!G11,49932
+i130-awaiting/philippines/total,FY2026Q2,awaiting_visa,snapshot,48408,reported,80c374708aa9,I130_approvals_awaiting_vis!G11,48408
+i130-awaiting/philippines/total,FY2026Q3,awaiting_visa,snapshot,43819,reported,30c1440d4e07,I130_approvals_awaiting_vis!G11,43819
+i130-awaiting/rest-of-the-world/f1,FY2021Q4,awaiting_visa,snapshot,52271,reported,277a3973b70b,"line 15, column B","52,271"
+i130-awaiting/rest-of-the-world/f1,FY2022Q2,awaiting_visa,snapshot,55352,reported,5e5d953d3c1e,"line 16, column B"," 55,352 "
+i130-awaiting/rest-of-the-world/f1,FY2022Q4,awaiting_visa,snapshot,58459,reported,811011d48188,"line 16, column B"," 58,459 "
+i130-awaiting/rest-of-the-world/f1,FY2023Q1,awaiting_visa,snapshot,58944,reported,153022cbd65c,"line 14, column B","58,944"
+i130-awaiting/rest-of-the-world/f1,FY2023Q2,awaiting_visa,snapshot,61105,reported,80364637b39b,"line 13, column B","61,105"
+i130-awaiting/rest-of-the-world/f1,FY2023Q3,awaiting_visa,snapshot,61839,reported,bbdc38356dbb,"line 12, column B","61,839"
+i130-awaiting/rest-of-the-world/f1,FY2023Q4,awaiting_visa,snapshot,61793,reported,07c4d7b1f243,"line 12, column B","61,793"
+i130-awaiting/rest-of-the-world/f1,FY2024Q1,awaiting_visa,snapshot,60247,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B12,60247
+i130-awaiting/rest-of-the-world/f1,FY2024Q2,awaiting_visa,snapshot,59925,reported,2070bb650796,I130_approvals_awaiting_visa!B12,59925
+i130-awaiting/rest-of-the-world/f1,FY2024Q3,awaiting_visa,snapshot,54225,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B12,54225
+i130-awaiting/rest-of-the-world/f1,FY2024Q4,awaiting_visa,snapshot,50631,reported,aa9c851b010e,I130_approvals_awaiting_visa!B12,50631
+i130-awaiting/rest-of-the-world/f1,FY2025Q1,awaiting_visa,snapshot,51383,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B12,51383
+i130-awaiting/rest-of-the-world/f1,FY2025Q2,awaiting_visa,snapshot,50726,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B12,50726
+i130-awaiting/rest-of-the-world/f1,FY2025Q3,awaiting_visa,snapshot,42674,reported,fb7d2340000f,I130_approvals_awaiting_vis!B12,42674
+i130-awaiting/rest-of-the-world/f1,FY2025Q4,awaiting_visa,snapshot,41107,reported,5dd80d837615,I130_approvals_awaiting_vis!B12,41107
+i130-awaiting/rest-of-the-world/f1,FY2026Q1,awaiting_visa,snapshot,36637,reported,606fa3968007,I130_approvals_awaiting_vis!B12,36637
+i130-awaiting/rest-of-the-world/f1,FY2026Q2,awaiting_visa,snapshot,36884,reported,80c374708aa9,I130_approvals_awaiting_vis!B12,36884
+i130-awaiting/rest-of-the-world/f1,FY2026Q3,awaiting_visa,snapshot,26295,reported,30c1440d4e07,I130_approvals_awaiting_vis!B12,26295
+i130-awaiting/rest-of-the-world/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 15, column C", -   
+i130-awaiting/rest-of-the-world/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 16, column C", -   
+i130-awaiting/rest-of-the-world/f2a,FY2022Q4,awaiting_visa,snapshot,,dash,811011d48188,"line 16, column C", -   
+i130-awaiting/rest-of-the-world/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 14, column C", -   
+i130-awaiting/rest-of-the-world/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 13, column C", -   
+i130-awaiting/rest-of-the-world/f2a,FY2023Q3,awaiting_visa,snapshot,70651,reported,bbdc38356dbb,"line 12, column C","70,651"
+i130-awaiting/rest-of-the-world/f2a,FY2023Q4,awaiting_visa,snapshot,246873,reported,07c4d7b1f243,"line 12, column C","246,873"
+i130-awaiting/rest-of-the-world/f2a,FY2024Q1,awaiting_visa,snapshot,144381,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C12,144381
+i130-awaiting/rest-of-the-world/f2a,FY2024Q2,awaiting_visa,snapshot,76861,reported,2070bb650796,I130_approvals_awaiting_visa!C12,76861
+i130-awaiting/rest-of-the-world/f2a,FY2024Q3,awaiting_visa,snapshot,17050,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C12,17050
+i130-awaiting/rest-of-the-world/f2a,FY2024Q4,awaiting_visa,snapshot,20137,reported,aa9c851b010e,I130_approvals_awaiting_visa!C12,20137
+i130-awaiting/rest-of-the-world/f2a,FY2025Q1,awaiting_visa,snapshot,19872,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C12,19872
+i130-awaiting/rest-of-the-world/f2a,FY2025Q2,awaiting_visa,snapshot,24330,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C12,24330
+i130-awaiting/rest-of-the-world/f2a,FY2025Q3,awaiting_visa,snapshot,27922,reported,fb7d2340000f,I130_approvals_awaiting_vis!C12,27922
+i130-awaiting/rest-of-the-world/f2a,FY2025Q4,awaiting_visa,snapshot,11996,reported,5dd80d837615,I130_approvals_awaiting_vis!C12,11996
+i130-awaiting/rest-of-the-world/f2a,FY2026Q1,awaiting_visa,snapshot,3898,reported,606fa3968007,I130_approvals_awaiting_vis!C12,3898
+i130-awaiting/rest-of-the-world/f2a,FY2026Q2,awaiting_visa,snapshot,4172,reported,80c374708aa9,I130_approvals_awaiting_vis!C12,4172
+i130-awaiting/rest-of-the-world/f2a,FY2026Q3,awaiting_visa,snapshot,1821,reported,30c1440d4e07,I130_approvals_awaiting_vis!C12,1821
+i130-awaiting/rest-of-the-world/f2b,FY2021Q4,awaiting_visa,snapshot,83936,reported,277a3973b70b,"line 15, column D","83,936"
+i130-awaiting/rest-of-the-world/f2b,FY2022Q2,awaiting_visa,snapshot,92802,reported,5e5d953d3c1e,"line 16, column D"," 92,802 "
+i130-awaiting/rest-of-the-world/f2b,FY2022Q4,awaiting_visa,snapshot,101042,reported,811011d48188,"line 16, column D"," 101,042 "
+i130-awaiting/rest-of-the-world/f2b,FY2023Q1,awaiting_visa,snapshot,102420,reported,153022cbd65c,"line 14, column D","102,420"
+i130-awaiting/rest-of-the-world/f2b,FY2023Q2,awaiting_visa,snapshot,107924,reported,80364637b39b,"line 13, column D","107,924"
+i130-awaiting/rest-of-the-world/f2b,FY2023Q3,awaiting_visa,snapshot,109224,reported,bbdc38356dbb,"line 12, column D","109,224"
+i130-awaiting/rest-of-the-world/f2b,FY2023Q4,awaiting_visa,snapshot,109863,reported,07c4d7b1f243,"line 12, column D","109,863"
+i130-awaiting/rest-of-the-world/f2b,FY2024Q1,awaiting_visa,snapshot,108714,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D12,108714
+i130-awaiting/rest-of-the-world/f2b,FY2024Q2,awaiting_visa,snapshot,106008,reported,2070bb650796,I130_approvals_awaiting_visa!D12,106008
+i130-awaiting/rest-of-the-world/f2b,FY2024Q3,awaiting_visa,snapshot,98241,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D12,98241
+i130-awaiting/rest-of-the-world/f2b,FY2024Q4,awaiting_visa,snapshot,96427,reported,aa9c851b010e,I130_approvals_awaiting_visa!D12,96427
+i130-awaiting/rest-of-the-world/f2b,FY2025Q1,awaiting_visa,snapshot,97618,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D12,97618
+i130-awaiting/rest-of-the-world/f2b,FY2025Q2,awaiting_visa,snapshot,96709,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D12,96709
+i130-awaiting/rest-of-the-world/f2b,FY2025Q3,awaiting_visa,snapshot,88867,reported,fb7d2340000f,I130_approvals_awaiting_vis!D12,88867
+i130-awaiting/rest-of-the-world/f2b,FY2025Q4,awaiting_visa,snapshot,87437,reported,5dd80d837615,I130_approvals_awaiting_vis!D12,87437
+i130-awaiting/rest-of-the-world/f2b,FY2026Q1,awaiting_visa,snapshot,84997,reported,606fa3968007,I130_approvals_awaiting_vis!D12,84997
+i130-awaiting/rest-of-the-world/f2b,FY2026Q2,awaiting_visa,snapshot,85192,reported,80c374708aa9,I130_approvals_awaiting_vis!D12,85192
+i130-awaiting/rest-of-the-world/f2b,FY2026Q3,awaiting_visa,snapshot,64290,reported,30c1440d4e07,I130_approvals_awaiting_vis!D12,64290
+i130-awaiting/rest-of-the-world/f3,FY2021Q4,awaiting_visa,snapshot,62253,reported,277a3973b70b,"line 15, column E","62,253"
+i130-awaiting/rest-of-the-world/f3,FY2022Q2,awaiting_visa,snapshot,63901,reported,5e5d953d3c1e,"line 16, column E"," 63,901 "
+i130-awaiting/rest-of-the-world/f3,FY2022Q4,awaiting_visa,snapshot,65153,reported,811011d48188,"line 16, column E"," 65,153 "
+i130-awaiting/rest-of-the-world/f3,FY2023Q1,awaiting_visa,snapshot,65279,reported,153022cbd65c,"line 14, column E","65,279"
+i130-awaiting/rest-of-the-world/f3,FY2023Q2,awaiting_visa,snapshot,65992,reported,80364637b39b,"line 13, column E","65,992"
+i130-awaiting/rest-of-the-world/f3,FY2023Q3,awaiting_visa,snapshot,65933,reported,bbdc38356dbb,"line 12, column E","65,933"
+i130-awaiting/rest-of-the-world/f3,FY2023Q4,awaiting_visa,snapshot,65441,reported,07c4d7b1f243,"line 12, column E","65,441"
+i130-awaiting/rest-of-the-world/f3,FY2024Q1,awaiting_visa,snapshot,62543,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E12,62543
+i130-awaiting/rest-of-the-world/f3,FY2024Q2,awaiting_visa,snapshot,55960,reported,2070bb650796,I130_approvals_awaiting_visa!E12,55960
+i130-awaiting/rest-of-the-world/f3,FY2024Q3,awaiting_visa,snapshot,52528,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E12,52528
+i130-awaiting/rest-of-the-world/f3,FY2024Q4,awaiting_visa,snapshot,52012,reported,aa9c851b010e,I130_approvals_awaiting_visa!E12,52012
+i130-awaiting/rest-of-the-world/f3,FY2025Q1,awaiting_visa,snapshot,51852,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E12,51852
+i130-awaiting/rest-of-the-world/f3,FY2025Q2,awaiting_visa,snapshot,49898,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E12,49898
+i130-awaiting/rest-of-the-world/f3,FY2025Q3,awaiting_visa,snapshot,40798,reported,fb7d2340000f,I130_approvals_awaiting_vis!E12,40798
+i130-awaiting/rest-of-the-world/f3,FY2025Q4,awaiting_visa,snapshot,39872,reported,5dd80d837615,I130_approvals_awaiting_vis!E12,39872
+i130-awaiting/rest-of-the-world/f3,FY2026Q1,awaiting_visa,snapshot,39030,reported,606fa3968007,I130_approvals_awaiting_vis!E12,39030
+i130-awaiting/rest-of-the-world/f3,FY2026Q2,awaiting_visa,snapshot,39115,reported,80c374708aa9,I130_approvals_awaiting_vis!E12,39115
+i130-awaiting/rest-of-the-world/f3,FY2026Q3,awaiting_visa,snapshot,35478,reported,30c1440d4e07,I130_approvals_awaiting_vis!E12,35478
+i130-awaiting/rest-of-the-world/f4,FY2021Q4,awaiting_visa,snapshot,348395,reported,277a3973b70b,"line 15, column F","348,395"
+i130-awaiting/rest-of-the-world/f4,FY2022Q2,awaiting_visa,snapshot,357260,reported,5e5d953d3c1e,"line 16, column F"," 357,260 "
+i130-awaiting/rest-of-the-world/f4,FY2022Q4,awaiting_visa,snapshot,367590,reported,811011d48188,"line 16, column F"," 367,590 "
+i130-awaiting/rest-of-the-world/f4,FY2023Q1,awaiting_visa,snapshot,369009,reported,153022cbd65c,"line 14, column F","369,009"
+i130-awaiting/rest-of-the-world/f4,FY2023Q2,awaiting_visa,snapshot,375893,reported,80364637b39b,"line 13, column F","375,893"
+i130-awaiting/rest-of-the-world/f4,FY2023Q3,awaiting_visa,snapshot,377639,reported,bbdc38356dbb,"line 12, column F","377,639"
+i130-awaiting/rest-of-the-world/f4,FY2023Q4,awaiting_visa,snapshot,377961,reported,07c4d7b1f243,"line 12, column F","377,961"
+i130-awaiting/rest-of-the-world/f4,FY2024Q1,awaiting_visa,snapshot,375506,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F12,375506
+i130-awaiting/rest-of-the-world/f4,FY2024Q2,awaiting_visa,snapshot,368465,reported,2070bb650796,I130_approvals_awaiting_visa!F12,368465
+i130-awaiting/rest-of-the-world/f4,FY2024Q3,awaiting_visa,snapshot,356244,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F12,356244
+i130-awaiting/rest-of-the-world/f4,FY2024Q4,awaiting_visa,snapshot,340512,reported,aa9c851b010e,I130_approvals_awaiting_visa!F12,340512
+i130-awaiting/rest-of-the-world/f4,FY2025Q1,awaiting_visa,snapshot,343330,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F12,343330
+i130-awaiting/rest-of-the-world/f4,FY2025Q2,awaiting_visa,snapshot,346138,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F12,346138
+i130-awaiting/rest-of-the-world/f4,FY2025Q3,awaiting_visa,snapshot,340350,reported,fb7d2340000f,I130_approvals_awaiting_vis!F12,340350
+i130-awaiting/rest-of-the-world/f4,FY2025Q4,awaiting_visa,snapshot,343380,reported,5dd80d837615,I130_approvals_awaiting_vis!F12,343380
+i130-awaiting/rest-of-the-world/f4,FY2026Q1,awaiting_visa,snapshot,345129,reported,606fa3968007,I130_approvals_awaiting_vis!F12,345129
+i130-awaiting/rest-of-the-world/f4,FY2026Q2,awaiting_visa,snapshot,346970,reported,80c374708aa9,I130_approvals_awaiting_vis!F12,346970
+i130-awaiting/rest-of-the-world/f4,FY2026Q3,awaiting_visa,snapshot,319021,reported,30c1440d4e07,I130_approvals_awaiting_vis!F12,319021
+i130-awaiting/rest-of-the-world/total,FY2021Q4,awaiting_visa,snapshot,546855,reported,277a3973b70b,"line 15, column G","546,855"
+i130-awaiting/rest-of-the-world/total,FY2022Q2,awaiting_visa,snapshot,569315,reported,5e5d953d3c1e,"line 16, column G"," 569,315 "
+i130-awaiting/rest-of-the-world/total,FY2022Q4,awaiting_visa,snapshot,592244,reported,811011d48188,"line 16, column G"," 592,244 "
+i130-awaiting/rest-of-the-world/total,FY2023Q1,awaiting_visa,snapshot,595652,reported,153022cbd65c,"line 14, column G","595,652"
+i130-awaiting/rest-of-the-world/total,FY2023Q2,awaiting_visa,snapshot,610914,reported,80364637b39b,"line 13, column G","610,914"
+i130-awaiting/rest-of-the-world/total,FY2023Q3,awaiting_visa,snapshot,685286,reported,bbdc38356dbb,"line 12, column G","685,286"
+i130-awaiting/rest-of-the-world/total,FY2023Q4,awaiting_visa,snapshot,861931,reported,07c4d7b1f243,"line 12, column G","861,931"
+i130-awaiting/rest-of-the-world/total,FY2024Q1,awaiting_visa,snapshot,751391,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G12,751391
+i130-awaiting/rest-of-the-world/total,FY2024Q2,awaiting_visa,snapshot,667219,reported,2070bb650796,I130_approvals_awaiting_visa!G12,667219
+i130-awaiting/rest-of-the-world/total,FY2024Q3,awaiting_visa,snapshot,578288,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G12,578288
+i130-awaiting/rest-of-the-world/total,FY2024Q4,awaiting_visa,snapshot,559719,reported,aa9c851b010e,I130_approvals_awaiting_visa!G12,559719
+i130-awaiting/rest-of-the-world/total,FY2025Q1,awaiting_visa,snapshot,564055,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G12,564055
+i130-awaiting/rest-of-the-world/total,FY2025Q2,awaiting_visa,snapshot,567801,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G12,567801
+i130-awaiting/rest-of-the-world/total,FY2025Q3,awaiting_visa,snapshot,540611,reported,fb7d2340000f,I130_approvals_awaiting_vis!G12,540611
+i130-awaiting/rest-of-the-world/total,FY2025Q4,awaiting_visa,snapshot,523792,reported,5dd80d837615,I130_approvals_awaiting_vis!G12,523792
+i130-awaiting/rest-of-the-world/total,FY2026Q1,awaiting_visa,snapshot,509691,reported,606fa3968007,I130_approvals_awaiting_vis!G12,509691
+i130-awaiting/rest-of-the-world/total,FY2026Q2,awaiting_visa,snapshot,512333,reported,80c374708aa9,I130_approvals_awaiting_vis!G12,512333
+i130-awaiting/rest-of-the-world/total,FY2026Q3,awaiting_visa,snapshot,446905,reported,30c1440d4e07,I130_approvals_awaiting_vis!G12,446905
+i130-awaiting/total/f1,FY2021Q4,awaiting_visa,snapshot,116125,reported,277a3973b70b,"line 9, column B","116,125"
+i130-awaiting/total/f1,FY2022Q2,awaiting_visa,snapshot,117746,reported,5e5d953d3c1e,"line 10, column B"," 117,746 "
+i130-awaiting/total/f1,FY2022Q4,awaiting_visa,snapshot,119773,reported,811011d48188,"line 10, column B"," 119,773 "
+i130-awaiting/total/f1,FY2023Q1,awaiting_visa,snapshot,118013,reported,153022cbd65c,"line 8, column B","118,013"
+i130-awaiting/total/f1,FY2023Q2,awaiting_visa,snapshot,117764,reported,80364637b39b,"line 7, column B","117,764"
+i130-awaiting/total/f1,FY2023Q3,awaiting_visa,snapshot,118685,reported,bbdc38356dbb,"line 7, column B","118,685"
+i130-awaiting/total/f1,FY2023Q4,awaiting_visa,snapshot,117142,reported,07c4d7b1f243,"line 7, column B","117,142"
+i130-awaiting/total/f1,FY2024Q1,awaiting_visa,snapshot,108604,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!B7,108604
+i130-awaiting/total/f1,FY2024Q2,awaiting_visa,snapshot,108347,reported,2070bb650796,I130_approvals_awaiting_visa!B7,108347
+i130-awaiting/total/f1,FY2024Q3,awaiting_visa,snapshot,99601,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!B7,99601
+i130-awaiting/total/f1,FY2024Q4,awaiting_visa,snapshot,95161,reported,aa9c851b010e,I130_approvals_awaiting_visa!B7,95161
+i130-awaiting/total/f1,FY2025Q1,awaiting_visa,snapshot,90494,reported,0b40ba61fa87,I130_approvals_awaiting_visa!B7,90494
+i130-awaiting/total/f1,FY2025Q2,awaiting_visa,snapshot,89860,reported,c0b44e7bfded,I130_approvals_awaiting_vis!B7,89860
+i130-awaiting/total/f1,FY2025Q3,awaiting_visa,snapshot,80654,reported,fb7d2340000f,I130_approvals_awaiting_vis!B7,80654
+i130-awaiting/total/f1,FY2025Q4,awaiting_visa,snapshot,78834,reported,5dd80d837615,I130_approvals_awaiting_vis!B7,78834
+i130-awaiting/total/f1,FY2026Q1,awaiting_visa,snapshot,71916,reported,606fa3968007,I130_approvals_awaiting_vis!B7,71916
+i130-awaiting/total/f1,FY2026Q2,awaiting_visa,snapshot,69752,reported,80c374708aa9,I130_approvals_awaiting_vis!B7,69752
+i130-awaiting/total/f1,FY2026Q3,awaiting_visa,snapshot,55152,reported,30c1440d4e07,I130_approvals_awaiting_vis!B7,55152
+i130-awaiting/total/f2a,FY2021Q4,awaiting_visa,snapshot,,dash,277a3973b70b,"line 9, column C", -   
+i130-awaiting/total/f2a,FY2022Q2,awaiting_visa,snapshot,,dash,5e5d953d3c1e,"line 10, column C", -   
+i130-awaiting/total/f2a,FY2022Q4,awaiting_visa,snapshot,34555,reported,811011d48188,"line 10, column C"," 34,555 "
+i130-awaiting/total/f2a,FY2023Q1,awaiting_visa,snapshot,,dash,153022cbd65c,"line 8, column C", -   
+i130-awaiting/total/f2a,FY2023Q2,awaiting_visa,snapshot,,dash,80364637b39b,"line 7, column C", -   
+i130-awaiting/total/f2a,FY2023Q3,awaiting_visa,snapshot,129737,reported,bbdc38356dbb,"line 7, column C","129,737"
+i130-awaiting/total/f2a,FY2023Q4,awaiting_visa,snapshot,379902,reported,07c4d7b1f243,"line 7, column C","379,902"
+i130-awaiting/total/f2a,FY2024Q1,awaiting_visa,snapshot,204056,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!C7,204056
+i130-awaiting/total/f2a,FY2024Q2,awaiting_visa,snapshot,108747,reported,2070bb650796,I130_approvals_awaiting_visa!C7,108747
+i130-awaiting/total/f2a,FY2024Q3,awaiting_visa,snapshot,36203,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!C7,36203
+i130-awaiting/total/f2a,FY2024Q4,awaiting_visa,snapshot,42235,reported,aa9c851b010e,I130_approvals_awaiting_visa!C7,42235
+i130-awaiting/total/f2a,FY2025Q1,awaiting_visa,snapshot,41371,reported,0b40ba61fa87,I130_approvals_awaiting_visa!C7,41371
+i130-awaiting/total/f2a,FY2025Q2,awaiting_visa,snapshot,46379,reported,c0b44e7bfded,I130_approvals_awaiting_vis!C7,46379
+i130-awaiting/total/f2a,FY2025Q3,awaiting_visa,snapshot,51149,reported,fb7d2340000f,I130_approvals_awaiting_vis!C7,51149
+i130-awaiting/total/f2a,FY2025Q4,awaiting_visa,snapshot,22990,reported,5dd80d837615,I130_approvals_awaiting_vis!C7,22990
+i130-awaiting/total/f2a,FY2026Q1,awaiting_visa,snapshot,5056,reported,606fa3968007,I130_approvals_awaiting_vis!C7,5056
+i130-awaiting/total/f2a,FY2026Q2,awaiting_visa,snapshot,5538,reported,80c374708aa9,I130_approvals_awaiting_vis!C7,5538
+i130-awaiting/total/f2a,FY2026Q3,awaiting_visa,snapshot,2290,reported,30c1440d4e07,I130_approvals_awaiting_vis!C7,2290
+i130-awaiting/total/f2b,FY2021Q4,awaiting_visa,snapshot,197708,reported,277a3973b70b,"line 9, column D","197,708"
+i130-awaiting/total/f2b,FY2022Q2,awaiting_visa,snapshot,205602,reported,5e5d953d3c1e,"line 10, column D"," 205,602 "
+i130-awaiting/total/f2b,FY2022Q4,awaiting_visa,snapshot,205727,reported,811011d48188,"line 10, column D"," 205,727 "
+i130-awaiting/total/f2b,FY2023Q1,awaiting_visa,snapshot,183104,reported,153022cbd65c,"line 8, column D","183,104"
+i130-awaiting/total/f2b,FY2023Q2,awaiting_visa,snapshot,189408,reported,80364637b39b,"line 7, column D","189,408"
+i130-awaiting/total/f2b,FY2023Q3,awaiting_visa,snapshot,190862,reported,bbdc38356dbb,"line 7, column D","190,862"
+i130-awaiting/total/f2b,FY2023Q4,awaiting_visa,snapshot,189862,reported,07c4d7b1f243,"line 7, column D","189,862"
+i130-awaiting/total/f2b,FY2024Q1,awaiting_visa,snapshot,181628,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!D7,181628
+i130-awaiting/total/f2b,FY2024Q2,awaiting_visa,snapshot,172642,reported,2070bb650796,I130_approvals_awaiting_visa!D7,172642
+i130-awaiting/total/f2b,FY2024Q3,awaiting_visa,snapshot,161025,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!D7,161025
+i130-awaiting/total/f2b,FY2024Q4,awaiting_visa,snapshot,158977,reported,aa9c851b010e,I130_approvals_awaiting_visa!D7,158977
+i130-awaiting/total/f2b,FY2025Q1,awaiting_visa,snapshot,157618,reported,0b40ba61fa87,I130_approvals_awaiting_visa!D7,157618
+i130-awaiting/total/f2b,FY2025Q2,awaiting_visa,snapshot,156631,reported,c0b44e7bfded,I130_approvals_awaiting_vis!D7,156631
+i130-awaiting/total/f2b,FY2025Q3,awaiting_visa,snapshot,145484,reported,fb7d2340000f,I130_approvals_awaiting_vis!D7,145484
+i130-awaiting/total/f2b,FY2025Q4,awaiting_visa,snapshot,139297,reported,5dd80d837615,I130_approvals_awaiting_vis!D7,139297
+i130-awaiting/total/f2b,FY2026Q1,awaiting_visa,snapshot,131939,reported,606fa3968007,I130_approvals_awaiting_vis!D7,131939
+i130-awaiting/total/f2b,FY2026Q2,awaiting_visa,snapshot,129792,reported,80c374708aa9,I130_approvals_awaiting_vis!D7,129792
+i130-awaiting/total/f2b,FY2026Q3,awaiting_visa,snapshot,106102,reported,30c1440d4e07,I130_approvals_awaiting_vis!D7,106102
+i130-awaiting/total/f3,FY2021Q4,awaiting_visa,snapshot,148796,reported,277a3973b70b,"line 9, column E","148,796"
+i130-awaiting/total/f3,FY2022Q2,awaiting_visa,snapshot,149599,reported,5e5d953d3c1e,"line 10, column E"," 149,599 "
+i130-awaiting/total/f3,FY2022Q4,awaiting_visa,snapshot,150556,reported,811011d48188,"line 10, column E"," 150,556 "
+i130-awaiting/total/f3,FY2023Q1,awaiting_visa,snapshot,150588,reported,153022cbd65c,"line 8, column E","150,588"
+i130-awaiting/total/f3,FY2023Q2,awaiting_visa,snapshot,151444,reported,80364637b39b,"line 7, column E","151,444"
+i130-awaiting/total/f3,FY2023Q3,awaiting_visa,snapshot,151290,reported,bbdc38356dbb,"line 7, column E","151,290"
+i130-awaiting/total/f3,FY2023Q4,awaiting_visa,snapshot,149745,reported,07c4d7b1f243,"line 7, column E","149,745"
+i130-awaiting/total/f3,FY2024Q1,awaiting_visa,snapshot,142844,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!E7,142844
+i130-awaiting/total/f3,FY2024Q2,awaiting_visa,snapshot,133855,reported,2070bb650796,I130_approvals_awaiting_visa!E7,133855
+i130-awaiting/total/f3,FY2024Q3,awaiting_visa,snapshot,126940,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!E7,126940
+i130-awaiting/total/f3,FY2024Q4,awaiting_visa,snapshot,125765,reported,aa9c851b010e,I130_approvals_awaiting_visa!E7,125765
+i130-awaiting/total/f3,FY2025Q1,awaiting_visa,snapshot,124073,reported,0b40ba61fa87,I130_approvals_awaiting_visa!E7,124073
+i130-awaiting/total/f3,FY2025Q2,awaiting_visa,snapshot,120886,reported,c0b44e7bfded,I130_approvals_awaiting_vis!E7,120886
+i130-awaiting/total/f3,FY2025Q3,awaiting_visa,snapshot,107756,reported,fb7d2340000f,I130_approvals_awaiting_vis!E7,107756
+i130-awaiting/total/f3,FY2025Q4,awaiting_visa,snapshot,104807,reported,5dd80d837615,I130_approvals_awaiting_vis!E7,104807
+i130-awaiting/total/f3,FY2026Q1,awaiting_visa,snapshot,97828,reported,606fa3968007,I130_approvals_awaiting_vis!E7,97828
+i130-awaiting/total/f3,FY2026Q2,awaiting_visa,snapshot,97326,reported,80c374708aa9,I130_approvals_awaiting_vis!E7,97326
+i130-awaiting/total/f3,FY2026Q3,awaiting_visa,snapshot,91299,reported,30c1440d4e07,I130_approvals_awaiting_vis!E7,91299
+i130-awaiting/total/f4,FY2021Q4,awaiting_visa,snapshot,832626,reported,277a3973b70b,"line 9, column F","832,626"
+i130-awaiting/total/f4,FY2022Q2,awaiting_visa,snapshot,840284,reported,5e5d953d3c1e,"line 10, column F"," 840,284 "
+i130-awaiting/total/f4,FY2022Q4,awaiting_visa,snapshot,838086,reported,811011d48188,"line 10, column F"," 838,086 "
+i130-awaiting/total/f4,FY2023Q1,awaiting_visa,snapshot,837419,reported,153022cbd65c,"line 8, column F","837,419"
+i130-awaiting/total/f4,FY2023Q2,awaiting_visa,snapshot,845760,reported,80364637b39b,"line 7, column F","845,760"
+i130-awaiting/total/f4,FY2023Q3,awaiting_visa,snapshot,848315,reported,bbdc38356dbb,"line 7, column F","848,315"
+i130-awaiting/total/f4,FY2023Q4,awaiting_visa,snapshot,849350,reported,07c4d7b1f243,"line 7, column F","849,350"
+i130-awaiting/total/f4,FY2024Q1,awaiting_visa,snapshot,819704,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!F7,819704
+i130-awaiting/total/f4,FY2024Q2,awaiting_visa,snapshot,807885,reported,2070bb650796,I130_approvals_awaiting_visa!F7,807885
+i130-awaiting/total/f4,FY2024Q3,awaiting_visa,snapshot,785689,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!F7,785689
+i130-awaiting/total/f4,FY2024Q4,awaiting_visa,snapshot,767626,reported,aa9c851b010e,I130_approvals_awaiting_visa!F7,767626
+i130-awaiting/total/f4,FY2025Q1,awaiting_visa,snapshot,763632,reported,0b40ba61fa87,I130_approvals_awaiting_visa!F7,763632
+i130-awaiting/total/f4,FY2025Q2,awaiting_visa,snapshot,764409,reported,c0b44e7bfded,I130_approvals_awaiting_vis!F7,764409
+i130-awaiting/total/f4,FY2025Q3,awaiting_visa,snapshot,747541,reported,fb7d2340000f,I130_approvals_awaiting_vis!F7,747541
+i130-awaiting/total/f4,FY2025Q4,awaiting_visa,snapshot,741326,reported,5dd80d837615,I130_approvals_awaiting_vis!F7,741326
+i130-awaiting/total/f4,FY2026Q1,awaiting_visa,snapshot,725296,reported,606fa3968007,I130_approvals_awaiting_vis!F7,725296
+i130-awaiting/total/f4,FY2026Q2,awaiting_visa,snapshot,727405,reported,80c374708aa9,I130_approvals_awaiting_vis!F7,727405
+i130-awaiting/total/f4,FY2026Q3,awaiting_visa,snapshot,693022,reported,30c1440d4e07,I130_approvals_awaiting_vis!F7,693022
+i130-awaiting/total/total,FY2021Q4,awaiting_visa,snapshot,1295255,reported,277a3973b70b,"line 9, column G","1,295,255"
+i130-awaiting/total/total,FY2022Q2,awaiting_visa,snapshot,1313231,reported,5e5d953d3c1e,"line 10, column G"," 1,313,231 "
+i130-awaiting/total/total,FY2022Q4,awaiting_visa,snapshot,1348697,reported,811011d48188,"line 10, column G"," 1,348,697 "
+i130-awaiting/total/total,FY2023Q1,awaiting_visa,snapshot,1289124,reported,153022cbd65c,"line 8, column G","1,289,124"
+i130-awaiting/total/total,FY2023Q2,awaiting_visa,snapshot,1304376,reported,80364637b39b,"line 7, column G","1,304,376"
+i130-awaiting/total/total,FY2023Q3,awaiting_visa,snapshot,1438889,reported,bbdc38356dbb,"line 7, column G","1,438,889"
+i130-awaiting/total/total,FY2023Q4,awaiting_visa,snapshot,1686001,reported,07c4d7b1f243,"line 7, column G","1,686,001"
+i130-awaiting/total/total,FY2024Q1,awaiting_visa,snapshot,1456836,reported,0ea20adcd1dc,I130_approvals_awaiting_visa!G7,1456836
+i130-awaiting/total/total,FY2024Q2,awaiting_visa,snapshot,1331476,reported,2070bb650796,I130_approvals_awaiting_visa!G7,1331476
+i130-awaiting/total/total,FY2024Q3,awaiting_visa,snapshot,1209458,reported,c3b5bafc4e6a,I130_approvals_awaiting_visa!G7,1209458
+i130-awaiting/total/total,FY2024Q4,awaiting_visa,snapshot,1189764,reported,aa9c851b010e,I130_approvals_awaiting_visa!G7,1189764
+i130-awaiting/total/total,FY2025Q1,awaiting_visa,snapshot,1177188,reported,0b40ba61fa87,I130_approvals_awaiting_visa!G7,1177188
+i130-awaiting/total/total,FY2025Q2,awaiting_visa,snapshot,1178165,reported,c0b44e7bfded,I130_approvals_awaiting_vis!G7,1178165
+i130-awaiting/total/total,FY2025Q3,awaiting_visa,snapshot,1132584,reported,fb7d2340000f,I130_approvals_awaiting_vis!G7,1132584
+i130-awaiting/total/total,FY2025Q4,awaiting_visa,snapshot,1087254,reported,5dd80d837615,I130_approvals_awaiting_vis!G7,1087254
+i130-awaiting/total/total,FY2026Q1,awaiting_visa,snapshot,1032035,reported,606fa3968007,I130_approvals_awaiting_vis!G7,1032035
+i130-awaiting/total/total,FY2026Q2,awaiting_visa,snapshot,1029813,reported,80c374708aa9,I130_approvals_awaiting_vis!G7,1029813
+i130-awaiting/total/total,FY2026Q3,awaiting_visa,snapshot,947865,reported,30c1440d4e07,I130_approvals_awaiting_vis!G7,947865

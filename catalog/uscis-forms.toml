@@ -1,0 +1,548 @@
+# Identity catalog for the USCIS "Number of Service-wide Forms" report.
+#
+# This file is the single source of truth for "which printed rows are the same thing across years".
+# The build fails on any row it cannot place, with a suggestion of what to add here.
+#
+# How a printed row is resolved:
+#   1. The label is matched against `codes` (exact). If it is not a code, trailing digits are split off
+#      ONLY when the rest is a code AND those digits are a footnote number declared in the same file
+#      ("I-6007" -> I-600 + footnote 7; "I-13122" -> I-131 + footnote 22). Otherwise the build fails.
+#   2. `label_aliases` maps old composite labels to a code ("N-600/600K" -> "N-600").
+#   3. A code with one series resolves by code alone. A code with several series must match one of that
+#      series' `descriptions` (compared case- and whitespace-insensitively). New descriptions fail the build.
+#
+# Category is display metadata only: FY2023Q1 misfiles "Other" forms under "Citizenship and Nationality".
+
+codes = [
+  "TOTAL", "G-325A",
+  "I-90", "I-102", "I-129", "I-129F", "I-130", "I-131", "I-140", "I-193", "I-290B", "I-360", "I-485", "I-526",
+  "I-526E", "I-539", "I-589", "I-600", "I-601A", "I-730", "I-751", "I-765", "I-800", "I-817", "I-821", "I-821D",
+  "I-824", "I-829", "I-867", "I-870", "I-889", "I-881", "I-899", "I-914", "I-918", "I-924", "I-924A", "I-924/924A", "I-929", "I-941",
+  "I-956", "I-956F", "I-956G", "I-956H", "I-956K",
+  "N-300", "N-336", "N-400", "N-470", "N-565", "N-600", "N-644", "N-648",
+  "Waivers", "Legalization", "DS-230", "EOIR Adjustment",
+]
+
+[label_aliases]
+"Total - All Forms" = "TOTAL"
+"TOTAL - ALL FORMS" = "TOTAL"
+"N-600/600K" = "N-600"
+"I-600/600A" = "I-600"
+"I-800/800A" = "I-800"
+"DS-230 (IV)" = "DS-230"
+# FY2017Q1 prints "Waivers8" but defines only footnotes 1-7; footnote 7 is the waivers definition. Reviewed by hand.
+"Waivers8" = "Waivers"
+
+# ---------------------------------------------------------------- total
+[[series]]
+id = "total"
+code = "TOTAL"
+category = "All forms"
+title = "All USCIS forms (service-wide total)"
+note = "USCIS's own total line. It covers forms not listed individually, so it exceeds the sum of the rows."
+
+# ---------------------------------------------------------------- family
+[[series]]
+id = "i-129f"
+code = "I-129F"
+category = "Family"
+title = "I-129F Petition for Alien Fiancé(e)"
+
+[[series]]
+id = "i-130"
+code = "I-130"
+category = "Family"
+title = "I-130 Petition for Alien Relative (all relatives)"
+descriptions = ["Immediate and Preference Relatives", "Petition for Alien Relative"]
+note = "From FY2025Q1 USCIS splits this row into Immediate Relative and All Other Relative; this series ends at FY2024Q4."
+
+[[series]]
+id = "i-130-immediate-relative"
+code = "I-130"
+category = "Family"
+title = "I-130 Petition for Alien Relative (immediate relatives)"
+descriptions = ["Petition for Alien Relative (Immediate Relative)"]
+note = "Spouses, unmarried minor children and parents of U.S. citizens. Reported separately from FY2025Q1."
+
+[[series]]
+id = "i-130-other-relative"
+code = "I-130"
+category = "Family"
+title = "I-130 Petition for Alien Relative (all other relatives)"
+descriptions = ["Petition for Alien Relative (All Other Relative)"]
+note = "Preference categories (F1-F4). Reported separately from FY2025Q1."
+
+[[series]]
+id = "i-600"
+code = "I-600"
+category = "Family"
+title = "I-600 Petition to Classify Orphan as an Immediate Relative"
+note = "Includes I-600A."
+
+[[series]]
+id = "i-601a"
+code = "I-601A"
+category = "Family"
+title = "I-601A Provisional Unlawful Presence Waiver"
+
+[[series]]
+id = "i-751"
+code = "I-751"
+category = "Family"
+title = "I-751 Petition to Remove Conditions on Residence"
+
+[[series]]
+id = "i-800"
+code = "I-800"
+category = "Family"
+title = "I-800 Petition to Classify Convention Adoptee as an Immediate Relative"
+note = "Includes I-800A."
+
+# ---------------------------------------------------------------- employment
+[[series]]
+id = "i-129"
+code = "I-129"
+category = "Employment"
+title = "I-129 Petition for a Nonimmigrant Worker"
+
+[[series]]
+id = "i-140"
+code = "I-140"
+category = "Employment"
+title = "I-140 Immigrant Petition for Alien Workers"
+
+[[series]]
+id = "i-526"
+code = "I-526"
+category = "Employment"
+title = "I-526 Immigrant Petition by Alien Investor"
+descriptions = ["Petitions by Entrepreneurs", "Immigrant Petition by Alien Investor"]
+note = "Single row until FY2023Q1 (in FY2022Q4 it includes I-526E, per USCIS footnote). From FY2023Q2 USCIS reports legacy editions and standalone investors separately."
+
+[[series]]
+id = "i-526-legacy"
+code = "I-526"
+category = "Employment"
+title = "I-526 Immigrant Petition by Alien Investor (legacy editions)"
+descriptions = ["Immigrant Petition by Alien Investor (Legacy)"]
+note = "Form editions that predate 06/01/22, per USCIS footnote."
+
+[[series]]
+id = "i-526-standalone"
+code = "I-526"
+category = "Employment"
+title = "I-526 Immigrant Petition by Standalone Investor"
+descriptions = ["Immigrant Petition by Standalone Investor"]
+
+[[series]]
+id = "i-526e"
+code = "I-526E"
+category = "Employment"
+title = "I-526E Immigrant Petition by Regional Center Investor"
+
+[[series]]
+id = "i-765-all"
+code = "I-765"
+category = "Employment"
+title = "I-765 Employment Authorization (all categories)"
+descriptions = ["Employment Authorization Documents", "Application for Employment Authorization"]
+note = "FY2019 and FY2021Q4 files report one I-765 line (FY2021Q4 footnote: includes DACA work permits); from FY2022Q1 USCIS splits it into four categories."
+
+[[series]]
+id = "i-765-adjustment"
+code = "I-765"
+category = "Employment"
+title = "I-765 Employment Authorization (adjustment of status)"
+descriptions = ["Application for Employment Authorization (Adjustment Of Status)"]
+
+[[series]]
+id = "i-765-asylum"
+code = "I-765"
+category = "Employment"
+title = "I-765 Employment Authorization (asylum)"
+descriptions = ["Application for Employment Authorization (Asylum)"]
+
+[[series]]
+id = "i-765-daca"
+code = "I-765"
+category = "Employment"
+title = "I-765 Employment Authorization (DACA)"
+descriptions = ["Application for Employment Authorization (DACA)"]
+
+[[series]]
+id = "i-765-other"
+code = "I-765"
+category = "Employment"
+title = "I-765 Employment Authorization (all other)"
+descriptions = ["Application for Employment Authorization (All Other)"]
+
+[[series]]
+id = "i-829"
+code = "I-829"
+category = "Employment"
+title = "I-829 Petition by Investor to Remove Conditions"
+
+[[series]]
+id = "i-924"
+code = "I-924"
+category = "Employment"
+title = "I-924 Application for Regional Center Designation (decommissioned)"
+note = "Replaced by I-956 in 2022, per USCIS footnote."
+
+[[series]]
+id = "i-924-and-924a"
+code = "I-924/924A"
+category = "Employment"
+title = "I-924 and I-924A combined (as printed in some FY2016-FY2018 files)"
+note = "Some files print one row for both forms; it is not split or added to either form's series."
+
+[[series]]
+id = "i-924a"
+code = "I-924A"
+category = "Employment"
+title = "I-924A Annual Certification of Regional Center (decommissioned)"
+
+[[series]]
+id = "i-956"
+code = "I-956"
+category = "Employment"
+title = "I-956 Application for Regional Center Designation"
+
+[[series]]
+id = "i-956f"
+code = "I-956F"
+category = "Employment"
+title = "I-956F Approval of Investment in a Commercial Enterprise"
+
+[[series]]
+id = "i-956g"
+code = "I-956G"
+category = "Employment"
+title = "I-956G Regional Center Annual Statement"
+
+[[series]]
+id = "i-956h"
+code = "I-956H"
+category = "Employment"
+title = "I-956H Bona Fides of Persons Involved in Regional Center Program"
+
+[[series]]
+id = "i-956k"
+code = "I-956K"
+category = "Employment"
+title = "I-956K Registration for Direct and Third-Party Promoters"
+
+# ---------------------------------------------------------------- green cards (I-485)
+[[series]]
+id = "i-485-family"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (family-based)"
+descriptions = ["Family-Based Adjustments", "Application to Register Permanent Residence or Adjust Status (Family)"]
+
+[[series]]
+id = "i-485-employment"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (employment-based)"
+descriptions = ["Employment-Based Adjustments", "Application to Register Permanent Residence or Adjust Status (Employment)"]
+
+[[series]]
+id = "i-485-asylum"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (asylees)"
+descriptions = ["Asylum Adjustments", "Application to Register Permanent Residence or Adjust Status (Asylum)"]
+
+[[series]]
+id = "i-485-refugee"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (refugees)"
+descriptions = ["Refugee Adjustments", "Application to Register Permanent Residence or Adjust Status (Refugee)"]
+
+[[series]]
+id = "i-485-cuban"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (Cuban Adjustment Act)"
+descriptions = ["Cuban Adjustment Act", "Application to Register Permanent Residence or Adjust Status (Cuban)"]
+
+[[series]]
+id = "i-485-other"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (other)"
+descriptions = ["Other Adjustments of Status", "Application to Register Permanent Residence or Adjust Status (Other)"]
+
+[[series]]
+id = "i-485-indochinese"
+code = "I-485"
+category = "Green card"
+title = "I-485 Adjustment of Status (Indochinese parolees)"
+descriptions = ["Indo Chinese Adjustments", "Application to Register Permanent Residence or Adjust Status (Indo-Chinese)"]
+
+# ---------------------------------------------------------------- humanitarian
+[[series]]
+id = "g-325a"
+code = "G-325A"
+category = "Humanitarian"
+title = "G-325A Biographic Information (for deferred action)"
+
+[[series]]
+id = "i-589"
+code = "I-589"
+category = "Humanitarian"
+title = "I-589 Affirmative Asylum Application"
+note = "Affirmative filings with USCIS only; defensive asylum claims in immigration court (EOIR) are not included."
+
+[[series]]
+id = "i-730"
+code = "I-730"
+category = "Humanitarian"
+title = "I-730 Refugee/Asylee Relative Petition"
+
+[[series]]
+id = "i-817"
+code = "I-817"
+category = "Humanitarian"
+title = "I-817 Family Unity Benefits"
+
+[[series]]
+id = "i-821"
+code = "I-821"
+category = "Humanitarian"
+title = "I-821 Temporary Protected Status"
+
+[[series]]
+id = "i-821d"
+code = "I-821D"
+category = "Humanitarian"
+title = "I-821D Deferred Action for Childhood Arrivals (DACA)"
+
+[[series]]
+id = "i-867"
+code = "I-867"
+category = "Humanitarian"
+title = "I-867 Credible Fear Referral (FY2019Q1 only)"
+
+[[series]]
+id = "i-870"
+code = "I-870"
+category = "Humanitarian"
+title = "I-870 Credible Fear screening"
+
+[[series]]
+id = "i-881"
+code = "I-881"
+category = "Humanitarian"
+title = "I-881 NACARA Section 203 Suspension of Deportation / Cancellation of Removal"
+
+[[series]]
+id = "i-889"
+code = "I-889"
+category = "Humanitarian"
+title = "I-889 Reasonable Fear screening (FY2016 to FY2018 label)"
+note = "USCIS printed this row as I-889 \"Reasonable Fear\" in FY2016-FY2018 files; other years use I-899. Kept separate rather than assumed to be a typo."
+
+[[series]]
+id = "i-899"
+code = "I-899"
+category = "Humanitarian"
+title = "I-899 Reasonable Fear screening"
+
+[[series]]
+id = "i-914"
+code = "I-914"
+category = "Humanitarian"
+title = "I-914 T Nonimmigrant Status (trafficking victims)"
+
+[[series]]
+id = "i-918"
+code = "I-918"
+category = "Humanitarian"
+title = "I-918 U Nonimmigrant Status (crime victims)"
+
+[[series]]
+id = "i-929"
+code = "I-929"
+category = "Humanitarian"
+title = "I-929 Qualifying Family Member of a U-1 Nonimmigrant"
+
+[[series]]
+id = "legalization"
+code = "Legalization"
+category = "Humanitarian"
+title = "Legalization / SAW applications"
+
+# ---------------------------------------------------------------- citizenship
+[[series]]
+id = "n-300"
+code = "N-300"
+category = "Citizenship"
+title = "N-300 Declaration of Intention"
+
+[[series]]
+id = "n-336"
+code = "N-336"
+category = "Citizenship"
+title = "N-336 Request for a Hearing on a Naturalization Decision"
+
+[[series]]
+id = "n-400"
+code = "N-400"
+category = "Citizenship"
+title = "N-400 Application for Naturalization"
+descriptions = ["Non-Military Naturalization", "Application for Naturalization"]
+note = "Excludes military naturalizations, which are a separate row."
+
+[[series]]
+id = "n-400-military"
+code = "N-400"
+category = "Citizenship"
+title = "N-400 Application for Naturalization (military)"
+descriptions = ["Military Naturalization", "Application for Naturalization (Military)"]
+
+[[series]]
+id = "n-470"
+code = "N-470"
+category = "Citizenship"
+title = "N-470 Preserve Residence for Naturalization"
+
+[[series]]
+id = "n-565"
+code = "N-565"
+category = "Citizenship"
+title = "N-565 Replacement Naturalization/Citizenship Document"
+
+[[series]]
+id = "n-600"
+code = "N-600"
+category = "Citizenship"
+title = "N-600 Certificate of Citizenship"
+
+[[series]]
+id = "n-644"
+code = "N-644"
+category = "Citizenship"
+title = "N-644 Posthumous Citizenship"
+
+[[series]]
+id = "n-648"
+code = "N-648"
+category = "Citizenship"
+title = "N-648 Medical Certification for Disability Exceptions"
+
+# ---------------------------------------------------------------- other
+[[series]]
+id = "i-90"
+code = "I-90"
+category = "Other"
+title = "I-90 Replace Permanent Resident Card (green card renewal)"
+
+[[series]]
+id = "i-102"
+code = "I-102"
+category = "Other"
+title = "I-102 Replacement/Initial Arrival-Departure Document"
+
+[[series]]
+id = "i-131-travel-document"
+code = "I-131"
+category = "Other"
+title = "I-131 Travel Document (reentry permit, refugee travel document)"
+descriptions = [
+  "Reentry Permit/Refugee Travel Document",
+  "Application for Travel Document",
+  "Application for Travel Documents, Parole Documents, and Arrival/Departure Records",
+]
+note = "Retitled in FY2026Q1 when USCIS revised Form I-131."
+
+[[series]]
+id = "i-131-advance-parole"
+code = "I-131"
+category = "Other"
+title = "I-131 Advance Parole (applicants inside the U.S.)"
+descriptions = [
+  "Advance Parole",
+  "Application for Travel Document (Advance Parole)",
+  "Application for Advance Parole Document for Aliens Inside the United States",
+]
+note = "Retitled in FY2026Q1 when USCIS revised Form I-131."
+
+[[series]]
+id = "i-131-parole-in-place"
+code = "I-131"
+category = "Other"
+title = "I-131 Parole in Place"
+descriptions = [
+  "Application for Travel Document (Parole-in-Place)",
+  "Application for Travel Document, Parole Documents, and Arrival/Departure Records (Parole in Place)",
+]
+
+[[series]]
+id = "i-131-humanitarian-parole"
+code = "I-131"
+category = "Other"
+title = "I-131 Humanitarian Parole (applicants outside the U.S.)"
+descriptions = [
+  "Application for Travel Document (Humanitarian Parole)",
+  "Application for Initial Parole Document for Aliens Outside the United States",
+]
+note = "Retitled in FY2026Q1 when USCIS revised Form I-131."
+
+[[series]]
+id = "i-193"
+code = "I-193"
+category = "Other"
+title = "I-193 Waiver of Passport and/or Visa"
+
+[[series]]
+id = "i-290b"
+code = "I-290B"
+category = "Other"
+title = "I-290B Notice of Appeal or Motion"
+
+[[series]]
+id = "i-360"
+code = "I-360"
+category = "Other"
+title = "I-360 Petition for Amerasian, Widow(er), or Special Immigrant"
+
+[[series]]
+id = "i-539"
+code = "I-539"
+category = "Other"
+title = "I-539 Extend/Change Nonimmigrant Status"
+
+[[series]]
+id = "i-824"
+code = "I-824"
+category = "Other"
+title = "I-824 Action on an Approved Application or Petition"
+
+[[series]]
+id = "i-941"
+code = "I-941"
+category = "Other"
+title = "I-941 Entrepreneur Parole"
+
+[[series]]
+id = "waivers"
+code = "Waivers"
+category = "Other"
+title = "Waivers of inadmissibility (I-191, I-192, I-212, I-601, I-602, I-612)"
+
+# ---------------------------------------------------------------- supplemental
+[[series]]
+id = "ds-230"
+code = "DS-230"
+category = "Supplemental processing"
+title = "Immigrant visas processed for the State Department (DS-230)"
+note = "USCIS prints no approvals or denials for this line."
+
+[[series]]
+id = "eoir-adjustment"
+code = "EOIR Adjustment"
+category = "Supplemental processing"
+title = "Adjustments processed for immigration courts (EOIR)"

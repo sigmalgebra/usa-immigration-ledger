@@ -1,0 +1,1470 @@
+series_id,period,measure,window,old_value,old_source_id,old_cell,new_value,new_source_id,new_cell
+i-102,FY2014Q2,pending,snapshot,2913,9206932c2df4,"line 54, column K",2909,aceb0bd04fa8,"line 51, column K"
+i-102,FY2017Q1,pending,snapshot,3681,21130ec0fc29,"line 53, column G",3680,e02fb6695dfa,"line 53, column G"
+i-102,FY2017Q1,pending,snapshot,3681,3288bd8ec0c5,"line 53, column G",3680,e02fb6695dfa,"line 53, column G"
+i-102,FY2017Q1,pending,snapshot,3681,34d126012593,"line 52, column G",3680,e02fb6695dfa,"line 53, column G"
+i-102,FY2017Q1,received,quarter,2053,21130ec0fc29,"line 53, column D",2054,e02fb6695dfa,"line 53, column D"
+i-102,FY2017Q1,received,quarter,2053,3288bd8ec0c5,"line 53, column D",2054,e02fb6695dfa,"line 53, column D"
+i-102,FY2017Q1,received,quarter,2053,34d126012593,"line 52, column D",2054,e02fb6695dfa,"line 53, column D"
+i-102,FY2018Q2,approved,quarter,1373,431cd8b2a8a6,"line 52, column I",1370,baf22ca3fee3,"line 53, column I"
+i-102,FY2018Q2,denied,quarter,539,431cd8b2a8a6,"line 52, column J",535,baf22ca3fee3,"line 53, column J"
+i-102,FY2018Q2,pending,snapshot,2234,431cd8b2a8a6,"line 52, column K",2217,baf22ca3fee3,"line 53, column K"
+i-102,FY2018Q2,received,quarter,1395,431cd8b2a8a6,"line 52, column H",1376,baf22ca3fee3,"line 53, column H"
+i-102,FY2019Q2,pending,snapshot,1819,5865980d65e0,"line 58, column K",1823,fefe4e9bba8d,page 1!J378
+i-102,FY2019Q2,received,quarter,1173,5865980d65e0,"line 58, column H",1177,fefe4e9bba8d,page 1!G378
+i-102,FY2019Q3,pending,snapshot,1857,2da595379c83,page 1!N971,1858,fefe4e9bba8d,page 1!N378
+i-102,FY2020Q1,denied,quarter,292,58d66c259e3d,page 1!E427,302,2d03d7ef391c,page 1!E421
+i-129,FY2014Q1,pending,snapshot,57028,9206932c2df4,"line 19, column G",56537,aceb0bd04fa8,"line 16, column G"
+i-129,FY2017Q3,pending,snapshot,149442,34d126012593,"line 16, column O",149432,e02fb6695dfa,"line 17, column O"
+i-129,FY2018Q1,pending,snapshot,112586,e1f4d426fb42,"line 17, column G",112588,baf22ca3fee3,"line 17, column G"
+i-129,FY2018Q2,pending,snapshot,89473,431cd8b2a8a6,"line 16, column K",89467,baf22ca3fee3,"line 17, column K"
+i-129,FY2019Q3,pending,snapshot,180492,2da595379c83,page 1!N437,180469,fefe4e9bba8d,page 1!N168
+i-129,FY2020Q1,pending,snapshot,103879,58d66c259e3d,page 1!F178,103891,2d03d7ef391c,page 1!F180
+i-129f,FY2014Q2,pending,snapshot,16432,9206932c2df4,"line 11, column K",16430,aceb0bd04fa8,"line 8, column K"
+i-129f,FY2017Q1,denied,quarter,2150,21130ec0fc29,"line 9, column F",2044,e02fb6695dfa,"line 9, column F"
+i-129f,FY2017Q1,denied,quarter,2150,3288bd8ec0c5,"line 9, column F",2044,e02fb6695dfa,"line 9, column F"
+i-129f,FY2017Q1,denied,quarter,2150,34d126012593,"line 8, column F",2044,e02fb6695dfa,"line 9, column F"
+i-129f,FY2017Q1,pending,snapshot,15746,21130ec0fc29,"line 9, column G",15847,e02fb6695dfa,"line 9, column G"
+i-129f,FY2017Q1,pending,snapshot,15746,3288bd8ec0c5,"line 9, column G",15847,e02fb6695dfa,"line 9, column G"
+i-129f,FY2017Q1,pending,snapshot,15746,34d126012593,"line 8, column G",15847,e02fb6695dfa,"line 9, column G"
+i-129f,FY2017Q1,received,quarter,12837,21130ec0fc29,"line 9, column D",12836,e02fb6695dfa,"line 9, column D"
+i-129f,FY2017Q1,received,quarter,12837,3288bd8ec0c5,"line 9, column D",12836,e02fb6695dfa,"line 9, column D"
+i-129f,FY2017Q1,received,quarter,12837,34d126012593,"line 8, column D",12836,e02fb6695dfa,"line 9, column D"
+i-129f,FY2017Q2,denied,quarter,2681,3288bd8ec0c5,"line 9, column J",2604,e02fb6695dfa,"line 9, column J"
+i-129f,FY2017Q2,denied,quarter,2681,34d126012593,"line 8, column J",2604,e02fb6695dfa,"line 9, column J"
+i-129f,FY2017Q2,pending,snapshot,20082,3288bd8ec0c5,"line 9, column K",20276,e02fb6695dfa,"line 9, column K"
+i-129f,FY2017Q2,pending,snapshot,20082,34d126012593,"line 8, column K",20276,e02fb6695dfa,"line 9, column K"
+i-129f,FY2017Q2,received,quarter,13194,3288bd8ec0c5,"line 9, column H",13200,e02fb6695dfa,"line 9, column H"
+i-129f,FY2017Q2,received,quarter,13194,34d126012593,"line 8, column H",13200,e02fb6695dfa,"line 9, column H"
+i-129f,FY2017Q3,denied,quarter,2475,34d126012593,"line 8, column N",2437,e02fb6695dfa,"line 9, column N"
+i-129f,FY2017Q3,pending,snapshot,20783,34d126012593,"line 8, column O",21021,e02fb6695dfa,"line 9, column O"
+i-129f,FY2017Q3,received,quarter,12313,34d126012593,"line 8, column L",12315,e02fb6695dfa,"line 9, column L"
+i-129f,FY2018Q2,denied,quarter,2558,431cd8b2a8a6,"line 8, column J",2557,baf22ca3fee3,"line 9, column J"
+i-129f,FY2018Q2,pending,snapshot,27948,431cd8b2a8a6,"line 8, column K",28224,baf22ca3fee3,"line 9, column K"
+i-129f,FY2019Q2,denied,quarter,2340,5865980d65e0,"line 13, column J",2342,fefe4e9bba8d,page 1!I122
+i-129f,FY2019Q3,pending,snapshot,19068,2da595379c83,page 1!N322,19073,fefe4e9bba8d,page 1!N122
+i-130,FY2014Q1,approved,quarter,191252,c671ed676cc0,"line 10, column E",191290,aceb0bd04fa8,"line 9, column E"
+i-130,FY2014Q1,denied,quarter,16710,c671ed676cc0,"line 10, column F",16712,aceb0bd04fa8,"line 9, column F"
+i-130,FY2014Q1,pending,snapshot,896824,9206932c2df4,"line 12, column G",896890,aceb0bd04fa8,"line 9, column G"
+i-130,FY2014Q1,pending,snapshot,896813,c671ed676cc0,"line 10, column G",896890,aceb0bd04fa8,"line 9, column G"
+i-130,FY2014Q2,pending,snapshot,840043,9206932c2df4,"line 12, column K",840102,aceb0bd04fa8,"line 9, column K"
+i-130,FY2014Q3,approved,quarter,209981,1ee57a59df58,"line 12, column M",210126,aceb0bd04fa8,"line 9, column M"
+i-130,FY2014Q3,denied,quarter,19348,1ee57a59df58,"line 12, column N",19363,aceb0bd04fa8,"line 9, column N"
+i-130,FY2014Q3,pending,snapshot,830895,1ee57a59df58,"line 12, column O",830809,aceb0bd04fa8,"line 9, column O"
+i-130,FY2017Q1,approved,quarter,134607,21130ec0fc29,"line 10, column E",134711,e02fb6695dfa,"line 10, column E"
+i-130,FY2017Q1,approved,quarter,134607,3288bd8ec0c5,"line 10, column E",134711,e02fb6695dfa,"line 10, column E"
+i-130,FY2017Q1,approved,quarter,134607,34d126012593,"line 9, column E",134711,e02fb6695dfa,"line 10, column E"
+i-130,FY2017Q1,denied,quarter,13657,21130ec0fc29,"line 10, column F",13268,e02fb6695dfa,"line 10, column F"
+i-130,FY2017Q1,denied,quarter,13657,3288bd8ec0c5,"line 10, column F",13268,e02fb6695dfa,"line 10, column F"
+i-130,FY2017Q1,denied,quarter,13657,34d126012593,"line 9, column F",13268,e02fb6695dfa,"line 10, column F"
+i-130,FY2017Q1,pending,snapshot,1061559,21130ec0fc29,"line 10, column G",1060991,e02fb6695dfa,"line 10, column G"
+i-130,FY2017Q1,pending,snapshot,1061559,3288bd8ec0c5,"line 10, column G",1060991,e02fb6695dfa,"line 10, column G"
+i-130,FY2017Q1,pending,snapshot,1061559,34d126012593,"line 9, column G",1060991,e02fb6695dfa,"line 10, column G"
+i-130,FY2017Q1,received,quarter,259793,21130ec0fc29,"line 10, column D",259622,e02fb6695dfa,"line 10, column D"
+i-130,FY2017Q1,received,quarter,259793,3288bd8ec0c5,"line 10, column D",259622,e02fb6695dfa,"line 10, column D"
+i-130,FY2017Q1,received,quarter,259793,34d126012593,"line 9, column D",259622,e02fb6695dfa,"line 10, column D"
+i-130,FY2017Q2,approved,quarter,133991,3288bd8ec0c5,"line 10, column I",133974,e02fb6695dfa,"line 10, column I"
+i-130,FY2017Q2,approved,quarter,133991,34d126012593,"line 9, column I",133974,e02fb6695dfa,"line 10, column I"
+i-130,FY2017Q2,denied,quarter,13675,3288bd8ec0c5,"line 10, column J",13439,e02fb6695dfa,"line 10, column J"
+i-130,FY2017Q2,denied,quarter,13675,34d126012593,"line 9, column J",13439,e02fb6695dfa,"line 10, column J"
+i-130,FY2017Q2,pending,snapshot,1159323,3288bd8ec0c5,"line 10, column K",1158517,e02fb6695dfa,"line 10, column K"
+i-130,FY2017Q2,pending,snapshot,1159323,34d126012593,"line 9, column K",1158517,e02fb6695dfa,"line 10, column K"
+i-130,FY2017Q2,received,quarter,234844,3288bd8ec0c5,"line 10, column H",234142,e02fb6695dfa,"line 10, column H"
+i-130,FY2017Q2,received,quarter,234844,34d126012593,"line 9, column H",234142,e02fb6695dfa,"line 10, column H"
+i-130,FY2017Q3,approved,quarter,134409,34d126012593,"line 9, column M",134380,e02fb6695dfa,"line 10, column M"
+i-130,FY2017Q3,denied,quarter,14256,34d126012593,"line 9, column N",13829,e02fb6695dfa,"line 10, column N"
+i-130,FY2017Q3,pending,snapshot,1235660,34d126012593,"line 9, column O",1235491,e02fb6695dfa,"line 10, column O"
+i-130,FY2017Q3,received,quarter,216862,34d126012593,"line 9, column L",216778,e02fb6695dfa,"line 10, column L"
+i-130,FY2018Q1,pending,snapshot,1348685,431cd8b2a8a6,"line 9, column G",1348724,baf22ca3fee3,"line 10, column G"
+i-130,FY2018Q1,pending,snapshot,1348685,7ce856513328,"line 10, column G",1348724,baf22ca3fee3,"line 10, column G"
+i-130,FY2018Q1,pending,snapshot,1348780,e1f4d426fb42,"line 10, column G",1348724,baf22ca3fee3,"line 10, column G"
+i-130,FY2018Q2,pending,snapshot,1394866,431cd8b2a8a6,"line 9, column K",1394669,baf22ca3fee3,"line 10, column K"
+i-130,FY2018Q2,pending,snapshot,1394634,7ce856513328,"line 10, column K",1394669,baf22ca3fee3,"line 10, column K"
+i-130,FY2018Q2,received,quarter,214066,431cd8b2a8a6,"line 9, column H",214062,baf22ca3fee3,"line 10, column H"
+i-130,FY2018Q2,received,quarter,214066,7ce856513328,"line 10, column H",214062,baf22ca3fee3,"line 10, column H"
+i-130,FY2018Q3,approved,quarter,140111,7ce856513328,"line 10, column M",140173,baf22ca3fee3,"line 10, column M"
+i-130,FY2018Q3,denied,quarter,13550,7ce856513328,"line 10, column N",13557,baf22ca3fee3,"line 10, column N"
+i-130,FY2018Q3,pending,snapshot,1471069,7ce856513328,"line 10, column O",1471125,baf22ca3fee3,"line 10, column O"
+i-130,FY2019Q1,denied,quarter,13655,0895770f1390,"line 9, column F",13661,fefe4e9bba8d,page 1!E128
+i-130,FY2019Q1,pending,snapshot,1544105,0895770f1390,"line 9, column G",1543635,fefe4e9bba8d,page 1!F128
+i-130,FY2019Q1,pending,snapshot,1543626,2da595379c83,page 1!F336,1543635,fefe4e9bba8d,page 1!F128
+i-130,FY2019Q1,pending,snapshot,1543626,5865980d65e0,"line 14, column G",1543635,fefe4e9bba8d,page 1!F128
+i-130,FY2019Q1,received,quarter,182559,0895770f1390,"line 9, column D",182072,fefe4e9bba8d,page 1!C128
+i-130,FY2019Q2,approved,quarter,157502,5865980d65e0,"line 14, column I",157587,fefe4e9bba8d,page 1!H128
+i-130,FY2019Q2,denied,quarter,14696,5865980d65e0,"line 14, column J",14718,fefe4e9bba8d,page 1!I128
+i-130,FY2019Q2,pending,snapshot,1546335,2da595379c83,page 1!J336,1546378,fefe4e9bba8d,page 1!J128
+i-130,FY2019Q2,pending,snapshot,1545984,5865980d65e0,"line 14, column K",1546378,fefe4e9bba8d,page 1!J128
+i-130,FY2019Q2,received,quarter,165800,5865980d65e0,"line 14, column H",166264,fefe4e9bba8d,page 1!G128
+i-130,FY2019Q3,approved,quarter,173063,2da595379c83,page 1!L336,173245,fefe4e9bba8d,page 1!L128
+i-130,FY2019Q3,denied,quarter,16094,2da595379c83,page 1!M336,16089,fefe4e9bba8d,page 1!M128
+i-130,FY2019Q3,pending,snapshot,1567809,2da595379c83,page 1!N336,1571173,fefe4e9bba8d,page 1!N128
+i-130,FY2019Q3,received,quarter,194295,2da595379c83,page 1!K336,196601,fefe4e9bba8d,page 1!K128
+i-130,FY2020Q2,pending,snapshot,1543181,4a52cb47b813,page 1!J128,1543183,2d03d7ef391c,page 1!J135
+i-131-advance-parole,FY2014Q1,pending,snapshot,40532,9206932c2df4,"line 56, column G",40539,aceb0bd04fa8,"line 53, column G"
+i-131-advance-parole,FY2014Q2,pending,snapshot,54956,9206932c2df4,"line 56, column K",54975,aceb0bd04fa8,"line 53, column K"
+i-131-advance-parole,FY2014Q2,received,quarter,73996,9206932c2df4,"line 56, column H",74002,aceb0bd04fa8,"line 53, column H"
+i-131-advance-parole,FY2014Q3,pending,snapshot,63410,1ee57a59df58,"line 56, column O",63423,aceb0bd04fa8,"line 53, column O"
+i-131-advance-parole,FY2017Q1,approved,quarter,78379,21130ec0fc29,"line 55, column E",78473,e02fb6695dfa,"line 55, column E"
+i-131-advance-parole,FY2017Q1,approved,quarter,78379,3288bd8ec0c5,"line 55, column E",78473,e02fb6695dfa,"line 55, column E"
+i-131-advance-parole,FY2017Q1,approved,quarter,78379,34d126012593,"line 54, column E",78473,e02fb6695dfa,"line 55, column E"
+i-131-advance-parole,FY2017Q1,denied,quarter,7235,21130ec0fc29,"line 55, column F",7229,e02fb6695dfa,"line 55, column F"
+i-131-advance-parole,FY2017Q1,denied,quarter,7235,3288bd8ec0c5,"line 55, column F",7229,e02fb6695dfa,"line 55, column F"
+i-131-advance-parole,FY2017Q1,denied,quarter,7235,34d126012593,"line 54, column F",7229,e02fb6695dfa,"line 55, column F"
+i-131-advance-parole,FY2017Q1,pending,snapshot,125258,21130ec0fc29,"line 55, column G",125104,e02fb6695dfa,"line 55, column G"
+i-131-advance-parole,FY2017Q1,pending,snapshot,125258,3288bd8ec0c5,"line 55, column G",125104,e02fb6695dfa,"line 55, column G"
+i-131-advance-parole,FY2017Q1,pending,snapshot,125258,34d126012593,"line 54, column G",125104,e02fb6695dfa,"line 55, column G"
+i-131-advance-parole,FY2017Q1,received,quarter,133098,21130ec0fc29,"line 55, column D",133146,e02fb6695dfa,"line 55, column D"
+i-131-advance-parole,FY2017Q1,received,quarter,133098,3288bd8ec0c5,"line 55, column D",133146,e02fb6695dfa,"line 55, column D"
+i-131-advance-parole,FY2017Q1,received,quarter,133098,34d126012593,"line 54, column D",133146,e02fb6695dfa,"line 55, column D"
+i-131-advance-parole,FY2017Q2,approved,quarter,117115,3288bd8ec0c5,"line 55, column I",117129,e02fb6695dfa,"line 55, column I"
+i-131-advance-parole,FY2017Q2,approved,quarter,117115,34d126012593,"line 54, column I",117129,e02fb6695dfa,"line 55, column I"
+i-131-advance-parole,FY2017Q2,denied,quarter,7892,3288bd8ec0c5,"line 55, column J",7893,e02fb6695dfa,"line 55, column J"
+i-131-advance-parole,FY2017Q2,denied,quarter,7892,34d126012593,"line 54, column J",7893,e02fb6695dfa,"line 55, column J"
+i-131-advance-parole,FY2017Q2,received,quarter,94910,3288bd8ec0c5,"line 55, column H",94924,e02fb6695dfa,"line 55, column H"
+i-131-advance-parole,FY2017Q2,received,quarter,94910,34d126012593,"line 54, column H",94924,e02fb6695dfa,"line 55, column H"
+i-131-advance-parole,FY2017Q3,approved,quarter,84465,34d126012593,"line 54, column M",84489,e02fb6695dfa,"line 55, column M"
+i-131-advance-parole,FY2017Q3,received,quarter,101722,34d126012593,"line 54, column L",101783,e02fb6695dfa,"line 55, column L"
+i-131-advance-parole,FY2018Q1,denied,quarter,13176,e1f4d426fb42,"line 55, column F",13177,baf22ca3fee3,"line 55, column F"
+i-131-advance-parole,FY2018Q1,pending,snapshot,118791,e1f4d426fb42,"line 55, column G",118790,baf22ca3fee3,"line 55, column G"
+i-131-advance-parole,FY2018Q2,approved,quarter,66480,431cd8b2a8a6,"line 54, column I",65343,baf22ca3fee3,"line 55, column I"
+i-131-advance-parole,FY2018Q2,denied,quarter,15390,431cd8b2a8a6,"line 54, column J",15050,baf22ca3fee3,"line 55, column J"
+i-131-advance-parole,FY2018Q2,pending,snapshot,135171,431cd8b2a8a6,"line 54, column K",132654,baf22ca3fee3,"line 55, column K"
+i-131-advance-parole,FY2018Q2,received,quarter,93987,431cd8b2a8a6,"line 54, column H",90007,baf22ca3fee3,"line 55, column H"
+i-131-advance-parole,FY2018Q3,approved,quarter,84813,7ce856513328,"line 55, column M",84816,baf22ca3fee3,"line 55, column M"
+i-131-advance-parole,FY2019Q1,approved,quarter,71149,0895770f1390,"line 55, column E",74583,fefe4e9bba8d,page 1!D389
+i-131-advance-parole,FY2019Q1,approved,quarter,71162,2da595379c83,page 1!D999,74583,fefe4e9bba8d,page 1!D389
+i-131-advance-parole,FY2019Q1,approved,quarter,71162,5865980d65e0,"line 60, column E",74583,fefe4e9bba8d,page 1!D389
+i-131-advance-parole,FY2019Q1,denied,quarter,12304,0895770f1390,"line 55, column F",12319,fefe4e9bba8d,page 1!E389
+i-131-advance-parole,FY2019Q1,denied,quarter,12304,2da595379c83,page 1!E999,12319,fefe4e9bba8d,page 1!E389
+i-131-advance-parole,FY2019Q1,denied,quarter,12304,5865980d65e0,"line 60, column F",12319,fefe4e9bba8d,page 1!E389
+i-131-advance-parole,FY2019Q1,pending,snapshot,148840,0895770f1390,"line 55, column G",149130,fefe4e9bba8d,page 1!F389
+i-131-advance-parole,FY2019Q1,pending,snapshot,148840,2da595379c83,page 1!F999,149130,fefe4e9bba8d,page 1!F389
+i-131-advance-parole,FY2019Q1,pending,snapshot,148840,5865980d65e0,"line 60, column G",149130,fefe4e9bba8d,page 1!F389
+i-131-advance-parole,FY2019Q1,received,quarter,100530,0895770f1390,"line 55, column D",102625,fefe4e9bba8d,page 1!C389
+i-131-advance-parole,FY2019Q1,received,quarter,100530,2da595379c83,page 1!C999,102625,fefe4e9bba8d,page 1!C389
+i-131-advance-parole,FY2019Q1,received,quarter,100530,5865980d65e0,"line 60, column D",102625,fefe4e9bba8d,page 1!C389
+i-131-advance-parole,FY2019Q2,approved,quarter,74669,2da595379c83,page 1!H999,76468,fefe4e9bba8d,page 1!H389
+i-131-advance-parole,FY2019Q2,approved,quarter,74665,5865980d65e0,"line 60, column I",76468,fefe4e9bba8d,page 1!H389
+i-131-advance-parole,FY2019Q2,denied,quarter,16420,2da595379c83,page 1!I999,16422,fefe4e9bba8d,page 1!I389
+i-131-advance-parole,FY2019Q2,denied,quarter,16395,5865980d65e0,"line 60, column J",16422,fefe4e9bba8d,page 1!I389
+i-131-advance-parole,FY2019Q2,pending,snapshot,156964,2da595379c83,page 1!J999,157426,fefe4e9bba8d,page 1!J389
+i-131-advance-parole,FY2019Q2,pending,snapshot,156963,5865980d65e0,"line 60, column K",157426,fefe4e9bba8d,page 1!J389
+i-131-advance-parole,FY2019Q2,received,quarter,97971,2da595379c83,page 1!G999,100001,fefe4e9bba8d,page 1!G389
+i-131-advance-parole,FY2019Q2,received,quarter,97971,5865980d65e0,"line 60, column H",100001,fefe4e9bba8d,page 1!G389
+i-131-advance-parole,FY2019Q3,approved,quarter,61390,2da595379c83,page 1!L999,64556,fefe4e9bba8d,page 1!L389
+i-131-advance-parole,FY2019Q3,denied,quarter,28047,2da595379c83,page 1!M999,28062,fefe4e9bba8d,page 1!M389
+i-131-advance-parole,FY2019Q3,pending,snapshot,159814,2da595379c83,page 1!N999,159464,fefe4e9bba8d,page 1!N389
+i-131-advance-parole,FY2019Q3,received,quarter,95453,2da595379c83,page 1!K999,97886,fefe4e9bba8d,page 1!K389
+i-131-advance-parole,FY2020Q1,approved,quarter,67160,58d66c259e3d,page 1!D441,82377,2d03d7ef391c,page 1!D434
+i-131-advance-parole,FY2020Q1,denied,quarter,18639,58d66c259e3d,page 1!E441,29907,2d03d7ef391c,page 1!E434
+i-131-parole-in-place,FY2020Q1,received,quarter,1897,58d66c259e3d,page 1!C447,2517,2d03d7ef391c,page 1!C440
+i-131-travel-document,FY2014Q1,pending,snapshot,23999,9206932c2df4,"line 55, column G",23998,aceb0bd04fa8,"line 52, column G"
+i-131-travel-document,FY2014Q2,pending,snapshot,30903,9206932c2df4,"line 55, column K",30908,aceb0bd04fa8,"line 52, column K"
+i-131-travel-document,FY2017Q1,approved,quarter,14080,21130ec0fc29,"line 54, column E",14070,e02fb6695dfa,"line 54, column E"
+i-131-travel-document,FY2017Q1,approved,quarter,14080,3288bd8ec0c5,"line 54, column E",14070,e02fb6695dfa,"line 54, column E"
+i-131-travel-document,FY2017Q1,approved,quarter,14080,34d126012593,"line 53, column E",14070,e02fb6695dfa,"line 54, column E"
+i-131-travel-document,FY2017Q1,denied,quarter,895,21130ec0fc29,"line 54, column F",896,e02fb6695dfa,"line 54, column F"
+i-131-travel-document,FY2017Q1,denied,quarter,895,3288bd8ec0c5,"line 54, column F",896,e02fb6695dfa,"line 54, column F"
+i-131-travel-document,FY2017Q1,denied,quarter,895,34d126012593,"line 53, column F",896,e02fb6695dfa,"line 54, column F"
+i-131-travel-document,FY2017Q1,pending,snapshot,43337,21130ec0fc29,"line 54, column G",43335,e02fb6695dfa,"line 54, column G"
+i-131-travel-document,FY2017Q1,pending,snapshot,43337,3288bd8ec0c5,"line 54, column G",43335,e02fb6695dfa,"line 54, column G"
+i-131-travel-document,FY2017Q1,pending,snapshot,43337,34d126012593,"line 53, column G",43335,e02fb6695dfa,"line 54, column G"
+i-131-travel-document,FY2017Q1,received,quarter,19453,21130ec0fc29,"line 54, column D",19435,e02fb6695dfa,"line 54, column D"
+i-131-travel-document,FY2017Q1,received,quarter,19453,3288bd8ec0c5,"line 54, column D",19435,e02fb6695dfa,"line 54, column D"
+i-131-travel-document,FY2017Q1,received,quarter,19453,34d126012593,"line 53, column D",19435,e02fb6695dfa,"line 54, column D"
+i-131-travel-document,FY2017Q2,pending,snapshot,24508,3288bd8ec0c5,"line 54, column K",24507,e02fb6695dfa,"line 54, column K"
+i-131-travel-document,FY2017Q2,pending,snapshot,24508,34d126012593,"line 53, column K",24507,e02fb6695dfa,"line 54, column K"
+i-131-travel-document,FY2017Q3,pending,snapshot,22952,34d126012593,"line 53, column O",22945,e02fb6695dfa,"line 54, column O"
+i-131-travel-document,FY2017Q3,received,quarter,21968,34d126012593,"line 53, column L",21961,e02fb6695dfa,"line 54, column L"
+i-131-travel-document,FY2018Q2,approved,quarter,19950,431cd8b2a8a6,"line 53, column I",19951,baf22ca3fee3,"line 54, column I"
+i-131-travel-document,FY2018Q2,denied,quarter,1981,431cd8b2a8a6,"line 53, column J",2006,baf22ca3fee3,"line 54, column J"
+i-131-travel-document,FY2018Q2,pending,snapshot,18813,431cd8b2a8a6,"line 53, column K",18812,baf22ca3fee3,"line 54, column K"
+i-131-travel-document,FY2019Q2,denied,quarter,1560,5865980d65e0,"line 59, column J",1569,fefe4e9bba8d,page 1!I383
+i-131-travel-document,FY2019Q3,approved,quarter,17235,2da595379c83,page 1!L985,17218,fefe4e9bba8d,page 1!L383
+i-131-travel-document,FY2019Q3,denied,quarter,1071,2da595379c83,page 1!M985,1068,fefe4e9bba8d,page 1!M383
+i-131-travel-document,FY2019Q3,pending,snapshot,22426,2da595379c83,page 1!N985,22391,fefe4e9bba8d,page 1!N383
+i-131-travel-document,FY2019Q3,received,quarter,23984,2da595379c83,page 1!K985,23983,fefe4e9bba8d,page 1!K383
+i-131-travel-document,FY2020Q1,received,quarter,20256,58d66c259e3d,page 1!C434,20291,2d03d7ef391c,page 1!C427
+i-140,FY2017Q1,pending,snapshot,56112,21130ec0fc29,"line 18, column G",56105,e02fb6695dfa,"line 18, column G"
+i-140,FY2017Q1,pending,snapshot,56112,3288bd8ec0c5,"line 18, column G",56105,e02fb6695dfa,"line 18, column G"
+i-140,FY2017Q1,pending,snapshot,56112,34d126012593,"line 17, column G",56105,e02fb6695dfa,"line 18, column G"
+i-140,FY2018Q1,pending,snapshot,56701,431cd8b2a8a6,"line 17, column G",56700,baf22ca3fee3,"line 18, column G"
+i-140,FY2018Q1,pending,snapshot,56701,7ce856513328,"line 18, column G",56700,baf22ca3fee3,"line 18, column G"
+i-140,FY2018Q1,pending,snapshot,58776,e1f4d426fb42,"line 18, column G",56700,baf22ca3fee3,"line 18, column G"
+i-140,FY2018Q2,pending,snapshot,47575,431cd8b2a8a6,"line 17, column K",47573,baf22ca3fee3,"line 18, column K"
+i-140,FY2018Q3,pending,snapshot,45889,7ce856513328,"line 18, column O",45888,baf22ca3fee3,"line 18, column O"
+i-140,FY2019Q2,pending,snapshot,39081,5865980d65e0,"line 22, column K",39080,fefe4e9bba8d,page 1!J173
+i-140,FY2019Q3,approved,quarter,33957,2da595379c83,page 1!L452,33953,fefe4e9bba8d,page 1!L173
+i-140,FY2019Q3,denied,quarter,2804,2da595379c83,page 1!M452,2798,fefe4e9bba8d,page 1!M173
+i-140,FY2019Q3,pending,snapshot,34963,2da595379c83,page 1!N452,34822,fefe4e9bba8d,page 1!N173
+i-140,FY2020Q1,approved,quarter,30575,58d66c259e3d,page 1!D185,30578,2d03d7ef391c,page 1!D187
+i-140,FY2020Q1,denied,quarter,2676,58d66c259e3d,page 1!E185,2683,2d03d7ef391c,page 1!E187
+i-140,FY2020Q1,pending,snapshot,44980,58d66c259e3d,page 1!F185,45078,2d03d7ef391c,page 1!F187
+i-193,FY2014Q1,pending,snapshot,552,9206932c2df4,"line 57, column G",551,aceb0bd04fa8,"line 54, column G"
+i-193,FY2019Q3,pending,snapshot,685,2da595379c83,page 1!N1014,683,fefe4e9bba8d,page 1!N395
+i-290b,FY2020Q1,denied,quarter,3029,58d66c259e3d,page 1!E495,3127,2d03d7ef391c,page 1!E486
+i-290b,FY2020Q1,pending,snapshot,15477,58d66c259e3d,page 1!F495,15471,2d03d7ef391c,page 1!F486
+i-360,FY2014Q1,pending,snapshot,11520,9206932c2df4,"line 58, column G",11588,aceb0bd04fa8,"line 55, column G"
+i-360,FY2014Q2,approved,quarter,4230,1ee57a59df58,"line 58, column I",4231,aceb0bd04fa8,"line 55, column I"
+i-360,FY2014Q2,approved,quarter,4230,9206932c2df4,"line 58, column I",4231,aceb0bd04fa8,"line 55, column I"
+i-360,FY2014Q2,pending,snapshot,11372,9206932c2df4,"line 58, column K",11356,aceb0bd04fa8,"line 55, column K"
+i-360,FY2017Q1,approved,quarter,6696,21130ec0fc29,"line 57, column E",6722,e02fb6695dfa,"line 57, column E"
+i-360,FY2017Q1,approved,quarter,6696,3288bd8ec0c5,"line 57, column E",6722,e02fb6695dfa,"line 57, column E"
+i-360,FY2017Q1,approved,quarter,6696,34d126012593,"line 56, column E",6722,e02fb6695dfa,"line 57, column E"
+i-360,FY2017Q1,denied,quarter,1124,21130ec0fc29,"line 57, column F",1127,e02fb6695dfa,"line 57, column F"
+i-360,FY2017Q1,denied,quarter,1124,3288bd8ec0c5,"line 57, column F",1127,e02fb6695dfa,"line 57, column F"
+i-360,FY2017Q1,denied,quarter,1124,34d126012593,"line 56, column F",1127,e02fb6695dfa,"line 57, column F"
+i-360,FY2017Q1,pending,snapshot,24746,21130ec0fc29,"line 57, column G",24583,e02fb6695dfa,"line 57, column G"
+i-360,FY2017Q1,pending,snapshot,24746,3288bd8ec0c5,"line 57, column G",24583,e02fb6695dfa,"line 57, column G"
+i-360,FY2017Q1,pending,snapshot,24746,34d126012593,"line 56, column G",24583,e02fb6695dfa,"line 57, column G"
+i-360,FY2017Q3,pending,snapshot,32284,34d126012593,"line 56, column O",32291,e02fb6695dfa,"line 57, column O"
+i-360,FY2018Q2,approved,quarter,3528,431cd8b2a8a6,"line 56, column I",3407,baf22ca3fee3,"line 57, column I"
+i-360,FY2018Q2,denied,quarter,1685,431cd8b2a8a6,"line 56, column J",1633,baf22ca3fee3,"line 57, column J"
+i-360,FY2018Q2,pending,snapshot,43597,431cd8b2a8a6,"line 56, column K",43294,baf22ca3fee3,"line 57, column K"
+i-360,FY2018Q2,received,quarter,9670,431cd8b2a8a6,"line 56, column H",9195,baf22ca3fee3,"line 57, column H"
+i-360,FY2018Q3,received,quarter,10069,7ce856513328,"line 57, column L",10070,baf22ca3fee3,"line 57, column L"
+i-360,FY2019Q3,approved,quarter,8846,2da595379c83,page 1!L1028,8847,fefe4e9bba8d,page 1!L400
+i-360,FY2019Q3,pending,snapshot,56735,2da595379c83,page 1!N1028,56726,fefe4e9bba8d,page 1!N400
+i-360,FY2020Q1,approved,quarter,9919,58d66c259e3d,page 1!D461,13004,2d03d7ef391c,page 1!D453
+i-360,FY2020Q1,denied,quarter,1022,58d66c259e3d,page 1!E461,1128,2d03d7ef391c,page 1!E453
+i-360,FY2020Q1,pending,snapshot,52745,58d66c259e3d,page 1!F461,52743,2d03d7ef391c,page 1!F453
+i-360,FY2020Q1,received,quarter,9023,58d66c259e3d,page 1!C461,10649,2d03d7ef391c,page 1!C453
+i-485-asylum,FY2014Q1,denied,quarter,361,c671ed676cc0,"line 25, column F",357,aceb0bd04fa8,"line 24, column F"
+i-485-asylum,FY2014Q1,pending,snapshot,19707,9206932c2df4,"line 27, column G",19663,aceb0bd04fa8,"line 24, column G"
+i-485-asylum,FY2014Q1,pending,snapshot,19679,c671ed676cc0,"line 25, column G",19663,aceb0bd04fa8,"line 24, column G"
+i-485-asylum,FY2014Q2,pending,snapshot,18670,9206932c2df4,"line 27, column K",18661,aceb0bd04fa8,"line 24, column K"
+i-485-asylum,FY2017Q1,pending,snapshot,24438,21130ec0fc29,"line 25, column G",24371,e02fb6695dfa,"line 25, column G"
+i-485-asylum,FY2017Q1,pending,snapshot,24438,3288bd8ec0c5,"line 25, column G",24371,e02fb6695dfa,"line 25, column G"
+i-485-asylum,FY2017Q1,pending,snapshot,24438,34d126012593,"line 24, column G",24371,e02fb6695dfa,"line 25, column G"
+i-485-asylum,FY2017Q2,pending,snapshot,24754,3288bd8ec0c5,"line 25, column K",24760,e02fb6695dfa,"line 25, column K"
+i-485-asylum,FY2017Q2,pending,snapshot,24754,34d126012593,"line 24, column K",24760,e02fb6695dfa,"line 25, column K"
+i-485-asylum,FY2017Q3,pending,snapshot,23913,34d126012593,"line 24, column O",24074,e02fb6695dfa,"line 25, column O"
+i-485-asylum,FY2017Q3,received,quarter,8274,34d126012593,"line 24, column L",8496,e02fb6695dfa,"line 25, column L"
+i-485-asylum,FY2018Q1,pending,snapshot,24236,e1f4d426fb42,"line 25, column G",24234,baf22ca3fee3,"line 25, column G"
+i-485-asylum,FY2018Q2,pending,snapshot,26336,431cd8b2a8a6,"line 24, column K",26332,baf22ca3fee3,"line 25, column K"
+i-485-asylum,FY2018Q2,received,quarter,7366,431cd8b2a8a6,"line 24, column H",7367,baf22ca3fee3,"line 25, column H"
+i-485-asylum,FY2018Q3,approved,quarter,7022,7ce856513328,"line 25, column M",7024,baf22ca3fee3,"line 25, column M"
+i-485-asylum,FY2018Q3,pending,snapshot,28423,7ce856513328,"line 25, column O",28422,baf22ca3fee3,"line 25, column O"
+i-485-asylum,FY2019Q2,denied,quarter,373,5865980d65e0,"line 30, column J",375,fefe4e9bba8d,page 1!I218
+i-485-asylum,FY2019Q2,pending,snapshot,25961,5865980d65e0,"line 30, column K",25958,fefe4e9bba8d,page 1!J218
+i-485-asylum,FY2019Q3,approved,quarter,5550,2da595379c83,page 1!L567,5551,fefe4e9bba8d,page 1!L218
+i-485-asylum,FY2019Q3,pending,snapshot,32278,2da595379c83,page 1!N567,32275,fefe4e9bba8d,page 1!N218
+i-485-cuban,FY2014Q1,approved,quarter,10089,c671ed676cc0,"line 27, column E",10091,aceb0bd04fa8,"line 26, column E"
+i-485-cuban,FY2014Q1,pending,snapshot,26942,1ee57a59df58,"line 29, column G",27053,aceb0bd04fa8,"line 26, column G"
+i-485-cuban,FY2014Q1,pending,snapshot,26975,9206932c2df4,"line 29, column G",27053,aceb0bd04fa8,"line 26, column G"
+i-485-cuban,FY2014Q1,pending,snapshot,26942,c671ed676cc0,"line 27, column G",27053,aceb0bd04fa8,"line 26, column G"
+i-485-cuban,FY2014Q2,pending,snapshot,29494,1ee57a59df58,"line 29, column K",28420,aceb0bd04fa8,"line 26, column K"
+i-485-cuban,FY2014Q2,pending,snapshot,29505,9206932c2df4,"line 29, column K",28420,aceb0bd04fa8,"line 26, column K"
+i-485-cuban,FY2014Q3,denied,quarter,613,1ee57a59df58,"line 29, column N",614,aceb0bd04fa8,"line 26, column N"
+i-485-cuban,FY2017Q1,approved,quarter,12068,21130ec0fc29,"line 28, column E",12069,e02fb6695dfa,"line 28, column E"
+i-485-cuban,FY2017Q1,approved,quarter,12068,3288bd8ec0c5,"line 28, column E",12069,e02fb6695dfa,"line 28, column E"
+i-485-cuban,FY2017Q1,approved,quarter,12068,34d126012593,"line 27, column E",12069,e02fb6695dfa,"line 28, column E"
+i-485-cuban,FY2017Q1,pending,snapshot,41464,21130ec0fc29,"line 28, column G",41442,e02fb6695dfa,"line 28, column G"
+i-485-cuban,FY2017Q1,pending,snapshot,41464,3288bd8ec0c5,"line 28, column G",41442,e02fb6695dfa,"line 28, column G"
+i-485-cuban,FY2017Q1,pending,snapshot,41464,34d126012593,"line 27, column G",41442,e02fb6695dfa,"line 28, column G"
+i-485-cuban,FY2017Q2,pending,snapshot,50753,3288bd8ec0c5,"line 28, column K",50722,e02fb6695dfa,"line 28, column K"
+i-485-cuban,FY2017Q2,pending,snapshot,50753,34d126012593,"line 27, column K",50722,e02fb6695dfa,"line 28, column K"
+i-485-cuban,FY2017Q3,pending,snapshot,56765,34d126012593,"line 27, column O",56780,e02fb6695dfa,"line 28, column O"
+i-485-cuban,FY2018Q1,pending,snapshot,59107,e1f4d426fb42,"line 28, column G",59092,baf22ca3fee3,"line 28, column G"
+i-485-cuban,FY2018Q2,pending,snapshot,54605,431cd8b2a8a6,"line 27, column K",54594,baf22ca3fee3,"line 28, column K"
+i-485-cuban,FY2018Q2,pending,snapshot,54595,7ce856513328,"line 28, column K",54594,baf22ca3fee3,"line 28, column K"
+i-485-cuban,FY2018Q2,received,quarter,16393,431cd8b2a8a6,"line 27, column H",16392,baf22ca3fee3,"line 28, column H"
+i-485-cuban,FY2018Q2,received,quarter,16393,7ce856513328,"line 28, column H",16392,baf22ca3fee3,"line 28, column H"
+i-485-cuban,FY2019Q2,approved,quarter,12816,5865980d65e0,"line 33, column I",12818,fefe4e9bba8d,page 1!H235
+i-485-cuban,FY2019Q2,denied,quarter,742,5865980d65e0,"line 33, column J",744,fefe4e9bba8d,page 1!I235
+i-485-cuban,FY2019Q2,pending,snapshot,18719,5865980d65e0,"line 33, column K",18720,fefe4e9bba8d,page 1!J235
+i-485-cuban,FY2019Q3,approved,quarter,8052,2da595379c83,page 1!L610,8054,fefe4e9bba8d,page 1!L235
+i-485-cuban,FY2019Q3,denied,quarter,801,2da595379c83,page 1!M610,800,fefe4e9bba8d,page 1!M235
+i-485-cuban,FY2019Q3,pending,snapshot,13971,2da595379c83,page 1!N610,13948,fefe4e9bba8d,page 1!N235
+i-485-cuban,FY2020Q1,pending,snapshot,13149,58d66c259e3d,page 1!F259,13139,2d03d7ef391c,page 1!F259
+i-485-employment,FY2014Q1,pending,snapshot,117697,9206932c2df4,"line 21, column G",117921,aceb0bd04fa8,"line 18, column G"
+i-485-employment,FY2014Q1,pending,snapshot,117892,c671ed676cc0,"line 19, column G",117921,aceb0bd04fa8,"line 18, column G"
+i-485-employment,FY2014Q2,pending,snapshot,118937,9206932c2df4,"line 21, column K",118966,aceb0bd04fa8,"line 18, column K"
+i-485-employment,FY2014Q3,approved,quarter,25449,1ee57a59df58,"line 21, column M",25448,aceb0bd04fa8,"line 18, column M"
+i-485-employment,FY2016Q1,pending,snapshot,125161,f251359c6ff5,"line 18, column G",125424,39b0a6910f54,"line 18, column G"
+i-485-employment,FY2017Q1,pending,snapshot,138114,21130ec0fc29,"line 19, column G",138120,e02fb6695dfa,"line 19, column G"
+i-485-employment,FY2017Q1,pending,snapshot,138114,3288bd8ec0c5,"line 19, column G",138120,e02fb6695dfa,"line 19, column G"
+i-485-employment,FY2017Q1,pending,snapshot,138114,34d126012593,"line 18, column G",138120,e02fb6695dfa,"line 19, column G"
+i-485-employment,FY2017Q2,pending,snapshot,138404,3288bd8ec0c5,"line 19, column K",138424,e02fb6695dfa,"line 19, column K"
+i-485-employment,FY2017Q2,pending,snapshot,138404,34d126012593,"line 18, column K",138424,e02fb6695dfa,"line 19, column K"
+i-485-employment,FY2017Q3,approved,quarter,29691,34d126012593,"line 18, column M",29689,e02fb6695dfa,"line 19, column M"
+i-485-employment,FY2017Q3,pending,snapshot,148553,34d126012593,"line 18, column O",149107,e02fb6695dfa,"line 19, column O"
+i-485-employment,FY2017Q3,received,quarter,41920,34d126012593,"line 18, column L",42219,e02fb6695dfa,"line 19, column L"
+i-485-employment,FY2018Q1,pending,snapshot,142561,431cd8b2a8a6,"line 18, column G",142558,baf22ca3fee3,"line 19, column G"
+i-485-employment,FY2018Q1,pending,snapshot,142561,7ce856513328,"line 19, column G",142558,baf22ca3fee3,"line 19, column G"
+i-485-employment,FY2018Q1,pending,snapshot,142577,e1f4d426fb42,"line 19, column G",142558,baf22ca3fee3,"line 19, column G"
+i-485-employment,FY2018Q2,denied,quarter,2593,431cd8b2a8a6,"line 18, column J",2595,baf22ca3fee3,"line 19, column J"
+i-485-employment,FY2018Q2,pending,snapshot,162675,431cd8b2a8a6,"line 18, column K",162674,baf22ca3fee3,"line 19, column K"
+i-485-employment,FY2018Q2,pending,snapshot,162677,7ce856513328,"line 19, column K",162674,baf22ca3fee3,"line 19, column K"
+i-485-employment,FY2018Q3,approved,quarter,34365,7ce856513328,"line 19, column M",34459,baf22ca3fee3,"line 19, column M"
+i-485-employment,FY2018Q3,pending,snapshot,149179,7ce856513328,"line 19, column O",149122,baf22ca3fee3,"line 19, column O"
+i-485-employment,FY2019Q2,approved,quarter,27539,5865980d65e0,"line 23, column I",27546,fefe4e9bba8d,page 1!H179
+i-485-employment,FY2019Q2,denied,quarter,2014,5865980d65e0,"line 23, column J",2015,fefe4e9bba8d,page 1!I179
+i-485-employment,FY2019Q2,pending,snapshot,148390,5865980d65e0,"line 23, column K",148385,fefe4e9bba8d,page 1!J179
+i-485-employment,FY2019Q3,approved,quarter,30630,2da595379c83,page 1!L466,30413,fefe4e9bba8d,page 1!L179
+i-485-employment,FY2019Q3,denied,quarter,2340,2da595379c83,page 1!M466,2336,fefe4e9bba8d,page 1!M179
+i-485-employment,FY2019Q3,pending,snapshot,138474,2da595379c83,page 1!N466,136866,fefe4e9bba8d,page 1!N179
+i-485-employment,FY2019Q3,received,quarter,25986,2da595379c83,page 1!K466,24427,fefe4e9bba8d,page 1!K179
+i-485-family,FY2014Q1,approved,quarter,60485,c671ed676cc0,"line 11, column E",60728,aceb0bd04fa8,"line 10, column E"
+i-485-family,FY2014Q1,denied,quarter,6936,c671ed676cc0,"line 11, column F",6947,aceb0bd04fa8,"line 10, column F"
+i-485-family,FY2014Q1,pending,snapshot,156052,c671ed676cc0,"line 11, column G",155930,aceb0bd04fa8,"line 10, column G"
+i-485-family,FY2014Q2,pending,snapshot,154379,9206932c2df4,"line 13, column K",154401,aceb0bd04fa8,"line 10, column K"
+i-485-family,FY2014Q2,received,quarter,65474,9206932c2df4,"line 13, column H",65473,aceb0bd04fa8,"line 10, column H"
+i-485-family,FY2014Q3,approved,quarter,63111,1ee57a59df58,"line 13, column M",63141,aceb0bd04fa8,"line 10, column M"
+i-485-family,FY2014Q3,denied,quarter,8680,1ee57a59df58,"line 13, column N",8674,aceb0bd04fa8,"line 10, column N"
+i-485-family,FY2014Q3,pending,snapshot,161097,1ee57a59df58,"line 13, column O",161125,aceb0bd04fa8,"line 10, column O"
+i-485-family,FY2017Q1,pending,snapshot,271136,21130ec0fc29,"line 11, column G",271152,e02fb6695dfa,"line 11, column G"
+i-485-family,FY2017Q1,pending,snapshot,271136,3288bd8ec0c5,"line 11, column G",271152,e02fb6695dfa,"line 11, column G"
+i-485-family,FY2017Q1,pending,snapshot,271136,34d126012593,"line 10, column G",271152,e02fb6695dfa,"line 11, column G"
+i-485-family,FY2017Q2,pending,snapshot,292086,3288bd8ec0c5,"line 11, column K",291769,e02fb6695dfa,"line 11, column K"
+i-485-family,FY2017Q2,pending,snapshot,292086,34d126012593,"line 10, column K",291769,e02fb6695dfa,"line 11, column K"
+i-485-family,FY2017Q3,approved,quarter,71400,34d126012593,"line 10, column M",71401,e02fb6695dfa,"line 11, column M"
+i-485-family,FY2017Q3,pending,snapshot,305601,34d126012593,"line 10, column O",305848,e02fb6695dfa,"line 11, column O"
+i-485-family,FY2017Q3,received,quarter,94112,34d126012593,"line 10, column L",94171,e02fb6695dfa,"line 11, column L"
+i-485-family,FY2018Q1,pending,snapshot,335810,e1f4d426fb42,"line 11, column G",335762,baf22ca3fee3,"line 11, column G"
+i-485-family,FY2018Q2,pending,snapshot,344976,431cd8b2a8a6,"line 10, column K",344655,baf22ca3fee3,"line 11, column K"
+i-485-family,FY2018Q2,pending,snapshot,344664,7ce856513328,"line 11, column K",344655,baf22ca3fee3,"line 11, column K"
+i-485-family,FY2018Q2,received,quarter,78947,431cd8b2a8a6,"line 10, column H",78938,baf22ca3fee3,"line 11, column H"
+i-485-family,FY2018Q2,received,quarter,78947,7ce856513328,"line 11, column H",78938,baf22ca3fee3,"line 11, column H"
+i-485-family,FY2018Q3,approved,quarter,57176,7ce856513328,"line 11, column M",57272,baf22ca3fee3,"line 11, column M"
+i-485-family,FY2018Q3,denied,quarter,10236,7ce856513328,"line 11, column N",10192,baf22ca3fee3,"line 11, column N"
+i-485-family,FY2018Q3,pending,snapshot,372057,7ce856513328,"line 11, column O",371976,baf22ca3fee3,"line 11, column O"
+i-485-family,FY2019Q2,approved,quarter,90915,5865980d65e0,"line 15, column I",91022,fefe4e9bba8d,page 1!H134
+i-485-family,FY2019Q2,denied,quarter,13569,5865980d65e0,"line 15, column J",13601,fefe4e9bba8d,page 1!I134
+i-485-family,FY2019Q2,pending,snapshot,346582,5865980d65e0,"line 15, column K",346451,fefe4e9bba8d,page 1!J134
+i-485-family,FY2019Q3,approved,quarter,90866,2da595379c83,page 1!L351,90974,fefe4e9bba8d,page 1!L134
+i-485-family,FY2019Q3,denied,quarter,15225,2da595379c83,page 1!M351,15187,fefe4e9bba8d,page 1!M134
+i-485-family,FY2019Q3,pending,snapshot,327353,2da595379c83,page 1!N351,327300,fefe4e9bba8d,page 1!N134
+i-485-family,FY2020Q1,pending,snapshot,336335,58d66c259e3d,page 1!F138,336313,2d03d7ef391c,page 1!F142
+i-485-family,FY2020Q1,received,quarter,101940,58d66c259e3d,page 1!C138,101936,2d03d7ef391c,page 1!C142
+i-485-family,FY2020Q2,denied,quarter,18010,4a52cb47b813,page 1!I134,18020,2d03d7ef391c,page 1!I142
+i-485-family,FY2020Q2,pending,snapshot,315507,4a52cb47b813,page 1!J134,315655,2d03d7ef391c,page 1!J142
+i-485-indochinese,FY2017Q1,pending,snapshot,,3288bd8ec0c5,"line 27, column G",10,e02fb6695dfa,"line 27, column G"
+i-485-indochinese,FY2017Q1,pending,snapshot,,34d126012593,"line 26, column G",10,e02fb6695dfa,"line 27, column G"
+i-485-indochinese,FY2017Q2,pending,snapshot,14,3288bd8ec0c5,"line 27, column K",12,e02fb6695dfa,"line 27, column K"
+i-485-indochinese,FY2017Q2,pending,snapshot,14,34d126012593,"line 26, column K",12,e02fb6695dfa,"line 27, column K"
+i-485-indochinese,FY2020Q1,pending,snapshot,26,58d66c259e3d,page 1!F253,27,2d03d7ef391c,page 1!F252
+i-485-other,FY2014Q1,approved,quarter,4616,9206932c2df4,"line 59, column E",4617,aceb0bd04fa8,"line 56, column E"
+i-485-other,FY2014Q1,denied,quarter,854,9206932c2df4,"line 59, column F",853,aceb0bd04fa8,"line 56, column F"
+i-485-other,FY2014Q1,pending,snapshot,17850,9206932c2df4,"line 59, column G",17580,aceb0bd04fa8,"line 56, column G"
+i-485-other,FY2014Q1,pending,snapshot,17573,c671ed676cc0,"line 57, column G",17580,aceb0bd04fa8,"line 56, column G"
+i-485-other,FY2014Q1,received,quarter,6514,9206932c2df4,"line 59, column D",6511,aceb0bd04fa8,"line 56, column D"
+i-485-other,FY2014Q2,pending,snapshot,15759,9206932c2df4,"line 59, column K",15779,aceb0bd04fa8,"line 56, column K"
+i-485-other,FY2014Q2,received,quarter,6591,9206932c2df4,"line 59, column H",6578,aceb0bd04fa8,"line 56, column H"
+i-485-other,FY2014Q3,approved,quarter,6815,1ee57a59df58,"line 59, column M",6778,aceb0bd04fa8,"line 56, column M"
+i-485-other,FY2014Q3,denied,quarter,873,1ee57a59df58,"line 59, column N",871,aceb0bd04fa8,"line 56, column N"
+i-485-other,FY2014Q3,pending,snapshot,17209,1ee57a59df58,"line 59, column O",17175,aceb0bd04fa8,"line 56, column O"
+i-485-other,FY2017Q1,approved,quarter,6441,21130ec0fc29,"line 58, column E",6428,e02fb6695dfa,"line 58, column E"
+i-485-other,FY2017Q1,approved,quarter,6441,3288bd8ec0c5,"line 58, column E",6428,e02fb6695dfa,"line 58, column E"
+i-485-other,FY2017Q1,approved,quarter,6441,34d126012593,"line 57, column E",6428,e02fb6695dfa,"line 58, column E"
+i-485-other,FY2017Q1,pending,snapshot,25510,21130ec0fc29,"line 58, column G",25458,e02fb6695dfa,"line 58, column G"
+i-485-other,FY2017Q1,pending,snapshot,25510,3288bd8ec0c5,"line 58, column G",25458,e02fb6695dfa,"line 58, column G"
+i-485-other,FY2017Q1,pending,snapshot,25510,34d126012593,"line 57, column G",25458,e02fb6695dfa,"line 58, column G"
+i-485-other,FY2017Q2,pending,snapshot,28347,3288bd8ec0c5,"line 58, column K",28330,e02fb6695dfa,"line 58, column K"
+i-485-other,FY2017Q2,pending,snapshot,28347,34d126012593,"line 57, column K",28330,e02fb6695dfa,"line 58, column K"
+i-485-other,FY2017Q3,approved,quarter,7986,34d126012593,"line 57, column M",7939,e02fb6695dfa,"line 58, column M"
+i-485-other,FY2017Q3,pending,snapshot,32356,34d126012593,"line 57, column O",30592,e02fb6695dfa,"line 58, column O"
+i-485-other,FY2017Q3,received,quarter,11371,34d126012593,"line 57, column L",9465,e02fb6695dfa,"line 58, column L"
+i-485-other,FY2018Q2,pending,snapshot,36369,431cd8b2a8a6,"line 57, column K",36376,baf22ca3fee3,"line 58, column K"
+i-485-other,FY2018Q3,approved,quarter,5922,7ce856513328,"line 58, column M",5923,baf22ca3fee3,"line 58, column M"
+i-485-other,FY2018Q3,pending,snapshot,33694,7ce856513328,"line 58, column O",33697,baf22ca3fee3,"line 58, column O"
+i-485-other,FY2019Q2,denied,quarter,1138,5865980d65e0,"line 63, column J",1139,fefe4e9bba8d,page 1!I406
+i-485-other,FY2019Q2,pending,snapshot,30411,5865980d65e0,"line 63, column K",30464,fefe4e9bba8d,page 1!J406
+i-485-other,FY2019Q2,received,quarter,6571,5865980d65e0,"line 63, column H",6637,fefe4e9bba8d,page 1!G406
+i-485-other,FY2019Q3,approved,quarter,6909,2da595379c83,page 1!L1043,6896,fefe4e9bba8d,page 1!L406
+i-485-other,FY2019Q3,denied,quarter,1042,2da595379c83,page 1!M1043,1041,fefe4e9bba8d,page 1!M406
+i-485-other,FY2019Q3,pending,snapshot,30612,2da595379c83,page 1!N1043,30570,fefe4e9bba8d,page 1!N406
+i-485-other,FY2020Q2,received,quarter,6272,4a52cb47b813,page 1!G452,6273,2d03d7ef391c,page 1!G460
+i-485-refugee,FY2014Q1,pending,snapshot,27053,1ee57a59df58,"line 28, column G",19663,aceb0bd04fa8,"line 25, column G"
+i-485-refugee,FY2014Q1,pending,snapshot,27050,9206932c2df4,"line 28, column G",19663,aceb0bd04fa8,"line 25, column G"
+i-485-refugee,FY2014Q1,pending,snapshot,27053,c671ed676cc0,"line 26, column G",19663,aceb0bd04fa8,"line 25, column G"
+i-485-refugee,FY2014Q2,pending,snapshot,28420,1ee57a59df58,"line 28, column K",18661,aceb0bd04fa8,"line 25, column K"
+i-485-refugee,FY2014Q2,pending,snapshot,28420,9206932c2df4,"line 28, column K",18661,aceb0bd04fa8,"line 25, column K"
+i-485-refugee,FY2017Q1,pending,snapshot,37171,21130ec0fc29,"line 26, column G",37154,e02fb6695dfa,"line 26, column G"
+i-485-refugee,FY2017Q1,pending,snapshot,37171,3288bd8ec0c5,"line 26, column G",37154,e02fb6695dfa,"line 26, column G"
+i-485-refugee,FY2017Q1,pending,snapshot,37171,34d126012593,"line 25, column G",37154,e02fb6695dfa,"line 26, column G"
+i-485-refugee,FY2017Q3,pending,snapshot,42096,34d126012593,"line 25, column O",42587,e02fb6695dfa,"line 26, column O"
+i-485-refugee,FY2017Q3,received,quarter,18205,34d126012593,"line 25, column L",18910,e02fb6695dfa,"line 26, column L"
+i-485-refugee,FY2018Q2,pending,snapshot,57593,431cd8b2a8a6,"line 25, column K",57587,baf22ca3fee3,"line 26, column K"
+i-485-refugee,FY2018Q3,pending,snapshot,52328,7ce856513328,"line 26, column O",52327,baf22ca3fee3,"line 26, column O"
+i-485-refugee,FY2019Q2,approved,quarter,11426,5865980d65e0,"line 31, column I",11427,fefe4e9bba8d,page 1!H224
+i-485-refugee,FY2019Q2,pending,snapshot,32057,5865980d65e0,"line 31, column K",32056,fefe4e9bba8d,page 1!J224
+i-485-refugee,FY2019Q3,denied,quarter,472,2da595379c83,page 1!M581,474,fefe4e9bba8d,page 1!M224
+i-485-refugee,FY2019Q3,pending,snapshot,27803,2da595379c83,page 1!N581,26911,fefe4e9bba8d,page 1!N224
+i-485-refugee,FY2019Q3,received,quarter,6601,2da595379c83,page 1!K581,6600,fefe4e9bba8d,page 1!K224
+i-526,FY2017Q1,approved,quarter,3346,21130ec0fc29,"line 20, column E",3243,e02fb6695dfa,"line 20, column E"
+i-526,FY2017Q1,approved,quarter,3346,3288bd8ec0c5,"line 20, column E",3243,e02fb6695dfa,"line 20, column E"
+i-526,FY2017Q1,approved,quarter,3346,34d126012593,"line 19, column E",3243,e02fb6695dfa,"line 20, column E"
+i-526,FY2017Q1,denied,quarter,236,21130ec0fc29,"line 20, column F",228,e02fb6695dfa,"line 20, column F"
+i-526,FY2017Q1,denied,quarter,236,3288bd8ec0c5,"line 20, column F",228,e02fb6695dfa,"line 20, column F"
+i-526,FY2017Q1,denied,quarter,236,34d126012593,"line 19, column F",228,e02fb6695dfa,"line 20, column F"
+i-526,FY2017Q1,pending,snapshot,23250,21130ec0fc29,"line 20, column G",23211,e02fb6695dfa,"line 20, column G"
+i-526,FY2017Q1,pending,snapshot,23250,3288bd8ec0c5,"line 20, column G",23211,e02fb6695dfa,"line 20, column G"
+i-526,FY2017Q1,pending,snapshot,23250,34d126012593,"line 19, column G",23211,e02fb6695dfa,"line 20, column G"
+i-526,FY2018Q1,pending,snapshot,24627,431cd8b2a8a6,"line 19, column G",22475,baf22ca3fee3,"line 20, column G"
+i-526,FY2018Q1,pending,snapshot,24627,e1f4d426fb42,"line 20, column G",22475,baf22ca3fee3,"line 20, column G"
+i-526,FY2018Q2,approved,quarter,3649,431cd8b2a8a6,"line 19, column I",3303,baf22ca3fee3,"line 20, column I"
+i-526,FY2018Q2,pending,snapshot,22607,431cd8b2a8a6,"line 19, column K",20455,baf22ca3fee3,"line 20, column K"
+i-539,FY2014Q1,approved,quarter,39484,9206932c2df4,"line 60, column E",39498,aceb0bd04fa8,"line 57, column E"
+i-539,FY2014Q1,approved,quarter,35783,c671ed676cc0,"line 58, column E",39498,aceb0bd04fa8,"line 57, column E"
+i-539,FY2014Q1,denied,quarter,6951,9206932c2df4,"line 60, column F",7121,aceb0bd04fa8,"line 57, column F"
+i-539,FY2014Q1,denied,quarter,6103,c671ed676cc0,"line 58, column F",7121,aceb0bd04fa8,"line 57, column F"
+i-539,FY2014Q1,pending,snapshot,44614,9206932c2df4,"line 60, column G",44643,aceb0bd04fa8,"line 57, column G"
+i-539,FY2014Q1,pending,snapshot,37772,c671ed676cc0,"line 58, column G",44643,aceb0bd04fa8,"line 57, column G"
+i-539,FY2014Q1,received,quarter,34036,c671ed676cc0,"line 58, column D",39976,aceb0bd04fa8,"line 57, column D"
+i-539,FY2014Q2,approved,quarter,42768,9206932c2df4,"line 60, column I",42800,aceb0bd04fa8,"line 57, column I"
+i-539,FY2014Q2,denied,quarter,7499,9206932c2df4,"line 60, column J",7729,aceb0bd04fa8,"line 57, column J"
+i-539,FY2014Q2,pending,snapshot,46587,9206932c2df4,"line 60, column K",41732,aceb0bd04fa8,"line 57, column K"
+i-539,FY2015Q1,pending,snapshot,41164,377a1f36a382,"line 59, column G",47187,e84ba355944b,"line 59, column G"
+i-539,FY2015Q1,pending,snapshot,41164,51ba72f00175,"line 58, column G",47187,e84ba355944b,"line 59, column G"
+i-539,FY2015Q1,pending,snapshot,41164,a4b00111f24c,"line 58, column G",47187,e84ba355944b,"line 59, column G"
+i-539,FY2015Q1,received,quarter,39651,377a1f36a382,"line 59, column D",46367,e84ba355944b,"line 59, column D"
+i-539,FY2015Q1,received,quarter,39651,51ba72f00175,"line 58, column D",46367,e84ba355944b,"line 59, column D"
+i-539,FY2015Q1,received,quarter,39651,a4b00111f24c,"line 58, column D",46367,e84ba355944b,"line 59, column D"
+i-539,FY2015Q2,pending,snapshot,43880,51ba72f00175,"line 58, column K",51516,e84ba355944b,"line 59, column K"
+i-539,FY2015Q2,pending,snapshot,43880,a4b00111f24c,"line 58, column K",51516,e84ba355944b,"line 59, column K"
+i-539,FY2015Q2,received,quarter,35187,51ba72f00175,"line 58, column H",42021,e84ba355944b,"line 59, column H"
+i-539,FY2015Q2,received,quarter,35187,a4b00111f24c,"line 58, column H",42021,e84ba355944b,"line 59, column H"
+i-539,FY2015Q3,pending,snapshot,62429,a4b00111f24c,"line 58, column O",70619,e84ba355944b,"line 59, column O"
+i-539,FY2015Q3,received,quarter,48106,a4b00111f24c,"line 58, column L",53800,e84ba355944b,"line 59, column L"
+i-539,FY2017Q1,pending,snapshot,60285,21130ec0fc29,"line 59, column G",60319,e02fb6695dfa,"line 59, column G"
+i-539,FY2017Q1,pending,snapshot,60285,3288bd8ec0c5,"line 59, column G",60319,e02fb6695dfa,"line 59, column G"
+i-539,FY2017Q1,pending,snapshot,60285,34d126012593,"line 58, column G",60319,e02fb6695dfa,"line 59, column G"
+i-539,FY2017Q1,received,quarter,51346,21130ec0fc29,"line 59, column D",51379,e02fb6695dfa,"line 59, column D"
+i-539,FY2017Q1,received,quarter,51346,3288bd8ec0c5,"line 59, column D",51379,e02fb6695dfa,"line 59, column D"
+i-539,FY2017Q1,received,quarter,51346,34d126012593,"line 58, column D",51379,e02fb6695dfa,"line 59, column D"
+i-539,FY2017Q3,pending,snapshot,72059,34d126012593,"line 58, column O",72032,e02fb6695dfa,"line 59, column O"
+i-539,FY2018Q1,pending,snapshot,87548,431cd8b2a8a6,"line 58, column G",87553,baf22ca3fee3,"line 59, column G"
+i-539,FY2018Q1,pending,snapshot,87548,7ce856513328,"line 59, column G",87553,baf22ca3fee3,"line 59, column G"
+i-539,FY2018Q1,pending,snapshot,87548,e1f4d426fb42,"line 59, column G",87553,baf22ca3fee3,"line 59, column G"
+i-539,FY2018Q2,approved,quarter,45380,431cd8b2a8a6,"line 58, column I",45394,baf22ca3fee3,"line 59, column I"
+i-539,FY2018Q2,approved,quarter,45393,7ce856513328,"line 59, column I",45394,baf22ca3fee3,"line 59, column I"
+i-539,FY2018Q2,denied,quarter,10038,431cd8b2a8a6,"line 58, column J",10034,baf22ca3fee3,"line 59, column J"
+i-539,FY2018Q2,pending,snapshot,89709,431cd8b2a8a6,"line 58, column K",89661,baf22ca3fee3,"line 59, column K"
+i-539,FY2018Q2,received,quarter,55036,431cd8b2a8a6,"line 58, column H",54990,baf22ca3fee3,"line 59, column H"
+i-539,FY2018Q2,received,quarter,54989,7ce856513328,"line 59, column H",54990,baf22ca3fee3,"line 59, column H"
+i-539,FY2019Q1,approved,quarter,43928,0895770f1390,"line 59, column E",43931,fefe4e9bba8d,page 1!D412
+i-539,FY2019Q1,approved,quarter,43928,2da595379c83,page 1!D1057,43931,fefe4e9bba8d,page 1!D412
+i-539,FY2019Q1,approved,quarter,43928,5865980d65e0,"line 64, column E",43931,fefe4e9bba8d,page 1!D412
+i-539,FY2019Q1,pending,snapshot,84803,0895770f1390,"line 59, column G",86902,fefe4e9bba8d,page 1!F412
+i-539,FY2019Q1,pending,snapshot,84803,2da595379c83,page 1!F1057,86902,fefe4e9bba8d,page 1!F412
+i-539,FY2019Q1,pending,snapshot,84803,5865980d65e0,"line 64, column G",86902,fefe4e9bba8d,page 1!F412
+i-539,FY2019Q1,received,quarter,51581,0895770f1390,"line 59, column D",51582,fefe4e9bba8d,page 1!C412
+i-539,FY2019Q1,received,quarter,51581,2da595379c83,page 1!C1057,51582,fefe4e9bba8d,page 1!C412
+i-539,FY2019Q1,received,quarter,51581,5865980d65e0,"line 64, column D",51582,fefe4e9bba8d,page 1!C412
+i-539,FY2019Q2,approved,quarter,58287,2da595379c83,page 1!H1057,58291,fefe4e9bba8d,page 1!H412
+i-539,FY2019Q2,approved,quarter,58287,5865980d65e0,"line 64, column I",58291,fefe4e9bba8d,page 1!H412
+i-539,FY2019Q2,denied,quarter,13073,2da595379c83,page 1!I1057,13069,fefe4e9bba8d,page 1!I412
+i-539,FY2019Q2,denied,quarter,13073,5865980d65e0,"line 64, column J",13069,fefe4e9bba8d,page 1!I412
+i-539,FY2019Q2,pending,snapshot,65669,2da595379c83,page 1!J1057,68244,fefe4e9bba8d,page 1!J412
+i-539,FY2019Q2,pending,snapshot,65669,5865980d65e0,"line 64, column K",68244,fefe4e9bba8d,page 1!J412
+i-539,FY2019Q2,received,quarter,51092,2da595379c83,page 1!G1057,51260,fefe4e9bba8d,page 1!G412
+i-539,FY2019Q2,received,quarter,51092,5865980d65e0,"line 64, column H",51260,fefe4e9bba8d,page 1!G412
+i-539,FY2019Q3,approved,quarter,41643,2da595379c83,page 1!L1057,41650,fefe4e9bba8d,page 1!L412
+i-539,FY2019Q3,pending,snapshot,70892,2da595379c83,page 1!N1057,75509,fefe4e9bba8d,page 1!N412
+i-539,FY2019Q3,received,quarter,56153,2da595379c83,page 1!K1057,58166,fefe4e9bba8d,page 1!K412
+i-539,FY2020Q1,approved,quarter,44678,58d66c259e3d,page 1!D474,44725,2d03d7ef391c,page 1!D466
+i-539,FY2020Q1,denied,quarter,9851,58d66c259e3d,page 1!E474,9857,2d03d7ef391c,page 1!E466
+i-539,FY2020Q1,received,quarter,56482,58d66c259e3d,page 1!C474,56604,2d03d7ef391c,page 1!C466
+i-589,FY2014Q1,approved,quarter,5546,9206932c2df4,"line 30, column E",2418,aceb0bd04fa8,"line 27, column E"
+i-589,FY2014Q1,approved,quarter,5546,c671ed676cc0,"line 28, column E",2418,aceb0bd04fa8,"line 27, column E"
+i-589,FY2014Q1,denied,quarter,231,9206932c2df4,"line 30, column F",100,aceb0bd04fa8,"line 27, column F"
+i-589,FY2014Q1,denied,quarter,231,c671ed676cc0,"line 28, column F",100,aceb0bd04fa8,"line 27, column F"
+i-589,FY2014Q1,pending,snapshot,38892,1ee57a59df58,"line 30, column G",26942,aceb0bd04fa8,"line 27, column G"
+i-589,FY2014Q1,pending,snapshot,38892,9206932c2df4,"line 30, column G",26942,aceb0bd04fa8,"line 27, column G"
+i-589,FY2014Q1,pending,snapshot,38892,c671ed676cc0,"line 28, column G",26942,aceb0bd04fa8,"line 27, column G"
+i-589,FY2014Q2,denied,quarter,3660,9206932c2df4,"line 30, column J",138,aceb0bd04fa8,"line 27, column J"
+i-589,FY2014Q2,pending,snapshot,45193,1ee57a59df58,"line 30, column K",29494,aceb0bd04fa8,"line 27, column K"
+i-589,FY2014Q2,pending,snapshot,45193,9206932c2df4,"line 30, column K",29494,aceb0bd04fa8,"line 27, column K"
+i-589,FY2019Q1,received,quarter,23397,0895770f1390,"line 29, column D",23538,fefe4e9bba8d,page 1!C241
+i-589,FY2019Q1,received,quarter,23397,2da595379c83,page 1!C624,23538,fefe4e9bba8d,page 1!C241
+i-589,FY2019Q1,received,quarter,23397,5865980d65e0,"line 34, column D",23538,fefe4e9bba8d,page 1!C241
+i-589,FY2019Q2,received,quarter,21215,2da595379c83,page 1!G624,22920,fefe4e9bba8d,page 1!G241
+i-589,FY2019Q2,received,quarter,21215,5865980d65e0,"line 34, column H",22920,fefe4e9bba8d,page 1!G241
+i-589,FY2019Q3,received,quarter,19891,2da595379c83,page 1!K624,25845,fefe4e9bba8d,page 1!K241
+i-589,FY2020Q1,approved,quarter,3844,4a52cb47b813,page 1!D258,3278,2d03d7ef391c,page 1!D265
+i-589,FY2020Q1,approved,quarter,3844,58d66c259e3d,page 1!D266,3278,2d03d7ef391c,page 1!D265
+i-589,FY2020Q1,denied,quarter,135,4a52cb47b813,page 1!E258,9280,2d03d7ef391c,page 1!E265
+i-589,FY2020Q1,denied,quarter,135,58d66c259e3d,page 1!E266,9280,2d03d7ef391c,page 1!E265
+i-589,FY2020Q1,pending,snapshot,338931,4a52cb47b813,page 1!F258,353562,2d03d7ef391c,page 1!F265
+i-589,FY2020Q1,pending,snapshot,338931,58d66c259e3d,page 1!F266,353562,2d03d7ef391c,page 1!F265
+i-589,FY2020Q1,received,quarter,20103,4a52cb47b813,page 1!C258,20149,2d03d7ef391c,page 1!C265
+i-589,FY2020Q1,received,quarter,19166,58d66c259e3d,page 1!C266,20149,2d03d7ef391c,page 1!C265
+i-589,FY2020Q2,approved,quarter,4965,4a52cb47b813,page 1!H258,3327,2d03d7ef391c,page 1!H265
+i-589,FY2020Q2,denied,quarter,5679,4a52cb47b813,page 1!I258,11695,2d03d7ef391c,page 1!I265
+i-589,FY2020Q2,pending,snapshot,348869,4a52cb47b813,page 1!J258,358419,2d03d7ef391c,page 1!J265
+i-589,FY2020Q2,received,quarter,21532,4a52cb47b813,page 1!G258,23192,2d03d7ef391c,page 1!G265
+i-600,FY2014Q1,approved,quarter,1117,c671ed676cc0,"line 12, column E",1939,aceb0bd04fa8,"line 11, column E"
+i-600,FY2014Q1,denied,quarter,119,c671ed676cc0,"line 12, column F",132,aceb0bd04fa8,"line 11, column F"
+i-600,FY2014Q1,pending,snapshot,863,c671ed676cc0,"line 12, column G",970,aceb0bd04fa8,"line 11, column G"
+i-600,FY2014Q1,received,quarter,1266,c671ed676cc0,"line 12, column D",2101,aceb0bd04fa8,"line 11, column D"
+i-600,FY2019Q3,pending,snapshot,410,2da595379c83,page 1!N365,350,fefe4e9bba8d,page 1!N139
+i-600,FY2020Q1,denied,quarter,34,58d66c259e3d,page 1!E145,54,2d03d7ef391c,page 1!E148
+i-601a,FY2014Q1,approved,quarter,4642,c671ed676cc0,"line 13, column E",4641,aceb0bd04fa8,"line 12, column E"
+i-601a,FY2014Q1,pending,snapshot,14072,c671ed676cc0,"line 13, column G",14071,aceb0bd04fa8,"line 12, column G"
+i-601a,FY2014Q2,approved,quarter,4124,1ee57a59df58,"line 15, column I",4123,aceb0bd04fa8,"line 12, column I"
+i-601a,FY2014Q2,approved,quarter,4125,9206932c2df4,"line 15, column I",4123,aceb0bd04fa8,"line 12, column I"
+i-601a,FY2014Q2,pending,snapshot,15134,9206932c2df4,"line 15, column K",15132,aceb0bd04fa8,"line 12, column K"
+i-601a,FY2014Q2,received,quarter,7271,9206932c2df4,"line 15, column H",7270,aceb0bd04fa8,"line 12, column H"
+i-601a,FY2014Q3,approved,quarter,6432,1ee57a59df58,"line 15, column M",6430,aceb0bd04fa8,"line 12, column M"
+i-601a,FY2014Q3,pending,snapshot,17547,1ee57a59df58,"line 15, column O",17544,aceb0bd04fa8,"line 12, column O"
+i-601a,FY2017Q1,approved,quarter,15455,21130ec0fc29,"line 13, column E",15440,e02fb6695dfa,"line 13, column E"
+i-601a,FY2017Q1,approved,quarter,15455,3288bd8ec0c5,"line 13, column E",15440,e02fb6695dfa,"line 13, column E"
+i-601a,FY2017Q1,approved,quarter,15455,34d126012593,"line 12, column E",15440,e02fb6695dfa,"line 13, column E"
+i-601a,FY2017Q1,denied,quarter,946,21130ec0fc29,"line 13, column F",944,e02fb6695dfa,"line 13, column F"
+i-601a,FY2017Q1,denied,quarter,946,3288bd8ec0c5,"line 13, column F",944,e02fb6695dfa,"line 13, column F"
+i-601a,FY2017Q1,denied,quarter,946,34d126012593,"line 12, column F",944,e02fb6695dfa,"line 13, column F"
+i-601a,FY2017Q1,pending,snapshot,29765,21130ec0fc29,"line 13, column G",29757,e02fb6695dfa,"line 13, column G"
+i-601a,FY2017Q1,pending,snapshot,29765,3288bd8ec0c5,"line 13, column G",29757,e02fb6695dfa,"line 13, column G"
+i-601a,FY2017Q1,pending,snapshot,29765,34d126012593,"line 12, column G",29757,e02fb6695dfa,"line 13, column G"
+i-601a,FY2017Q1,received,quarter,18134,21130ec0fc29,"line 13, column D",18127,e02fb6695dfa,"line 13, column D"
+i-601a,FY2017Q1,received,quarter,18134,3288bd8ec0c5,"line 13, column D",18127,e02fb6695dfa,"line 13, column D"
+i-601a,FY2017Q1,received,quarter,18134,34d126012593,"line 12, column D",18127,e02fb6695dfa,"line 13, column D"
+i-601a,FY2017Q3,approved,quarter,17481,34d126012593,"line 12, column M",17480,e02fb6695dfa,"line 13, column M"
+i-601a,FY2017Q3,received,quarter,15285,34d126012593,"line 12, column L",15283,e02fb6695dfa,"line 13, column L"
+i-601a,FY2018Q2,approved,quarter,11274,431cd8b2a8a6,"line 12, column I",10625,baf22ca3fee3,"line 13, column I"
+i-601a,FY2018Q2,denied,quarter,668,431cd8b2a8a6,"line 12, column J",638,baf22ca3fee3,"line 13, column J"
+i-601a,FY2018Q2,pending,snapshot,21695,431cd8b2a8a6,"line 12, column K",22367,baf22ca3fee3,"line 13, column K"
+i-601a,FY2018Q2,received,quarter,14400,431cd8b2a8a6,"line 12, column H",14399,baf22ca3fee3,"line 13, column H"
+i-601a,FY2019Q2,denied,quarter,826,5865980d65e0,"line 17, column J",828,fefe4e9bba8d,page 1!I145
+i-601a,FY2019Q3,approved,quarter,11398,2da595379c83,page 1!L380,11397,fefe4e9bba8d,page 1!L145
+i-601a,FY2019Q3,denied,quarter,802,2da595379c83,page 1!M380,801,fefe4e9bba8d,page 1!M145
+i-730,FY2014Q1,pending,snapshot,7715,9206932c2df4,"line 32, column G",7837,aceb0bd04fa8,"line 29, column G"
+i-730,FY2014Q2,pending,snapshot,8403,9206932c2df4,"line 32, column K",8402,aceb0bd04fa8,"line 29, column K"
+i-730,FY2017Q1,pending,snapshot,8371,21130ec0fc29,"line 31, column G",8346,e02fb6695dfa,"line 31, column G"
+i-730,FY2017Q1,pending,snapshot,8371,3288bd8ec0c5,"line 31, column G",8346,e02fb6695dfa,"line 31, column G"
+i-730,FY2017Q1,pending,snapshot,8371,34d126012593,"line 30, column G",8346,e02fb6695dfa,"line 31, column G"
+i-730,FY2017Q3,pending,snapshot,9677,34d126012593,"line 30, column O",9678,e02fb6695dfa,"line 31, column O"
+i-751,FY2014Q1,pending,snapshot,81452,9206932c2df4,"line 16, column G",81444,aceb0bd04fa8,"line 13, column G"
+i-751,FY2014Q1,pending,snapshot,81452,c671ed676cc0,"line 14, column G",81444,aceb0bd04fa8,"line 13, column G"
+i-751,FY2014Q2,pending,snapshot,98421,9206932c2df4,"line 16, column K",98413,aceb0bd04fa8,"line 13, column K"
+i-751,FY2014Q3,pending,snapshot,97727,1ee57a59df58,"line 16, column O",97779,aceb0bd04fa8,"line 13, column O"
+i-751,FY2017Q1,approved,quarter,23829,21130ec0fc29,"line 14, column E",23838,e02fb6695dfa,"line 14, column E"
+i-751,FY2017Q1,approved,quarter,23829,3288bd8ec0c5,"line 14, column E",23838,e02fb6695dfa,"line 14, column E"
+i-751,FY2017Q1,approved,quarter,23829,34d126012593,"line 13, column E",23838,e02fb6695dfa,"line 14, column E"
+i-751,FY2017Q1,denied,quarter,1444,21130ec0fc29,"line 14, column F",1448,e02fb6695dfa,"line 14, column F"
+i-751,FY2017Q1,denied,quarter,1444,3288bd8ec0c5,"line 14, column F",1448,e02fb6695dfa,"line 14, column F"
+i-751,FY2017Q1,denied,quarter,1444,34d126012593,"line 13, column F",1448,e02fb6695dfa,"line 14, column F"
+i-751,FY2017Q1,pending,snapshot,133870,21130ec0fc29,"line 14, column G",133568,e02fb6695dfa,"line 14, column G"
+i-751,FY2017Q1,pending,snapshot,133870,3288bd8ec0c5,"line 14, column G",133568,e02fb6695dfa,"line 14, column G"
+i-751,FY2017Q1,pending,snapshot,133870,34d126012593,"line 13, column G",133568,e02fb6695dfa,"line 14, column G"
+i-751,FY2017Q2,pending,snapshot,153005,3288bd8ec0c5,"line 14, column K",153009,e02fb6695dfa,"line 14, column K"
+i-751,FY2017Q2,pending,snapshot,153005,34d126012593,"line 13, column K",153009,e02fb6695dfa,"line 14, column K"
+i-751,FY2017Q3,pending,snapshot,172298,34d126012593,"line 13, column O",172431,e02fb6695dfa,"line 14, column O"
+i-751,FY2018Q1,approved,quarter,23385,e1f4d426fb42,"line 14, column E",23402,baf22ca3fee3,"line 14, column E"
+i-751,FY2018Q1,denied,quarter,1340,e1f4d426fb42,"line 14, column F",1342,baf22ca3fee3,"line 14, column F"
+i-751,FY2018Q2,pending,snapshot,241272,431cd8b2a8a6,"line 13, column K",243300,baf22ca3fee3,"line 14, column K"
+i-751,FY2018Q3,approved,quarter,31649,7ce856513328,"line 14, column M",31667,baf22ca3fee3,"line 14, column M"
+i-751,FY2018Q3,denied,quarter,1608,7ce856513328,"line 14, column N",1610,baf22ca3fee3,"line 14, column N"
+i-751,FY2018Q3,pending,snapshot,259207,7ce856513328,"line 14, column O",259193,baf22ca3fee3,"line 14, column O"
+i-751,FY2019Q1,approved,quarter,42301,0895770f1390,"line 13, column E",42343,fefe4e9bba8d,page 1!D151
+i-751,FY2019Q1,approved,quarter,42301,5865980d65e0,"line 18, column E",42343,fefe4e9bba8d,page 1!D151
+i-751,FY2019Q1,denied,quarter,1287,0895770f1390,"line 13, column F",1298,fefe4e9bba8d,page 1!E151
+i-751,FY2019Q1,denied,quarter,1290,5865980d65e0,"line 18, column F",1298,fefe4e9bba8d,page 1!E151
+i-751,FY2019Q1,pending,snapshot,252804,0895770f1390,"line 13, column G",252754,fefe4e9bba8d,page 1!F151
+i-751,FY2019Q1,pending,snapshot,252804,5865980d65e0,"line 18, column G",252754,fefe4e9bba8d,page 1!F151
+i-751,FY2019Q2,approved,quarter,53060,5865980d65e0,"line 18, column I",53065,fefe4e9bba8d,page 1!H151
+i-751,FY2019Q2,denied,quarter,1481,5865980d65e0,"line 18, column J",1492,fefe4e9bba8d,page 1!I151
+i-751,FY2019Q2,pending,snapshot,242455,5865980d65e0,"line 18, column K",242406,fefe4e9bba8d,page 1!J151
+i-751,FY2019Q3,approved,quarter,50529,2da595379c83,page 1!L394,50527,fefe4e9bba8d,page 1!L151
+i-751,FY2019Q3,denied,quarter,1920,2da595379c83,page 1!M394,1910,fefe4e9bba8d,page 1!M151
+i-751,FY2019Q3,pending,snapshot,237899,2da595379c83,page 1!N394,237979,fefe4e9bba8d,page 1!N151
+i-751,FY2020Q1,denied,quarter,2073,58d66c259e3d,page 1!E158,2117,2d03d7ef391c,page 1!E161
+i-765-all,FY2014Q2,approved,quarter,249995,9206932c2df4,"line 23, column I",249993,aceb0bd04fa8,"line 20, column I"
+i-765-all,FY2014Q2,pending,snapshot,280202,9206932c2df4,"line 23, column K",280205,aceb0bd04fa8,"line 20, column K"
+i-765-all,FY2014Q2,received,quarter,298442,9206932c2df4,"line 23, column H",298443,aceb0bd04fa8,"line 20, column H"
+i-765-all,FY2015Q1,approved,quarter,290040,377a1f36a382,"line 21, column E",446682,e84ba355944b,"line 21, column E"
+i-765-all,FY2015Q1,approved,quarter,290040,51ba72f00175,"line 20, column E",446682,e84ba355944b,"line 21, column E"
+i-765-all,FY2015Q1,approved,quarter,290040,a4b00111f24c,"line 20, column E",446682,e84ba355944b,"line 21, column E"
+i-765-all,FY2015Q1,received,quarter,384977,377a1f36a382,"line 21, column D",488518,e84ba355944b,"line 21, column D"
+i-765-all,FY2015Q1,received,quarter,384977,51ba72f00175,"line 20, column D",488518,e84ba355944b,"line 21, column D"
+i-765-all,FY2015Q1,received,quarter,384977,a4b00111f24c,"line 20, column D",488518,e84ba355944b,"line 21, column D"
+i-765-all,FY2015Q2,approved,quarter,410169,51ba72f00175,"line 20, column I",537398,e84ba355944b,"line 21, column I"
+i-765-all,FY2015Q2,approved,quarter,410169,a4b00111f24c,"line 20, column I",537398,e84ba355944b,"line 21, column I"
+i-765-all,FY2015Q2,received,quarter,554788,51ba72f00175,"line 20, column H",668842,e84ba355944b,"line 21, column H"
+i-765-all,FY2015Q2,received,quarter,554788,a4b00111f24c,"line 20, column H",668842,e84ba355944b,"line 21, column H"
+i-765-all,FY2015Q3,approved,quarter,455013,a4b00111f24c,"line 20, column M",613749,e84ba355944b,"line 21, column M"
+i-765-all,FY2015Q3,received,quarter,397868,a4b00111f24c,"line 20, column L",479636,e84ba355944b,"line 21, column L"
+i-765-all,FY2016Q1,approved,quarter,345149,f251359c6ff5,"line 20, column E",345143,39b0a6910f54,"line 20, column E"
+i-765-all,FY2016Q1,pending,snapshot,433848,f251359c6ff5,"line 20, column G",433563,39b0a6910f54,"line 20, column G"
+i-765-all,FY2017Q1,approved,quarter,513011,21130ec0fc29,"line 21, column E",524316,e02fb6695dfa,"line 21, column E"
+i-765-all,FY2017Q1,approved,quarter,513011,3288bd8ec0c5,"line 21, column E",524316,e02fb6695dfa,"line 21, column E"
+i-765-all,FY2017Q1,approved,quarter,524337,34d126012593,"line 20, column E",524316,e02fb6695dfa,"line 21, column E"
+i-765-all,FY2017Q1,denied,quarter,28025,21130ec0fc29,"line 21, column F",25930,e02fb6695dfa,"line 21, column F"
+i-765-all,FY2017Q1,denied,quarter,28025,3288bd8ec0c5,"line 21, column F",25930,e02fb6695dfa,"line 21, column F"
+i-765-all,FY2017Q1,denied,quarter,26887,34d126012593,"line 20, column F",25930,e02fb6695dfa,"line 21, column F"
+i-765-all,FY2017Q1,pending,snapshot,479808,21130ec0fc29,"line 21, column G",589619,e02fb6695dfa,"line 21, column G"
+i-765-all,FY2017Q1,pending,snapshot,479808,3288bd8ec0c5,"line 21, column G",589619,e02fb6695dfa,"line 21, column G"
+i-765-all,FY2017Q1,pending,snapshot,479808,34d126012593,"line 20, column G",589619,e02fb6695dfa,"line 21, column G"
+i-765-all,FY2017Q1,received,quarter,564639,21130ec0fc29,"line 21, column D",566405,e02fb6695dfa,"line 21, column D"
+i-765-all,FY2017Q1,received,quarter,564639,3288bd8ec0c5,"line 21, column D",566405,e02fb6695dfa,"line 21, column D"
+i-765-all,FY2017Q1,received,quarter,566355,34d126012593,"line 20, column D",566405,e02fb6695dfa,"line 21, column D"
+i-765-all,FY2017Q2,approved,quarter,597575,3288bd8ec0c5,"line 21, column I",597524,e02fb6695dfa,"line 21, column I"
+i-765-all,FY2017Q2,approved,quarter,597575,34d126012593,"line 20, column I",597524,e02fb6695dfa,"line 21, column I"
+i-765-all,FY2017Q2,denied,quarter,32050,3288bd8ec0c5,"line 21, column J",30563,e02fb6695dfa,"line 21, column J"
+i-765-all,FY2017Q2,denied,quarter,32050,34d126012593,"line 20, column J",30563,e02fb6695dfa,"line 21, column J"
+i-765-all,FY2017Q2,pending,snapshot,580091,3288bd8ec0c5,"line 21, column K",580685,e02fb6695dfa,"line 21, column K"
+i-765-all,FY2017Q2,pending,snapshot,465580,34d126012593,"line 20, column K",580685,e02fb6695dfa,"line 21, column K"
+i-765-all,FY2017Q2,received,quarter,611899,3288bd8ec0c5,"line 21, column H",611985,e02fb6695dfa,"line 21, column H"
+i-765-all,FY2017Q2,received,quarter,611899,34d126012593,"line 20, column H",611985,e02fb6695dfa,"line 21, column H"
+i-765-all,FY2017Q3,approved,quarter,499872,34d126012593,"line 20, column M",499851,e02fb6695dfa,"line 21, column M"
+i-765-all,FY2017Q3,denied,quarter,32781,34d126012593,"line 20, column N",31210,e02fb6695dfa,"line 21, column N"
+i-765-all,FY2017Q3,pending,snapshot,693165,34d126012593,"line 20, column O",695426,e02fb6695dfa,"line 21, column O"
+i-765-all,FY2017Q3,received,quarter,636407,34d126012593,"line 20, column L",636399,e02fb6695dfa,"line 21, column L"
+i-765-all,FY2018Q1,approved,quarter,333735,431cd8b2a8a6,"line 20, column E",330017,baf22ca3fee3,"line 21, column E"
+i-765-all,FY2018Q1,approved,quarter,333735,e1f4d426fb42,"line 21, column E",330017,baf22ca3fee3,"line 21, column E"
+i-765-all,FY2018Q1,denied,quarter,29953,431cd8b2a8a6,"line 20, column F",32700,baf22ca3fee3,"line 21, column F"
+i-765-all,FY2018Q1,denied,quarter,29953,e1f4d426fb42,"line 21, column F",32700,baf22ca3fee3,"line 21, column F"
+i-765-all,FY2018Q1,pending,snapshot,570212,431cd8b2a8a6,"line 20, column G",571798,baf22ca3fee3,"line 21, column G"
+i-765-all,FY2018Q1,pending,snapshot,570212,e1f4d426fb42,"line 21, column G",571798,baf22ca3fee3,"line 21, column G"
+i-765-all,FY2018Q1,received,quarter,382278,431cd8b2a8a6,"line 20, column D",330017,baf22ca3fee3,"line 21, column D"
+i-765-all,FY2018Q1,received,quarter,383011,7ce856513328,"line 21, column D",330017,baf22ca3fee3,"line 21, column D"
+i-765-all,FY2018Q1,received,quarter,382278,e1f4d426fb42,"line 21, column D",330017,baf22ca3fee3,"line 21, column D"
+i-765-all,FY2018Q2,approved,quarter,359288,431cd8b2a8a6,"line 20, column I",353627,baf22ca3fee3,"line 21, column I"
+i-765-all,FY2018Q2,denied,quarter,43318,431cd8b2a8a6,"line 20, column J",42169,baf22ca3fee3,"line 21, column J"
+i-765-all,FY2018Q2,pending,snapshot,776201,431cd8b2a8a6,"line 20, column K",778646,baf22ca3fee3,"line 21, column K"
+i-765-all,FY2018Q2,received,quarter,608827,431cd8b2a8a6,"line 20, column H",597338,baf22ca3fee3,"line 21, column H"
+i-765-all,FY2018Q3,approved,quarter,523262,7ce856513328,"line 21, column M",523261,baf22ca3fee3,"line 21, column M"
+i-765-all,FY2018Q3,denied,quarter,53050,7ce856513328,"line 21, column N",53051,baf22ca3fee3,"line 21, column N"
+i-765-all,FY2019Q1,approved,quarter,317259,0895770f1390,"line 20, column E",258397,fefe4e9bba8d,page 1!D190
+i-765-all,FY2019Q1,approved,quarter,258419,2da595379c83,page 1!D495,258397,fefe4e9bba8d,page 1!D190
+i-765-all,FY2019Q1,approved,quarter,315796,5865980d65e0,"line 25, column E",258397,fefe4e9bba8d,page 1!D190
+i-765-all,FY2019Q1,denied,quarter,37374,0895770f1390,"line 20, column F",24265,fefe4e9bba8d,page 1!E190
+i-765-all,FY2019Q1,denied,quarter,24282,2da595379c83,page 1!E495,24265,fefe4e9bba8d,page 1!E190
+i-765-all,FY2019Q1,denied,quarter,37288,5865980d65e0,"line 25, column F",24265,fefe4e9bba8d,page 1!E190
+i-765-all,FY2019Q1,pending,snapshot,592420,0895770f1390,"line 20, column G",642228,fefe4e9bba8d,page 1!F190
+i-765-all,FY2019Q1,pending,snapshot,590977,5865980d65e0,"line 25, column G",642228,fefe4e9bba8d,page 1!F190
+i-765-all,FY2019Q1,received,quarter,388338,0895770f1390,"line 20, column D",505386,fefe4e9bba8d,page 1!C190
+i-765-all,FY2019Q1,received,quarter,505258,2da595379c83,page 1!C495,505386,fefe4e9bba8d,page 1!C190
+i-765-all,FY2019Q1,received,quarter,386415,5865980d65e0,"line 25, column D",505386,fefe4e9bba8d,page 1!C190
+i-765-all,FY2019Q2,approved,quarter,440048,2da595379c83,page 1!H495,439958,fefe4e9bba8d,page 1!H190
+i-765-all,FY2019Q2,approved,quarter,335905,5865980d65e0,"line 25, column I",439958,fefe4e9bba8d,page 1!H190
+i-765-all,FY2019Q2,denied,quarter,49195,2da595379c83,page 1!I495,49084,fefe4e9bba8d,page 1!I190
+i-765-all,FY2019Q2,denied,quarter,48676,5865980d65e0,"line 25, column J",49084,fefe4e9bba8d,page 1!I190
+i-765-all,FY2019Q2,pending,snapshot,655690,5865980d65e0,"line 25, column K",707935,fefe4e9bba8d,page 1!J190
+i-765-all,FY2019Q2,received,quarter,562515,2da595379c83,page 1!G495,562825,fefe4e9bba8d,page 1!G190
+i-765-all,FY2019Q2,received,quarter,446082,5865980d65e0,"line 25, column H",562825,fefe4e9bba8d,page 1!G190
+i-765-all,FY2019Q3,approved,quarter,442440,2da595379c83,page 1!L495,441959,fefe4e9bba8d,page 1!L190
+i-765-all,FY2019Q3,denied,quarter,93604,2da595379c83,page 1!M495,92648,fefe4e9bba8d,page 1!M190
+i-765-all,FY2019Q3,pending,snapshot,753473,2da595379c83,page 1!N495,753462,fefe4e9bba8d,page 1!N190
+i-765-all,FY2019Q3,received,quarter,582295,2da595379c83,page 1!K495,584136,fefe4e9bba8d,page 1!K190
+i-765-all,FY2020Q1,denied,quarter,48411,58d66c259e3d,page 1!E205,59551,2d03d7ef391c,page 1!E207
+i-765-all,FY2020Q2,denied,quarter,56218,4a52cb47b813,page 1!I199,56548,2d03d7ef391c,page 1!I207
+i-800,FY2014Q1,pending,snapshot,757,9206932c2df4,"line 17, column G",756,aceb0bd04fa8,"line 14, column G"
+i-800,FY2014Q1,pending,snapshot,757,c671ed676cc0,"line 15, column G",756,aceb0bd04fa8,"line 14, column G"
+i-800,FY2014Q2,pending,snapshot,670,9206932c2df4,"line 17, column K",669,aceb0bd04fa8,"line 14, column K"
+i-800,FY2020Q1,denied,quarter,18,58d66c259e3d,page 1!E165,23,2d03d7ef391c,page 1!E168
+i-817,FY2018Q1,denied,quarter,,431cd8b2a8a6,"line 31, column F",10,baf22ca3fee3,"line 32, column F"
+i-817,FY2018Q2,denied,quarter,17,431cd8b2a8a6,"line 31, column J",16,baf22ca3fee3,"line 32, column J"
+i-817,FY2018Q2,received,quarter,248,431cd8b2a8a6,"line 31, column H",247,baf22ca3fee3,"line 32, column H"
+i-817,FY2019Q2,denied,quarter,44,5865980d65e0,"line 37, column J",45,fefe4e9bba8d,page 1!I259
+i-817,FY2019Q3,pending,snapshot,269,2da595379c83,page 1!N668,261,fefe4e9bba8d,page 1!N259
+i-821,FY2014Q1,pending,snapshot,13096,9206932c2df4,"line 34, column G",13119,aceb0bd04fa8,"line 31, column G"
+i-821,FY2014Q1,pending,snapshot,13126,c671ed676cc0,"line 32, column G",13119,aceb0bd04fa8,"line 31, column G"
+i-821,FY2014Q2,pending,snapshot,10359,9206932c2df4,"line 34, column K",10360,aceb0bd04fa8,"line 31, column K"
+i-821,FY2014Q3,pending,snapshot,24252,1ee57a59df58,"line 34, column O",25986,aceb0bd04fa8,"line 31, column O"
+i-821,FY2017Q1,pending,snapshot,66145,21130ec0fc29,"line 33, column G",66034,e02fb6695dfa,"line 33, column G"
+i-821,FY2017Q1,pending,snapshot,66145,3288bd8ec0c5,"line 33, column G",66034,e02fb6695dfa,"line 33, column G"
+i-821,FY2017Q1,pending,snapshot,66145,34d126012593,"line 32, column G",66034,e02fb6695dfa,"line 33, column G"
+i-821,FY2017Q2,pending,snapshot,15279,3288bd8ec0c5,"line 33, column K",15280,e02fb6695dfa,"line 33, column K"
+i-821,FY2017Q2,pending,snapshot,15279,34d126012593,"line 32, column K",15280,e02fb6695dfa,"line 33, column K"
+i-821,FY2017Q3,pending,snapshot,25826,34d126012593,"line 32, column O",25824,e02fb6695dfa,"line 33, column O"
+i-821,FY2018Q2,approved,quarter,39448,431cd8b2a8a6,"line 32, column I",47469,baf22ca3fee3,"line 33, column I"
+i-821,FY2018Q2,approved,quarter,39448,7ce856513328,"line 33, column I",47469,baf22ca3fee3,"line 33, column I"
+i-821,FY2018Q2,denied,quarter,813,431cd8b2a8a6,"line 32, column J",815,baf22ca3fee3,"line 33, column J"
+i-821,FY2018Q2,denied,quarter,813,7ce856513328,"line 33, column J",815,baf22ca3fee3,"line 33, column J"
+i-821,FY2018Q2,pending,snapshot,116500,431cd8b2a8a6,"line 32, column K",176733,baf22ca3fee3,"line 33, column K"
+i-821,FY2018Q2,pending,snapshot,116500,7ce856513328,"line 33, column K",176733,baf22ca3fee3,"line 33, column K"
+i-821,FY2018Q2,received,quarter,133218,431cd8b2a8a6,"line 32, column H",201467,baf22ca3fee3,"line 33, column H"
+i-821,FY2018Q2,received,quarter,133218,7ce856513328,"line 33, column H",201467,baf22ca3fee3,"line 33, column H"
+i-821,FY2018Q3,approved,quarter,117627,7ce856513328,"line 33, column M",136916,baf22ca3fee3,"line 33, column M"
+i-821,FY2018Q3,denied,quarter,979,7ce856513328,"line 33, column N",980,baf22ca3fee3,"line 33, column N"
+i-821,FY2018Q3,pending,snapshot,43870,7ce856513328,"line 33, column O",70507,baf22ca3fee3,"line 33, column O"
+i-821,FY2018Q3,received,quarter,20798,7ce856513328,"line 33, column L",21217,baf22ca3fee3,"line 33, column L"
+i-821,FY2019Q1,approved,quarter,26615,0895770f1390,"line 33, column E",26809,fefe4e9bba8d,page 1!D264
+i-821,FY2019Q1,approved,quarter,26789,5865980d65e0,"line 38, column E",26809,fefe4e9bba8d,page 1!D264
+i-821,FY2019Q1,denied,quarter,864,0895770f1390,"line 33, column F",1048,fefe4e9bba8d,page 1!E264
+i-821,FY2019Q1,denied,quarter,897,5865980d65e0,"line 38, column F",1048,fefe4e9bba8d,page 1!E264
+i-821,FY2019Q1,received,quarter,1507,0895770f1390,"line 33, column D",1517,fefe4e9bba8d,page 1!C264
+i-821,FY2019Q1,received,quarter,1575,5865980d65e0,"line 38, column D",1517,fefe4e9bba8d,page 1!C264
+i-821,FY2019Q2,approved,quarter,4677,5865980d65e0,"line 38, column I",4755,fefe4e9bba8d,page 1!H264
+i-821,FY2019Q2,denied,quarter,542,5865980d65e0,"line 38, column J",662,fefe4e9bba8d,page 1!I264
+i-821,FY2019Q2,received,quarter,788,5865980d65e0,"line 38, column H",674,fefe4e9bba8d,page 1!G264
+i-821d,FY2014Q1,approved,quarter,47634,1ee57a59df58,"line 35, column E",47628,aceb0bd04fa8,"line 32, column E"
+i-821d,FY2014Q1,approved,quarter,47642,9206932c2df4,"line 35, column E",47628,aceb0bd04fa8,"line 32, column E"
+i-821d,FY2014Q1,approved,quarter,47689,c671ed676cc0,"line 33, column E",47628,aceb0bd04fa8,"line 32, column E"
+i-821d,FY2014Q1,denied,quarter,4684,1ee57a59df58,"line 35, column F",4665,aceb0bd04fa8,"line 32, column F"
+i-821d,FY2014Q1,denied,quarter,4708,9206932c2df4,"line 35, column F",4665,aceb0bd04fa8,"line 32, column F"
+i-821d,FY2014Q1,denied,quarter,4841,c671ed676cc0,"line 33, column F",4665,aceb0bd04fa8,"line 32, column F"
+i-821d,FY2014Q1,pending,snapshot,73557,1ee57a59df58,"line 35, column G",73200,aceb0bd04fa8,"line 32, column G"
+i-821d,FY2014Q1,pending,snapshot,73556,9206932c2df4,"line 35, column G",73200,aceb0bd04fa8,"line 32, column G"
+i-821d,FY2014Q1,pending,snapshot,71845,c671ed676cc0,"line 33, column G",73200,aceb0bd04fa8,"line 32, column G"
+i-821d,FY2014Q1,received,quarter,31101,1ee57a59df58,"line 35, column D",36751,aceb0bd04fa8,"line 32, column D"
+i-821d,FY2014Q1,received,quarter,31100,9206932c2df4,"line 35, column D",36751,aceb0bd04fa8,"line 32, column D"
+i-821d,FY2014Q1,received,quarter,31174,c671ed676cc0,"line 33, column D",36751,aceb0bd04fa8,"line 32, column D"
+i-821d,FY2014Q2,approved,quarter,31482,1ee57a59df58,"line 35, column I",31473,aceb0bd04fa8,"line 32, column I"
+i-821d,FY2014Q2,approved,quarter,31490,9206932c2df4,"line 35, column I",31473,aceb0bd04fa8,"line 32, column I"
+i-821d,FY2014Q2,denied,quarter,4374,1ee57a59df58,"line 35, column J",4336,aceb0bd04fa8,"line 32, column J"
+i-821d,FY2014Q2,denied,quarter,4452,9206932c2df4,"line 35, column J",4336,aceb0bd04fa8,"line 32, column J"
+i-821d,FY2014Q2,pending,snapshot,69505,1ee57a59df58,"line 35, column K",69197,aceb0bd04fa8,"line 32, column K"
+i-821d,FY2014Q2,pending,snapshot,69177,9206932c2df4,"line 35, column K",69197,aceb0bd04fa8,"line 32, column K"
+i-821d,FY2014Q2,received,quarter,31804,1ee57a59df58,"line 35, column H",35190,aceb0bd04fa8,"line 32, column H"
+i-821d,FY2014Q2,received,quarter,31563,9206932c2df4,"line 35, column H",35190,aceb0bd04fa8,"line 32, column H"
+i-821d,FY2014Q3,approved,quarter,27729,1ee57a59df58,"line 35, column M",27724,aceb0bd04fa8,"line 32, column M"
+i-821d,FY2014Q3,denied,quarter,3687,1ee57a59df58,"line 35, column N",3650,aceb0bd04fa8,"line 32, column N"
+i-821d,FY2014Q3,pending,snapshot,80715,1ee57a59df58,"line 35, column O",80477,aceb0bd04fa8,"line 32, column O"
+i-821d,FY2014Q3,received,quarter,42626,1ee57a59df58,"line 35, column L",48997,aceb0bd04fa8,"line 32, column L"
+i-821d,FY2015Q1,approved,quarter,155812,377a1f36a382,"line 34, column E",155034,e84ba355944b,"line 34, column E"
+i-821d,FY2015Q1,approved,quarter,155786,51ba72f00175,"line 33, column E",155034,e84ba355944b,"line 34, column E"
+i-821d,FY2015Q1,approved,quarter,155650,a4b00111f24c,"line 33, column E",155034,e84ba355944b,"line 34, column E"
+i-821d,FY2015Q1,denied,quarter,6391,377a1f36a382,"line 34, column F",6343,e84ba355944b,"line 34, column F"
+i-821d,FY2015Q1,denied,quarter,6361,51ba72f00175,"line 33, column F",6343,e84ba355944b,"line 34, column F"
+i-821d,FY2015Q1,denied,quarter,6353,a4b00111f24c,"line 33, column F",6343,e84ba355944b,"line 34, column F"
+i-821d,FY2015Q1,pending,snapshot,136419,377a1f36a382,"line 34, column G",137687,e84ba355944b,"line 34, column G"
+i-821d,FY2015Q1,pending,snapshot,136734,51ba72f00175,"line 33, column G",137687,e84ba355944b,"line 34, column G"
+i-821d,FY2015Q1,pending,snapshot,136978,a4b00111f24c,"line 33, column G",137687,e84ba355944b,"line 34, column G"
+i-821d,FY2015Q1,received,quarter,152419,377a1f36a382,"line 34, column D",152541,e84ba355944b,"line 34, column D"
+i-821d,FY2015Q2,approved,quarter,121543,51ba72f00175,"line 33, column I",118795,e84ba355944b,"line 34, column I"
+i-821d,FY2015Q2,approved,quarter,119494,a4b00111f24c,"line 33, column I",118795,e84ba355944b,"line 34, column I"
+i-821d,FY2015Q2,denied,quarter,5184,51ba72f00175,"line 33, column J",5146,e84ba355944b,"line 34, column J"
+i-821d,FY2015Q2,denied,quarter,5155,a4b00111f24c,"line 33, column J",5146,e84ba355944b,"line 34, column J"
+i-821d,FY2015Q2,pending,snapshot,152326,51ba72f00175,"line 33, column K",156073,e84ba355944b,"line 34, column K"
+i-821d,FY2015Q2,pending,snapshot,154651,a4b00111f24c,"line 33, column K",156073,e84ba355944b,"line 34, column K"
+i-821d,FY2015Q2,received,quarter,157587,51ba72f00175,"line 33, column H",157593,e84ba355944b,"line 34, column H"
+i-821d,FY2015Q2,received,quarter,157594,a4b00111f24c,"line 33, column H",157593,e84ba355944b,"line 34, column H"
+i-821d,FY2015Q3,approved,quarter,152899,a4b00111f24c,"line 33, column M",152859,e84ba355944b,"line 34, column M"
+i-821d,FY2015Q3,denied,quarter,5823,a4b00111f24c,"line 33, column N",5777,e84ba355944b,"line 34, column N"
+i-821d,FY2015Q3,pending,snapshot,98006,a4b00111f24c,"line 33, column O",99526,e84ba355944b,"line 34, column O"
+i-821d,FY2015Q3,received,quarter,109149,a4b00111f24c,"line 33, column L",109165,e84ba355944b,"line 34, column L"
+i-821d,FY2016Q1,approved,quarter,55907,395a1ce1b648,"line 33, column E",55886,39b0a6910f54,"line 33, column E"
+i-821d,FY2016Q1,approved,quarter,55814,f251359c6ff5,"line 33, column E",55886,39b0a6910f54,"line 33, column E"
+i-821d,FY2016Q1,denied,quarter,4154,395a1ce1b648,"line 33, column F",4143,39b0a6910f54,"line 33, column F"
+i-821d,FY2016Q1,denied,quarter,4206,f251359c6ff5,"line 33, column F",4143,39b0a6910f54,"line 33, column F"
+i-821d,FY2016Q1,pending,snapshot,56945,395a1ce1b648,"line 33, column G",57284,39b0a6910f54,"line 33, column G"
+i-821d,FY2016Q1,pending,snapshot,56821,f251359c6ff5,"line 33, column G",57284,39b0a6910f54,"line 33, column G"
+i-821d,FY2016Q1,received,quarter,47383,395a1ce1b648,"line 33, column D",47376,39b0a6910f54,"line 33, column D"
+i-821d,FY2016Q1,received,quarter,45576,f251359c6ff5,"line 33, column D",47376,39b0a6910f54,"line 33, column D"
+i-821d,FY2016Q2,approved,quarter,39531,395a1ce1b648,"line 33, column I",39435,39b0a6910f54,"line 33, column I"
+i-821d,FY2016Q2,denied,quarter,3337,395a1ce1b648,"line 33, column J",3313,39b0a6910f54,"line 33, column J"
+i-821d,FY2016Q2,pending,snapshot,57868,395a1ce1b648,"line 33, column K",64839,39b0a6910f54,"line 33, column K"
+i-821d,FY2016Q2,received,quarter,43791,395a1ce1b648,"line 33, column H",50303,39b0a6910f54,"line 33, column H"
+i-821d,FY2017Q1,approved,quarter,122221,21130ec0fc29,"line 34, column E",121919,e02fb6695dfa,"line 34, column E"
+i-821d,FY2017Q1,approved,quarter,122221,3288bd8ec0c5,"line 34, column E",121919,e02fb6695dfa,"line 34, column E"
+i-821d,FY2017Q1,approved,quarter,122221,34d126012593,"line 33, column E",121919,e02fb6695dfa,"line 34, column E"
+i-821d,FY2017Q1,denied,quarter,2794,21130ec0fc29,"line 34, column F",2720,e02fb6695dfa,"line 34, column F"
+i-821d,FY2017Q1,denied,quarter,2794,3288bd8ec0c5,"line 34, column F",2720,e02fb6695dfa,"line 34, column F"
+i-821d,FY2017Q1,denied,quarter,2794,34d126012593,"line 33, column F",2720,e02fb6695dfa,"line 34, column F"
+i-821d,FY2017Q1,received,quarter,114327,21130ec0fc29,"line 34, column D",110186,e02fb6695dfa,"line 34, column D"
+i-821d,FY2017Q1,received,quarter,114327,3288bd8ec0c5,"line 34, column D",110186,e02fb6695dfa,"line 34, column D"
+i-821d,FY2017Q1,received,quarter,114327,34d126012593,"line 33, column D",110186,e02fb6695dfa,"line 34, column D"
+i-821d,FY2017Q2,approved,quarter,124799,3288bd8ec0c5,"line 34, column I",124700,e02fb6695dfa,"line 34, column I"
+i-821d,FY2017Q2,approved,quarter,124799,34d126012593,"line 33, column I",124700,e02fb6695dfa,"line 34, column I"
+i-821d,FY2017Q2,denied,quarter,4173,3288bd8ec0c5,"line 34, column J",4137,e02fb6695dfa,"line 34, column J"
+i-821d,FY2017Q2,denied,quarter,4173,34d126012593,"line 33, column J",4137,e02fb6695dfa,"line 34, column J"
+i-821d,FY2017Q2,received,quarter,132790,3288bd8ec0c5,"line 34, column H",132784,e02fb6695dfa,"line 34, column H"
+i-821d,FY2017Q2,received,quarter,132790,34d126012593,"line 33, column H",132784,e02fb6695dfa,"line 34, column H"
+i-821d,FY2017Q3,approved,quarter,102568,34d126012593,"line 33, column M",102509,e02fb6695dfa,"line 34, column M"
+i-821d,FY2017Q3,denied,quarter,3731,34d126012593,"line 33, column N",3705,e02fb6695dfa,"line 34, column N"
+i-821d,FY2017Q3,received,quarter,94572,34d126012593,"line 33, column L",94562,e02fb6695dfa,"line 34, column L"
+i-821d,FY2018Q1,approved,quarter,98639,431cd8b2a8a6,"line 33, column E",98605,baf22ca3fee3,"line 34, column E"
+i-821d,FY2018Q1,approved,quarter,98639,7ce856513328,"line 34, column E",98605,baf22ca3fee3,"line 34, column E"
+i-821d,FY2018Q1,approved,quarter,98654,e1f4d426fb42,"line 34, column E",98605,baf22ca3fee3,"line 34, column E"
+i-821d,FY2018Q1,denied,quarter,2549,431cd8b2a8a6,"line 33, column F",2520,baf22ca3fee3,"line 34, column F"
+i-821d,FY2018Q1,denied,quarter,2549,7ce856513328,"line 34, column F",2520,baf22ca3fee3,"line 34, column F"
+i-821d,FY2018Q1,denied,quarter,2407,e1f4d426fb42,"line 34, column F",2520,baf22ca3fee3,"line 34, column F"
+i-821d,FY2018Q1,pending,snapshot,45806,431cd8b2a8a6,"line 33, column G",45704,baf22ca3fee3,"line 34, column G"
+i-821d,FY2018Q1,pending,snapshot,45806,7ce856513328,"line 34, column G",45704,baf22ca3fee3,"line 34, column G"
+i-821d,FY2018Q1,pending,snapshot,47629,e1f4d426fb42,"line 34, column G",45704,baf22ca3fee3,"line 34, column G"
+i-821d,FY2018Q1,received,quarter,29528,e1f4d426fb42,"line 34, column D",29527,baf22ca3fee3,"line 34, column D"
+i-821d,FY2018Q2,approved,quarter,55076,431cd8b2a8a6,"line 33, column I",55015,baf22ca3fee3,"line 34, column I"
+i-821d,FY2018Q2,approved,quarter,55076,7ce856513328,"line 34, column I",55015,baf22ca3fee3,"line 34, column I"
+i-821d,FY2018Q2,denied,quarter,3917,431cd8b2a8a6,"line 33, column J",3875,baf22ca3fee3,"line 34, column J"
+i-821d,FY2018Q2,denied,quarter,3917,7ce856513328,"line 34, column J",3875,baf22ca3fee3,"line 34, column J"
+i-821d,FY2018Q2,pending,snapshot,51233,431cd8b2a8a6,"line 33, column K",51237,baf22ca3fee3,"line 34, column K"
+i-821d,FY2018Q2,pending,snapshot,51233,7ce856513328,"line 34, column K",51237,baf22ca3fee3,"line 34, column K"
+i-821d,FY2018Q2,received,quarter,64500,431cd8b2a8a6,"line 33, column H",64501,baf22ca3fee3,"line 34, column H"
+i-821d,FY2018Q2,received,quarter,64500,7ce856513328,"line 34, column H",64501,baf22ca3fee3,"line 34, column H"
+i-821d,FY2018Q3,approved,quarter,79023,7ce856513328,"line 34, column M",78950,baf22ca3fee3,"line 34, column M"
+i-821d,FY2018Q3,denied,quarter,2975,7ce856513328,"line 34, column N",2921,baf22ca3fee3,"line 34, column N"
+i-821d,FY2018Q3,pending,snapshot,36393,7ce856513328,"line 34, column O",36406,baf22ca3fee3,"line 34, column O"
+i-821d,FY2018Q3,received,quarter,67111,7ce856513328,"line 34, column L",67105,baf22ca3fee3,"line 34, column L"
+i-821d,FY2019Q1,approved,quarter,89522,0895770f1390,"line 34, column E",89487,fefe4e9bba8d,page 1!D270
+i-821d,FY2019Q1,denied,quarter,1407,0895770f1390,"line 34, column F",1421,fefe4e9bba8d,page 1!E270
+i-821d,FY2019Q1,pending,snapshot,46650,0895770f1390,"line 34, column G",46499,fefe4e9bba8d,page 1!F270
+i-821d,FY2019Q1,received,quarter,92490,0895770f1390,"line 34, column D",92473,fefe4e9bba8d,page 1!C270
+i-824,FY2014Q1,pending,snapshot,3165,9206932c2df4,"line 61, column G",3174,aceb0bd04fa8,"line 58, column G"
+i-824,FY2014Q2,pending,snapshot,2969,9206932c2df4,"line 61, column K",2968,aceb0bd04fa8,"line 58, column K"
+i-824,FY2017Q1,pending,snapshot,4198,21130ec0fc29,"line 60, column G",4189,e02fb6695dfa,"line 60, column G"
+i-824,FY2017Q1,pending,snapshot,4198,3288bd8ec0c5,"line 60, column G",4189,e02fb6695dfa,"line 60, column G"
+i-824,FY2017Q1,pending,snapshot,4198,34d126012593,"line 59, column G",4189,e02fb6695dfa,"line 60, column G"
+i-824,FY2017Q1,received,quarter,3059,21130ec0fc29,"line 60, column D",3058,e02fb6695dfa,"line 60, column D"
+i-824,FY2017Q1,received,quarter,3059,3288bd8ec0c5,"line 60, column D",3058,e02fb6695dfa,"line 60, column D"
+i-824,FY2017Q1,received,quarter,3059,34d126012593,"line 59, column D",3058,e02fb6695dfa,"line 60, column D"
+i-824,FY2018Q2,approved,quarter,2225,431cd8b2a8a6,"line 59, column I",2149,baf22ca3fee3,"line 60, column I"
+i-824,FY2018Q2,denied,quarter,419,431cd8b2a8a6,"line 59, column J",404,baf22ca3fee3,"line 60, column J"
+i-824,FY2018Q2,pending,snapshot,5712,431cd8b2a8a6,"line 59, column K",5698,baf22ca3fee3,"line 60, column K"
+i-824,FY2018Q2,received,quarter,2546,431cd8b2a8a6,"line 59, column H",2441,baf22ca3fee3,"line 60, column H"
+i-824,FY2018Q3,pending,snapshot,6888,7ce856513328,"line 60, column O",6889,baf22ca3fee3,"line 60, column O"
+i-824,FY2019Q2,pending,snapshot,,5865980d65e0,"line 65, column K",7302,fefe4e9bba8d,page 1!J417
+i-824,FY2019Q3,approved,quarter,2440,2da595379c83,page 1!L1071,2444,fefe4e9bba8d,page 1!L417
+i-824,FY2019Q3,pending,snapshot,7210,2da595379c83,page 1!N1071,7212,fefe4e9bba8d,page 1!N417
+i-824,FY2020Q1,denied,quarter,350,58d66c259e3d,page 1!E481,476,2d03d7ef391c,page 1!E473
+i-829,FY2017Q1,approved,quarter,711,21130ec0fc29,"line 22, column E",95,e02fb6695dfa,"line 22, column E"
+i-829,FY2017Q1,approved,quarter,711,3288bd8ec0c5,"line 22, column E",95,e02fb6695dfa,"line 22, column E"
+i-829,FY2017Q1,denied,quarter,82,21130ec0fc29,"line 22, column F",17,e02fb6695dfa,"line 22, column F"
+i-829,FY2017Q1,denied,quarter,82,3288bd8ec0c5,"line 22, column F",17,e02fb6695dfa,"line 22, column F"
+i-829,FY2017Q1,pending,snapshot,7789,21130ec0fc29,"line 22, column G",7072,e02fb6695dfa,"line 22, column G"
+i-829,FY2017Q1,pending,snapshot,7789,3288bd8ec0c5,"line 22, column G",7072,e02fb6695dfa,"line 22, column G"
+i-829,FY2017Q1,pending,snapshot,7789,34d126012593,"line 21, column G",7072,e02fb6695dfa,"line 22, column G"
+i-829,FY2017Q1,received,quarter,1103,21130ec0fc29,"line 22, column D",752,e02fb6695dfa,"line 22, column D"
+i-829,FY2017Q1,received,quarter,1103,3288bd8ec0c5,"line 22, column D",752,e02fb6695dfa,"line 22, column D"
+i-829,FY2018Q1,approved,quarter,902,431cd8b2a8a6,"line 21, column E",901,baf22ca3fee3,"line 22, column E"
+i-829,FY2018Q1,approved,quarter,902,e1f4d426fb42,"line 22, column E",901,baf22ca3fee3,"line 22, column E"
+i-829,FY2018Q1,pending,snapshot,6251,431cd8b2a8a6,"line 21, column G",6243,baf22ca3fee3,"line 22, column G"
+i-829,FY2018Q1,pending,snapshot,6673,e1f4d426fb42,"line 22, column G",6243,baf22ca3fee3,"line 22, column G"
+i-829,FY2018Q1,received,quarter,694,431cd8b2a8a6,"line 21, column D",862,baf22ca3fee3,"line 22, column D"
+i-829,FY2018Q1,received,quarter,1046,e1f4d426fb42,"line 22, column D",862,baf22ca3fee3,"line 22, column D"
+i-829,FY2018Q2,approved,quarter,596,431cd8b2a8a6,"line 21, column I",569,baf22ca3fee3,"line 22, column I"
+i-829,FY2018Q2,denied,quarter,22,431cd8b2a8a6,"line 21, column J",20,baf22ca3fee3,"line 22, column J"
+i-867,FY2015Q2,pending,snapshot,1796,51ba72f00175,"line 34, column K",710,e84ba355944b,"line 35, column K"
+i-867,FY2018Q2,pending,snapshot,2113,431cd8b2a8a6,"line 34, column K",2152,baf22ca3fee3,"line 35, column K"
+i-867,FY2018Q2,pending,snapshot,2113,7ce856513328,"line 35, column K",2152,baf22ca3fee3,"line 35, column K"
+i-867,FY2018Q2,received,quarter,8121,431cd8b2a8a6,"line 34, column H",25333,baf22ca3fee3,"line 35, column H"
+i-867,FY2018Q2,received,quarter,8121,7ce856513328,"line 35, column H",25333,baf22ca3fee3,"line 35, column H"
+i-867,FY2018Q3,pending,snapshot,2113,7ce856513328,"line 35, column O",2211,baf22ca3fee3,"line 35, column O"
+i-867,FY2018Q3,received,quarter,,7ce856513328,"line 35, column L",25818,baf22ca3fee3,"line 35, column L"
+i-867,FY2020Q1,approved,quarter,,58d66c259e3d,page 1!D306,,4a52cb47b813,page 1!D297
+i-867,FY2020Q1,denied,quarter,,58d66c259e3d,page 1!E306,,4a52cb47b813,page 1!E297
+i-881,FY2014Q1,denied,quarter,,9206932c2df4,"line 37, column F",13,aceb0bd04fa8,"line 34, column F"
+i-881,FY2014Q2,denied,quarter,,9206932c2df4,"line 37, column J",18,aceb0bd04fa8,"line 34, column J"
+i-881,FY2017Q1,denied,quarter,10,21130ec0fc29,"line 36, column F",,e02fb6695dfa,"line 36, column F"
+i-881,FY2017Q1,denied,quarter,10,3288bd8ec0c5,"line 36, column F",,e02fb6695dfa,"line 36, column F"
+i-881,FY2017Q1,denied,quarter,10,34d126012593,"line 35, column F",,e02fb6695dfa,"line 36, column F"
+i-889,FY2015Q2,pending,snapshot,2381,51ba72f00175,"line 36, column K",668,e84ba355944b,"line 37, column K"
+i-889,FY2016Q1,pending,snapshot,764,f251359c6ff5,"line 36, column G",268,39b0a6910f54,"line 36, column G"
+i-899,FY2020Q1,approved,quarter,,4a52cb47b813,page 1!D310,385,2d03d7ef391c,page 1!D317
+i-899,FY2020Q1,approved,quarter,,58d66c259e3d,page 1!D320,385,2d03d7ef391c,page 1!D317
+i-899,FY2020Q1,denied,quarter,,4a52cb47b813,page 1!E310,1131,2d03d7ef391c,page 1!E317
+i-899,FY2020Q1,denied,quarter,,58d66c259e3d,page 1!E320,1131,2d03d7ef391c,page 1!E317
+i-899,FY2020Q1,pending,snapshot,226,4a52cb47b813,page 1!F310,204,2d03d7ef391c,page 1!F317
+i-899,FY2020Q1,pending,snapshot,226,58d66c259e3d,page 1!F320,204,2d03d7ef391c,page 1!F317
+i-899,FY2020Q1,received,quarter,2643,4a52cb47b813,page 1!C310,2640,2d03d7ef391c,page 1!C317
+i-899,FY2020Q1,received,quarter,2643,58d66c259e3d,page 1!C320,2640,2d03d7ef391c,page 1!C317
+i-899,FY2020Q2,approved,quarter,,4a52cb47b813,page 1!H310,349,2d03d7ef391c,page 1!H317
+i-899,FY2020Q2,denied,quarter,,4a52cb47b813,page 1!I310,1133,2d03d7ef391c,page 1!I317
+i-899,FY2020Q2,pending,snapshot,157,4a52cb47b813,page 1!J310,145,2d03d7ef391c,page 1!J317
+i-899,FY2020Q2,received,quarter,3303,4a52cb47b813,page 1!G310,3304,2d03d7ef391c,page 1!G317
+i-90,FY2014Q1,approved,quarter,96107,c671ed676cc0,"line 51, column E",96133,aceb0bd04fa8,"line 50, column E"
+i-90,FY2014Q1,denied,quarter,8071,c671ed676cc0,"line 51, column F",8077,aceb0bd04fa8,"line 50, column F"
+i-90,FY2014Q1,pending,snapshot,404126,c671ed676cc0,"line 51, column G",404452,aceb0bd04fa8,"line 50, column G"
+i-90,FY2014Q1,received,quarter,150315,c671ed676cc0,"line 51, column D",150435,aceb0bd04fa8,"line 50, column D"
+i-90,FY2014Q2,pending,snapshot,510252,9206932c2df4,"line 53, column K",510240,aceb0bd04fa8,"line 50, column K"
+i-90,FY2014Q3,approved,quarter,189684,1ee57a59df58,"line 53, column M",189676,aceb0bd04fa8,"line 50, column M"
+i-90,FY2014Q3,pending,snapshot,527806,1ee57a59df58,"line 53, column O",528504,aceb0bd04fa8,"line 50, column O"
+i-90,FY2015Q1,approved,quarter,229028,377a1f36a382,"line 52, column E",228994,e84ba355944b,"line 52, column E"
+i-90,FY2015Q1,approved,quarter,229028,51ba72f00175,"line 51, column E",228994,e84ba355944b,"line 52, column E"
+i-90,FY2015Q1,approved,quarter,229028,a4b00111f24c,"line 51, column E",228994,e84ba355944b,"line 52, column E"
+i-90,FY2015Q1,denied,quarter,9700,377a1f36a382,"line 52, column F",9691,e84ba355944b,"line 52, column F"
+i-90,FY2015Q1,denied,quarter,9700,51ba72f00175,"line 51, column F",9691,e84ba355944b,"line 52, column F"
+i-90,FY2015Q1,denied,quarter,9700,a4b00111f24c,"line 51, column F",9691,e84ba355944b,"line 52, column F"
+i-90,FY2015Q1,pending,snapshot,396862,377a1f36a382,"line 52, column G",398841,e84ba355944b,"line 52, column G"
+i-90,FY2015Q1,pending,snapshot,396862,51ba72f00175,"line 51, column G",398841,e84ba355944b,"line 52, column G"
+i-90,FY2015Q1,pending,snapshot,396862,a4b00111f24c,"line 51, column G",398841,e84ba355944b,"line 52, column G"
+i-90,FY2015Q1,received,quarter,160937,377a1f36a382,"line 52, column D",162985,e84ba355944b,"line 52, column D"
+i-90,FY2015Q1,received,quarter,160937,51ba72f00175,"line 51, column D",162985,e84ba355944b,"line 52, column D"
+i-90,FY2015Q1,received,quarter,160937,a4b00111f24c,"line 51, column D",162985,e84ba355944b,"line 52, column D"
+i-90,FY2015Q2,approved,quarter,265049,51ba72f00175,"line 51, column I",267029,e84ba355944b,"line 52, column I"
+i-90,FY2015Q2,approved,quarter,265049,a4b00111f24c,"line 51, column I",267029,e84ba355944b,"line 52, column I"
+i-90,FY2015Q2,denied,quarter,8121,51ba72f00175,"line 51, column J",8198,e84ba355944b,"line 52, column J"
+i-90,FY2015Q2,denied,quarter,8121,a4b00111f24c,"line 51, column J",8198,e84ba355944b,"line 52, column J"
+i-90,FY2015Q2,pending,snapshot,360766,51ba72f00175,"line 51, column K",361236,e84ba355944b,"line 52, column K"
+i-90,FY2015Q2,pending,snapshot,360766,a4b00111f24c,"line 51, column K",361236,e84ba355944b,"line 52, column K"
+i-90,FY2015Q2,received,quarter,231172,51ba72f00175,"line 51, column H",232082,e84ba355944b,"line 52, column H"
+i-90,FY2015Q2,received,quarter,231172,a4b00111f24c,"line 51, column H",232082,e84ba355944b,"line 52, column H"
+i-90,FY2015Q3,approved,quarter,179094,a4b00111f24c,"line 51, column M",195897,e84ba355944b,"line 52, column M"
+i-90,FY2015Q3,denied,quarter,9357,a4b00111f24c,"line 51, column N",9494,e84ba355944b,"line 52, column N"
+i-90,FY2015Q3,pending,snapshot,203705,a4b00111f24c,"line 51, column O",354603,e84ba355944b,"line 52, column O"
+i-90,FY2015Q3,received,quarter,33002,a4b00111f24c,"line 51, column L",200374,e84ba355944b,"line 52, column L"
+i-90,FY2017Q1,approved,quarter,200340,21130ec0fc29,"line 52, column E",199497,e02fb6695dfa,"line 52, column E"
+i-90,FY2017Q1,approved,quarter,200340,3288bd8ec0c5,"line 52, column E",199497,e02fb6695dfa,"line 52, column E"
+i-90,FY2017Q1,approved,quarter,200340,34d126012593,"line 51, column E",199497,e02fb6695dfa,"line 52, column E"
+i-90,FY2017Q1,denied,quarter,6006,21130ec0fc29,"line 52, column F",5930,e02fb6695dfa,"line 52, column F"
+i-90,FY2017Q1,denied,quarter,6006,3288bd8ec0c5,"line 52, column F",5930,e02fb6695dfa,"line 52, column F"
+i-90,FY2017Q1,denied,quarter,6006,34d126012593,"line 51, column F",5930,e02fb6695dfa,"line 52, column F"
+i-90,FY2017Q1,pending,snapshot,393597,21130ec0fc29,"line 52, column G",398565,e02fb6695dfa,"line 52, column G"
+i-90,FY2017Q1,pending,snapshot,393597,3288bd8ec0c5,"line 52, column G",398565,e02fb6695dfa,"line 52, column G"
+i-90,FY2017Q1,pending,snapshot,393597,34d126012593,"line 51, column G",398565,e02fb6695dfa,"line 52, column G"
+i-90,FY2017Q1,received,quarter,170274,21130ec0fc29,"line 52, column D",171151,e02fb6695dfa,"line 52, column D"
+i-90,FY2017Q1,received,quarter,170274,3288bd8ec0c5,"line 52, column D",171151,e02fb6695dfa,"line 52, column D"
+i-90,FY2017Q1,received,quarter,170274,34d126012593,"line 51, column D",171151,e02fb6695dfa,"line 52, column D"
+i-90,FY2017Q2,approved,quarter,93720,3288bd8ec0c5,"line 52, column I",93371,e02fb6695dfa,"line 52, column I"
+i-90,FY2017Q2,approved,quarter,93720,34d126012593,"line 51, column I",93371,e02fb6695dfa,"line 52, column I"
+i-90,FY2017Q2,denied,quarter,7217,3288bd8ec0c5,"line 52, column J",7122,e02fb6695dfa,"line 52, column J"
+i-90,FY2017Q2,denied,quarter,7217,34d126012593,"line 51, column J",7122,e02fb6695dfa,"line 52, column J"
+i-90,FY2017Q2,pending,snapshot,526156,3288bd8ec0c5,"line 52, column K",531417,e02fb6695dfa,"line 52, column K"
+i-90,FY2017Q2,pending,snapshot,526156,34d126012593,"line 51, column K",531417,e02fb6695dfa,"line 52, column K"
+i-90,FY2017Q2,received,quarter,233111,3288bd8ec0c5,"line 52, column H",233069,e02fb6695dfa,"line 52, column H"
+i-90,FY2017Q2,received,quarter,233111,34d126012593,"line 51, column H",233069,e02fb6695dfa,"line 52, column H"
+i-90,FY2017Q3,approved,quarter,80272,34d126012593,"line 51, column M",80051,e02fb6695dfa,"line 52, column M"
+i-90,FY2017Q3,denied,quarter,7381,34d126012593,"line 51, column N",7279,e02fb6695dfa,"line 52, column N"
+i-90,FY2017Q3,pending,snapshot,634405,34d126012593,"line 51, column O",639408,e02fb6695dfa,"line 52, column O"
+i-90,FY2019Q3,approved,quarter,173417,2da595379c83,page 1!L956,173371,fefe4e9bba8d,page 1!L372
+i-90,FY2019Q3,denied,quarter,10689,2da595379c83,page 1!M956,10663,fefe4e9bba8d,page 1!M372
+i-90,FY2019Q3,received,quarter,190615,2da595379c83,page 1!K956,190630,fefe4e9bba8d,page 1!K372
+i-90,FY2020Q1,approved,quarter,124631,4a52cb47b813,page 1!D407,124626,2d03d7ef391c,page 1!D414
+i-90,FY2020Q1,approved,quarter,128767,58d66c259e3d,page 1!D421,124626,2d03d7ef391c,page 1!D414
+i-90,FY2020Q1,denied,quarter,9304,4a52cb47b813,page 1!E407,9295,2d03d7ef391c,page 1!E414
+i-90,FY2020Q1,denied,quarter,9316,58d66c259e3d,page 1!E421,9295,2d03d7ef391c,page 1!E414
+i-90,FY2020Q2,approved,quarter,180086,4a52cb47b813,page 1!H407,180051,2d03d7ef391c,page 1!H414
+i-90,FY2020Q2,denied,quarter,11139,4a52cb47b813,page 1!I407,11109,2d03d7ef391c,page 1!I414
+i-914,FY2019Q1,approved,quarter,186,0895770f1390,"line 38, column E",190,fefe4e9bba8d,page 1!D293
+i-914,FY2019Q1,approved,quarter,186,2da595379c83,page 1!D755,190,fefe4e9bba8d,page 1!D293
+i-914,FY2019Q1,approved,quarter,186,5865980d65e0,"line 43, column E",190,fefe4e9bba8d,page 1!D293
+i-914,FY2019Q1,denied,quarter,142,0895770f1390,"line 38, column F",126,fefe4e9bba8d,page 1!E293
+i-914,FY2019Q1,denied,quarter,142,2da595379c83,page 1!E755,126,fefe4e9bba8d,page 1!E293
+i-914,FY2019Q1,denied,quarter,142,5865980d65e0,"line 43, column F",126,fefe4e9bba8d,page 1!E293
+i-914,FY2019Q1,pending,snapshot,3706,0895770f1390,"line 38, column G",3740,fefe4e9bba8d,page 1!F293
+i-914,FY2019Q1,pending,snapshot,3706,2da595379c83,page 1!F755,3740,fefe4e9bba8d,page 1!F293
+i-914,FY2019Q1,pending,snapshot,3706,5865980d65e0,"line 43, column G",3740,fefe4e9bba8d,page 1!F293
+i-914,FY2019Q1,received,quarter,588,0895770f1390,"line 38, column D",590,fefe4e9bba8d,page 1!C293
+i-914,FY2019Q1,received,quarter,588,2da595379c83,page 1!C755,590,fefe4e9bba8d,page 1!C293
+i-914,FY2019Q1,received,quarter,588,5865980d65e0,"line 43, column D",590,fefe4e9bba8d,page 1!C293
+i-914,FY2019Q2,approved,quarter,182,2da595379c83,page 1!H755,192,fefe4e9bba8d,page 1!H293
+i-914,FY2019Q2,approved,quarter,182,5865980d65e0,"line 43, column I",192,fefe4e9bba8d,page 1!H293
+i-914,FY2019Q2,denied,quarter,143,2da595379c83,page 1!I755,129,fefe4e9bba8d,page 1!I293
+i-914,FY2019Q2,denied,quarter,143,5865980d65e0,"line 43, column J",129,fefe4e9bba8d,page 1!I293
+i-914,FY2019Q2,pending,snapshot,3934,2da595379c83,page 1!J755,3943,fefe4e9bba8d,page 1!J293
+i-914,FY2019Q2,pending,snapshot,3934,5865980d65e0,"line 43, column K",3943,fefe4e9bba8d,page 1!J293
+i-914,FY2019Q2,received,quarter,500,2da595379c83,page 1!G755,509,fefe4e9bba8d,page 1!G293
+i-914,FY2019Q2,received,quarter,500,5865980d65e0,"line 43, column H",509,fefe4e9bba8d,page 1!G293
+i-914,FY2019Q3,approved,quarter,237,2da595379c83,page 1!L755,246,fefe4e9bba8d,page 1!L293
+i-914,FY2019Q3,denied,quarter,132,2da595379c83,page 1!M755,125,fefe4e9bba8d,page 1!M293
+i-914,FY2019Q3,pending,snapshot,4120,2da595379c83,page 1!N755,4248,fefe4e9bba8d,page 1!N293
+i-914,FY2019Q3,received,quarter,550,2da595379c83,page 1!K755,644,fefe4e9bba8d,page 1!K293
+i-914,FY2020Q2,received,quarter,589,b61b73d0ebf7,page 1!G715,591,2d03d7ef391c,page 1!G324
+i-914,FY2020Q3,received,quarter,449,b61b73d0ebf7,page 1!K715,452,2d03d7ef391c,page 1!K324
+i-918,FY2017Q1,denied,quarter,486,21130ec0fc29,"line 39, column F",483,e02fb6695dfa,"line 39, column F"
+i-918,FY2017Q1,denied,quarter,486,3288bd8ec0c5,"line 39, column F",483,e02fb6695dfa,"line 39, column F"
+i-918,FY2017Q1,denied,quarter,486,34d126012593,"line 38, column F",483,e02fb6695dfa,"line 39, column F"
+i-918,FY2018Q3,pending,snapshot,218078,7ce856513328,"line 39, column O",218077,baf22ca3fee3,"line 39, column O"
+i-918,FY2019Q1,approved,quarter,6728,0895770f1390,"line 39, column E",6772,fefe4e9bba8d,page 1!D299
+i-918,FY2019Q1,approved,quarter,6728,2da595379c83,page 1!D769,6772,fefe4e9bba8d,page 1!D299
+i-918,FY2019Q1,approved,quarter,6728,5865980d65e0,"line 44, column E",6772,fefe4e9bba8d,page 1!D299
+i-918,FY2019Q1,denied,quarter,1112,0895770f1390,"line 39, column F",1023,fefe4e9bba8d,page 1!E299
+i-918,FY2019Q1,denied,quarter,1112,2da595379c83,page 1!E769,1023,fefe4e9bba8d,page 1!E299
+i-918,FY2019Q1,denied,quarter,1112,5865980d65e0,"line 44, column F",1023,fefe4e9bba8d,page 1!E299
+i-918,FY2019Q1,pending,snapshot,233579,0895770f1390,"line 39, column G",236180,fefe4e9bba8d,page 1!F299
+i-918,FY2019Q1,pending,snapshot,233579,2da595379c83,page 1!F769,236180,fefe4e9bba8d,page 1!F299
+i-918,FY2019Q1,pending,snapshot,233579,5865980d65e0,"line 44, column G",236180,fefe4e9bba8d,page 1!F299
+i-918,FY2019Q1,received,quarter,13122,0895770f1390,"line 39, column D",13283,fefe4e9bba8d,page 1!C299
+i-918,FY2019Q1,received,quarter,13122,2da595379c83,page 1!C769,13283,fefe4e9bba8d,page 1!C299
+i-918,FY2019Q1,received,quarter,13122,5865980d65e0,"line 44, column D",13283,fefe4e9bba8d,page 1!C299
+i-918,FY2019Q2,approved,quarter,5280,2da595379c83,page 1!H769,5279,fefe4e9bba8d,page 1!H299
+i-918,FY2019Q2,approved,quarter,5280,5865980d65e0,"line 44, column I",5279,fefe4e9bba8d,page 1!H299
+i-918,FY2019Q2,denied,quarter,1424,2da595379c83,page 1!I769,1304,fefe4e9bba8d,page 1!I299
+i-918,FY2019Q2,denied,quarter,1424,5865980d65e0,"line 44, column J",1304,fefe4e9bba8d,page 1!I299
+i-918,FY2019Q2,pending,snapshot,239923,2da595379c83,page 1!J769,241146,fefe4e9bba8d,page 1!J299
+i-918,FY2019Q2,pending,snapshot,239926,5865980d65e0,"line 44, column K",241146,fefe4e9bba8d,page 1!J299
+i-918,FY2019Q2,received,quarter,12366,2da595379c83,page 1!G769,11485,fefe4e9bba8d,page 1!G299
+i-918,FY2019Q2,received,quarter,12366,5865980d65e0,"line 44, column H",11485,fefe4e9bba8d,page 1!G299
+i-918,FY2019Q3,approved,quarter,5440,2da595379c83,page 1!L769,5443,fefe4e9bba8d,page 1!L299
+i-918,FY2019Q3,denied,quarter,1422,2da595379c83,page 1!M769,1332,fefe4e9bba8d,page 1!M299
+i-918,FY2019Q3,pending,snapshot,243290,2da595379c83,page 1!N769,246788,fefe4e9bba8d,page 1!N299
+i-918,FY2019Q3,received,quarter,10656,2da595379c83,page 1!K769,12192,fefe4e9bba8d,page 1!K299
+i-918,FY2020Q1,approved,quarter,6144,4a52cb47b813,page 1!D323,6122,2d03d7ef391c,page 1!D330
+i-918,FY2020Q1,approved,quarter,6144,58d66c259e3d,page 1!D333,6122,2d03d7ef391c,page 1!D330
+i-918,FY2020Q1,approved,quarter,6144,b61b73d0ebf7,page 1!D730,6122,2d03d7ef391c,page 1!D330
+i-918,FY2020Q1,denied,quarter,1588,4a52cb47b813,page 1!E323,1452,2d03d7ef391c,page 1!E330
+i-918,FY2020Q1,denied,quarter,1588,58d66c259e3d,page 1!E333,1452,2d03d7ef391c,page 1!E330
+i-918,FY2020Q1,denied,quarter,1588,b61b73d0ebf7,page 1!E730,1452,2d03d7ef391c,page 1!E330
+i-918,FY2020Q1,pending,snapshot,257837,4a52cb47b813,page 1!F323,259298,2d03d7ef391c,page 1!F330
+i-918,FY2020Q1,pending,snapshot,257837,58d66c259e3d,page 1!F333,259298,2d03d7ef391c,page 1!F330
+i-918,FY2020Q1,pending,snapshot,257837,b61b73d0ebf7,page 1!F730,259298,2d03d7ef391c,page 1!F330
+i-918,FY2020Q1,received,quarter,9830,4a52cb47b813,page 1!C323,11302,2d03d7ef391c,page 1!C330
+i-918,FY2020Q1,received,quarter,9830,58d66c259e3d,page 1!C333,11302,2d03d7ef391c,page 1!C330
+i-918,FY2020Q1,received,quarter,9830,b61b73d0ebf7,page 1!C730,11302,2d03d7ef391c,page 1!C330
+i-918,FY2020Q2,approved,quarter,6672,4a52cb47b813,page 1!H323,6660,2d03d7ef391c,page 1!H330
+i-918,FY2020Q2,approved,quarter,6672,b61b73d0ebf7,page 1!H730,6660,2d03d7ef391c,page 1!H330
+i-918,FY2020Q2,denied,quarter,1624,4a52cb47b813,page 1!I323,1540,2d03d7ef391c,page 1!I330
+i-918,FY2020Q2,denied,quarter,1624,b61b73d0ebf7,page 1!I730,1540,2d03d7ef391c,page 1!I330
+i-918,FY2020Q2,pending,snapshot,257104,4a52cb47b813,page 1!J323,241171,2d03d7ef391c,page 1!J330
+i-918,FY2020Q2,pending,snapshot,257104,b61b73d0ebf7,page 1!J730,241171,2d03d7ef391c,page 1!J330
+i-918,FY2020Q3,approved,quarter,3619,b61b73d0ebf7,page 1!L730,3613,2d03d7ef391c,page 1!L330
+i-918,FY2020Q3,denied,quarter,971,b61b73d0ebf7,page 1!M730,924,2d03d7ef391c,page 1!M330
+i-918,FY2020Q3,pending,snapshot,261130,b61b73d0ebf7,page 1!N730,246813,2d03d7ef391c,page 1!N330
+i-918,FY2020Q3,received,quarter,8465,b61b73d0ebf7,page 1!K730,8464,2d03d7ef391c,page 1!K330
+i-924,FY2014Q2,approved,quarter,70,9206932c2df4,"line 25, column I",58,aceb0bd04fa8,"line 22, column I"
+i-924,FY2014Q2,pending,snapshot,586,9206932c2df4,"line 25, column K",212,aceb0bd04fa8,"line 22, column K"
+i-924,FY2014Q2,received,quarter,105,9206932c2df4,"line 25, column H",100,aceb0bd04fa8,"line 22, column H"
+i-924-and-924a,FY2016Q2,approved,quarter,51,395a1ce1b648,"line 22, column I",57,39b0a6910f54,"line 22, column I"
+i-924-and-924a,FY2016Q2,approved,quarter,51,fcd138d02ec3,"line 23, column I",57,39b0a6910f54,"line 22, column I"
+i-924-and-924a,FY2016Q3,approved,quarter,42,fcd138d02ec3,"line 23, column M",81,39b0a6910f54,"line 22, column M"
+i-924-and-924a,FY2016Q3,denied,quarter,14,fcd138d02ec3,"line 23, column N",30,39b0a6910f54,"line 22, column N"
+i-924-and-924a,FY2016Q3,pending,snapshot,185,fcd138d02ec3,"line 23, column O",826,39b0a6910f54,"line 22, column O"
+i-924-and-924a,FY2016Q3,received,quarter,22,fcd138d02ec3,"line 23, column L",37,39b0a6910f54,"line 22, column L"
+i-924-and-924a,FY2017Q1,pending,snapshot,906,21130ec0fc29,"line 23, column G",2163,e02fb6695dfa,"line 23, column G"
+i-924-and-924a,FY2017Q1,pending,snapshot,906,3288bd8ec0c5,"line 23, column G",2163,e02fb6695dfa,"line 23, column G"
+i-924-and-924a,FY2017Q1,pending,snapshot,943,34d126012593,"line 22, column G",2163,e02fb6695dfa,"line 23, column G"
+i-924-and-924a,FY2017Q1,received,quarter,184,21130ec0fc29,"line 23, column D",668,e02fb6695dfa,"line 23, column D"
+i-924-and-924a,FY2017Q1,received,quarter,184,3288bd8ec0c5,"line 23, column D",668,e02fb6695dfa,"line 23, column D"
+i-924-and-924a,FY2017Q1,received,quarter,184,34d126012593,"line 22, column D",668,e02fb6695dfa,"line 23, column D"
+i-924-and-924a,FY2017Q2,received,quarter,,3288bd8ec0c5,"line 23, column H",320,e02fb6695dfa,"line 23, column H"
+i-924-and-924a,FY2017Q2,received,quarter,,34d126012593,"line 22, column H",320,e02fb6695dfa,"line 23, column H"
+i-924-and-924a,FY2018Q2,approved,quarter,213,431cd8b2a8a6,"line 22, column I",189,baf22ca3fee3,"line 23, column I"
+i-924-and-924a,FY2018Q2,denied,quarter,86,431cd8b2a8a6,"line 22, column J",77,baf22ca3fee3,"line 23, column J"
+i-929,FY2019Q3,pending,snapshot,1256,2da595379c83,page 1!N783,1252,fefe4e9bba8d,page 1!N304
+legalization,FY2014Q1,pending,snapshot,464,9206932c2df4,"line 31, column G",467,aceb0bd04fa8,"line 28, column G"
+legalization,FY2014Q1,pending,snapshot,468,c671ed676cc0,"line 29, column G",467,aceb0bd04fa8,"line 28, column G"
+legalization,FY2014Q2,pending,snapshot,415,9206932c2df4,"line 31, column K",412,aceb0bd04fa8,"line 28, column K"
+legalization,FY2017Q1,pending,snapshot,258,21130ec0fc29,"line 30, column G",257,e02fb6695dfa,"line 30, column G"
+legalization,FY2017Q1,pending,snapshot,258,3288bd8ec0c5,"line 30, column G",257,e02fb6695dfa,"line 30, column G"
+legalization,FY2017Q1,pending,snapshot,258,34d126012593,"line 29, column G",257,e02fb6695dfa,"line 30, column G"
+legalization,FY2018Q2,denied,quarter,44,431cd8b2a8a6,"line 29, column J",43,baf22ca3fee3,"line 30, column J"
+legalization,FY2018Q2,pending,snapshot,274,431cd8b2a8a6,"line 29, column K",271,baf22ca3fee3,"line 30, column K"
+legalization,FY2018Q2,received,quarter,15,431cd8b2a8a6,"line 29, column H",11,baf22ca3fee3,"line 30, column H"
+legalization,FY2018Q3,pending,snapshot,270,7ce856513328,"line 30, column O",271,baf22ca3fee3,"line 30, column O"
+legalization,FY2019Q2,denied,quarter,17,5865980d65e0,"line 35, column J",20,fefe4e9bba8d,page 1!I247
+legalization,FY2019Q3,pending,snapshot,317,2da595379c83,page 1!N639,307,fefe4e9bba8d,page 1!N247
+legalization,FY2020Q1,denied,quarter,,58d66c259e3d,page 1!E273,10,2d03d7ef391c,page 1!E272
+legalization,FY2020Q1,received,quarter,,58d66c259e3d,page 1!C273,14,2d03d7ef391c,page 1!C272
+n-300,FY2017Q1,pending,snapshot,14,21130ec0fc29,"line 42, column G",12,e02fb6695dfa,"line 42, column G"
+n-300,FY2017Q1,pending,snapshot,14,3288bd8ec0c5,"line 42, column G",12,e02fb6695dfa,"line 42, column G"
+n-300,FY2017Q1,pending,snapshot,14,34d126012593,"line 41, column G",12,e02fb6695dfa,"line 42, column G"
+n-300,FY2018Q2,pending,snapshot,99,431cd8b2a8a6,"line 41, column K",87,baf22ca3fee3,"line 42, column K"
+n-300,FY2019Q3,pending,snapshot,131,2da595379c83,page 1!N812,95,fefe4e9bba8d,page 1!N316
+n-300,FY2020Q1,pending,snapshot,10,4a52cb47b813,page 1!F342,92,2d03d7ef391c,page 1!F349
+n-300,FY2020Q1,pending,snapshot,10,58d66c259e3d,page 1!F353,92,2d03d7ef391c,page 1!F349
+n-336,FY2014Q1,denied,quarter,480,9206932c2df4,"line 44, column F",482,aceb0bd04fa8,"line 41, column F"
+n-336,FY2014Q1,denied,quarter,480,c671ed676cc0,"line 42, column F",482,aceb0bd04fa8,"line 41, column F"
+n-336,FY2014Q2,approved,quarter,636,9206932c2df4,"line 44, column I",640,aceb0bd04fa8,"line 41, column I"
+n-336,FY2014Q2,denied,quarter,470,9206932c2df4,"line 44, column J",465,aceb0bd04fa8,"line 41, column J"
+n-336,FY2014Q2,pending,snapshot,2858,9206932c2df4,"line 44, column K",2857,aceb0bd04fa8,"line 41, column K"
+n-336,FY2014Q2,received,quarter,1054,9206932c2df4,"line 44, column H",1052,aceb0bd04fa8,"line 41, column H"
+n-336,FY2017Q1,approved,quarter,451,21130ec0fc29,"line 43, column E",460,e02fb6695dfa,"line 43, column E"
+n-336,FY2017Q1,approved,quarter,451,3288bd8ec0c5,"line 43, column E",460,e02fb6695dfa,"line 43, column E"
+n-336,FY2017Q1,approved,quarter,451,34d126012593,"line 42, column E",460,e02fb6695dfa,"line 43, column E"
+n-336,FY2017Q1,denied,quarter,447,21130ec0fc29,"line 43, column F",467,e02fb6695dfa,"line 43, column F"
+n-336,FY2017Q1,denied,quarter,447,3288bd8ec0c5,"line 43, column F",467,e02fb6695dfa,"line 43, column F"
+n-336,FY2017Q1,denied,quarter,447,34d126012593,"line 42, column F",467,e02fb6695dfa,"line 43, column F"
+n-336,FY2017Q1,pending,snapshot,2061,21130ec0fc29,"line 43, column G",1881,e02fb6695dfa,"line 43, column G"
+n-336,FY2017Q1,pending,snapshot,2061,3288bd8ec0c5,"line 43, column G",1881,e02fb6695dfa,"line 43, column G"
+n-336,FY2017Q1,pending,snapshot,2061,34d126012593,"line 42, column G",1881,e02fb6695dfa,"line 43, column G"
+n-336,FY2017Q2,approved,quarter,499,3288bd8ec0c5,"line 43, column I",500,e02fb6695dfa,"line 43, column I"
+n-336,FY2017Q2,approved,quarter,499,34d126012593,"line 42, column I",500,e02fb6695dfa,"line 43, column I"
+n-336,FY2017Q2,pending,snapshot,3749,3288bd8ec0c5,"line 43, column K",1423,e02fb6695dfa,"line 43, column K"
+n-336,FY2017Q2,pending,snapshot,3749,34d126012593,"line 42, column K",1423,e02fb6695dfa,"line 43, column K"
+n-336,FY2017Q3,pending,snapshot,1107,34d126012593,"line 42, column O",1124,e02fb6695dfa,"line 43, column O"
+n-336,FY2017Q3,received,quarter,1009,34d126012593,"line 42, column L",,e02fb6695dfa,"line 43, column L"
+n-336,FY2018Q1,pending,snapshot,859,431cd8b2a8a6,"line 42, column G",4192,baf22ca3fee3,"line 43, column G"
+n-336,FY2018Q1,pending,snapshot,859,e1f4d426fb42,"line 43, column G",4192,baf22ca3fee3,"line 43, column G"
+n-336,FY2018Q1,received,quarter,,431cd8b2a8a6,"line 42, column D",1082,baf22ca3fee3,"line 43, column D"
+n-336,FY2018Q1,received,quarter,,e1f4d426fb42,"line 43, column D",1082,baf22ca3fee3,"line 43, column D"
+n-336,FY2018Q2,pending,snapshot,779,431cd8b2a8a6,"line 42, column K",4065,baf22ca3fee3,"line 43, column K"
+n-336,FY2018Q2,received,quarter,,431cd8b2a8a6,"line 42, column H",1268,baf22ca3fee3,"line 43, column H"
+n-336,FY2018Q3,approved,quarter,749,7ce856513328,"line 43, column M",750,baf22ca3fee3,"line 43, column M"
+n-336,FY2018Q3,denied,quarter,667,7ce856513328,"line 43, column N",668,baf22ca3fee3,"line 43, column N"
+n-336,FY2019Q1,approved,quarter,692,0895770f1390,"line 43, column E",715,fefe4e9bba8d,page 1!D321
+n-336,FY2019Q1,denied,quarter,552,0895770f1390,"line 43, column F",460,fefe4e9bba8d,page 1!E321
+n-336,FY2019Q1,pending,snapshot,4686,0895770f1390,"line 43, column G",5624,fefe4e9bba8d,page 1!F321
+n-336,FY2019Q1,received,quarter,1407,0895770f1390,"line 43, column D",1402,fefe4e9bba8d,page 1!C321
+n-336,FY2019Q3,approved,quarter,1006,2da595379c83,page 1!L827,999,fefe4e9bba8d,page 1!L321
+n-336,FY2019Q3,denied,quarter,621,2da595379c83,page 1!M827,619,fefe4e9bba8d,page 1!M321
+n-400,FY2014Q1,approved,quarter,154902,1ee57a59df58,"line 46, column E",154901,aceb0bd04fa8,"line 43, column E"
+n-400,FY2014Q1,approved,quarter,154902,9206932c2df4,"line 46, column E",154901,aceb0bd04fa8,"line 43, column E"
+n-400,FY2014Q1,approved,quarter,154902,c671ed676cc0,"line 44, column E",154901,aceb0bd04fa8,"line 43, column E"
+n-400,FY2014Q1,denied,quarter,17306,c671ed676cc0,"line 44, column F",17311,aceb0bd04fa8,"line 43, column F"
+n-400,FY2014Q1,pending,snapshot,293247,1ee57a59df58,"line 46, column G",293228,aceb0bd04fa8,"line 43, column G"
+n-400,FY2014Q1,pending,snapshot,293237,9206932c2df4,"line 46, column G",293228,aceb0bd04fa8,"line 43, column G"
+n-400,FY2014Q1,pending,snapshot,294439,c671ed676cc0,"line 44, column G",293228,aceb0bd04fa8,"line 43, column G"
+n-400,FY2014Q2,approved,quarter,149339,1ee57a59df58,"line 46, column I",149331,aceb0bd04fa8,"line 43, column I"
+n-400,FY2014Q2,approved,quarter,149339,9206932c2df4,"line 46, column I",149331,aceb0bd04fa8,"line 43, column I"
+n-400,FY2014Q2,pending,snapshot,331469,1ee57a59df58,"line 46, column K",331447,aceb0bd04fa8,"line 43, column K"
+n-400,FY2014Q2,pending,snapshot,331025,9206932c2df4,"line 46, column K",331447,aceb0bd04fa8,"line 43, column K"
+n-400,FY2014Q3,approved,quarter,153867,1ee57a59df58,"line 46, column M",154938,aceb0bd04fa8,"line 43, column M"
+n-400,FY2014Q3,denied,quarter,15639,1ee57a59df58,"line 46, column N",15643,aceb0bd04fa8,"line 43, column N"
+n-400,FY2014Q3,pending,snapshot,401581,1ee57a59df58,"line 46, column O",400668,aceb0bd04fa8,"line 43, column O"
+n-400,FY2017Q1,approved,quarter,111155,21130ec0fc29,"line 45, column E",110684,e02fb6695dfa,"line 45, column E"
+n-400,FY2017Q1,approved,quarter,111155,3288bd8ec0c5,"line 45, column E",110684,e02fb6695dfa,"line 45, column E"
+n-400,FY2017Q1,approved,quarter,111155,34d126012593,"line 44, column E",110684,e02fb6695dfa,"line 45, column E"
+n-400,FY2017Q1,denied,quarter,18530,21130ec0fc29,"line 45, column F",18531,e02fb6695dfa,"line 45, column F"
+n-400,FY2017Q1,denied,quarter,18530,3288bd8ec0c5,"line 45, column F",18531,e02fb6695dfa,"line 45, column F"
+n-400,FY2017Q1,denied,quarter,18530,34d126012593,"line 44, column F",18531,e02fb6695dfa,"line 45, column F"
+n-400,FY2017Q1,pending,snapshot,632937,21130ec0fc29,"line 45, column G",634345,e02fb6695dfa,"line 45, column G"
+n-400,FY2017Q1,pending,snapshot,632937,3288bd8ec0c5,"line 45, column G",634345,e02fb6695dfa,"line 45, column G"
+n-400,FY2017Q1,pending,snapshot,632937,34d126012593,"line 44, column G",634345,e02fb6695dfa,"line 45, column G"
+n-400,FY2017Q1,received,quarter,238062,21130ec0fc29,"line 45, column D",238067,e02fb6695dfa,"line 45, column D"
+n-400,FY2017Q1,received,quarter,238062,3288bd8ec0c5,"line 45, column D",238067,e02fb6695dfa,"line 45, column D"
+n-400,FY2017Q1,received,quarter,238062,34d126012593,"line 44, column D",238067,e02fb6695dfa,"line 45, column D"
+n-400,FY2017Q2,approved,quarter,165907,3288bd8ec0c5,"line 45, column I",165070,e02fb6695dfa,"line 45, column I"
+n-400,FY2017Q2,approved,quarter,165907,34d126012593,"line 44, column I",165070,e02fb6695dfa,"line 45, column I"
+n-400,FY2017Q2,denied,quarter,17532,3288bd8ec0c5,"line 45, column J",17533,e02fb6695dfa,"line 45, column J"
+n-400,FY2017Q2,denied,quarter,17532,34d126012593,"line 44, column J",17533,e02fb6695dfa,"line 45, column J"
+n-400,FY2017Q2,pending,snapshot,740124,3288bd8ec0c5,"line 45, column K",743300,e02fb6695dfa,"line 45, column K"
+n-400,FY2017Q2,pending,snapshot,740124,34d126012593,"line 44, column K",743300,e02fb6695dfa,"line 45, column K"
+n-400,FY2017Q3,approved,quarter,202726,34d126012593,"line 44, column M",202590,e02fb6695dfa,"line 45, column M"
+n-400,FY2017Q3,denied,quarter,21786,34d126012593,"line 44, column N",21768,e02fb6695dfa,"line 45, column N"
+n-400,FY2017Q3,pending,snapshot,775781,34d126012593,"line 44, column O",776683,e02fb6695dfa,"line 45, column O"
+n-400,FY2018Q1,pending,snapshot,723919,431cd8b2a8a6,"line 44, column G",724219,baf22ca3fee3,"line 45, column G"
+n-400,FY2018Q1,pending,snapshot,724104,e1f4d426fb42,"line 45, column G",724219,baf22ca3fee3,"line 45, column G"
+n-400,FY2018Q2,denied,quarter,22599,431cd8b2a8a6,"line 44, column J",22592,baf22ca3fee3,"line 45, column J"
+n-400,FY2018Q2,denied,quarter,22599,7ce856513328,"line 45, column J",22592,baf22ca3fee3,"line 45, column J"
+n-400,FY2018Q2,pending,snapshot,748847,431cd8b2a8a6,"line 44, column K",749317,baf22ca3fee3,"line 45, column K"
+n-400,FY2018Q3,approved,quarter,201828,7ce856513328,"line 45, column M",202167,baf22ca3fee3,"line 45, column M"
+n-400,FY2018Q3,denied,quarter,23762,7ce856513328,"line 45, column N",23810,baf22ca3fee3,"line 45, column N"
+n-400,FY2018Q3,pending,snapshot,746672,7ce856513328,"line 45, column O",746550,baf22ca3fee3,"line 45, column O"
+n-400,FY2019Q2,approved,quarter,193299,5865980d65e0,"line 50, column I",193454,fefe4e9bba8d,page 1!H333
+n-400,FY2019Q2,denied,quarter,23980,5865980d65e0,"line 50, column J",23995,fefe4e9bba8d,page 1!I333
+n-400,FY2019Q2,pending,snapshot,711192,5865980d65e0,"line 50, column K",711264,fefe4e9bba8d,page 1!J333
+n-400,FY2019Q3,approved,quarter,216230,2da595379c83,page 1!L855,216235,fefe4e9bba8d,page 1!L333
+n-400,FY2019Q3,denied,quarter,25308,2da595379c83,page 1!M855,25321,fefe4e9bba8d,page 1!M333
+n-400,FY2019Q3,pending,snapshot,682905,2da595379c83,page 1!N855,682350,fefe4e9bba8d,page 1!N333
+n-400,FY2019Q3,received,quarter,209471,2da595379c83,page 1!K855,209138,fefe4e9bba8d,page 1!K333
+n-400,FY2020Q1,pending,snapshot,649021,4a52cb47b813,page 1!F361,648950,2d03d7ef391c,page 1!F369
+n-400,FY2020Q1,pending,snapshot,649021,58d66c259e3d,page 1!F374,648950,2d03d7ef391c,page 1!F369
+n-400,FY2020Q2,denied,quarter,27714,4a52cb47b813,page 1!I361,27843,2d03d7ef391c,page 1!I369
+n-400,FY2020Q2,pending,snapshot,675050,4a52cb47b813,page 1!J361,697232,2d03d7ef391c,page 1!J369
+n-400,FY2020Q2,received,quarter,237795,4a52cb47b813,page 1!G361,237900,2d03d7ef391c,page 1!G369
+n-400-military,FY2014Q1,approved,quarter,2124,1ee57a59df58,"line 45, column E",2135,aceb0bd04fa8,"line 42, column E"
+n-400-military,FY2014Q1,approved,quarter,2123,9206932c2df4,"line 45, column E",2135,aceb0bd04fa8,"line 42, column E"
+n-400-military,FY2014Q1,approved,quarter,2123,c671ed676cc0,"line 43, column E",2135,aceb0bd04fa8,"line 42, column E"
+n-400-military,FY2014Q1,pending,snapshot,3004,1ee57a59df58,"line 45, column G",3018,aceb0bd04fa8,"line 42, column G"
+n-400-military,FY2014Q1,pending,snapshot,3005,9206932c2df4,"line 45, column G",3018,aceb0bd04fa8,"line 42, column G"
+n-400-military,FY2014Q1,pending,snapshot,3003,c671ed676cc0,"line 43, column G",3018,aceb0bd04fa8,"line 42, column G"
+n-400-military,FY2014Q2,approved,quarter,2177,1ee57a59df58,"line 45, column I",2185,aceb0bd04fa8,"line 42, column I"
+n-400-military,FY2014Q2,approved,quarter,2174,9206932c2df4,"line 45, column I",2185,aceb0bd04fa8,"line 42, column I"
+n-400-military,FY2014Q2,denied,quarter,247,1ee57a59df58,"line 45, column J",246,aceb0bd04fa8,"line 42, column J"
+n-400-military,FY2014Q2,denied,quarter,247,9206932c2df4,"line 45, column J",246,aceb0bd04fa8,"line 42, column J"
+n-400-military,FY2014Q2,pending,snapshot,3470,1ee57a59df58,"line 45, column K",3479,aceb0bd04fa8,"line 42, column K"
+n-400-military,FY2014Q2,pending,snapshot,3680,9206932c2df4,"line 45, column K",3479,aceb0bd04fa8,"line 42, column K"
+n-400-military,FY2014Q3,approved,quarter,2407,1ee57a59df58,"line 45, column M",2421,aceb0bd04fa8,"line 42, column M"
+n-400-military,FY2014Q3,denied,quarter,213,1ee57a59df58,"line 45, column N",209,aceb0bd04fa8,"line 42, column N"
+n-400-military,FY2014Q3,pending,snapshot,4102,1ee57a59df58,"line 45, column O",4101,aceb0bd04fa8,"line 42, column O"
+n-400-military,FY2017Q1,approved,quarter,1485,21130ec0fc29,"line 44, column E",1494,e02fb6695dfa,"line 44, column E"
+n-400-military,FY2017Q1,approved,quarter,1485,3288bd8ec0c5,"line 44, column E",1494,e02fb6695dfa,"line 44, column E"
+n-400-military,FY2017Q1,approved,quarter,1485,34d126012593,"line 43, column E",1494,e02fb6695dfa,"line 44, column E"
+n-400-military,FY2017Q1,pending,snapshot,3227,21130ec0fc29,"line 44, column G",3210,e02fb6695dfa,"line 44, column G"
+n-400-military,FY2017Q1,pending,snapshot,3227,3288bd8ec0c5,"line 44, column G",3210,e02fb6695dfa,"line 44, column G"
+n-400-military,FY2017Q1,pending,snapshot,3227,34d126012593,"line 43, column G",3210,e02fb6695dfa,"line 44, column G"
+n-400-military,FY2017Q2,approved,quarter,1402,3288bd8ec0c5,"line 44, column I",1401,e02fb6695dfa,"line 44, column I"
+n-400-military,FY2017Q2,approved,quarter,1402,34d126012593,"line 43, column I",1401,e02fb6695dfa,"line 44, column I"
+n-400-military,FY2017Q2,denied,quarter,198,3288bd8ec0c5,"line 44, column J",197,e02fb6695dfa,"line 44, column J"
+n-400-military,FY2017Q2,denied,quarter,198,34d126012593,"line 43, column J",197,e02fb6695dfa,"line 44, column J"
+n-400-military,FY2017Q2,pending,snapshot,3987,3288bd8ec0c5,"line 44, column K",4254,e02fb6695dfa,"line 44, column K"
+n-400-military,FY2017Q2,pending,snapshot,3987,34d126012593,"line 43, column K",4254,e02fb6695dfa,"line 44, column K"
+n-400-military,FY2017Q3,approved,quarter,2211,34d126012593,"line 43, column M",2201,e02fb6695dfa,"line 44, column M"
+n-400-military,FY2017Q3,pending,snapshot,5345,34d126012593,"line 43, column O",5378,e02fb6695dfa,"line 44, column O"
+n-400-military,FY2018Q2,approved,quarter,420,431cd8b2a8a6,"line 43, column I",418,baf22ca3fee3,"line 44, column I"
+n-400-military,FY2018Q2,pending,snapshot,5969,431cd8b2a8a6,"line 43, column K",5802,baf22ca3fee3,"line 44, column K"
+n-400-military,FY2018Q3,approved,quarter,1290,7ce856513328,"line 44, column M",1294,baf22ca3fee3,"line 44, column M"
+n-400-military,FY2018Q3,pending,snapshot,5058,7ce856513328,"line 44, column O",5054,baf22ca3fee3,"line 44, column O"
+n-400-military,FY2019Q1,received,quarter,,5865980d65e0,"line 49, column D",715,fefe4e9bba8d,page 1!C327
+n-400-military,FY2019Q2,denied,quarter,204,5865980d65e0,"line 49, column J",205,fefe4e9bba8d,page 1!I327
+n-400-military,FY2019Q2,pending,snapshot,3306,5865980d65e0,"line 49, column K",3296,fefe4e9bba8d,page 1!J327
+n-400-military,FY2019Q2,received,quarter,,5865980d65e0,"line 49, column H",759,fefe4e9bba8d,page 1!G327
+n-400-military,FY2019Q3,approved,quarter,846,2da595379c83,page 1!L841,835,fefe4e9bba8d,page 1!L327
+n-400-military,FY2019Q3,denied,quarter,220,2da595379c83,page 1!M841,217,fefe4e9bba8d,page 1!M327
+n-400-military,FY2019Q3,pending,snapshot,2353,2da595379c83,page 1!N841,3251,fefe4e9bba8d,page 1!N327
+n-400-military,FY2020Q1,pending,snapshot,3418,58d66c259e3d,page 1!F367,3417,2d03d7ef391c,page 1!F362
+n-400-military,FY2020Q2,denied,quarter,129,4a52cb47b813,page 1!I355,130,2d03d7ef391c,page 1!I362
+n-400-military,FY2020Q2,pending,snapshot,3588,4a52cb47b813,page 1!J355,3653,2d03d7ef391c,page 1!J362
+n-400-military,FY2020Q2,received,quarter,1226,4a52cb47b813,page 1!G355,1280,2d03d7ef391c,page 1!G362
+n-470,FY2014Q2,approved,quarter,22,9206932c2df4,"line 47, column I",18,aceb0bd04fa8,"line 44, column I"
+n-470,FY2014Q2,pending,snapshot,608,9206932c2df4,"line 47, column K",611,aceb0bd04fa8,"line 44, column K"
+n-470,FY2017Q1,pending,snapshot,89,21130ec0fc29,"line 46, column G",90,e02fb6695dfa,"line 46, column G"
+n-470,FY2017Q1,pending,snapshot,89,3288bd8ec0c5,"line 46, column G",90,e02fb6695dfa,"line 46, column G"
+n-470,FY2017Q1,pending,snapshot,89,34d126012593,"line 45, column G",90,e02fb6695dfa,"line 46, column G"
+n-470,FY2019Q3,pending,snapshot,72,2da595379c83,page 1!N870,65,fefe4e9bba8d,page 1!N338
+n-470,FY2020Q2,denied,quarter,,4a52cb47b813,page 1!I368,19,2d03d7ef391c,page 1!I375
+n-565,FY2017Q1,approved,quarter,4304,21130ec0fc29,"line 47, column E",5252,e02fb6695dfa,"line 47, column E"
+n-565,FY2017Q1,approved,quarter,4304,3288bd8ec0c5,"line 47, column E",5252,e02fb6695dfa,"line 47, column E"
+n-565,FY2017Q1,approved,quarter,4304,34d126012593,"line 46, column E",5252,e02fb6695dfa,"line 47, column E"
+n-565,FY2017Q1,denied,quarter,747,21130ec0fc29,"line 47, column F",815,e02fb6695dfa,"line 47, column F"
+n-565,FY2017Q1,denied,quarter,747,3288bd8ec0c5,"line 47, column F",815,e02fb6695dfa,"line 47, column F"
+n-565,FY2017Q1,denied,quarter,747,34d126012593,"line 46, column F",815,e02fb6695dfa,"line 47, column F"
+n-565,FY2017Q1,pending,snapshot,12150,21130ec0fc29,"line 47, column G",15197,e02fb6695dfa,"line 47, column G"
+n-565,FY2017Q1,pending,snapshot,12150,3288bd8ec0c5,"line 47, column G",15197,e02fb6695dfa,"line 47, column G"
+n-565,FY2017Q1,pending,snapshot,12150,34d126012593,"line 46, column G",15197,e02fb6695dfa,"line 47, column G"
+n-565,FY2017Q3,pending,snapshot,13416,34d126012593,"line 46, column O",13417,e02fb6695dfa,"line 47, column O"
+n-565,FY2018Q2,approved,quarter,10153,431cd8b2a8a6,"line 46, column I",10151,baf22ca3fee3,"line 47, column I"
+n-565,FY2018Q2,pending,snapshot,11932,431cd8b2a8a6,"line 46, column K",11934,baf22ca3fee3,"line 47, column K"
+n-565,FY2019Q1,approved,quarter,4878,0895770f1390,"line 47, column E",5173,fefe4e9bba8d,page 1!D344
+n-565,FY2019Q1,denied,quarter,636,0895770f1390,"line 47, column F",722,fefe4e9bba8d,page 1!E344
+n-565,FY2019Q1,pending,snapshot,6459,0895770f1390,"line 47, column G",5593,fefe4e9bba8d,page 1!F344
+n-565,FY2019Q1,received,quarter,6089,0895770f1390,"line 47, column D",6078,fefe4e9bba8d,page 1!C344
+n-600,FY2014Q1,approved,quarter,15472,9206932c2df4,"line 49, column E",15489,aceb0bd04fa8,"line 46, column E"
+n-600,FY2014Q1,approved,quarter,15472,c671ed676cc0,"line 47, column E",15489,aceb0bd04fa8,"line 46, column E"
+n-600,FY2014Q1,pending,snapshot,29691,9206932c2df4,"line 49, column G",29672,aceb0bd04fa8,"line 46, column G"
+n-600,FY2014Q1,pending,snapshot,29691,c671ed676cc0,"line 47, column G",29672,aceb0bd04fa8,"line 46, column G"
+n-600,FY2014Q2,approved,quarter,13557,9206932c2df4,"line 49, column I",13564,aceb0bd04fa8,"line 46, column I"
+n-600,FY2014Q2,denied,quarter,1527,9206932c2df4,"line 49, column J",1526,aceb0bd04fa8,"line 46, column J"
+n-600,FY2014Q2,pending,snapshot,30840,9206932c2df4,"line 49, column K",30807,aceb0bd04fa8,"line 46, column K"
+n-600,FY2014Q3,pending,snapshot,30947,1ee57a59df58,"line 49, column O",30931,aceb0bd04fa8,"line 46, column O"
+n-600,FY2017Q1,approved,quarter,16258,21130ec0fc29,"line 48, column E",16298,e02fb6695dfa,"line 48, column E"
+n-600,FY2017Q1,approved,quarter,16258,3288bd8ec0c5,"line 48, column E",16298,e02fb6695dfa,"line 48, column E"
+n-600,FY2017Q1,approved,quarter,16258,34d126012593,"line 47, column E",16298,e02fb6695dfa,"line 48, column E"
+n-600,FY2017Q1,denied,quarter,1476,21130ec0fc29,"line 48, column F",1503,e02fb6695dfa,"line 48, column F"
+n-600,FY2017Q1,denied,quarter,1476,3288bd8ec0c5,"line 48, column F",1503,e02fb6695dfa,"line 48, column F"
+n-600,FY2017Q1,denied,quarter,1476,34d126012593,"line 47, column F",1503,e02fb6695dfa,"line 48, column F"
+n-600,FY2017Q1,pending,snapshot,44111,21130ec0fc29,"line 48, column G",43508,e02fb6695dfa,"line 48, column G"
+n-600,FY2017Q1,pending,snapshot,44111,3288bd8ec0c5,"line 48, column G",43508,e02fb6695dfa,"line 48, column G"
+n-600,FY2017Q1,pending,snapshot,44111,34d126012593,"line 47, column G",43508,e02fb6695dfa,"line 48, column G"
+n-600,FY2017Q1,received,quarter,23799,21130ec0fc29,"line 48, column D",23788,e02fb6695dfa,"line 48, column D"
+n-600,FY2017Q1,received,quarter,23799,3288bd8ec0c5,"line 48, column D",23788,e02fb6695dfa,"line 48, column D"
+n-600,FY2017Q1,received,quarter,23799,34d126012593,"line 47, column D",23788,e02fb6695dfa,"line 48, column D"
+n-600,FY2017Q2,pending,snapshot,45168,3288bd8ec0c5,"line 48, column K",45123,e02fb6695dfa,"line 48, column K"
+n-600,FY2017Q2,pending,snapshot,45168,34d126012593,"line 47, column K",45123,e02fb6695dfa,"line 48, column K"
+n-600,FY2017Q3,pending,snapshot,44171,34d126012593,"line 47, column O",44292,e02fb6695dfa,"line 48, column O"
+n-600,FY2018Q1,approved,quarter,14697,e1f4d426fb42,"line 48, column E",14696,baf22ca3fee3,"line 48, column E"
+n-600,FY2018Q1,denied,quarter,927,e1f4d426fb42,"line 48, column F",928,baf22ca3fee3,"line 48, column F"
+n-600,FY2018Q2,approved,quarter,15008,431cd8b2a8a6,"line 47, column I",15036,baf22ca3fee3,"line 48, column I"
+n-600,FY2018Q2,approved,quarter,15031,7ce856513328,"line 48, column I",15036,baf22ca3fee3,"line 48, column I"
+n-600,FY2018Q2,pending,snapshot,42918,431cd8b2a8a6,"line 47, column K",42923,baf22ca3fee3,"line 48, column K"
+n-600,FY2018Q2,pending,snapshot,42914,7ce856513328,"line 48, column K",42923,baf22ca3fee3,"line 48, column K"
+n-600,FY2018Q3,approved,quarter,15303,7ce856513328,"line 48, column M",15354,baf22ca3fee3,"line 48, column M"
+n-600,FY2018Q3,pending,snapshot,41947,7ce856513328,"line 48, column O",41983,baf22ca3fee3,"line 48, column O"
+n-600,FY2019Q2,approved,quarter,13464,5865980d65e0,"line 53, column I",13572,fefe4e9bba8d,page 1!H349
+n-600,FY2019Q2,denied,quarter,1238,5865980d65e0,"line 53, column J",1248,fefe4e9bba8d,page 1!I349
+n-600,FY2019Q2,pending,snapshot,38962,5865980d65e0,"line 53, column K",38935,fefe4e9bba8d,page 1!J349
+n-600,FY2019Q3,approved,quarter,16494,2da595379c83,page 1!L899,16860,fefe4e9bba8d,page 1!L349
+n-600,FY2019Q3,denied,quarter,1589,2da595379c83,page 1!M899,1575,fefe4e9bba8d,page 1!M349
+n-600,FY2019Q3,pending,snapshot,36933,2da595379c83,page 1!N899,37892,fefe4e9bba8d,page 1!N349
+n-600,FY2020Q1,pending,snapshot,41205,4a52cb47b813,page 1!F381,41201,2d03d7ef391c,page 1!F388
+n-600,FY2020Q1,pending,snapshot,41205,58d66c259e3d,page 1!F394,41201,2d03d7ef391c,page 1!F388
+n-600,FY2020Q2,denied,quarter,1153,4a52cb47b813,page 1!I381,1157,2d03d7ef391c,page 1!I388
+n-600,FY2020Q2,pending,snapshot,43766,4a52cb47b813,page 1!J381,44487,2d03d7ef391c,page 1!J388
+n-600,FY2020Q2,received,quarter,15708,4a52cb47b813,page 1!G381,15713,2d03d7ef391c,page 1!G388
+n-644,FY2018Q1,pending,snapshot,,431cd8b2a8a6,"line 48, column G",10,baf22ca3fee3,"line 49, column G"
+n-648,FY2014Q1,pending,snapshot,2285,c671ed676cc0,"line 49, column G",2228,aceb0bd04fa8,"line 48, column G"
+n-648,FY2014Q1,received,quarter,4474,c671ed676cc0,"line 49, column D",4417,aceb0bd04fa8,"line 48, column D"
+n-648,FY2014Q2,pending,snapshot,2506,9206932c2df4,"line 51, column K",2496,aceb0bd04fa8,"line 48, column K"
+n-648,FY2014Q2,received,quarter,4396,9206932c2df4,"line 51, column H",4405,aceb0bd04fa8,"line 48, column H"
+n-648,FY2017Q1,denied,quarter,788,21130ec0fc29,"line 50, column F",794,e02fb6695dfa,"line 50, column F"
+n-648,FY2017Q1,denied,quarter,788,3288bd8ec0c5,"line 50, column F",794,e02fb6695dfa,"line 50, column F"
+n-648,FY2017Q1,denied,quarter,788,34d126012593,"line 49, column F",794,e02fb6695dfa,"line 50, column F"
+n-648,FY2017Q1,pending,snapshot,2105,21130ec0fc29,"line 50, column G",2131,e02fb6695dfa,"line 50, column G"
+n-648,FY2017Q1,pending,snapshot,2105,3288bd8ec0c5,"line 50, column G",2131,e02fb6695dfa,"line 50, column G"
+n-648,FY2017Q1,pending,snapshot,2105,34d126012593,"line 49, column G",2131,e02fb6695dfa,"line 50, column G"
+n-648,FY2017Q1,received,quarter,870,21130ec0fc29,"line 50, column D",896,e02fb6695dfa,"line 50, column D"
+n-648,FY2017Q1,received,quarter,870,3288bd8ec0c5,"line 50, column D",896,e02fb6695dfa,"line 50, column D"
+n-648,FY2017Q1,received,quarter,870,34d126012593,"line 49, column D",896,e02fb6695dfa,"line 50, column D"
+n-648,FY2017Q2,pending,snapshot,1970,3288bd8ec0c5,"line 50, column K",1967,e02fb6695dfa,"line 50, column K"
+n-648,FY2017Q2,pending,snapshot,1970,34d126012593,"line 49, column K",1967,e02fb6695dfa,"line 50, column K"
+n-648,FY2017Q2,received,quarter,1254,3288bd8ec0c5,"line 50, column H",1281,e02fb6695dfa,"line 50, column H"
+n-648,FY2017Q2,received,quarter,1254,34d126012593,"line 49, column H",1281,e02fb6695dfa,"line 50, column H"
+n-648,FY2018Q2,received,quarter,605,431cd8b2a8a6,"line 49, column H",616,baf22ca3fee3,"line 50, column H"
+n-648,FY2018Q3,approved,quarter,2758,7ce856513328,"line 50, column M",2761,baf22ca3fee3,"line 50, column M"
+n-648,FY2018Q3,denied,quarter,948,7ce856513328,"line 50, column N",949,baf22ca3fee3,"line 50, column N"
+n-648,FY2018Q3,pending,snapshot,910,7ce856513328,"line 50, column O",907,baf22ca3fee3,"line 50, column O"
+n-648,FY2018Q3,received,quarter,1213,7ce856513328,"line 50, column L",1217,baf22ca3fee3,"line 50, column L"
+n-648,FY2019Q3,approved,quarter,2082,2da595379c83,page 1!L927,2078,fefe4e9bba8d,page 1!L361
+n-648,FY2019Q3,denied,quarter,854,2da595379c83,page 1!M927,853,fefe4e9bba8d,page 1!M361
+n-648,FY2019Q3,pending,snapshot,696,2da595379c83,page 1!N927,702,fefe4e9bba8d,page 1!N361
+n-648,FY2019Q3,received,quarter,1013,2da595379c83,page 1!K927,1018,fefe4e9bba8d,page 1!K361
+total,FY2014Q1,approved,quarter,1342803,1ee57a59df58,"line 8, column E",1342757,aceb0bd04fa8,"line 5, column E"
+total,FY2014Q1,approved,quarter,1345851,9206932c2df4,"line 8, column E",1342757,aceb0bd04fa8,"line 5, column E"
+total,FY2014Q1,approved,quarter,1341067,c671ed676cc0,"line 6, column E",1342757,aceb0bd04fa8,"line 5, column E"
+total,FY2014Q1,denied,quarter,138213,1ee57a59df58,"line 8, column F",138059,aceb0bd04fa8,"line 5, column F"
+total,FY2014Q1,denied,quarter,138051,9206932c2df4,"line 8, column F",138059,aceb0bd04fa8,"line 5, column F"
+total,FY2014Q1,denied,quarter,137291,c671ed676cc0,"line 6, column F",138059,aceb0bd04fa8,"line 5, column F"
+total,FY2014Q1,pending,snapshot,2823279,1ee57a59df58,"line 8, column G",2805400,aceb0bd04fa8,"line 5, column G"
+total,FY2014Q1,pending,snapshot,2825295,9206932c2df4,"line 8, column G",2805400,aceb0bd04fa8,"line 5, column G"
+total,FY2014Q1,pending,snapshot,2817284,c671ed676cc0,"line 6, column G",2805400,aceb0bd04fa8,"line 5, column G"
+total,FY2014Q1,received,quarter,1330295,1ee57a59df58,"line 8, column D",1335877,aceb0bd04fa8,"line 5, column D"
+total,FY2014Q1,received,quarter,1330229,9206932c2df4,"line 8, column D",1335877,aceb0bd04fa8,"line 5, column D"
+total,FY2014Q1,received,quarter,1323494,c671ed676cc0,"line 6, column D",1335877,aceb0bd04fa8,"line 5, column D"
+total,FY2014Q2,approved,quarter,1239752,1ee57a59df58,"line 8, column I",1239622,aceb0bd04fa8,"line 5, column I"
+total,FY2014Q2,approved,quarter,1239610,9206932c2df4,"line 8, column I",1239622,aceb0bd04fa8,"line 5, column I"
+total,FY2014Q2,denied,quarter,143890,1ee57a59df58,"line 8, column J",143743,aceb0bd04fa8,"line 5, column J"
+total,FY2014Q2,denied,quarter,147138,9206932c2df4,"line 8, column J",143743,aceb0bd04fa8,"line 5, column J"
+total,FY2014Q2,pending,snapshot,2981383,1ee57a59df58,"line 8, column K",2958811,aceb0bd04fa8,"line 5, column K"
+total,FY2014Q2,pending,snapshot,2990243,9206932c2df4,"line 8, column K",2958811,aceb0bd04fa8,"line 5, column K"
+total,FY2014Q2,received,quarter,1488072,1ee57a59df58,"line 8, column H",1494153,aceb0bd04fa8,"line 5, column H"
+total,FY2014Q2,received,quarter,1490523,9206932c2df4,"line 8, column H",1494153,aceb0bd04fa8,"line 5, column H"
+total,FY2014Q3,approved,quarter,1417682,1ee57a59df58,"line 8, column M",1418961,aceb0bd04fa8,"line 5, column M"
+total,FY2014Q3,denied,quarter,146036,1ee57a59df58,"line 8, column N",145966,aceb0bd04fa8,"line 5, column N"
+total,FY2014Q3,pending,snapshot,3294240,1ee57a59df58,"line 8, column O",3299724,aceb0bd04fa8,"line 5, column O"
+total,FY2014Q3,received,quarter,1834634,1ee57a59df58,"line 8, column L",1840828,aceb0bd04fa8,"line 5, column L"
+total,FY2015Q1,approved,quarter,1507654,377a1f36a382,"line 7, column E",1663484,e84ba355944b,"line 6, column E"
+total,FY2015Q1,approved,quarter,1507628,51ba72f00175,"line 5, column E",1663484,e84ba355944b,"line 6, column E"
+total,FY2015Q1,approved,quarter,1507492,a4b00111f24c,"line 5, column E",1663484,e84ba355944b,"line 6, column E"
+total,FY2015Q1,denied,quarter,149913,377a1f36a382,"line 7, column F",149856,e84ba355944b,"line 6, column F"
+total,FY2015Q1,denied,quarter,149883,51ba72f00175,"line 5, column F",149856,e84ba355944b,"line 6, column F"
+total,FY2015Q1,denied,quarter,149875,a4b00111f24c,"line 5, column F",149856,e84ba355944b,"line 6, column F"
+total,FY2015Q1,pending,snapshot,3202175,377a1f36a382,"line 7, column G",3211445,e84ba355944b,"line 6, column G"
+total,FY2015Q1,pending,snapshot,3202490,51ba72f00175,"line 5, column G",3211445,e84ba355944b,"line 6, column G"
+total,FY2015Q1,pending,snapshot,3202734,a4b00111f24c,"line 5, column G",3211445,e84ba355944b,"line 6, column G"
+total,FY2015Q1,received,quarter,1638910,377a1f36a382,"line 7, column D",1751337,e84ba355944b,"line 6, column D"
+total,FY2015Q1,received,quarter,1639032,51ba72f00175,"line 5, column D",1751337,e84ba355944b,"line 6, column D"
+total,FY2015Q1,received,quarter,1639032,a4b00111f24c,"line 5, column D",1751337,e84ba355944b,"line 6, column D"
+total,FY2015Q2,approved,quarter,1651505,51ba72f00175,"line 5, column I",1777966,e84ba355944b,"line 6, column I"
+total,FY2015Q2,approved,quarter,1649456,a4b00111f24c,"line 5, column I",1777966,e84ba355944b,"line 6, column I"
+total,FY2015Q2,denied,quarter,141918,51ba72f00175,"line 5, column J",141957,e84ba355944b,"line 6, column J"
+total,FY2015Q2,denied,quarter,141889,a4b00111f24c,"line 5, column J",141957,e84ba355944b,"line 6, column J"
+total,FY2015Q2,pending,snapshot,3513025,51ba72f00175,"line 5, column K",3522079,e84ba355944b,"line 6, column K"
+total,FY2015Q2,pending,snapshot,3512551,a4b00111f24c,"line 5, column K",3522079,e84ba355944b,"line 6, column K"
+total,FY2015Q2,received,quarter,2087394,51ba72f00175,"line 5, column H",2209198,e84ba355944b,"line 6, column H"
+total,FY2015Q2,received,quarter,2087401,a4b00111f24c,"line 5, column H",2209198,e84ba355944b,"line 6, column H"
+total,FY2015Q3,approved,quarter,1877917,a4b00111f24c,"line 5, column M",2053416,e84ba355944b,"line 6, column M"
+total,FY2015Q3,denied,quarter,146248,a4b00111f24c,"line 5, column N",146339,e84ba355944b,"line 6, column N"
+total,FY2015Q3,pending,snapshot,3242769,a4b00111f24c,"line 5, column O",3403377,e84ba355944b,"line 6, column O"
+total,FY2015Q3,received,quarter,1715405,a4b00111f24c,"line 5, column L",1970255,e84ba355944b,"line 6, column L"
+total,FY2016Q1,approved,quarter,1439941,395a1ce1b648,"line 5, column E",1439930,39b0a6910f54,"line 5, column E"
+total,FY2016Q1,approved,quarter,1439860,f251359c6ff5,"line 5, column E",1439930,39b0a6910f54,"line 5, column E"
+total,FY2016Q1,denied,quarter,134700,395a1ce1b648,"line 5, column F",134689,39b0a6910f54,"line 5, column F"
+total,FY2016Q1,denied,quarter,134750,f251359c6ff5,"line 5, column F",134689,39b0a6910f54,"line 5, column F"
+total,FY2016Q1,pending,snapshot,3463440,395a1ce1b648,"line 5, column G",3463779,39b0a6910f54,"line 5, column G"
+total,FY2016Q1,pending,snapshot,3463153,f251359c6ff5,"line 5, column G",3463779,39b0a6910f54,"line 5, column G"
+total,FY2016Q1,received,quarter,1717128,395a1ce1b648,"line 5, column D",1717129,39b0a6910f54,"line 5, column D"
+total,FY2016Q1,received,quarter,1715112,f251359c6ff5,"line 5, column D",1717129,39b0a6910f54,"line 5, column D"
+total,FY2016Q2,approved,quarter,1544577,395a1ce1b648,"line 5, column I",1544490,39b0a6910f54,"line 5, column I"
+total,FY2016Q2,approved,quarter,1544484,fcd138d02ec3,"line 6, column I",1544490,39b0a6910f54,"line 5, column I"
+total,FY2016Q2,denied,quarter,157169,395a1ce1b648,"line 5, column J",157152,39b0a6910f54,"line 5, column J"
+total,FY2016Q2,pending,snapshot,3606645,395a1ce1b648,"line 5, column K",3613627,39b0a6910f54,"line 5, column K"
+total,FY2016Q2,received,quarter,1815889,395a1ce1b648,"line 5, column H",1822409,39b0a6910f54,"line 5, column H"
+total,FY2016Q3,approved,quarter,1602579,fcd138d02ec3,"line 6, column M",1602618,39b0a6910f54,"line 5, column M"
+total,FY2016Q3,denied,quarter,154749,fcd138d02ec3,"line 6, column N",154765,39b0a6910f54,"line 5, column N"
+total,FY2016Q3,pending,snapshot,4114032,fcd138d02ec3,"line 6, column O",4114673,39b0a6910f54,"line 5, column O"
+total,FY2016Q3,received,quarter,2205635,fcd138d02ec3,"line 6, column L",2205650,39b0a6910f54,"line 5, column L"
+total,FY2017Q1,approved,quarter,1701602,21130ec0fc29,"line 6, column E",1711800,e02fb6695dfa,"line 6, column E"
+total,FY2017Q1,approved,quarter,1701602,3288bd8ec0c5,"line 6, column E",1711800,e02fb6695dfa,"line 6, column E"
+total,FY2017Q1,approved,quarter,1712312,34d126012593,"line 5, column E",1711800,e02fb6695dfa,"line 6, column E"
+total,FY2017Q1,denied,quarter,137766,21130ec0fc29,"line 6, column F",135071,e02fb6695dfa,"line 6, column F"
+total,FY2017Q1,denied,quarter,137766,3288bd8ec0c5,"line 6, column F",135071,e02fb6695dfa,"line 6, column F"
+total,FY2017Q1,denied,quarter,136563,34d126012593,"line 5, column F",135071,e02fb6695dfa,"line 6, column F"
+total,FY2017Q1,pending,snapshot,4552505,21130ec0fc29,"line 6, column G",4670030,e02fb6695dfa,"line 6, column G"
+total,FY2017Q1,pending,snapshot,4552505,3288bd8ec0c5,"line 6, column G",4670030,e02fb6695dfa,"line 6, column G"
+total,FY2017Q1,pending,snapshot,4552542,34d126012593,"line 5, column G",4670030,e02fb6695dfa,"line 6, column G"
+total,FY2017Q1,received,quarter,2117872,21130ec0fc29,"line 6, column D",2116432,e02fb6695dfa,"line 6, column D"
+total,FY2017Q1,received,quarter,2117872,3288bd8ec0c5,"line 6, column D",2116432,e02fb6695dfa,"line 6, column D"
+total,FY2017Q1,received,quarter,2119237,34d126012593,"line 5, column D",2116432,e02fb6695dfa,"line 6, column D"
+total,FY2017Q2,approved,quarter,1790506,3288bd8ec0c5,"line 6, column I",1789167,e02fb6695dfa,"line 6, column I"
+total,FY2017Q2,approved,quarter,1790506,34d126012593,"line 5, column I",1789167,e02fb6695dfa,"line 6, column I"
+total,FY2017Q2,denied,quarter,149755,3288bd8ec0c5,"line 6, column J",147825,e02fb6695dfa,"line 6, column J"
+total,FY2017Q2,denied,quarter,149755,34d126012593,"line 5, column J",147825,e02fb6695dfa,"line 6, column J"
+total,FY2017Q2,pending,snapshot,4969865,3288bd8ec0c5,"line 6, column K",4975863,e02fb6695dfa,"line 6, column K"
+total,FY2017Q2,pending,snapshot,4855354,34d126012593,"line 5, column K",4975863,e02fb6695dfa,"line 6, column K"
+total,FY2017Q2,received,quarter,2226310,3288bd8ec0c5,"line 6, column H",2226020,e02fb6695dfa,"line 6, column H"
+total,FY2017Q2,received,quarter,2226310,34d126012593,"line 5, column H",2226020,e02fb6695dfa,"line 6, column H"
+total,FY2017Q3,approved,quarter,1619863,34d126012593,"line 5, column M",1619363,e02fb6695dfa,"line 6, column M"
+total,FY2017Q3,denied,quarter,155575,34d126012593,"line 5, column N",153393,e02fb6695dfa,"line 6, column N"
+total,FY2017Q3,pending,snapshot,5473654,34d126012593,"line 5, column O",5481899,e02fb6695dfa,"line 6, column O"
+total,FY2017Q3,received,quarter,2263586,34d126012593,"line 5, column L",2261923,e02fb6695dfa,"line 6, column L"
+total,FY2018Q1,approved,quarter,1466431,431cd8b2a8a6,"line 5, column E",1462678,baf22ca3fee3,"line 6, column E"
+total,FY2018Q1,approved,quarter,1462712,7ce856513328,"line 6, column E",1462678,baf22ca3fee3,"line 6, column E"
+total,FY2018Q1,approved,quarter,1466430,e1f4d426fb42,"line 6, column E",1462678,baf22ca3fee3,"line 6, column E"
+total,FY2018Q1,denied,quarter,161965,431cd8b2a8a6,"line 5, column F",164683,baf22ca3fee3,"line 6, column F"
+total,FY2018Q1,denied,quarter,164712,7ce856513328,"line 6, column F",164683,baf22ca3fee3,"line 6, column F"
+total,FY2018Q1,denied,quarter,161819,e1f4d426fb42,"line 6, column F",164683,baf22ca3fee3,"line 6, column F"
+total,FY2018Q1,pending,snapshot,5456450,431cd8b2a8a6,"line 5, column G",5459450,baf22ca3fee3,"line 6, column G"
+total,FY2018Q1,pending,snapshot,5459512,7ce856513328,"line 6, column G",5459450,baf22ca3fee3,"line 6, column G"
+total,FY2018Q1,pending,snapshot,5461130,e1f4d426fb42,"line 6, column G",5459450,baf22ca3fee3,"line 6, column G"
+total,FY2018Q1,received,quarter,1635707,431cd8b2a8a6,"line 5, column D",1583617,baf22ca3fee3,"line 6, column D"
+total,FY2018Q1,received,quarter,1636611,7ce856513328,"line 6, column D",1583617,baf22ca3fee3,"line 6, column D"
+total,FY2018Q1,received,quarter,1636060,e1f4d426fb42,"line 6, column D",1583617,baf22ca3fee3,"line 6, column D"
+total,FY2018Q2,approved,quarter,1554119,431cd8b2a8a6,"line 5, column I",1554073,baf22ca3fee3,"line 6, column I"
+total,FY2018Q2,approved,quarter,1546106,7ce856513328,"line 6, column I",1554073,baf22ca3fee3,"line 6, column I"
+total,FY2018Q2,denied,quarter,198431,431cd8b2a8a6,"line 5, column J",196804,baf22ca3fee3,"line 6, column J"
+total,FY2018Q2,denied,quarter,196849,7ce856513328,"line 6, column J",196804,baf22ca3fee3,"line 6, column J"
+total,FY2018Q2,pending,snapshot,5800346,431cd8b2a8a6,"line 5, column K",5834172,baf22ca3fee3,"line 6, column K"
+total,FY2018Q2,pending,snapshot,5773866,7ce856513328,"line 6, column K",5834172,baf22ca3fee3,"line 6, column K"
+total,FY2018Q2,received,quarter,2105968,431cd8b2a8a6,"line 5, column H",2177562,baf22ca3fee3,"line 6, column H"
+total,FY2018Q2,received,quarter,2090251,7ce856513328,"line 6, column H",2177562,baf22ca3fee3,"line 6, column H"
+total,FY2018Q3,approved,quarter,1892769,7ce856513328,"line 6, column M",1912661,baf22ca3fee3,"line 6, column M"
+total,FY2018Q3,denied,quarter,202361,7ce856513328,"line 6, column N",202324,baf22ca3fee3,"line 6, column N"
+total,FY2018Q3,pending,snapshot,5655769,7ce856513328,"line 6, column O",5682330,baf22ca3fee3,"line 6, column O"
+total,FY2018Q3,received,quarter,1968557,7ce856513328,"line 6, column L",1997661,baf22ca3fee3,"line 6, column L"
+total,FY2019Q1,approved,quarter,1379485,0895770f1390,"line 5, column E",1324629,fefe4e9bba8d,page 1!D106
+total,FY2019Q1,approved,quarter,1321179,2da595379c83,page 1!D279,1324629,fefe4e9bba8d,page 1!D106
+total,FY2019Q1,approved,quarter,1378494,5865980d65e0,"line 10, column E",1324629,fefe4e9bba8d,page 1!D106
+total,FY2019Q1,denied,quarter,190342,0895770f1390,"line 5, column F",177353,fefe4e9bba8d,page 1!E106
+total,FY2019Q1,denied,quarter,177460,2da595379c83,page 1!E279,177353,fefe4e9bba8d,page 1!E106
+total,FY2019Q1,denied,quarter,190307,5865980d65e0,"line 10, column F",177353,fefe4e9bba8d,page 1!E106
+total,FY2019Q1,pending,snapshot,5600285,0895770f1390,"line 5, column G",5654523,fefe4e9bba8d,page 1!F106
+total,FY2019Q1,pending,snapshot,5649490,2da595379c83,page 1!F279,5654523,fefe4e9bba8d,page 1!F106
+total,FY2019Q1,pending,snapshot,5598284,5865980d65e0,"line 10, column G",5654523,fefe4e9bba8d,page 1!F106
+total,FY2019Q1,received,quarter,1644628,0895770f1390,"line 5, column D",1763425,fefe4e9bba8d,page 1!C106
+total,FY2019Q1,received,quarter,1761038,2da595379c83,page 1!C279,1763425,fefe4e9bba8d,page 1!C106
+total,FY2019Q1,received,quarter,1641547,5865980d65e0,"line 10, column D",1763425,fefe4e9bba8d,page 1!C106
+total,FY2019Q2,approved,quarter,1588723,2da595379c83,page 1!H279,1590445,fefe4e9bba8d,page 1!H106
+total,FY2019Q2,approved,quarter,1484012,5865980d65e0,"line 10, column I",1590445,fefe4e9bba8d,page 1!H106
+total,FY2019Q2,denied,quarter,199825,2da595379c83,page 1!I279,199578,fefe4e9bba8d,page 1!I106
+total,FY2019Q2,denied,quarter,199034,5865980d65e0,"line 10, column J",199578,fefe4e9bba8d,page 1!I106
+total,FY2019Q2,pending,snapshot,5705425,2da595379c83,page 1!J279,5709737,fefe4e9bba8d,page 1!J106
+total,FY2019Q2,pending,snapshot,5652925,5865980d65e0,"line 10, column K",5709737,fefe4e9bba8d,page 1!J106
+total,FY2019Q2,received,quarter,1855081,2da595379c83,page 1!G279,1856717,fefe4e9bba8d,page 1!G106
+total,FY2019Q2,received,quarter,1737469,5865980d65e0,"line 10, column H",1856717,fefe4e9bba8d,page 1!G106
+total,FY2019Q3,approved,quarter,1704621,2da595379c83,page 1!L279,1707667,fefe4e9bba8d,page 1!L106
+total,FY2019Q3,denied,quarter,256257,2da595379c83,page 1!M279,255119,fefe4e9bba8d,page 1!M106
+total,FY2019Q3,pending,snapshot,5809495,2da595379c83,page 1!N279,5819121,fefe4e9bba8d,page 1!N106
+total,FY2019Q3,received,quarter,2068181,2da595379c83,page 1!K279,2076502,fefe4e9bba8d,page 1!K106
+total,FY2020Q1,approved,quarter,1637667,4a52cb47b813,page 1!D102,1643922,2d03d7ef391c,page 1!D109
+total,FY2020Q1,approved,quarter,1633013,58d66c259e3d,page 1!D105,1643922,2d03d7ef391c,page 1!D109
+total,FY2020Q1,denied,quarter,238364,4a52cb47b813,page 1!E102,256151,2d03d7ef391c,page 1!E109
+total,FY2020Q1,denied,quarter,220290,58d66c259e3d,page 1!E105,256151,2d03d7ef391c,page 1!E109
+total,FY2020Q1,pending,snapshot,5744293,4a52cb47b813,page 1!F102,5759297,2d03d7ef391c,page 1!F109
+total,FY2020Q1,pending,snapshot,5748899,58d66c259e3d,page 1!F105,5759297,2d03d7ef391c,page 1!F109
+total,FY2020Q1,received,quarter,1926409,4a52cb47b813,page 1!C102,1926497,2d03d7ef391c,page 1!C109
+total,FY2020Q1,received,quarter,1925486,58d66c259e3d,page 1!C105,1926497,2d03d7ef391c,page 1!C109
+total,FY2020Q2,approved,quarter,1726216,4a52cb47b813,page 1!H102,1729075,2d03d7ef391c,page 1!H109
+total,FY2020Q2,denied,quarter,248680,4a52cb47b813,page 1!I102,262947,2d03d7ef391c,page 1!I109
+total,FY2020Q2,pending,snapshot,5734245,4a52cb47b813,page 1!J102,5767232,2d03d7ef391c,page 1!J109
+total,FY2020Q2,received,quarter,1902619,4a52cb47b813,page 1!G102,1904468,2d03d7ef391c,page 1!G109
+waivers,FY2014Q1,approved,quarter,19427,9206932c2df4,"line 62, column E",19432,aceb0bd04fa8,"line 59, column E"
+waivers,FY2014Q1,approved,quarter,19431,c671ed676cc0,"line 60, column E",19432,aceb0bd04fa8,"line 59, column E"
+waivers,FY2014Q1,denied,quarter,2140,9206932c2df4,"line 62, column F",2141,aceb0bd04fa8,"line 59, column F"
+waivers,FY2014Q1,pending,snapshot,57968,c671ed676cc0,"line 60, column G",57969,aceb0bd04fa8,"line 59, column G"
+waivers,FY2014Q1,received,quarter,15590,c671ed676cc0,"line 60, column D",15558,aceb0bd04fa8,"line 59, column D"
+waivers,FY2014Q2,approved,quarter,7655,1ee57a59df58,"line 62, column I",7656,aceb0bd04fa8,"line 59, column I"
+waivers,FY2014Q2,approved,quarter,7654,9206932c2df4,"line 62, column I",7656,aceb0bd04fa8,"line 59, column I"
+waivers,FY2014Q2,denied,quarter,3087,9206932c2df4,"line 62, column J",3091,aceb0bd04fa8,"line 59, column J"
+waivers,FY2014Q2,pending,snapshot,61841,9206932c2df4,"line 62, column K",61882,aceb0bd04fa8,"line 59, column K"
+waivers,FY2014Q2,received,quarter,14995,9206932c2df4,"line 62, column H",15004,aceb0bd04fa8,"line 59, column H"
+waivers,FY2014Q3,approved,quarter,8121,1ee57a59df58,"line 62, column M",8123,aceb0bd04fa8,"line 59, column M"
+waivers,FY2014Q3,pending,snapshot,69441,1ee57a59df58,"line 62, column O",69455,aceb0bd04fa8,"line 59, column O"
+waivers,FY2017Q1,approved,quarter,8143,21130ec0fc29,"line 61, column E",8169,e02fb6695dfa,"line 61, column E"
+waivers,FY2017Q1,approved,quarter,8143,3288bd8ec0c5,"line 61, column E",8169,e02fb6695dfa,"line 61, column E"
+waivers,FY2017Q1,approved,quarter,8143,34d126012593,"line 60, column E",8169,e02fb6695dfa,"line 61, column E"
+waivers,FY2017Q1,denied,quarter,1705,21130ec0fc29,"line 61, column F",1714,e02fb6695dfa,"line 61, column F"
+waivers,FY2017Q1,denied,quarter,1705,3288bd8ec0c5,"line 61, column F",1714,e02fb6695dfa,"line 61, column F"
+waivers,FY2017Q1,denied,quarter,1705,34d126012593,"line 60, column F",1714,e02fb6695dfa,"line 61, column F"
+waivers,FY2017Q1,pending,snapshot,148274,21130ec0fc29,"line 61, column G",148181,e02fb6695dfa,"line 61, column G"
+waivers,FY2017Q1,pending,snapshot,148274,3288bd8ec0c5,"line 61, column G",148181,e02fb6695dfa,"line 61, column G"
+waivers,FY2017Q1,pending,snapshot,148274,34d126012593,"line 60, column G",148181,e02fb6695dfa,"line 61, column G"
+waivers,FY2017Q1,received,quarter,19439,21130ec0fc29,"line 61, column D",19460,e02fb6695dfa,"line 61, column D"
+waivers,FY2017Q1,received,quarter,19439,3288bd8ec0c5,"line 61, column D",19460,e02fb6695dfa,"line 61, column D"
+waivers,FY2017Q1,received,quarter,19439,34d126012593,"line 60, column D",19460,e02fb6695dfa,"line 61, column D"
+waivers,FY2017Q2,pending,snapshot,155556,3288bd8ec0c5,"line 61, column K",155579,e02fb6695dfa,"line 61, column K"
+waivers,FY2017Q2,pending,snapshot,155556,34d126012593,"line 60, column K",155579,e02fb6695dfa,"line 61, column K"
+waivers,FY2017Q2,received,quarter,17899,3288bd8ec0c5,"line 61, column H",17906,e02fb6695dfa,"line 61, column H"
+waivers,FY2017Q2,received,quarter,17899,34d126012593,"line 60, column H",17906,e02fb6695dfa,"line 61, column H"
+waivers,FY2017Q3,approved,quarter,12040,34d126012593,"line 60, column M",12041,e02fb6695dfa,"line 61, column M"
+waivers,FY2017Q3,pending,snapshot,161649,34d126012593,"line 60, column O",161688,e02fb6695dfa,"line 61, column O"
+waivers,FY2017Q3,received,quarter,18786,34d126012593,"line 60, column L",18801,e02fb6695dfa,"line 61, column L"
+waivers,FY2018Q1,pending,snapshot,182709,431cd8b2a8a6,"line 60, column G",182712,baf22ca3fee3,"line 61, column G"
+waivers,FY2018Q1,pending,snapshot,182709,e1f4d426fb42,"line 61, column G",182712,baf22ca3fee3,"line 61, column G"
+waivers,FY2018Q1,received,quarter,19601,431cd8b2a8a6,"line 60, column D",19604,baf22ca3fee3,"line 61, column D"
+waivers,FY2018Q1,received,quarter,19601,e1f4d426fb42,"line 61, column D",19604,baf22ca3fee3,"line 61, column D"
+waivers,FY2018Q2,approved,quarter,11249,431cd8b2a8a6,"line 60, column I",11248,baf22ca3fee3,"line 61, column I"
+waivers,FY2018Q2,approved,quarter,11247,7ce856513328,"line 61, column I",11248,baf22ca3fee3,"line 61, column I"
+waivers,FY2018Q2,denied,quarter,2874,431cd8b2a8a6,"line 60, column J",2875,baf22ca3fee3,"line 61, column J"
+waivers,FY2018Q2,denied,quarter,2873,7ce856513328,"line 61, column J",2875,baf22ca3fee3,"line 61, column J"
+waivers,FY2018Q2,pending,snapshot,189517,431cd8b2a8a6,"line 60, column K",189313,baf22ca3fee3,"line 61, column K"
+waivers,FY2018Q2,pending,snapshot,189314,7ce856513328,"line 61, column K",189313,baf22ca3fee3,"line 61, column K"
+waivers,FY2018Q2,received,quarter,19769,431cd8b2a8a6,"line 60, column H",19936,baf22ca3fee3,"line 61, column H"
+waivers,FY2018Q2,received,quarter,19975,7ce856513328,"line 61, column H",19936,baf22ca3fee3,"line 61, column H"
+waivers,FY2018Q3,approved,quarter,10368,7ce856513328,"line 61, column M",10371,baf22ca3fee3,"line 61, column M"
+waivers,FY2018Q3,received,quarter,21416,7ce856513328,"line 61, column L",21432,baf22ca3fee3,"line 61, column L"
+waivers,FY2019Q1,approved,quarter,11164,0895770f1390,"line 61, column E",11166,fefe4e9bba8d,page 1!D423
+waivers,FY2019Q1,denied,quarter,2898,0895770f1390,"line 61, column F",2899,fefe4e9bba8d,page 1!E423
+waivers,FY2019Q1,pending,snapshot,205312,0895770f1390,"line 61, column G",205317,fefe4e9bba8d,page 1!F423
+waivers,FY2019Q1,pending,snapshot,205312,5865980d65e0,"line 66, column G",205317,fefe4e9bba8d,page 1!F423
+waivers,FY2019Q2,approved,quarter,11251,5865980d65e0,"line 66, column I",11267,fefe4e9bba8d,page 1!H423
+waivers,FY2019Q2,denied,quarter,3402,5865980d65e0,"line 66, column J",3415,fefe4e9bba8d,page 1!I423
+waivers,FY2019Q2,pending,snapshot,207725,5865980d65e0,"line 66, column K",207729,fefe4e9bba8d,page 1!J423
+waivers,FY2019Q3,approved,quarter,12713,2da595379c83,page 1!L1086,12708,fefe4e9bba8d,page 1!L423
+waivers,FY2019Q3,denied,quarter,3608,2da595379c83,page 1!M1086,3607,fefe4e9bba8d,page 1!M423
+waivers,FY2019Q3,pending,snapshot,210094,2da595379c83,page 1!N1086,210034,fefe4e9bba8d,page 1!N423
+waivers,FY2019Q3,received,quarter,18904,2da595379c83,page 1!K1086,18876,fefe4e9bba8d,page 1!K423
+waivers,FY2020Q1,approved,quarter,11370,58d66c259e3d,page 1!D488,11372,2d03d7ef391c,page 1!D479
+waivers,FY2020Q1,denied,quarter,3726,58d66c259e3d,page 1!E488,3738,2d03d7ef391c,page 1!E479
+waivers,FY2020Q1,received,quarter,15772,58d66c259e3d,page 1!C488,17026,2d03d7ef391c,page 1!C479

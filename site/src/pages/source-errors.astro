@@ -1,0 +1,93 @@
+---
+import Base from "../layouts/Base.astro";
+import { checks, source, type Check } from "../lib/ledger";
+
+const all = checks();
+const ABOUT: Record<string, { title: string; why: string }> = {
+  "repeated-processing-time": {
+    title: "Processing times copied from the previous quarter",
+    why: "A median processing time computed from a new quarter of cases will almost never match the previous quarter's to seven or more significant digits. When dozens of forms do so at once, the likeliest explanation is that last quarter's column was reused. We publish the printed value and flag it; treat these medians as unreliable.",
+  },
+  "source-title-mismatch": {
+    title: "Files dated wrong in their own title",
+    why: "The title row inside the spreadsheet names a different date than the file name and the listing. The numbers inside are new, so the title, not the data, is stale. A naive scraper would overwrite one quarter with another.",
+  },
+  "pending-printed-twice": {
+    title: "The same backlog printed with two different numbers",
+    why: "Each report prints the pending count twice, once in the quarter block and once in the fiscal-year-to-date block. They describe the same stock on the same day and should match.",
+  },
+  "fractional-count": {
+    title: "Case counts with fractions",
+    why: "A count of applications can't be 2,475,577.75. Fractions mean USCIS estimated or allocated some values instead of counting them. We keep the exact printed value and label it an estimate.",
+  },
+  "state-duplicate-rows": {
+    title: "State Department: the same country and visa class on two rows",
+    why: "In several months, Egypt and Jordan immediate-relative visa classes appear twice: a large count followed by a small one. Both rows are included in the month's grand total, so neither is a simple duplicate. The file doesn't say why. We keep both rows separately rather than merge or drop either, and we have not been able to establish the reason.",
+  },
+  "unlabeled-numbers": {
+    title: "Numbers printed with no label",
+    why: "Some older files print a row of figures with no form number or description. We can't tell what they count, so we don't use them, and list each one here.",
+  },
+  "older-report-not-used": {
+    title: "A different, older report",
+    why: "Before FY2013Q4, USCIS published monthly receipts and approvals only. These files are archived but not mixed into the quarterly series.",
+  },
+  "large-revision": {
+    title: "Earlier numbers later restated",
+    why: "Until FY2020, each quarterly file reprinted every earlier quarter of the fiscal year, and USCIS often revised them, sometimes by a lot when it changed what a row counts (for example, folding DACA work permits into the I-765 line). We publish the latest printing and keep every earlier one in revisions.csv. Changes of 5% or more on figures of 1,000 or more are listed.",
+  },
+  "completions-add-up": {
+    title: "Approved + denied ≠ completed",
+    why: "USCIS footnotes say completions on some lines include other outcomes or exclude some, so this is expected for certain forms. Listed for transparency only.",
+  },
+  "state-grand-total": { title: "State Department grand total doesn't match its rows", why: "" },
+};
+const order = Object.keys(ABOUT);
+const groups = order.map((k) => [k, all.filter((c) => c.check === k)] as const).filter(([, cs]) => cs.length);
+const href = (cell: string) => {
+  const [id, ...addr] = cell.split(":");
+  const s = source(id);
+  return { url: s.archive_url, label: `${s.original_name} · ${addr.join(":")}` };
+};
+const warnCount = all.filter((c) => c.severity === "warn").length;
+---
+<Base title="Errors we found in the government's spreadsheets" description={`${warnCount} problems in USCIS and State Department statistics files, each tied to the exact cells, found while rebuilding every quarterly report since 2013.`}>
+  <p class="kicker">Methodology · source audit</p>
+  <h1>What we found wrong in the government's own spreadsheets</h1>
+  <p class="dek">
+    These files are the official record of how the immigration system is performing, and they are cited by courts,
+    Congress and newsrooms. Rebuilding them into one series surfaced {warnCount} problems. Every item below links to the
+    archived file and names the cell. These checks run on every refresh, so this page updates itself.
+  </p>
+  <p class="note">None of these is evidence of intent. Most look like spreadsheet production errors. They matter because
+  people make decisions from these numbers.</p>
+
+  {groups.map(([k, cs]) => (
+    <section class="finding">
+      <h3>{ABOUT[k].title} <span class="pill">{cs.length}</span></h3>
+      {ABOUT[k].why && <p>{ABOUT[k].why}</p>}
+      <details open={cs.length <= 6}>
+        <summary>{cs.length} case{cs.length === 1 ? "" : "s"}</summary>
+        <ul>
+          {cs.map((c: Check) => (
+            <li>
+              <strong>{c.subject}</strong>: {c.detail}
+              {c.cells.length > 0 && (
+                <span class="note"> ({c.cells.slice(0, 3).map((x, i) => { const h = href(x); return <>{i > 0 && ", "}<a href={h.url}>{h.label}</a></>; })})</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
+  ))}
+
+  <h2>Found by hand, handled in code</h2>
+  <ul>
+    <li><strong>Footnote numbers glued to form numbers.</strong> Recent files print “I-6007” for form I-600 with footnote 7, “N-40020” for N-400 with footnote 20, and “DS-23022” for DS-230 with footnote 22. We split a label only when the remainder is a known form <em>and</em> the digits are a footnote declared in the same file. Anything else stops the build.</li>
+    <li><strong>A category header with stray data.</strong> In the FY2023Q1 file, the “Other” section header carries dashes in its number columns, so a simple parser files I-90, I-131 and others under “Citizenship and Nationality.”</li>
+    <li><strong>Deleted reports.</strong> USCIS's site no longer links its reports from before FY2019Q3, or those for FY2019Q3 to FY2021Q3. We recovered them from the Internet Archive; each one records the capture it came from. FY2019Q3 to FY2021Q3 exist only as PDFs, which we read by the position of each number on the page and check against neighbouring reports.</li>
+    <li><strong>A report that changed design.</strong> Before FY2013Q4, USCIS published a different, monthly "receipts and approvals" report without denials or pending counts. We archive those files but start the series at FY2013Q1, which the FY2013Q4 report covers in full.</li>
+    <li><strong>One table split across two sheets.</strong> The State Department's April 2022 file continues onto a second sheet that holds its last rows and the grand total.</li>
+  </ul>
+</Base>

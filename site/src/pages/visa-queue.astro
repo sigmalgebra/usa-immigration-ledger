@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+import Chart from "../components/Chart.astro";
+import type { LineSpec } from "../lib/chart";
+import { awaiting, checks, fmt, quarterEnd, quarterLabel, source } from "../lib/ledger";
+
+const rows = awaiting();
+const periods = [...new Set(rows.map((r) => r.period))].sort();
+const L = periods.at(-1)!;
+const PREFS = ["F1", "F2A", "F2B", "F3", "F4"];
+const PREF_LABEL: Record<string, string> = {
+  F1: "F1 · unmarried adult children of citizens",
+  F2A: "F2A · spouses and minor children of green-card holders",
+  F2B: "F2B · unmarried adult children of green-card holders",
+  F3: "F3 · married children of citizens",
+  F4: "F4 · brothers and sisters of citizens",
+};
+const countries = [...new Set(rows.filter((r) => r.period === L).map((r) => r.country))];
+const cell = (country: string, pref: string, period: string) =>
+  rows.find((r) => r.country === country && r.pref === pref && r.period === period);
+const total = (p: string) => cell("TOTAL", "TOTAL", p)!;
+
+const point = (s: string, label: string, r?: (typeof rows)[number]) => r && ({
+  x: quarterEnd(r.period).toISOString(), y: r.value, s, label: quarterLabel(r.period),
+  cite: `${source(r.sourceId).original_name}, ${r.cell}`,
+});
+const totalSpec: LineSpec = {
+  unit: "count", area: true,
+  series: [{ key: "total", label: "Approved petitions awaiting a visa", slot: 1 }],
+  points: periods.map((p) => point("total", "", total(p))!).filter(Boolean),
+};
+const top = countries.filter((c) => c !== "TOTAL" && c !== "Rest of the World");
+const countrySpec: LineSpec = {
+  unit: "count",
+  series: top.map((c, i) => ({ key: c, label: c, slot: i + 1 })),
+  points: top.flatMap((c) => periods.map((p) => point(c, c, cell(c, "TOTAL", p))).filter(Boolean)) as LineSpec["points"],
+};
+const titleFixes = checks().filter((c) => c.check === "source-title-mismatch" && c.subject.includes("i130"));
+const first = periods[0];
+---
+<Base title="The family visa queue" description={`${fmt(total(L).value!)} approved family petitions were waiting for a visa number at the end of ${quarterLabel(L)}, by country and preference category, from USCIS snapshots since ${quarterLabel(first)}.`}>
+  <p class="kicker">The second line</p>
+  <h1>{fmt(total(L).value!)} approved family petitions are waiting for a visa that doesn't exist yet</h1>
+  <p class="dek">
+    Approval of an I-130 doesn't bring a relative to the U.S. Family preference visas are capped each year and by
+    country, so approved petitions wait for a number. USCIS publishes a snapshot of that line every quarter.
+  </p>
+
+  <Chart spec={totalSpec} title="Approved I-130 petitions awaiting visa availability" subtitle={`Snapshots, ${quarterLabel(first)} to ${quarterLabel(L)}. Primary beneficiaries only; spouses and children who come along are not counted.`} />
+  <Chart spec={countrySpec} title="Awaiting a visa, by beneficiary's country of birth" subtitle="The four countries USCIS reports separately. All others are grouped as “Rest of the World”." />
+
+  <h2>Who is waiting, end of {quarterLabel(L)}</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Country of birth</th>{PREFS.map((p) => <th class="num" title={PREF_LABEL[p]}>{p}</th>)}<th class="num">Total</th></tr></thead>
+      <tbody>
+        {countries.map((c) => (
+          <tr>
+            <td>{c === "TOTAL" ? <strong>All countries</strong> : c}</td>
+            {[...PREFS, "TOTAL"].map((p) => {
+              const r = cell(c, p, L);
+              return <td class="num">{r?.value == null ? "—" : <a href={source(r.sourceId).archive_url} title={`${source(r.sourceId).original_name}, ${r.cell}`}>{fmt(r.value)}</a>}</td>;
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <ul class="note">{PREFS.map((p) => <li>{PREF_LABEL[p]}</li>)}</ul>
+
+  <h2>Read this with care</h2>
+  <ul>
+    <li>USCIS revises these snapshots: counts "may differ from those reported in previous periods due to system updates and post-adjudicative outcomes," its notes say.</li>
+    {titleFixes.length > 0 && (
+      <li>
+        {titleFixes.length} USCIS files carry the wrong "as of" date in their title. We date them by their file name,
+        which matches the quarter USCIS lists them under and the new numbers inside:
+        <ul>{titleFixes.map((c) => <li><code>{c.subject}</code>: {c.detail}</li>)}</ul>
+      </li>
+    )}
+    <li>Visa availability is set monthly by the State Department's <a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin.html">Visa Bulletin</a>; this table shows the queue, not how fast it moves.</li>
+  </ul>
+</Base>

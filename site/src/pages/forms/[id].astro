@@ -1,0 +1,87 @@
+---
+import Base from "../../layouts/Base.astro";
+import Chart from "../../components/Chart.astro";
+import { allSeries, checks, fmt, quarterLabel, series, source, type Fact } from "../../lib/ledger";
+import { seriesSpec } from "../../lib/specs";
+
+export function getStaticPaths() {
+  return allSeries().map((s) => ({ params: { id: s.id } }));
+}
+
+const s = series(Astro.params.id!);
+const quarterly = (m: string) => s.facts.filter((f) => f.measure === m && f.window === (m === "pending" ? "snapshot" : "quarter"));
+const hasNumbers = (m: string) => quarterly(m).some((f) => f.value !== null);
+const flowMeasures = (["received", "completed"] as const).filter(hasNumbers);
+const latestOf = (m: string) => quarterly(m).filter((f) => f.value !== null).sort((a, b) => a.period.localeCompare(b.period)).at(-1);
+const last = latestOf("received") ?? latestOf("pending");
+const P = last?.period;
+const at = (m: string) => quarterly(m).find((f) => f.period === P);
+
+const STATUS: Record<string, string> = {
+  dash: "— (USCIS: zero or rounds to zero)", na: "N/A (not available)", null: "null (printed as “null”)",
+  blank: "(blank)", withheld: "D (withheld for privacy)",
+};
+const show = (f?: Fact) => (!f ? "—" : f.value === null ? STATUS[f.status] ?? f.status : fmt(f.value));
+const flagged = checks().filter((c) => c.subject.startsWith(`${s.id} `));
+const table = [...s.facts].filter((f) => f.window !== "fytd")
+  .sort((a, b) => b.period.localeCompare(a.period) || a.measure.localeCompare(b.measure));
+const MEASURE: Record<string, string> = {
+  received: "Received", approved: "Approved", denied: "Denied", completed: "Completed", pending: "Pending",
+  median_processing_months: "Median months",
+};
+const citation = `USA Immigration Ledger, "${s.title}", series ${s.id}, data from USCIS "Number of Service-wide Forms by Quarter", ${Astro.url.href}`;
+---
+<Base title={s.title} description={`${s.title}: quarterly receipts, decisions, pending cases and median processing time from USCIS reports${P ? `, through ${quarterLabel(P)}` : ""}. Every number linked to its source cell.`}>
+  <p class="kicker"><a href="/forms/">All forms</a> · {s.category}</p>
+  <h1>{s.title}</h1>
+  {s.note && <p class="dek">{s.note}</p>}
+
+  {P && (
+    <div class="tiles">
+      {(["received", "completed", "pending", "median_processing_months"] as const).map((m) => {
+        const f = at(m);
+        return (
+          <div class="tile">
+            <div class="label">{MEASURE[m]}{m === "pending" ? `, end of ${quarterLabel(P)}` : `, ${quarterLabel(P)}`}</div>
+            <div class="value">{f && f.value !== null ? <a href={source(f.sourceId).archive_url} title={`${source(f.sourceId).original_name}, ${f.cell}`}>{fmt(f.value)}</a> : "—"}</div>
+            {f && f.status === "estimate" && <div class="delta"><span class="pill warn">USCIS estimate</span></div>}
+          </div>
+        );
+      })}
+    </div>
+  )}
+
+  {flowMeasures.length > 0 && <Chart spec={seriesSpec(s.id, [...flowMeasures])} title="Received and completed per quarter" />}
+  {hasNumbers("pending") && <Chart spec={seriesSpec(s.id, ["pending"], { area: true })} title="Pending at the end of each quarter" />}
+  {hasNumbers("median_processing_months") && (
+    <Chart spec={seriesSpec(s.id, ["median_processing_months"])} title="Median processing time, months" subtitle="Time from receipt to decision for cases decided in the quarter." />
+  )}
+
+  {flagged.length > 0 && (
+    <section>
+      <h2>Problems in the source for this form</h2>
+      <ul>{flagged.map((c) => <li><span class="pill warn">{c.check}</span> {c.detail}</li>)}</ul>
+    </section>
+  )}
+
+  <h2>Every number, with its source</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Quarter</th><th>Measure</th><th class="num">Value</th><th>Source cell</th></tr></thead>
+      <tbody>
+        {table.map((f) => (
+          <tr>
+            <td>{f.period}</td>
+            <td>{MEASURE[f.measure] ?? f.measure}{f.status === "estimate" && <span class="pill warn">estimate</span>}</td>
+            <td class="num">{show(f)}</td>
+            <td><a href={source(f.sourceId).archive_url}>{source(f.sourceId).original_name}</a> · {f.cell}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Cite this</h2>
+  <p><code>{citation}</code></p>
+  <p class="note">Download this series in the <a href="/data/">full dataset</a> (filter <code>series_id = {s.id}</code>).</p>
+</Base>
