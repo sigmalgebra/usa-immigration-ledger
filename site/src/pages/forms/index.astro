@@ -1,0 +1,75 @@
+---
+import Base from "../../layouts/Base.astro";
+import { allSeries, fmt, latestPeriod, quarterLabel } from "../../lib/ledger";
+
+const L = latestPeriod();
+const ORDER = ["All forms", "Family", "Green card", "Employment", "Citizenship", "Humanitarian", "Other", "Supplemental processing"];
+const latest = (s: ReturnType<typeof allSeries>[number], m: string) => {
+  const w = m === "pending" ? "snapshot" : "quarter";
+  const f = s.facts.filter((x) => x.measure === m && x.window === w).sort((a, b) => a.period.localeCompare(b.period)).at(-1);
+  return f && f.value !== null ? { v: f.value, p: f.period } : null;
+};
+const rows = allSeries()
+  .map((s) => ({ s, rec: latest(s, "received"), pend: latest(s, "pending"), med: latest(s, "median_processing_months") }))
+  .sort((a, b) => ORDER.indexOf(a.s.category) - ORDER.indexOf(b.s.category) || a.s.title.localeCompare(b.s.title));
+---
+<Base title="Find your form" description="Quarterly receipts, decisions, backlog and median processing time for every USCIS form, FY2013 to today, with the source cell for every number.">
+  <p class="kicker">Find your form</p>
+  <h1>Every USCIS form, every quarter</h1>
+  <p class="dek">Search by form number or name. Each page shows receipts, decisions, the backlog and the median processing time over time, with the government cell behind every number.</p>
+
+  <label for="q" class="note">Search forms</label><br />
+  <input id="q" type="search" placeholder="e.g. I-485, naturalization, asylum, work permit" autocomplete="off" />
+
+  <div class="table-scroll">
+    <table id="forms">
+      <thead>
+        <tr>
+          <th>Form</th>
+          <th>Category</th>
+          <th class="num">Received, {quarterLabel(L)}</th>
+          <th class="num">Pending</th>
+          <th class="num">Median months</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map(({ s, rec, pend, med }) => (
+          <tr data-search={`${s.code ?? ""} ${s.title} ${s.category} ${s.id}`.toLowerCase()}>
+            <td><a href={`/forms/${s.id}/`}>{s.title}</a>{rec && rec.p !== L && <span class="pill">last reported {rec.p}</span>}</td>
+            <td>{s.category}</td>
+            <td class="num">{rec && rec.p === L ? fmt(rec.v) : "—"}</td>
+            <td class="num">{pend && pend.p === L ? fmt(pend.v) : "—"}</td>
+            <td class="num">{med && med.p === L ? fmt(med.v) : "—"}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="note">"—" means USCIS printed no number for that form in {quarterLabel(L)}, or stopped reporting the row. Common words such as "work permit" and "green card" are matched below.</p>
+</Base>
+
+<style>
+  #q { width: 100%; max-width: 520px; font: inherit; padding: 10px 12px; border: 1px solid var(--axis); border-radius: 8px; background: var(--surface); color: var(--ink); margin: 6px 0 16px; }
+  td .pill { margin-left: 8px; }
+</style>
+
+<script>
+  // Everyday words people search with, mapped to the words USCIS uses.
+  const SYNONYMS: Record<string, string> = {
+    "work permit": "employment authorization", "ead": "employment authorization", "green card": "i-485",
+    "citizenship": "naturalization", "marriage": "i-130", "spouse": "i-130", "fiance": "i-129f",
+    "travel": "i-131", "parole": "i-131", "daca": "daca", "tps": "temporary protected", "renew": "i-90",
+    "h-1b": "i-129", "h1b": "i-129", "investor": "i-526", "eb-5": "i-526",
+  };
+  const input = document.getElementById("q") as HTMLInputElement;
+  const rows = [...document.querySelectorAll<HTMLTableRowElement>("#forms tbody tr")];
+  const apply = () => {
+    let q = input.value.trim().toLowerCase();
+    for (const [k, v] of Object.entries(SYNONYMS)) if (q.includes(k)) q = q.replace(k, v);
+    const terms = q.split(/\s+/).filter(Boolean);
+    for (const r of rows) r.hidden = !terms.every((t) => r.dataset.search!.includes(t));
+  };
+  input.addEventListener("input", apply);
+  const initial = new URLSearchParams(location.search).get("q");
+  if (initial) { input.value = initial; apply(); }
+</script>

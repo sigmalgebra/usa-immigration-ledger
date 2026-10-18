@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below."
+title: "USA Immigration Ledger: USCIS caseload and State Department visa issuances with cell-level provenance"
+type: dataset
+authors:
+  - family-names: "Di Polito"
+    given-names: "Nello"
+repository-code: "https://github.com/sigmalgebra/usa-immigration-ledger"
+url: "https://usa-immigration-ledger.vercel.app"
+license: CC0-1.0
+keywords: [immigration, USCIS, open data, data journalism, backlog, visas]

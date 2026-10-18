@@ -1,6 +1,19 @@
-.venv
-downloadingData.ipynb
-MonthlyImmigrantVisaIssuanceStatistics
-MontlyImmigrationData.xlsx
-analyzeImmStat.ipynb
-.gitignore
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.cache/
+
+# Site
+site/node_modules/
+site/dist/
+site/.astro/
+site/public/data/v1.tmp/
+.vercel/
+
+# Local drop folders and old downloads (their contents are in archive/, content-addressed)
+inbox/
+legacy/state-dept-downloads/
+legacy/MonthlyImmigrantVisaIssuanceStatistics/
+legacy/*.ipynb
+legacy/*.xlsx

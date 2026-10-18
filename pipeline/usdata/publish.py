@@ -1,0 +1,170 @@
+"""Ledger -> site/public/data/v1/. Output is sorted and timestamp-free so rebuilds are byte-identical
+and git diffs show only real data changes. The site reads these files at build time and serves them for download.
+"""
+from __future__ import annotations
+
+import csv
+import io
+import json
+import os
+import shutil
+from collections import defaultdict
+from dataclasses import asdict
+from decimal import Decimal
+from pathlib import Path
+
+from .archive import REPO
+from .checks import CheckResult
+from .datasets import DATASETS
+from .model import Absent, Fact, Ledger, Reported
+
+SCHEMA_VERSION = "v1"
+DATA = REPO / "site" / "public" / "data" / SCHEMA_VERSION
+GITHUB_BLOB = "https://github.com/sigmalgebra/usa-immigration-ledger/blob/main/"
+
+FACT_COLUMNS = ["series_id", "period", "measure", "window", "value", "status", "source_id", "cell", "raw"]
+
+
+def status(f: Fact) -> str:
+    if isinstance(f.value, Absent):
+        return f.value.reason
+    return "estimate" if f.value.is_estimate and f.key.measure != "median_processing_months" else "reported"
+
+
+def number(f: Fact) -> int | float | None:
+    if not isinstance(f.value, Reported):
+        return None
+    n: Decimal = f.value.number
+    return int(n) if n == n.to_integral_value() else float(n)
+
+
+def _sort_key(f: Fact):
+    return (f.key.series, str(f.key.period), f.key.measure, f.key.window)
+
+
+def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
+    """Every output file as {relative path: text}. Pure, so `--check` can compare without writing."""
+    out: dict[str, str] = {}
+    facts_by_ds: dict[str, list[Fact]] = defaultdict(list)
+    for f in ledger.facts.values():
+        facts_by_ds[ledger.series[f.key.series].dataset].append(f)
+
+    for ds, facts in sorted(facts_by_ds.items()):
+        facts.sort(key=_sort_key)
+        out[f"{ds}/facts.csv"] = _csv(FACT_COLUMNS, ([f.key.series, str(f.key.period), f.key.measure, f.key.window,
+                                                     _fmt(number(f)), status(f), f.cell.source_id, f.cell.address,
+                                                     f.cell.raw] for f in facts))
+
+    # Site-facing compact JSON for the forms report: one object per series, values keyed for direct lookup.
+    forms = []
+    for sid, s in sorted(ledger.series.items()):
+        if s.dataset != "uscis-forms":
+            continue
+        rows = [[str(f.key.period), f.key.measure, f.key.window, number(f), status(f), f.cell.source_id,
+                 f.cell.address, f.cell.raw] for f in sorted(ledger.series_facts(sid), key=_sort_key)]
+        forms.append({"id": sid, "code": s.form, "category": s.category, "title": s.title, "note": s.note,
+                      "facts": rows})
+    out["uscis-forms/series.json"] = _json(forms)
+    out["uscis-forms/wide.csv"] = _wide(ledger)
+
+    awaiting = [[s.dims["country"], s.dims["preference"], str(f.key.period), number(f), status(f), f.cell.source_id,
+                 f.cell.address] for f in sorted(facts_by_ds.get("uscis-i130-awaiting", []), key=_sort_key)
+                for s in [ledger.series[f.key.series]]]
+    out["uscis-i130-awaiting/compact.json"] = _json(awaiting)
+
+    state = [[str(f.key.period), s.dims["country"], s.dims["visa_class"], number(f), f.cell.source_id, f.cell.address]
+             for f in sorted(facts_by_ds.get("state-iv", []), key=_sort_key) for s in [ledger.series[f.key.series]]]
+    out["state-iv/compact.json"] = _json(state)
+
+    sources = sorted(ledger.sources.values(), key=lambda f: (f.dataset, f.original_name))
+    out["sources.json"] = _json([{**asdict(f), "archive_url": GITHUB_BLOB + f.archive_path,
+                                  "publisher": DATASETS[f.dataset].publisher} for f in sources])
+    out["sources.csv"] = _csv(["source_id", "dataset", "original_name", "url", "sha256", "retrieved_at",
+                               "retrieved_by", "archive_path"],
+                              ([f.source_id, f.dataset, f.original_name, f.url, f.sha256, f.retrieved_at,
+                                f.retrieved_by, f.archive_path] for f in sources))
+    out["revisions.csv"] = _csv(
+        ["series_id", "period", "measure", "window", "old_value", "old_source_id", "old_cell", "new_value",
+         "new_source_id", "new_cell"],
+        ([r.key.series, str(r.key.period), r.key.measure, r.key.window, _fmt(number(r.superseded)),
+          r.superseded.cell.source_id, r.superseded.cell.address, _fmt(number(r.current)), r.current.cell.source_id,
+          r.current.cell.address] for r in ledger.revisions))
+    out["checks.json"] = _json([asdict(c) for c in checks])
+    out["datapackage.json"] = _json(_datapackage(sorted(facts_by_ds)))
+    return out
+
+
+def write(ledger: Ledger, checks: list[CheckResult], out_dir: Path = DATA) -> None:
+    files = render(ledger, checks)
+    tmp = out_dir.with_name(out_dir.name + ".tmp")
+    shutil.rmtree(tmp, ignore_errors=True)
+    for rel, text in files.items():
+        p = tmp / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(text, encoding="utf-8", newline="\n")
+    shutil.rmtree(out_dir, ignore_errors=True)
+    os.replace(tmp, out_dir)
+
+
+def differs(ledger: Ledger, checks: list[CheckResult], out_dir: Path = DATA) -> bool:
+    files = render(ledger, checks)
+    on_disk = {p.relative_to(out_dir).as_posix() for p in out_dir.rglob("*") if p.is_file()} if out_dir.exists() else set()
+    if on_disk != set(files):
+        return True
+    return any((out_dir / rel).read_text(encoding="utf-8") != text for rel, text in files.items())
+
+
+def _fmt(n: int | float | None) -> str:
+    return "" if n is None else repr(n) if isinstance(n, float) else str(n)
+
+
+def _csv(header: list[str], rows) -> str:
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(header)
+    w.writerows(rows)
+    return buf.getvalue()
+
+
+def _json(obj) -> str:
+    return json.dumps(obj, ensure_ascii=False, separators=(",", ":"), sort_keys=False) + "\n"
+
+
+def _wide(ledger: Ledger) -> str:
+    """One row per (series, quarter), one column per measure. For spreadsheet users; no provenance columns."""
+    measures = ["received", "approved", "denied", "completed", "pending", "median_processing_months"]
+    rows: dict = defaultdict(dict)
+    for f in ledger.facts.values():
+        s = ledger.series[f.key.series]
+        if s.dataset != "uscis-forms" or f.key.window not in ("quarter", "snapshot"):
+            continue
+        rows[(f.key.series, f.key.period)][f.key.measure] = number(f)
+    return _csv(["series_id", "title", "category", "fiscal_quarter", *measures],
+                ([sid, ledger.series[sid].title, ledger.series[sid].category, str(p),
+                  *(_fmt(m.get(x)) for x in measures)] for (sid, p), m in sorted(rows.items(), key=lambda x: (x[0][0], str(x[0][1])))))
+
+
+def _datapackage(datasets: list[str]) -> dict:
+    fields = [
+        {"name": "series_id", "type": "string", "description": "Stable series identifier (see uscis-forms/series.json)"},
+        {"name": "period", "type": "string", "description": "FY2026Q3 (federal fiscal quarter) or 2024-09 (month)"},
+        {"name": "measure", "type": "string"},
+        {"name": "window", "type": "string", "description": "quarter | fytd | month | snapshot (stocks such as pending)"},
+        {"name": "value", "type": "number", "description": "Empty when the source printed no number; see status"},
+        {"name": "status", "type": "string",
+         "description": "reported | estimate (fractional count) | dash (USCIS: zero or rounds to 0) | na | null | "
+                        "blank | withheld (USCIS D/H privacy suppression)"},
+        {"name": "source_id", "type": "string", "description": "Join to sources.csv"},
+        {"name": "cell", "type": "string", "description": "Exact cell in the archived source file"},
+        {"name": "raw", "type": "string", "description": "Cell text exactly as printed"},
+    ]
+    return {
+        "name": "us-immigration-ledger",
+        "title": "US immigration ledger: USCIS caseload and State Department visa issuances, cell-level provenance",
+        "licenses": [{"name": "CC0-1.0", "title": "Public domain dedication (source data are U.S. government works)"}],
+        "resources": [{"name": ds, "path": f"{ds}/facts.csv", "format": "csv",
+                       "title": DATASETS[ds].title, "sources": [{"title": DATASETS[ds].publisher, "path": DATASETS[ds].listing}],
+                       "schema": {"fields": fields}} for ds in datasets]
+               + [{"name": "sources", "path": "sources.csv", "format": "csv"},
+                  {"name": "revisions", "path": "revisions.csv", "format": "csv"}],
+    }

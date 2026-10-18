@@ -1,0 +1,85 @@
+---
+import Base from "../layouts/Base.astro";
+import Chart from "../components/Chart.astro";
+import type { LineSpec } from "../lib/chart";
+import { checks, fmt, issuances, source } from "../lib/ledger";
+
+const rows = issuances();
+const totals = rows.filter((r) => r.country.toUpperCase() === "GRAND TOTAL" && r.value !== null)
+  .sort((a, b) => a.month.localeCompare(b.month));
+const first = totals[0], last = totals.at(-1)!;
+const monthLabel = (m: string) =>
+  new Date(`${m}-01T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+
+// Every month from first to last, so a month the State Department never published shows as a gap.
+const months: string[] = [];
+for (let d = new Date(`${first.month}-01T00:00:00Z`); d <= new Date(`${last.month}-01T00:00:00Z`); d.setUTCMonth(d.getUTCMonth() + 1)) {
+  months.push(d.toISOString().slice(0, 7));
+}
+const byMonth = new Map(totals.map((r) => [r.month, r]));
+const spec: LineSpec = {
+  unit: "count",
+  series: [{ key: "total", label: "Immigrant visas issued", slot: 1 }],
+  points: months.map((m) => {
+    const r = byMonth.get(m);
+    return {
+      x: `${m}-15T00:00:00Z`, y: r?.value ?? null, s: "total", label: monthLabel(m),
+      cite: r ? `${source(r.sourceId).original_name}, ${r.cell}` : "not published",
+    };
+  }),
+};
+const missing = months.filter((m) => !byMonth.has(m));
+const peak = totals.reduce((a, b) => (b.value! > a.value! ? b : a));
+const low = totals.reduce((a, b) => (b.value! < a.value! ? b : a));
+
+// Top countries over the latest 12 months. These are sums we computed of the printed monthly rows.
+const last12 = new Set(months.slice(-12));
+const byCountry = new Map<string, number>();
+for (const r of rows) {
+  if (!last12.has(r.month) || r.value === null || r.country.toUpperCase() === "GRAND TOTAL") continue;
+  byCountry.set(r.country, (byCountry.get(r.country) ?? 0) + r.value);
+}
+const top = [...byCountry.entries()].sort((a, b) => b[1] - a[1]).slice(0, 15);
+const dupes = checks().filter((c) => c.check === "state-duplicate-rows").length;
+---
+<Base title="Immigrant visas issued abroad" description={`State Department immigrant visa issuances by month, ${monthLabel(first.month)} to ${monthLabel(last.month)}, from every monthly report including ones recovered from the Internet Archive.`}>
+  <p class="kicker">U.S. Department of State · consular data</p>
+  <h1>Immigrant visas issued abroad, every month since {monthLabel(first.month)}</h1>
+  <p class="dek">
+    This is the other half of legal immigration. Most people who become permanent residents from abroad get an
+    immigrant visa at a U.S. consulate, issued by the State Department rather than USCIS. These are the department's
+    monthly counts, by country of chargeability and visa class.
+  </p>
+
+  <Chart spec={spec} title="Immigrant visas issued per month, worldwide" subtitle={`State Department "Grand Total" line, ${monthLabel(first.month)} to ${monthLabel(last.month)}.`} />
+
+  <div class="prose">
+    <p>
+      The busiest month in these reports was {monthLabel(peak.month)}, with
+      {" "}<a class="fig" href={source(peak.sourceId).archive_url} title={`${source(peak.sourceId).original_name}, ${peak.cell}`}>{fmt(peak.value!)}</a>
+      {" "}visas. The quietest was {monthLabel(low.month)}, with
+      {" "}<a class="fig" href={source(low.sourceId).archive_url} title={`${source(low.sourceId).original_name}, ${low.cell}`}>{fmt(low.value!)}</a>.
+      {missing.length > 0 && <> The department's reports for {missing.map(monthLabel).join(", ")} are missing from its site and the Internet Archive.</>}
+    </p>
+  </div>
+
+  <h2>Top countries, last 12 months ({monthLabel(months.at(-12)!)} to {monthLabel(last.month)})</h2>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Country of chargeability or birth</th><th class="num">Immigrant visas</th></tr></thead>
+      <tbody>{top.map(([c, n]) => <tr><td>{c}</td><td class="num">{fmt(n)}</td></tr>)}</tbody>
+    </table>
+  </div>
+  <p class="note">
+    Country totals are our sums of the printed monthly rows, not figures the State Department publishes. Every row is
+    in the <a href="/data/">dataset</a> with its source cell. The department's files list {dupes} country-and-class
+    rows twice in some months; we keep both copies, since both count toward its grand total
+    (<a href="/source-errors/">details</a>).
+  </p>
+
+  <h2>Where these numbers come from</h2>
+  <ul>
+    <li>travel.state.gov refuses automated downloads, and we don't work around that. Recent files are downloaded by hand. Older ones, which the department has removed, come from the Internet Archive's copies, and each records the capture it came from.</li>
+    <li>Reports up to September 2021 survive only as PDF. We read them by the position of each number on the page, and every monthly grand total matches the sum of its rows.</li>
+  </ul>
+</Base>

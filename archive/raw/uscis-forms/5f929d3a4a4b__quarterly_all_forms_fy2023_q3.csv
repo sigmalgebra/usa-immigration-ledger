@@ -1,0 +1,128 @@
+﻿Number of Service-wide Forms,,,,,,,,,,,,
+"By Quarter, Form Status, and Processing Time ",,,,,,,,,,,,
+"April 1, 2023 - June 30, 2023",,,,,,,,,,,,
+Category and Form Number,Description,3rd Quarter,4th Quarter,1st Quarter,2nd Quarter,3rd Quarter,4th Quarter,Fiscal Year - To Date,Fiscal Year - To Date,Fiscal Year - To Date,Fiscal Year - To Date,Fiscal Year - To Date
+,,Forms Received1,Approved2,Denied3,Total Completions4,Pending5,Processing Time6,Forms Received,Approved,Denied,Total Completions,Pending
+TOTAL,,"2,741,873","2,253,808","352,516","2,633,617","8,944,240", N/A ,"7,767,145","6,703,700","1,043,936","7,824,299","8,944,240"
+Family Based,,,,,,,,,,,,
+I-129F,Petition for Alien Fiancé(e),"11,036","13,548","3,750","17,298","51,506",13.3,"34,355","29,763","9,868","39,631","51,506"
+I-130,Petition for Alien Relative,"235,954","229,160","15,857","245,017","1,912,805",11.9,"690,306","586,020","43,172","629,192","1,912,805"
+I-6007,Petition to Classify Orphan as an Immediate Relative,314,269,61,330,466,3.4,752,608,123,731,466
+I-601A,Application for Provisional Unlawful Presence Waiver,"8,550","4,081",182,"4,263","138,216",43.4,"25,278","7,156",697,"7,853","138,216"
+I-751,Petition to Remove Conditions on Residence,869,"30,927","1,390","32,317","217,706",21.4,"93,028","85,964","3,986","89,950","217,706"
+I-8008,Petition to Classify Convention Adoptee as an Immediate Relative,576,702,36,738,405,1.6,"1,722","1,588",65,"1,653",405
+Employment Based,,,,,,,,,,,,
+I-129,Petition for a Nonimmigrant Worker,"180,888","125,772","34,472","160,244","91,729",1.9,"404,167","381,068","104,445","485,513","91,729"
+I-140,Immigrant Petition for Alien Workers,"77,273","61,698","5,955","67,653","53,006",3.9,"205,440","190,926","18,088","209,014","53,006"
+I-5269,Immigrant Petition by Alien Investor (Legacy), -   ,637,251,888,"10,802",48.2, -   ,"1,314",616,"1,930","10,802"
+I-526,Immigrant Petition by Standalone Investor,50, N/A , N/A , N/A ,137, N/A ,129, N/A , N/A , N/A ,137
+I-526E,Immigrant Petition by Regional Center Investor,649, N/A , N/A , N/A ,"1,761", N/A ,"1,558", N/A , N/A , N/A ,"1,761"
+I-765,Application for Employment Authorization (Asylum),"308,543","315,383","53,513","368,896","363,769",0.9,"777,655","775,151","112,240","887,391","363,769"
+I-765,Application for Employment Authorization (Adjustment Of Status),"178,023","164,609","35,193","199,802","306,962",5.1,"469,742","396,221","159,955","556,176","306,962"
+I-765,Application for Employment Authorization (DACA),"98,109","86,420",611,"87,031","141,168",0.9,"246,667","233,746","1,819","235,565","141,168"
+I-765,Application for Employment Authorization (All Other),"363,752","280,634","17,782","298,416","750,222",2.2,"993,167","720,372","55,203","775,575","750,222"
+I-829,Petition by Investor to Remove Conditions on Permanent Resident Status,484,444,30,474,"10,507",48.6,925,"1,113",139,"1,252","10,507"
+I-92410,Application For Regional Center Designation Under the Immigrant Investor Program, -   , -   , -   , -   ,40, N/A , -   , -   , D , D ,40
+I-924A,Annual Certification of Regional Center, -   , -   , -   , -   ,"1,734", N/A , -   , -   , -   , -   ,"1,734"
+I-95611,Application for Regional Center Designation,41,48, D , H ,273,10.8,249,77, D , H ,273
+I-956F,Application for Approval of Investment in a Commercial Enterprise,61, D , -   , D ,187,11.1,139, D , -   , D ,187
+I-956G,Regional Center Annual Statement,12, -   , -   , -   ,276, N/A ,307, -   , -   , -   ,276
+I-956H,Bona Fides of Person Involved in Regional Center Program,493, -   , -   , -   ,"2,635", N/A ,"1,816", -   , -   , -   ,"2,635"
+I-956K,Registration for Direct and Third-Party Promoters,258, -   , -   , -   , N/A , N/A ,412, -   , -   , -   , N/A 
+Humanitarian,,,,,,,,,,,,
+I-58912,Application for Asylum and for Withholding of Removal,"129,818","5,756","1,580","11,956","920,963", N/A ,"328,749","13,747","4,421","28,005","920,963"
+Legalization13,Legalization/SAW,13, D ,21, H ,382, N/A ,40, D ,60, H ,382
+I-730,Refugee/Asylee Relative Petition,"5,138","4,991",505,"5,496","14,563",9,"12,991","13,299","1,394","14,693","14,563"
+I-817,Application for Family Unity Benefits,75,87,98,185,274,7.7,243,137,154,291,274
+I-821,Application for Temporary Protected Status,"33,968","70,764","4,040","74,804","349,691",7.1,"302,499","193,421","8,109","201,530","349,691"
+I-821D,Consideration of Deferred Action for Childhood Arrivals,"97,040","84,637",454,"85,091","130,556",0.9,"243,870","230,643","1,270","231,913","130,556"
+I-87014,Record of Determination/Credible Fear Worksheet,"42,876","22,500","13,280","39,705","6,663", N/A ,"95,460","55,144","25,997","87,755","6,663"
+I-88115,App. for Susp. of Deport. or Spec. Rule Cancel. of Removal (Sect. 203 of Public Law 105-100 (NACARA)),44,17, -   ,20,609, N/A ,150,35, D ,42,609
+I-89916,Record of Determination/Reasonable Fear Worksheet,"2,722",729,"1,242","2,561",259, N/A ,"7,134","2,165","3,064","6,740",259
+I-91417,Application for T Nonimmigrant Status,"3,895",959,214,"1,173","11,470",12.2,"8,788","2,631",682,"3,313","11,470"
+I-91818,Petition for U Nonimmigrant Status,"12,222","3,064","1,781","4,845","334,018",56.5,"40,328","17,366","5,139","22,505","334,018"
+I-929,Petition for Qualifying Family Member of a U-1 Nonimmigrant,275,219,48,267,"2,018",15.5,807,557,148,705,"2,018"
+Lawful Permanent Residence,,,,,,,,,,,,
+I-485,Application to Register Permanent Residence or Adjust Status (Family),"108,045","98,203","10,685","108,888","479,922",11.5,"298,019","241,446","24,809","266,255","479,922"
+I-48519,Application to Register Permanent Residence or Adjust Status (Employment),"24,580","31,920","3,676","35,596","189,295",7.6,"103,345","115,703","10,649","126,352","189,295"
+I-485,Application to Register Permanent Residence or Adjust Status (Asylum),"14,549","11,301",531,"11,832","53,193",24,"30,444","27,355","1,702","29,057","53,193"
+I-485,Application to Register Permanent Residence or Adjust Status (Refugee),"5,192","5,215",195,"5,410","24,124",22.4,"13,294","9,685",630,"10,315","24,124"
+I-485,Application to Register Permanent Residence or Adjust Status (Cuban),"56,764","9,238",704,"9,942","36,578",3.3,"92,849","24,895","2,181","27,076","36,578"
+I-485,Application to Register Permanent Residence or Adjust Status (Other),"10,427","9,615",757,"10,372","46,067",6.8,"27,416","22,149","2,036","24,185","46,067"
+Citizenship and Nationality,,,,,,,,,,,,
+N-300,Application to File Declaration of Intention, -   , -   , -   , -   , -   , N/A , -   , -   , -   , -   , -   
+N-336,Req. for a Hearing on a Decision in Natz. Proceedings (Under Sect. 336 of the INA),"1,532",847,651,"1,498","4,676", N/A ,"4,480","1,561","1,451","3,012","4,676"
+N-40020,Application for Naturalization (Military),"4,004","3,161",345,"3,506","7,127",5.8,"10,221","8,197","1,006","9,203","7,127"
+N-40020,Application for Naturalization,"201,615","188,607","22,562","211,169","433,486",5.8,"600,009","635,034","76,567","711,601","433,486"
+N-470,Application to Preserve Residence for Naturalization Purposes, -   , -   , -   , -   , D , N/A , -   , -   , -   , -   , D 
+N-565,Application for Replacement Naturalization/Citizenship Document,"7,652","12,318",995,"13,313","15,606",5.2,"22,884","36,581","2,791","39,372","15,606"
+N-60021,Application for Certificate of Citizenship,"16,751","22,847","2,260","25,107","63,872",7.3,"53,003","48,089","4,756","52,845","63,872"
+N-644,Application for Posthumous Citizenship, -   , -   , -   , -   , -   , N/A , -   , -   , -   , -   , -   
+N-648,Medical Certification for Disability Exceptions,"17,485", N/A , N/A ,"17,906","1,394", N/A ,"56,324", N/A , N/A ,"58,139","1,394"
+Other,,,,,,,,,,,,
+I-90,Application to Replace Permanent Resident Card,"156,170","129,855","1,336","131,191","564,892",0.9,"450,329","907,912","10,213","918,125","564,892"
+I-102,Application for Replacement/Initial Nonimmigrant Arrival-Departure Document,946,847,339,"1,186","2,577",4.2,"2,720","2,689","1,096","3,785","2,577"
+I-131,Application for Travel Document,"18,789","14,012","2,287","16,299","87,636",16.4,"53,380","37,792","7,257","45,049","87,636"
+I-131,Application for Travel Document (Advance Parole),"140,556","77,129","71,712","148,841","394,051",5.6,"397,103","214,559","152,590","367,149","394,051"
+I-131,Application for Travel Document (Parole-in-Place),"6,160","2,863",421,"3,284","6,892",5.8,"17,644","7,211","1,006","8,217","6,892"
+I-13122,Application for Travel Document (Humanitarian Parole),"2,297","1,266","1,120","2,635","44,524", N/A ,"8,054","3,265","2,696","6,518","44,524"
+I-193,Application for Waiver of Passport and/or Visa, D , D , D ,13,340,80.1,18,32,18,50,340
+I-360,"Petition for Amerasian, Widow(er), or Special Immigrant","29,485","3,098","1,453","4,551","113,809",6.2,"75,160","12,769","4,992","17,761","113,809"
+I-539,Application To Extend/Change Nonimmigrant Status,"62,971","95,949","22,847","118,796","66,206",6.1,"178,991","264,364","78,332","342,696","66,206"
+I-824,Application for Action on an Approved Application or Petition,"11,005","5,768",417,"6,185","25,949",3,"28,162","13,527","1,295","14,822","25,949"
+Waivers23,Waivers,"23,884","9,002","2,728","11,730","295,326",11.7,"68,742","32,166","8,468","40,634","295,326"
+I-290B,Notice of Appeal or Motion,"26,987","12,678","12,142","24,820","158,919",3.6,"185,681","96,481","86,531","183,012","158,919"
+Supplemental Processing,,,,,,,,,,,,
+DS-230 (IV)24,Immigrant Visas,"139,254", N/A , N/A ,"152,093","60,040", N/A ,"398,899", N/A , N/A ,"427,235","60,040"
+EOIR Adjustment24,EOIR Adjustment,"5,941", N/A , N/A ,"5,941","29,591", N/A ,"16,897", N/A , N/A ,"16,897","29,591"
+Table Key:,,,,,,,,,,,,
+N/A  Not available,,,,,,,,,,,,
+D  Disclosure standards not met,,,,,,,,,,,,
+H Replaces the value from which one could deduce the value of D,,,,,,,,,,,,
+- Represents zero or rounds to 0.0,,,,,,,,,,,,
+References:,,,,,,,,,,,,
+1 Forms Received are the number of new applications or petitions received and entered into a case-tracking system during the reporting period.,,,,,,,,,,,,
+2 The number of applications or petitions approved during the reporting period.,,,,,,,,,,,,
+3 The number of applications or petitions that were denied during the reporting period. Outcomes included in this count will vary by benefit type as not all benefit types have all of these outcomes in every reporting period.  ,,,,,,,,,,,,
+"4 Total Completions on the 'Total - All Forms' line are approvals plus denials with three exceptions: N-648 does not break down Approvals and Denials, only Completions; and I-589 and I-131 (Humanitarian Parole) include administratively closed cases in Completions, which are not reported under the Approvals or Denials. ",,,,,,,,,,,,
+5 The number of applications or petitions awaiting a decision as of the end of the reporting period. Some actions taken on cases are not reflected in this report such as administrative closures and transfers between offices; thus the total pending counts cannot be calculated using data from previous reporting periods.,,,,,,,,,,,,
+"6 Processing times are defined as the number of months it took for an application, petition, or request to be processed from receipt to completion in a given time period. The number of months presented is the median which is the time it took to complete 50% of all the cases processed in the quarter.",,,,,,,,,,,,
+"7 Includes I-600A, Application for Advance Processing of an Orphan Petition.",,,,,,,,,,,,
+"8 Includes I-800A, Application for Determination of Suitability to Adopt a Child from a Convention Country.",,,,,,,,,,,,
+9 This refers to all I-526 form editions that predate Edition 06/01/22.,,,,,,,,,,,,
+10 Form I-924 and I-924A have been decommissioned. Applicants now use Form I-956 to request or amend USCIS designation as a regional center and Form I-956F to request Approval of an Investment in a Commercial Enterprise. Applicants now use Form I-956G to submit the regional center’s,,,,,,,,,,,,
+    annual statement. I-924 approvals may continue to include certain regional center reaffirmations and I-924 denials may continue to include certain regional center terminations. ,,,,,,,,,,,,
+11 I-956 approvals may  include certain regional center reaffirmations and I-956 denials may include certain regional center terminations.,,,,,,,,,,,,
+"12 Data are for affirmatively filed I-589 asylum applications and do not include defensive asylum claims before a DOJ EOIR immigration court. For affirmative I-589s, the “denial” column includes cases where USCIS found the applicant not eligible on the merits of the claim and referred the applicant to",,,,,,,,,,,,
+    an immigration judge. Previous reports did not include referrals in the denied counts. Administratively closed cases are not included in approvals or denials but are included in the total number of completions.,,,,,,,,,,,,
+"13 Includes the following applications for persons applying for benefits under the Immigration Reform and Control Act of 1986:  Forms I-687, I-700. I-698, I-690, I-694, and I-695.",,,,,,,,,,,,
+"14 Credible fear cases approved indicate fear established. Credible fear cases denied indicate fear not established.  Administratively closed cases are not included in approvals or denials, but are included in total number of completions.",,,,,,,,,,,,
+15 NACARA cases approved indicate a grant of suspension of deportation or special rule cancellation of removal and adjustment of status. Denied indicates USCIS found the applicant not eligible on the merits of the claim and referred the applicant to an immigration judge. ,,,,,,,,,,,,
+"    Administratively closed and dismissed cases are not included in approvals or denials, but are included in total number of completions.",,,,,,,,,,,,
+"16 Reasonable fear cases approved indicate fear established. Reasonable fear cases denied indicate fear not established. Administratively closed cases are not included in approvals or denials, but are included in total number of completions.",,,,,,,,,,,,
+"17 Includes I-914A, Application for Family Member of T-1 Recipient.",,,,,,,,,,,,
+"18 Includes I-918A, Petition for Qualifying Family Member of U-1 Recipient. Processing times shown are from initial filing to Bona Fide Determination (BFD) Review.",,,,,,,,,,,,
+"19 Starting in Fiscal Year 2023, special immigrants adjusting status in the 4th employment-based preference category are included in “Employment” unlike previous reporting periods.",,,,,,,,,,,,
+20 Processing Times shown are for all N-400 Applications for Naturalization.,,,,,,,,,,,,
+"21 Includes N-600K, Application for Citizenship and Issuance of Certificate Under Section 322. ",,,,,,,,,,,,
+22 This report reflects data for requests filed for individuals outside of the United States requesting parole into the United States based on urgent humanitarian or significant public benefit reasons and individuals inside the United States requesting re-parole.,,,,,,,,,,,,
+"23 Includes the following applications filed to waive exclusionary grounds:  Forms I-191, I-192, I-212, I-601, I-602, and I-612.",,,,,,,,,,,,
+"24 Immigrant Visa and EOIR Adjustment are not included in the ""Total - All Forms"" line. ",,,,,,,,,,,,
+Notes:,,,,,,,,,,,,
+"1) Some applications or petitions approved, denied, or pending a decision may have been received in previous reporting periods. ",,,,,,,,,,,,
+2) The report reflects the most up-to-date estimate available at the time the database is queried.,,,,,,,,,,,,
+"3) Forms received, completed (approved and denied), and pending counts may differ from counts reported in previously published reports due to processing delays and the time at which the data are queried, system updates, and post-adjudicative outcomes.",,,,,,,,,,,,
+"4) Completed are the number of applications or petitions approved or denied. Some benefit types include other outcomes, such as administrative closures, in the total number of completed cases. As such, approvals and denials will not sum to the total number of completions for all benefit types.",,,,,,,,,,,,
+5) Forms where a processing time is unavailable are shown with an N/A. Processing times may be unavailable for a variety of reasons such as forms pending a processing times calculation or forms where times cannot be calculated. ,,,,,,,,,,,,
+6) Summing the six I-485 types and the four I-765 types results in the overall totals for each form for the reporting period. ,,,,,,,,,,,,
+"7) Credible Fear and Reasonable Fear screenings (and their respective forms I-870 and I-899) do not confer an immigration benefit, rather they are intended to identify individuals with viable protection claims, which are then referred to the Immigration Courts for adjudication. ",,,,,,,,,,,,
+   Asylum Officers do not adjudicate the actual asylum applications during the screening process.,,,,,,,,,,,,
+"8) For the I-131 (humanitarian parole), approvals are defined as conditional approval of the request for parole contingent upon successful completion of identity verification and any additional medical and security checks as required. ",,,,,,,,,,,,
+"    A request for humanitarian parole may be counted as closed for a number of reasons, including if the beneficiary withdraws the request or if USCIS has notified the petitioner that the case is eligible for further parole processing and is awaiting notification from the petitioner that the parole ",,,,,,,,,,,,
+    beneficiary is in a location with a U.S. embassy or consulate.,,,,,,,,,,,,
+9) The majority of the I-730 completions are captured in CLAIMS3 and included in this data. The I-730 processing times are based on completions made at the Texas and Nebraska Service Centers only.,,,,,,,,,,,,
+"10) For a complete list of USCIS forms and descriptions, visit https://www.uscis.gov/forms",,,,,,,,,,,,
+Source:,,,,,,,,,,,,
+"All data except I-589, I-870, I-899 and I-881 - Department of Homeland Security, U.S. Citizenship and Immigration Services, Office of Performance and Quality",,,,,,,,,,,,
+"I-589, I-870, I-899, I-881, I-131 (Humanitarian Parole) data were provided by the Refugee, Asylum and International Operations (RAIO) Directorate",,,,,,,,,,,,
+"PRT, ELIS, CLAIMS3, queried 8/2023, TRK #12292",,,,,,,,,,,,

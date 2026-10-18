@@ -1,0 +1,111 @@
+---
+import Base from "../layouts/Base.astro";
+import { checks, periods, quarterLabel, sources } from "../lib/ledger";
+
+const src = sources().sort((a, b) => a.dataset.localeCompare(b.dataset) || a.original_name.localeCompare(b.original_name));
+const byDataset = Object.entries(Object.groupBy(src, (s) => s.dataset));
+const DATASET: Record<string, string> = {
+  "uscis-forms": "USCIS · Number of Service-wide Forms by Quarter, Form Status, and Processing Time",
+  "uscis-i130-awaiting": "USCIS · Form I-130 Approved Family-Based Petitions Awaiting Visa Availability",
+  "state-iv": "U.S. Department of State · Monthly Immigrant Visa Issuances by Foreign State of Chargeability",
+};
+const nChecks = checks().length;
+const wayback = src.filter((s) => s.retrieved_by === "wayback").length;
+const firstQ = (() => { const p = periods("total", "received")[0]; return `${quarterLabel(p)} (${p})`; })();
+---
+<Base title="Methodology" description="How the USA Immigration Ledger turns USCIS and State Department spreadsheets into one verifiable dataset: sources, definitions, rules, limits and corrections.">
+  <p class="kicker">How we did it</p>
+  <h1>Methodology</h1>
+  <div class="prose">
+    <p class="dek">The short version: we archive every government file byte for byte, parse each cell without guessing, and refuse to publish a number we can't trace to a cell.</p>
+
+    <h2>Sources</h2>
+    <p>
+      <strong>USCIS</strong>, the agency in the Department of Homeland Security that decides immigration benefits, publishes quarterly statistics at
+      {" "}<a href="https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data">uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data</a>.
+      A crawler downloads new files from that page once a week, identifying itself and pausing between requests.
+    </p>
+    <p>
+      <strong>The State Department</strong> issues immigrant visas at consulates abroad. Its monthly issuance files are at
+      {" "}<a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics/immigrant-visa-statistics/monthly-immigrant-visa-issuances.html">travel.state.gov</a>.
+      That site refuses automated downloads, and we don't work around that. Its files are downloaded by a person and
+      added by hand, so they can lag. These are visas issued abroad, a different step from USCIS decisions.
+    </p>
+    <p>
+      Each file is stored in the <a href="https://github.com/sigmalgebra/usa-immigration-ledger/tree/main/archive">public archive</a>
+      under its SHA-256 hash, because USCIS removes old versions from its site. The build checks every file against its hash.
+    </p>
+    <p>
+      <strong>Deleted reports.</strong> Both agencies remove older files. {wayback} of our {src.length} files are copies
+      the <a href="https://web.archive.org/">Internet Archive</a> captured before they disappeared. For each one we
+      record the original government address and the exact capture we downloaded, in its raw form (the archive's
+      <code>id_</code> address, which returns the original bytes). That is how the series reaches back to
+      {" "}{firstQ}.
+    </p>
+    <p>
+      <strong>PDF-only years.</strong> USCIS's reports for FY2019Q3 to FY2021Q3, and the State Department's for March
+      2017 to September 2021, survive only as PDFs. Table-extraction tools misread them, merging form numbers and
+      splitting digits, so we read each number from its position on the page, under its column header. Citations for
+      PDF values give the page, the column, and the distance from the top of the page in points. Two checks back the
+      method: each State Department month's grand total equals the sum of its rows, and USCIS PDF values agree with
+      the neighbouring reports that reprint the same quarters about as often as spreadsheets agree with each other.
+      Both are automated tests.
+    </p>
+
+    <h2>Definitions</h2>
+    <ul>
+      <li><strong>Coverage.</strong> USCIS forms from {firstQ}. The FY2012Q3–FY2013Q3 files are a different, monthly report (receipts and approvals only); we archive them but start the series where the full quarterly report begins.</li>
+      <li><strong>Fiscal quarters.</strong> The federal fiscal year starts October 1. FY2026Q3 is April 1 to June 30, 2026.</li>
+      <li><strong>Received</strong>: new filings entered into a case system in the quarter. <strong>Approved</strong>, <strong>denied</strong> and <strong>completed</strong>: decisions made in the quarter, which may be on cases filed earlier. <strong>Pending</strong>: cases awaiting a decision on the quarter's last day.</li>
+      <li><strong>Median processing time</strong>: USCIS's figure for cases decided in the quarter, in months from receipt to completion.</li>
+      <li><strong>Total</strong> is USCIS's own service-wide line. It includes forms not listed individually, so it is larger than the sum of the rows, and its scope has changed over the years.</li>
+    </ul>
+
+    <h2>Rules we follow</h2>
+    <ol>
+      <li><strong>No guessing.</strong> Any cell we can't parse, or row we can't identify, stops the build.</li>
+      <li><strong>Identity is reviewed by a person.</strong> Which printed rows count as the same form across years is decided in one reviewed file, <a href="https://github.com/sigmalgebra/usa-immigration-ledger/blob/main/catalog/uscis-forms.toml">catalog/uscis-forms.toml</a>, with a note wherever USCIS split, merged or renamed a row. We never join series across a split.</li>
+      <li><strong>Missing stays missing.</strong> A dash, “N/A” or a privacy “D” is published with that status, not as zero. USCIS's table key says a dash means “zero or rounds to 0”; you can treat it that way if you choose.</li>
+      <li><strong>No interpolation.</strong> Quarters USCIS doesn't publish are gaps.</li>
+      <li><strong>Latest printing wins, and history is kept.</strong> If a later file restates an earlier number, we show the later value and keep both in <a href="/data/v1/revisions.csv">revisions.csv</a>.</li>
+      <li><strong>Doubts are published.</strong> {nChecks} automated checks run on every build and are shown on <a href="/source-errors/">Errors we found</a>.</li>
+      <li><strong>Prose can't drift from data.</strong> Every number in our text is drawn from the dataset when the site is built; a number that isn't in the data fails the build.</li>
+    </ol>
+
+    <h2 id="questions">Open questions for USCIS and the State Department</h2>
+    <p>Before relying on these findings, we are putting these questions to the agencies. Their answers, or the lack of one, will be logged here with dates.</p>
+    <ol>
+      <li>USCIS: what explains the fall in completions from early 2024 to 2026, and in naturalization decisions since mid-2025?</li>
+      <li>USCIS: why do the FY2024Q3 processing times for dozens of forms repeat FY2024Q2's values digit for digit? Which values are correct?</li>
+      <li>USCIS: the FY2024Q2 and FY2026Q2 I-130 visa-availability files are titled with earlier dates. Can you confirm their correct dates?</li>
+      <li>USCIS: what produced the fractional counts in the FY2024 reports, and how were they estimated?</li>
+      <li>State Department: why do some Egypt and Jordan immediate-relative visa classes appear on two rows in several 2023–2024 months?</li>
+    </ol>
+    <p class="note">Status: not yet sent. This page will show when each question was sent and answered.</p>
+
+    <h2 id="corrections">Corrections</h2>
+    <p>No corrections yet. Found an error? <a href="https://github.com/sigmalgebra/usa-immigration-ledger/issues/new">Open an issue</a>; corrections are logged here with the date and what changed.</p>
+  </div>
+
+  <h2>Every source file</h2>
+  {byDataset.map(([ds, files]) => (
+    <details>
+      <summary><strong>{DATASET[ds] ?? ds}</strong> ({files!.length} files)</summary>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>File</th><th>SHA-256</th><th>Retrieved</th><th>Original</th></tr></thead>
+          <tbody>
+            {files!.map((f) => (
+              <tr>
+                <td><a href={f.archive_url}>{f.original_name}</a></td>
+                <td><code title={f.sha256}>{f.sha256.slice(0, 12)}…</code></td>
+                <td>{f.retrieved_at.slice(0, 10)} ({f.retrieved_by})</td>
+                <td>{f.via ? <><a href={f.via}>Internet Archive copy</a> of <a href={f.url}>{new URL(f.url).hostname}</a></> : f.url.includes("#") ? "downloaded by hand" : <a href={f.url}>{new URL(f.url).hostname}</a>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  ))}
+</Base>

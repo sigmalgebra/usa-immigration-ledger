@@ -1,0 +1,13 @@
+---
+// A number in prose, pulled from the ledger at build time and linked to the exact archived cell.
+// If the fact doesn't exist the build fails: prose can't cite a number we don't hold.
+import { fact, fmt, source, type Measure, type Window } from "../lib/ledger";
+
+interface Props { s: string; p: string; m: Measure; w?: Window; display?: (n: number) => string }
+const { s, p, m, w, display } = Astro.props;
+const f = fact(s, p, m, w);
+const src = source(f.sourceId);
+const text = display ? display(f.value as number) : fmt(f.value as number);
+const label = `${src.original_name}, ${f.cell}, printed as “${f.raw.trim()}”`;
+---
+<a class="fig" href={src.archive_url} title={label} aria-label={`${text} (source: ${label})`}>{text}</a>
