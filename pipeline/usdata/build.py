@@ -7,7 +7,7 @@ from typing import Iterable
 from . import archive, checks
 from .checks import CheckResult
 from .datasets import DATASETS
-from .identity import Unmapped, country_name, load_catalog, resolve_form, slug
+from .identity import Unmapped, country_name, load_catalog, resolve_bulletin, resolve_form, slug
 from .model import Fact, FactKey, Ledger, ParsedFile, Revision, Series, SeriesId, SourceFile
 
 
@@ -45,6 +45,15 @@ def build() -> tuple[Ledger, list[CheckResult]]:
                 series.setdefault(sid, Series(sid, f.dataset, "I-130", "Visa queue",
                                               f"Approved I-130s awaiting a visa: {name}, {pref}",
                                               {"country": name, "preference": pref}))
+            elif f.dataset == "state-vb":
+                resolved = resolve_bulletin(catalog.bulletin, o.row)
+                if resolved is None:
+                    continue
+                if isinstance(resolved, Unmapped):
+                    unmapped.append((f, resolved))
+                    continue
+                sid = resolved.id
+                series.setdefault(sid, resolved)
             else:
                 country, vclass = o.row.labels
                 name = country_name(catalog, country)

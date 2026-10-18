@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Callable
 
 from ..model import DatasetId, ParsedFile, SourceFile
-from . import i130_awaiting, qaf, state_iv
+from . import i130_awaiting, qaf, state_iv, visa_bulletin
 
 
 @dataclass(frozen=True)
@@ -28,5 +28,7 @@ DATASETS: dict[str, DatasetSpec] = {
                     i130_awaiting.parse, i130_awaiting.archived_period),
         DatasetSpec(state_iv.DATASET, "U.S. Department of State", state_iv.TITLE, state_iv.LISTING,
                     state_iv.matches, state_iv.parse, state_iv.archived_period),
+        DatasetSpec(visa_bulletin.DATASET, "U.S. Department of State", visa_bulletin.TITLE, visa_bulletin.LISTING,
+                    visa_bulletin.matches, visa_bulletin.parse, visa_bulletin.archived_period),
     )
 }

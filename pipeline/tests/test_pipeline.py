@@ -2,9 +2,12 @@
 from __future__ import annotations
 
 import csv
+import html
 import io
 import random
+import re
 import tomllib
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
@@ -15,7 +18,8 @@ from usdata import archive
 from usdata.build import build, select
 from usdata.datasets._cells import UnparseableCell, clean_value
 from usdata.identity import load_catalog, split_label
-from usdata.model import Absent, FactKey, Reported, parse_period
+from usdata.datasets.visa_bulletin import cell_value as bulletin_cell
+from usdata.model import Absent, Current, Cutoff, FactKey, Month, Reported, parse_period
 from usdata.publish import render
 
 PINS = tomllib.loads((Path(__file__).parent / "pins.toml").read_text(encoding="utf-8"))["pin"]
@@ -30,6 +34,16 @@ def _raw_cell(pin: dict) -> str:
     """Read the pinned cell straight from the archived file, bypassing every parser."""
     [f] = [f for f in archive.load_manifest() if f.archive_path.endswith(pin["file"])]
     data = archive.read_bytes(f)
+    if "html_text" in pin:
+        table, ref = pin["cell"].split("!")
+        col, row = ord(ref[0]) - ord("A"), int(ref[1:]) - 1
+        text = data.decode("utf-8")
+        t = re.split(r"<table\b", text, flags=re.I)[int(table.removeprefix("table "))]
+        tr = re.split(r"<tr\b", t.split("</table>")[0], flags=re.I)[1:][row]
+        cell = re.split(r"<t[dh]\b", tr, flags=re.I)[1:][col]
+        printed = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]*>", " ", "<" + cell))).strip()
+        assert printed == pin["html_text"], f"raw HTML cell reads {printed!r}"
+        return printed
     if "pdf_text" in pin:
         import pdfplumber
         page = int(pin["cell"].split("!")[0].removeprefix("page "))
@@ -54,11 +68,15 @@ def _raw_cell(pin: dict) -> str:
 @pytest.mark.parametrize("pin", PINS, ids=[p["what"] for p in PINS])
 def test_pin(pin, built):
     ledger, _ = built
-    expected = Decimal(pin["value"])
-    assert Decimal(_raw_cell(pin).strip().replace(",", "")) == expected, "pin disagrees with the raw file"
-
+    raw = _raw_cell(pin)
     fact = ledger.get(FactKey(pin["series"], parse_period(pin["period"]), pin["measure"], pin["window"]))
-    assert isinstance(fact.value, Reported) and fact.value.number == expected
+    if "html_text" in pin:
+        assert fact.value == Cutoff(date.fromisoformat(pin["value"]))
+        assert fact.cell.raw == raw
+    else:
+        expected = Decimal(pin["value"])
+        assert Decimal(raw.strip().replace(",", "")) == expected, "pin disagrees with the raw file"
+        assert isinstance(fact.value, Reported) and fact.value.number == expected
     src = ledger.sources[fact.cell.source_id]
     assert src.archive_path.endswith(pin["file"])
     want = pin["cell"] if "cell" in pin else f"line {pin['line']}, column {pin['col']}"
@@ -184,3 +202,20 @@ def test_pdf_reader_agrees_with_neighbouring_reports(a, b, built):
     # Revisions are small; a misread column would produce wild ratios on many values at once.
     wild = [k for k in shared if va[k] and not (Decimal("0.5") <= vb[k] / va[k] <= Decimal("2"))]
     assert len(wild) <= len(shared) * 0.03, f"{len(wild)} values changed by more than 2x: {wild[:5]}"
+
+
+@pytest.mark.parametrize("raw,expected", [
+    ("C", Current()),
+    (" U ", Absent("unavailable")),
+    ("01MAR99", Cutoff(date(1999, 3, 1))),
+    ("8MAY97", Cutoff(date(1997, 5, 8))),
+    ("15JUN03", Cutoff(date(2003, 6, 15))),
+    ("", Absent("blank")),
+])
+def test_bulletin_cell_value(raw, expected):
+    assert bulletin_cell(raw, Month(2004, 2)) == expected
+
+
+def test_bulletin_cell_refuses_to_guess():
+    with pytest.raises(UnparseableCell):
+        bulletin_cell("01MAR99*", Month(2004, 2))

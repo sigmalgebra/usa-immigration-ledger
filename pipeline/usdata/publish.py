@@ -16,7 +16,7 @@ from pathlib import Path
 from .archive import REPO
 from .checks import CheckResult
 from .datasets import DATASETS
-from .model import Absent, Fact, Ledger, Reported
+from .model import Absent, Current, Cutoff, Fact, Ledger, Reported
 
 SCHEMA_VERSION = "v1"
 DATA = REPO / "site" / "public" / "data" / SCHEMA_VERSION
@@ -28,6 +28,10 @@ FACT_COLUMNS = ["series_id", "period", "measure", "window", "value", "status", "
 def status(f: Fact) -> str:
     if isinstance(f.value, Absent):
         return f.value.reason
+    if isinstance(f.value, Cutoff):
+        return "date"
+    if isinstance(f.value, Current):
+        return "current"
     return "estimate" if f.value.is_estimate and f.key.measure != "median_processing_months" else "reported"
 
 
@@ -36,6 +40,11 @@ def number(f: Fact) -> int | float | None:
         return None
     n: Decimal = f.value.number
     return int(n) if n == n.to_integral_value() else float(n)
+
+
+def text(f: Fact) -> str:
+    """The CSV `value` column: a number, an ISO date for a bulletin cutoff, or empty."""
+    return f.value.date.isoformat() if isinstance(f.value, Cutoff) else _fmt(number(f))
 
 
 def _sort_key(f: Fact):
@@ -52,7 +61,7 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
     for ds, facts in sorted(facts_by_ds.items()):
         facts.sort(key=_sort_key)
         out[f"{ds}/facts.csv"] = _csv(FACT_COLUMNS, ([f.key.series, str(f.key.period), f.key.measure, f.key.window,
-                                                     _fmt(number(f)), status(f), f.cell.source_id, f.cell.address,
+                                                     text(f), status(f), f.cell.source_id, f.cell.address,
                                                      f.cell.raw] for f in facts))
 
     # Site-facing compact JSON for the forms report: one object per series, values keyed for direct lookup.
@@ -86,8 +95,8 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
     out["revisions.csv"] = _csv(
         ["series_id", "period", "measure", "window", "old_value", "old_source_id", "old_cell", "new_value",
          "new_source_id", "new_cell"],
-        ([r.key.series, str(r.key.period), r.key.measure, r.key.window, _fmt(number(r.superseded)),
-          r.superseded.cell.source_id, r.superseded.cell.address, _fmt(number(r.current)), r.current.cell.source_id,
+        ([r.key.series, str(r.key.period), r.key.measure, r.key.window, text(r.superseded),
+          r.superseded.cell.source_id, r.superseded.cell.address, text(r.current), r.current.cell.source_id,
           r.current.cell.address] for r in ledger.revisions))
     out["checks.json"] = _json([asdict(c) for c in checks])
     out["datapackage.json"] = _json(_datapackage(sorted(facts_by_ds)))
@@ -144,27 +153,36 @@ def _wide(ledger: Ledger) -> str:
                   *(_fmt(m.get(x)) for x in measures)] for (sid, p), m in sorted(rows.items(), key=lambda x: (x[0][0], str(x[0][1])))))
 
 
-def _datapackage(datasets: list[str]) -> dict:
-    fields = [
+def _fields(ds: str) -> list[dict]:
+    if ds == "state-vb":
+        value = {"name": "value", "type": "date", "description": "The printed cutoff date; empty when status is "
+                                                                  "current (C) or unavailable (U)"}
+    else:
+        value = {"name": "value", "type": "number", "description": "Empty when the source printed no number; see status"}
+    return [
         {"name": "series_id", "type": "string", "description": "Stable series identifier (see uscis-forms/series.json)"},
         {"name": "period", "type": "string", "description": "FY2026Q3 (federal fiscal quarter) or 2024-09 (month)"},
         {"name": "measure", "type": "string"},
         {"name": "window", "type": "string", "description": "quarter | fytd | month | snapshot (stocks such as pending)"},
-        {"name": "value", "type": "number", "description": "Empty when the source printed no number; see status"},
+        value,
         {"name": "status", "type": "string",
          "description": "reported | estimate (fractional count) | dash (USCIS: zero or rounds to 0) | na | null | "
-                        "blank | withheld (USCIS D/H privacy suppression)"},
+                        "blank | withheld (USCIS D/H privacy suppression) | date | current (Visa Bulletin C) | "
+                        "unavailable (Visa Bulletin U)"},
         {"name": "source_id", "type": "string", "description": "Join to sources.csv"},
         {"name": "cell", "type": "string", "description": "Exact cell in the archived source file"},
         {"name": "raw", "type": "string", "description": "Cell text exactly as printed"},
     ]
+
+
+def _datapackage(datasets: list[str]) -> dict:
     return {
         "name": "us-immigration-ledger",
         "title": "US immigration ledger: USCIS caseload and State Department visa issuances, cell-level provenance",
         "licenses": [{"name": "CC0-1.0", "title": "Public domain dedication (source data are U.S. government works)"}],
         "resources": [{"name": ds, "path": f"{ds}/facts.csv", "format": "csv",
                        "title": DATASETS[ds].title, "sources": [{"title": DATASETS[ds].publisher, "path": DATASETS[ds].listing}],
-                       "schema": {"fields": fields}} for ds in datasets]
+                       "schema": {"fields": _fields(ds)}} for ds in datasets]
                + [{"name": "sources", "path": "sources.csv", "format": "csv"},
                   {"name": "revisions", "path": "revisions.csv", "format": "csv"}],
     }

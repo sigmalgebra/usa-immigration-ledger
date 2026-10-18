@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from . import archive
+from .model import DATASET_IDS
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -17,10 +18,10 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("crawl", help="download new files from the open USCIS data listing into archive/")
     a = sub.add_parser("add", help="archive files a human downloaded (e.g. State Dept, which blocks crawlers)")
     a.add_argument("paths", nargs="+", type=Path)
-    a.add_argument("--dataset", required=True, choices=["uscis-forms", "uscis-i130-awaiting", "state-iv"])
+    a.add_argument("--dataset", required=True, choices=DATASET_IDS)
     a.add_argument("--url", help="where the file was downloaded from (defaults to the dataset's listing page)")
     w = sub.add_parser("wayback", help="backfill files the publisher removed, from the Internet Archive")
-    w.add_argument("--dataset", required=True, choices=["uscis-forms", "uscis-i130-awaiting", "state-iv"])
+    w.add_argument("--dataset", required=True, choices=DATASET_IDS)
     b = sub.add_parser("build", help="archive/ + catalog/ -> site/public/data/v1/")
     b.add_argument("--check", action="store_true", help="fail if committed output differs from a fresh build")
     args = p.parse_args(argv)
