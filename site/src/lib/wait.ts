@@ -1,6 +1,6 @@
 // Pure lookups for /green-card-wait/, shared by the build (default view) and the browser. No fetching here.
 import type { FanSpec } from "./chart";
-import type { Fit, ModelName, Score, SeriesForecast } from "./ledger";
+import type { ChartName, Fit, ModelName, Score, SeriesForecast } from "./ledger";
 
 const DAY = 864e5;
 export const toDays = (iso: string): number => Math.round(Date.parse(iso + "T00:00:00Z") / DAY);
@@ -18,16 +18,18 @@ export const pct = (x: number | null): string => (x === null ? "—" : `${Math.r
 export const months = (x: number | null): string => (x === null ? "—" : x.toLocaleString("en-US", { maximumFractionDigits: 1 }));
 const count = (n: number): string => n.toLocaleString("en-US");
 export const MODEL_LABEL: Record<ModelName, string> = { pace: "recent pace", bootstrap: "resampled history" };
+export const CHART_LABEL: Record<ChartName, string> = { final: "final action", filing: "dates for filing" };
+export const chartScope = (chart: ChartName): string => `all categories and countries, ${CHART_LABEL[chart]} chart`;
 export const widened = (f: Fit): string => `×${f.spread.toLocaleString("en-US")}`;
 
-/** How a series' held-out forecasts did: its own score once at least `minJudged` were judged, else all series
- * pooled, said as such. */
-export function trackRecord(name: string, own: Score, pooled: Score, minJudged: number) {
+/** How a series' held-out forecasts did: its own score once at least `minJudged` were judged, else every series
+ * on its chart pooled, said as such. */
+export function trackRecord(name: string, chart: ChartName, own: Score, pooled: Score, minJudged: number) {
   const enough = own.n >= minJudged;
   const s = enough ? own : pooled;
   return {
     enough,
-    title: enough ? name : "all categories and countries",
+    title: enough ? name : chartScope(chart),
     coverage: pct(s.coverage80),
     coverageNote: enough
       ? `of ${count(own.n)} forecasts judged`

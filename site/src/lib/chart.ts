@@ -82,12 +82,21 @@ export function fanChart(spec: FanSpec, opts: { width: number; document?: Docume
   const band = spec.bands.map((b) => ({
     date: new Date(b.x), q10: new Date(b.q10), q25: new Date(b.q25), q50: new Date(b.q50), q75: new Date(b.q75), q90: new Date(b.q90),
   }));
+  // The widened range's lower tail reaches decades below anything printed, so the view stops a little under the
+  // lowest cutoff of the last 10 years (or the priority date, if earlier) and the bands are clipped at the frame.
+  const printed = spec.history.filter((p) => p.y !== null).map((p) => ({ x: p.x, y: p.y! }));
+  const since = new Date(printed.at(-1)!.x);
+  since.setUTCFullYear(since.getUTCFullYear() - 10);
+  const floor = Math.min(...printed.filter((p) => p.x >= +since).map((p) => p.y), spec.priority ?? Infinity);
+  const all = [...printed.map((p) => p.y), ...spec.bands.flatMap((b) => [b.q10, b.q90]), ...(spec.priority === null ? [] : [spec.priority])];
+  const [lowest, top] = [Math.min(...all), Math.max(...all)];
+  const yDomain = [new Date(Math.max(lowest, floor - 0.05 * (top - floor))), new Date(top)];
   const marks: Plot.Markish[] = [
     Plot.gridY({ className: "grid", strokeOpacity: 1 }),
-    Plot.areaY(band, { x: "date", y1: "q10", y2: "q90", className: "wash s1", curve: "linear" }),
-    Plot.areaY(band, { x: "date", y1: "q25", y2: "q75", className: "wash s1", curve: "linear" }),
-    Plot.lineY(band, { x: "date", y: "q50", className: "line s1 median", strokeWidth: 2, strokeDasharray: "4 3", curve: "linear" }),
-    Plot.lineY(hist, { x: "date", y: "cut", className: "line s1", strokeWidth: 2, curve: "step-after", defined: (d) => d.cut !== null }),
+    Plot.areaY(band, { x: "date", y1: "q10", y2: "q90", className: "wash s1", curve: "linear", clip: "frame" }),
+    Plot.areaY(band, { x: "date", y1: "q25", y2: "q75", className: "wash s1", curve: "linear", clip: "frame" }),
+    Plot.lineY(band, { x: "date", y: "q50", className: "line s1 median", strokeWidth: 2, strokeDasharray: "4 3", curve: "linear", clip: "frame" }),
+    Plot.lineY(hist, { x: "date", y: "cut", className: "line s1", strokeWidth: 2, curve: "step-after", defined: (d) => d.cut !== null, clip: "frame" }),
   ];
   if (spec.priority !== null) {
     const pd = new Date(spec.priority);
@@ -111,7 +120,7 @@ export function fanChart(spec: FanSpec, opts: { width: number; document?: Docume
     marginTop: 20,
     style: { background: "transparent", fontFamily: "inherit", fontSize: "12px", overflow: "visible" },
     x: { type: "utc", label: null, ticks: opts.width < 500 ? 4 : 7, tickSize: 0 },
-    y: { type: "utc", label: null, ticks: 5, tickSize: 0 },
+    y: { type: "utc", label: null, ticks: 5, tickSize: 0, domain: yDomain },
     marks,
   });
 }

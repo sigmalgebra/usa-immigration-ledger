@@ -151,6 +151,7 @@ def _visa_bulletin(ledger: Ledger, facts: list[Fact]) -> dict[str, str]:
                    "calibration_before": str(fc.CALIBRATE_BEFORE), "min_judged": fc.MIN_JUDGED,
                    "dates": "days since 1970-01-01"},
         "pooled": {m: _pooled(fit) for m, fit in results.pooled.items()},
+        "by_chart": {c: _pooled(fit) for c, fit in results.by_chart.items()},
         "first_rule": {m: asdict(fit) for m, fit in results.first_rule.items()},
         "calibration_curve": {m: [list(pt) for pt in curve] for m, curve in results.calibration_curve.items()},
         "series": index,

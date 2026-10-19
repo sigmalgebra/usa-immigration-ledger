@@ -182,6 +182,7 @@ export function gaps(s: string, m: Measure): string[] {
 export type BulletinRow = [month: string, value: string | null, status: "date" | "current" | "unavailable" | "blank", sourceId: string, cell: string, raw: string];
 export interface Score { n: number; coverage80: number | null; n_error: number; median_abs_error: number | null }
 export type ModelName = "pace" | "bootstrap";
+export type ChartName = "final" | "filing";
 /** One model at its spread: scored on calibration origins (which picked the spread) and on held-out origins. */
 export interface Fit { spread: number; calibration: Score; held_out: Score }
 export type YearScore = Score & { year: number };
@@ -189,7 +190,7 @@ export type YearScore = Score & { year: number };
 export interface PooledFit extends Fit { worst_held_out: YearScore | null; by_year: YearScore[] }
 export interface BulletinSeries {
   id: string;
-  chart: "final" | "filing";
+  chart: ChartName;
   section: "family" | "employment";
   category: string;
   category_title: string;
@@ -211,7 +212,8 @@ export interface ForecastIndex {
     backtest_from: string; backtest_leads_months: number[]; spreads: number[]; worst_year_target: number; min_year_judged: number;
     average_target: number; calibration_before: string; min_judged: number; dates: string;
   };
-  pooled: Record<ModelName, PooledFit>;
+  pooled: Record<ModelName, PooledFit>; // both charts together
+  by_chart: Record<ChartName, PooledFit>; // the chosen model at its spread, each chart on its own
   first_rule: Record<ModelName, Fit>;
   calibration_curve: Record<ModelName, [spread: number, coverage80: number | null, worstYear: number | null][]>;
   series: BulletinSeries[];

@@ -142,12 +142,21 @@ unchanged, and at `s = 1` the backtest reproduces the numbers above exactly.
   `s`; then the lower held-out pooled median error (`forecast.choose`).
 - **Published.** `forecast.json` gives, per model, `s`, the calibration and held-out pooled scores, the worst
   held-out year (`worst_held_out`), and the score for every origin year at that `s` (`by_year`, each with its
-  judged n). `first_rule` gives each model at the spread the first rule picked, with its scores, and
-  `calibration_curve` gives, per grid value, the pooled calibration coverage and the worst calibration year's
-  coverage. Each series carries its own calibration and held-out scores at each model's `s`. The page shows a
-  series' held-out coverage when at least 30 of its held-out trials were judged (`MIN_JUDGED`); below that it says
-  "too few cases to judge" and shows the pooled held-out score. 30 judged trials puts a 95% interval on an 80% hit
-  rate at about 14 points either side. 55 of the 150 live series fall under 30.
+  judged n). `by_chart` gives the same block for the chosen model at its `s`, computed separately over the
+  final action series (`vb/final/...`) and the dates-for-filing series (`vb/filing/...`). It does not feed model
+  choice or calibration, which still pool both charts. `first_rule` gives each model at the spread the first rule
+  picked, with its scores, and `calibration_curve` gives, per grid value, the pooled calibration coverage and the
+  worst calibration year's coverage. Each series carries its own calibration and held-out scores at each model's
+  `s`. The page shows a series' held-out coverage when at least 30 of its held-out trials were judged
+  (`MIN_JUDGED`); below that it says "too few cases to judge" and shows the held-out score of all series on the
+  same chart. 30 judged trials puts a 95% interval on an 80% hit rate at about 14 points either side. 55 of the 150
+  live series fall under 30.
+- **Per chart on the page.** The headline sentence, the "all categories and countries" tile, the too-few-cases
+  fallback and the year-by-year table follow the selected chart, from `by_chart`. Both charts' versions are
+  rendered at build time and the inactive one is hidden, so switching charts in the browser swaps them without
+  recomputing. The filing headline adds that the chart began in October 2015, so no filing forecast helped choose
+  the widening, and that its record is weaker than the final action chart's. The methods table keeps the combined
+  numbers, since model choice and calibration use them.
 
 #### The first rule, and why it was replaced
 
@@ -176,8 +185,8 @@ Calibration coverage by `s`, pooled and worst calibration year (2008 to 2015):
 The worst calibration year is 2010 at every grid value for both models.
 
 Result per model at its worst-year `s`, from this build (median error in months). The "final" columns score only
-the final action chart, the scope of the reviewer's experiment, and reproduce it exactly. The published figures
-pool both charts.
+the final action chart, the scope of the reviewer's experiment, and reproduce it exactly. For the chosen model they
+match `by_chart.final` in `forecast.json`.
 
 | Model | s | Calibration (n) | Held-out, both charts (n) | Worst held-out year, both charts | Held-out error | Held-out, final (n) | Worst held-out year, final | Held-out error, final |
 |---|---|---|---|---|---|---|---|---|
@@ -199,10 +208,31 @@ Pace at `s = 4`, coverage by origin year (judged n), as published:
 | Year | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 |
 |---|---|---|---|---|---|---|---|---|---|
 | Both charts (check) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 90.6% (1,843) | 85.5% (2,615) | 76.3% (2,013) | 85.4% (1,918) | 74.0% (2,894) | 84.7% (1,606) |
-| Final action only | 94% | 93% | 90% | 90% | 96% | 94% | 99% | 80% | 84% |
+| Final action (`by_chart.final`) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 90.2% (1,542) | 96.5% (1,428) | 94.4% (1,010) | 98.6% (978) | 80.1% (1,615) | 84.3% (876) |
+| Dates for filing (`by_chart.filing`) | | | | 92.4% (301) | 72.3% (1,187) | 58.2% (1,003) | 71.6% (940) | 66.3% (1,279) | 85.2% (730) |
 
 Through 2019 the filing chart adds few trials and the rows agree. From 2020 on it is close to half of each year's
-trials and scores well below the final action chart, which pulls the pooled years down.
+trials and scores well below the final action chart, which pulls the pooled years down. The filing chart has no
+judged held-out trials before 2019.
+
+Pooled held-out scores as published, pace at `s = 4`, and what the page shows for each chart:
+
+| Scope | Held-out (n) | Worst held-out year | Held-out error | Shown |
+|---|---|---|---|---|
+| Final action | 91.0% (12,060) | 80.1% (2023) | 9.0 | headline, tile and year table when the final action chart is selected |
+| Dates for filing | 71.0% (5,440) | 58.2% (2021) | 13.0 | the same when the filing chart is selected, with the sentence on why it is weaker |
+| Both charts | 84.8% (17,500) | 74.0% (2023) | 10.0 | methods table only |
+
+### Fan chart view
+
+With `s = 4` the 10th-percentile cutoff can fall decades below anything printed (F4 Philippines final action: down
+to September 1986 within the window shown, against a lowest printed cutoff of February 1993 since 2016). The
+crossing math is unaffected, but the chart looked absurd. `fanChart` now sets the y domain's lower end to the
+earlier of the lowest cutoff printed in the last 10 years of shown history and the visitor's priority date, minus
+5% of the span to the top, and never below the data's own minimum. The upper end is the data's maximum, as
+before. The bands, median and history lines clip at the frame (`clip: "frame"`), so the range is cut at the lower
+edge rather than rescaled. The chart subtitle says the lower part of the range is cropped. No data, band or
+crossing changed; the "Show the numbers" table still lists the full range.
 
 Held-out scores by series and chart, at each model's `s`:
 
@@ -219,14 +249,16 @@ What the numbers say:
 
 - **The range is wide on purpose.** At `s = 4`, pace's range is four times as wide around the median as
   simulated. That is what it took for every year from 2008 to 2015 to reach 75%. From 2016 on it held 84.8%
-  pooled, with no year below 74.0%. The page states those measured numbers instead of promising 80%.
+  pooled, with no year below 74.0%. The page states the measured numbers for the selected chart instead of
+  promising 80%.
 - **Not a censoring artifact.** Held-out origins have shorter observation windows, so more of their trials stay
   unjudged. Judging calibration trials as if only 36 months had been observed leaves pace's calibration coverage at
   `s = 1` at 74.1% (against 74.9% with the full window), while held-out trials with the same window score 54.9%.
   Bulletins since 2016 are harder to forecast than those before.
 - **The dates-for-filing chart has no calibration trials.** It begins in October 2015, and both models need two
   years of history, so its spread comes entirely from the final action chart. It scores worst held out (71.0% for
-  pace) and is why the pooled worst year (2023, 74.0%) sits under the 75% target.
+  pace) and is why the pooled worst year (2023, 74.0%) sits under the 75% target. That is why the page reports
+  each chart on its own: final action holds 91.0% with no year below 80.1%, filing 71.0% with 2021 at 58.2%.
 - **The median error moves a little with `s`.** The median path is the same for every `s`, but the median of
   first-crossing months over paths is not exactly the first crossing of the median path. Pooled held-out median
   error for pace is 10.0 months at every grid value. For bootstrap it is 9.0 from `s = 1` to `s = 1.5`, then 8.0

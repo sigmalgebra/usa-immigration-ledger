@@ -6,7 +6,8 @@ import {
   fact, forecastIndex, periods, quarterLabel, seriesForecast, source, sources, type BulletinSeries,
 } from "../lib/ledger";
 import {
-  addMonths, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, pct, trackRecord, widened,
+  addMonths, CHART_LABEL, chartScope, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, pct, trackRecord,
+  widened,
 } from "../lib/wait";
 
 const index = forecastIndex();
@@ -36,25 +37,32 @@ const other = index.model === "pace" ? "bootstrap" : "pace";
 const worstTarget = pct(index.method.worst_year_target);
 const minYear = index.method.min_year_judged;
 const checkYear = +index.method.calibration_before.slice(0, 4);
-const heldYears = pooled.by_year.filter((y) => y.year >= checkYear);
-const worst = pooled.worst_held_out;
-const everyYear = heldYears.every((y) => y.n >= minYear)
-  ? "in every year"
-  : `in every year with at least ${minYear.toLocaleString("en-US")} forecasts judged`;
+const charts = (["final", "filing"] as const).map((chart) => {
+  const fit = index.by_chart[chart];
+  const everyYear = fit.by_year.filter((y) => y.year >= checkYear).every((y) => y.n >= minYear)
+    ? "in every year"
+    : `in every year with at least ${minYear.toLocaleString("en-US")} forecasts judged`;
+  return { chart, fit, worst: fit.worst_held_out, everyYear };
+});
 const first = index.first_rule[index.model];
 const fitYears = `${index.method.backtest_from.slice(0, 4)} to ${checkYear - 1}`;
 const fitFrom = monthLabel(index.method.backtest_from);
 const fitTo = monthLabel(addMonths(index.method.calibration_before, -1));
 const checkFrom = monthLabel(index.method.calibration_before);
 const minJudged = index.method.min_judged;
-const filing = index.series.filter((s) => s.chart === "filing");
-const filingFit = filing.reduce((n, s) => n + s.backtest[index.model].calibration.n, 0);
-const filingFirst = monthLabel(filing.reduce((a, s) => (s.first < a ? s.first : a), index.latest));
-const filingNote = filingFit === 0
+const filingFirst = monthLabel(index.series.filter((s) => s.chart === "filing").reduce((a, s) => (s.first < a ? s.first : a), index.latest));
+const filingUnfit = index.by_chart.filing.calibration.n === 0;
+const filingNote = filingUnfit
   ? `The dates-for-filing chart began in ${filingFirst}, too late for any forecast before ${checkFrom}, so it played no part in choosing the factor. `
   : "";
+const [finalHeld, filingHeld] = [index.by_chart.final.held_out, index.by_chart.filing.held_out];
+const filingWeaker = (filingHeld.coverage80 ?? 0) < (finalHeld.coverage80 ?? 0);
+const weakerThanFinal = `weaker than the final action chart's ${pct(finalHeld.coverage80)}`;
+const filingCaveat = filingUnfit
+  ? `Dates for filing only started in ${filingFirst}, so no filing forecast helped choose the widening${filingWeaker ? `, and its record is ${weakerThanFinal}` : ""}.`
+  : filingWeaker ? `The dates-for-filing record is ${weakerThanFinal}.` : "";
 const spreads = index.method.spreads.map((x) => `×${x}`).join(", ");
-const record = trackRecord(name(defaultSeries), defaultSeries.backtest[index.model].held_out, pooled.held_out, minJudged);
+const record = trackRecord(name(defaultSeries), defaultSeries.chart, defaultSeries.backtest[index.model].held_out, index.by_chart[defaultSeries.chart].held_out, minJudged);
 
 const { document } = parseHTML("<!doctype html><html><body></body></html>");
 const staticSvg = (fanChart(fanSpec(defaultForecast, null, cite, horizonFor(defaultForecast, null)), { width: 720, document }) as unknown as Element).outerHTML;
@@ -63,7 +71,7 @@ const payload = {
   series: live.map(({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest }) =>
     ({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest })),
   model: index.model, sources: bulletinSources, i485,
-  judge: { min: minJudged, pooled: pooled.held_out, checkFrom },
+  judge: { min: minJudged, pooled: { final: finalHeld, filing: filingHeld }, checkFrom },
 };
 ---
 <Base title="Green card wait" description={`When will your priority date be current? A forecast for every Visa Bulletin category and country, built from ${latestMonth} and every archived bulletin before it, with its track record.`}>
@@ -109,7 +117,7 @@ const payload = {
   <figure class="chart">
     <figcaption>
       <span class="chart-title" id="fan-title">{defaultSeries.title}</span>
-      <span class="chart-sub">Printed cutoffs (solid), then the forecast median (dashed) with the middle half and the forecast range shaded, both widened as explained below.</span>
+      <span class="chart-sub">Printed cutoffs (solid), then the forecast median (dashed) with the middle half and the forecast range shaded, both widened as explained below. The lower part of the range is cropped from view where it falls well below the cutoffs printed in the last 10 years and your priority date.</span>
     </figcaption>
     <div class="plot" id="fan" set:html={staticSvg} />
     <details class="table-view">
@@ -119,10 +127,12 @@ const payload = {
   </figure>
 
   <h2>How often this was right</h2>
-  <p>
-    This range is wide on purpose. Since {checkFrom}, ranges built this way contained the
-    real date {pct(pooled.held_out.coverage80)} of the time{worst && <>, and at least {pct(worst.coverage80)} {everyYear} (worst: {worst.year})</>}.
-  </p>
+  {charts.map(({ chart, fit, worst, everyYear }) => (
+    <p data-chart={chart} hidden={chart !== "final"}>
+      This range is wide on purpose. Since {checkFrom}, {CHART_LABEL[chart]} ranges built this way contained the
+      real date {pct(fit.held_out.coverage80)} of the time{worst && <>, and at least {pct(worst.coverage80)} {everyYear} (worst: {worst.year})</>}.{chart === "filing" && filingCaveat && <> {filingCaveat}</>}
+    </p>
+  ))}
   <div class="tiles" id="backtest">
     <div class="tile">
       <div class="label">Real date inside the range from {checkFrom} on, <span data-bt="title">{record.title}</span></div>
@@ -134,11 +144,13 @@ const payload = {
       <div class="value" data-bt="error">{record.error}</div>
       <div class="delta" data-bt="error-n">{record.errorNote}</div>
     </div>
-    <div class="tile">
-      <div class="label">All categories and countries</div>
-      <div class="value">{pct(pooled.held_out.coverage80)}</div>
-      <div class="delta">inside the range from {checkFrom} on; typical miss {months(pooled.held_out.median_abs_error)} months</div>
-    </div>
+    {charts.map(({ chart, fit }) => (
+      <div class="tile" data-chart={chart} hidden={chart !== "final"}>
+        <div class="label">All categories and countries, {CHART_LABEL[chart]} chart</div>
+        <div class="value">{pct(fit.held_out.coverage80)}</div>
+        <div class="delta">inside the range from {checkFrom} on; typical miss {months(fit.held_out.median_abs_error)} months</div>
+      </div>
+    ))}
   </div>
   <p>
     We replayed the forecast from every month since {fitFrom} that has at least two years of later bulletins, for
@@ -158,16 +170,17 @@ const payload = {
     seeing that, we switched to the worst-year rule above, and we chose between the two methods using results
     from {checkFrom} on. So the figures from {checkFrom} on are not a fully blind test.
   </p>
-  <figure class="chart">
+  {charts.map(({ chart, fit, worst }) => (
+  <figure class="chart" data-chart={chart} hidden={chart !== "final"}>
     <figcaption>
       <span class="chart-title">Real date inside the range, by the year the forecast was made</span>
-      <span class="chart-sub">{index.model === "pace" ? "Recent pace" : "Resampled history"}, widened {widened(pooled)}, all categories and countries. Years before {checkYear} chose the factor.</span>
+      <span class="chart-sub">{index.model === "pace" ? "Recent pace" : "Resampled history"}, widened {widened(fit)}, {chartScope(chart)}. {fit.calibration.n === 0 ? "No forecast on this chart helped choose the factor." : `Years before ${checkYear} chose the factor.`}</span>
     </figcaption>
     <div class="table-scroll">
       <table class="years">
         <thead><tr><th>Year</th><th>Used to</th><th class="num">Forecasts judged</th><th class="num">Inside the range</th><th class="bar-cell" aria-hidden="true"></th></tr></thead>
         <tbody>
-          {pooled.by_year.map((y) => (
+          {fit.by_year.map((y) => (
             <tr class={y.year === worst?.year ? "worst" : undefined}>
               <td>{y.year}</td>
               <td>{y.year < checkYear ? "fit" : "check"}</td>
@@ -180,6 +193,7 @@ const payload = {
       </table>
     </div>
   </figure>
+  ))}
   <div class="table-scroll">
     <table>
       <thead><tr>
@@ -240,9 +254,9 @@ const payload = {
 
 <script>
   import { fanChart } from "../lib/chart";
-  import type { BulletinSeries, Score, SeriesForecast } from "../lib/ledger";
+  import type { BulletinSeries, ChartName, Score, SeriesForecast } from "../lib/ledger";
   import {
-    addMonths, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, trackRecord, wait, type Wait,
+    addMonths, chartScope, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, trackRecord, wait, type Wait,
   } from "../lib/wait";
 
   type Live = Pick<BulletinSeries, "id" | "chart" | "section" | "category" | "category_title" | "area" | "area_title" | "title" | "latest" | "path" | "backtest">;
@@ -250,7 +264,7 @@ const payload = {
   const payload = JSON.parse(form.dataset.payload!) as {
     series: Live[]; model: "pace" | "bootstrap"; sources: Record<string, [string, string]>;
     i485: Record<string, { months: number; quarter: string; href: string; cite: string }>;
-    judge: { min: number; pooled: Score; checkFrom: string };
+    judge: { min: number; pooled: Record<ChartName, Score>; checkFrom: string };
   };
   const result = document.getElementById("wait-result")!;
   const fan = document.getElementById("fan")!;
@@ -308,9 +322,9 @@ const payload = {
       answer.textContent = w.q50 === null
         ? `Most likely more than 20 years away: fewer than half of the simulated futures reach your priority date within 20 years.`
         : `Most likely around ${when(w.q50)}. The likely range runs from ${when(w.q10)} to ${when(w.q90)}.`;
-      const r = trackRecord(name(s), s.backtest[payload.model].held_out, payload.judge.pooled, payload.judge.min);
+      const r = trackRecord(name(s), s.chart, s.backtest[payload.model].held_out, payload.judge.pooled[s.chart], payload.judge.min);
       note.append(` On forecasts made from ${payload.judge.checkFrom} on, ranges like this held the real date ${r.coverage} of the time `
-        + (r.enough ? `for ${name(s)}.` : `across all categories and countries (${name(s)} has too few cases to judge).`));
+        + (r.enough ? `for ${name(s)}.` : `across ${chartScope(s.chart)} (${name(s)} has too few cases to judge).`));
       const step = payload.i485[s.section];
       note.append(` After that, USCIS's median time to decide ${s.section === "employment" ? "an" : "a"} ${s.section}-based I-485 was `,
         (() => { const a = document.createElement("a"); a.href = step.href; a.title = step.cite; a.textContent = `${months(step.months)} months`; return a; })(),
@@ -341,7 +355,7 @@ const payload = {
   }
 
   function renderBacktest(s: Live) {
-    const r = trackRecord(name(s), s.backtest[payload.model].held_out, payload.judge.pooled, payload.judge.min);
+    const r = trackRecord(name(s), s.chart, s.backtest[payload.model].held_out, payload.judge.pooled[s.chart], payload.judge.min);
     setText("title", r.title);
     setText("coverage", r.coverage);
     setText("coverage-n", r.coverageNote);
@@ -356,6 +370,7 @@ const payload = {
     const id = `vb/${data.get("chart")}/${data.get("category")}/${data.get("area")}`;
     const pd = String(data.get("priority") ?? "");
     const s = payload.series.find((x) => x.id === id);
+    document.querySelectorAll<HTMLElement>("[data-chart]").forEach((el) => { el.hidden = el.dataset.chart !== data.get("chart"); });
     document.getElementById("fan-title")!.textContent = s ? s.title : "Not printed in the latest bulletin";
     if (!s) {
       result.replaceChildren(Object.assign(document.createElement("p"), { className: "answer", textContent: "The latest bulletin doesn't print this combination." }));

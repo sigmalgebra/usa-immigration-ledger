@@ -28,6 +28,8 @@ from .model import Current, Cutoff, Month
 
 ModelName = Literal["pace", "bootstrap"]
 MODELS: tuple[ModelName, ...] = ("pace", "bootstrap")
+Chart = Literal["final", "filing"]
+CHARTS: tuple[Chart, ...] = ("final", "filing")  # series ids are vb/<chart>/<category>/<area>
 HORIZON = 240
 N_PATHS = 2000
 BACKTEST_PATHS = 500  # enough for a 10th/90th percentile; keeps a full rebuild under a minute
@@ -388,7 +390,8 @@ class SeriesResult:
 @dataclass(frozen=True)
 class Results:
     model: ModelName
-    pooled: dict[ModelName, PooledFit]
+    pooled: dict[ModelName, PooledFit]  # both charts together
+    by_chart: dict[Chart, PooledFit]  # the chosen model at its spread, each chart on its own
     first_rule: dict[ModelName, Fit]  # each model at the spread calibrate_average picks
     # (spread, pooled calibration coverage, worst calibration year's coverage)
     calibration_curve: dict[ModelName, tuple[tuple[float, float | None, float | None], ...]]
@@ -397,6 +400,11 @@ class Results:
 
 def _fit(trials: Sequence[Trial], spread: float) -> Fit:
     return Fit(spread, score([t for t in trials if not held_out(t)]), score([t for t in trials if held_out(t)]))
+
+
+def _pooled(trials: Sequence[Trial], spread: float) -> PooledFit:
+    return PooledFit(**vars(_fit(trials, spread)), by_year=by_year(trials),
+                     worst_held_out=worst_year([t for t in trials if held_out(t)]))
 
 
 def run(histories: dict[str, History]) -> Results:
@@ -412,13 +420,14 @@ def run(histories: dict[str, History]) -> Results:
     spread = {m: calibrate(calib[m]) for m in MODELS}
     every = {m: {s: [t for ts in trials[m].values() for t in ts[s]] for s in SPREADS} for m in MODELS}
     held = {m: [t for t in every[m][spread[m]] if held_out(t)] for m in MODELS}
-    pooled = {m: PooledFit(**vars(_fit(every[m][spread[m]], spread[m])), by_year=by_year(every[m][spread[m]]),
-                           worst_held_out=worst_year(held[m])) for m in MODELS}
+    pooled = {m: _pooled(every[m][spread[m]], spread[m]) for m in MODELS}
     first = {m: _fit(every[m][s], s) for m in MODELS for s in [calibrate_average(calib[m])]}
     curve = {m: tuple((s, score(calib[m][s]).coverage80, w[1].coverage80 if (w := worst_year(calib[m][s])) else None)
                       for s in SPREADS) for m in MODELS}
     chosen = choose(held)
-    return Results(chosen, pooled, first, curve,
+    by_chart = {c: _pooled([t for sid, ts in trials[chosen].items() if sid.startswith(f"vb/{c}/")
+                            for t in ts[spread[chosen]]], spread[chosen]) for c in CHARTS}
+    return Results(chosen, pooled, by_chart, first, curve,
                    {sid: SeriesResult(forecast(sid, h, chosen, spread[chosen]),
                                       {m: _fit(trials[m][sid][spread[m]], spread[m]) for m in MODELS})
                     for sid, h in series})
