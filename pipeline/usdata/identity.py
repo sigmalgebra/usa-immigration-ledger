@@ -35,9 +35,24 @@ class FormsCatalog:
 
 
 @dataclass(frozen=True)
+class Label:
+    id: str
+    title: str
+    description: str | None = None
+
+
+@dataclass(frozen=True)
+class BulletinCatalog:
+    categories: dict[tuple[str, str], Label]  # (section, normalized printed label) -> category
+    areas: dict[str, Label]  # normalized printed label -> chargeability area
+    ignore: frozenset[str]  # normalized row labels that are not a category (a section title printed with values)
+
+
+@dataclass(frozen=True)
 class Catalog:
     forms: FormsCatalog
     countries: dict[str, str]  # normalized printed name -> canonical display name
+    bulletin: BulletinCatalog
 
 
 def load_catalog(root: Path = CATALOG) -> Catalog:
@@ -67,7 +82,47 @@ def load_catalog(root: Path = CATALOG) -> Catalog:
     countries = {}
     if countries_path.exists():
         countries = {norm(k): v for k, v in tomllib.loads(countries_path.read_text(encoding="utf-8"))["aliases"].items()}
-    return Catalog(FormsCatalog(codes, raw.get("label_aliases", {}), by_code), countries)
+    return Catalog(FormsCatalog(codes, raw.get("label_aliases", {}), by_code), countries,
+                   _bulletin(tomllib.loads((root / "visa-bulletin.toml").read_text(encoding="utf-8"))))
+
+
+def _bulletin(raw: dict) -> BulletinCatalog:
+    categories: dict[tuple[str, str], Label] = {}
+    areas: dict[str, Label] = {}
+    for c in raw["category"]:
+        for printed in c["printed"]:
+            key = (c["section"], norm(printed))
+            if key in categories:
+                raise ValueError(f"visa-bulletin.toml: {printed!r} listed under {categories[key].id} and {c['id']}")
+            categories[key] = Label(c["id"], c["title"], c["description"])
+    for a in raw["area"]:
+        for printed in a["printed"]:
+            if norm(printed) in areas:
+                raise ValueError(f"visa-bulletin.toml: area {printed!r} listed twice")
+            areas[norm(printed)] = Label(a["id"], a["title"])
+    return BulletinCatalog(categories, areas, frozenset(norm(x) for x in raw.get("ignore", [])))
+
+
+CHART_TITLE = {"final": "Final action date", "filing": "Date for filing"}
+
+
+def resolve_bulletin(cat: BulletinCatalog, row: RowKey) -> Series | Unmapped | None:
+    """None for a row the catalog lists under `ignore`."""
+    chart, section, category, area = row.labels
+    if norm(category) in cat.ignore:
+        return None
+    c = cat.categories.get((section, norm(category)))
+    if c is None:
+        return Unmapped(row, f"{section} category {category!r} is not in catalog/visa-bulletin.toml",
+                        f'add "{category}" to `printed` of the right [[category]] with section = "{section}"')
+    a = cat.areas.get(norm(area))
+    if a is None:
+        return Unmapped(row, f"chargeability area {area!r} is not in catalog/visa-bulletin.toml",
+                        f'add "{area}" to `printed` of the right [[area]]')
+    sid = SeriesId(f"vb/{chart}/{c.id}/{a.id}")
+    return Series(sid, "state-vb", None, "Visa Bulletin", f"{CHART_TITLE[chart]}: {c.title}, {a.title}",
+                  {"chart": chart, "section": section, "category": c.id, "category_title": c.title, "area": a.id,
+                   "area_title": a.title}, c.description)
 
 
 def split_label(label: str, codes: frozenset[str], aliases: dict[str, str], footnotes: frozenset[str]) -> str | None:

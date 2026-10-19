@@ -10,13 +10,15 @@ import os
 import shutil
 from collections import defaultdict
 from dataclasses import asdict
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+from . import forecast as fc
 from .archive import REPO
 from .checks import CheckResult
 from .datasets import DATASETS
-from .model import Absent, Fact, Ledger, Reported
+from .model import Absent, Current, Cutoff, Fact, Ledger, Reported
 
 SCHEMA_VERSION = "v1"
 DATA = REPO / "site" / "public" / "data" / SCHEMA_VERSION
@@ -28,6 +30,10 @@ FACT_COLUMNS = ["series_id", "period", "measure", "window", "value", "status", "
 def status(f: Fact) -> str:
     if isinstance(f.value, Absent):
         return f.value.reason
+    if isinstance(f.value, Cutoff):
+        return "date"
+    if isinstance(f.value, Current):
+        return "current"
     return "estimate" if f.value.is_estimate and f.key.measure != "median_processing_months" else "reported"
 
 
@@ -36,6 +42,11 @@ def number(f: Fact) -> int | float | None:
         return None
     n: Decimal = f.value.number
     return int(n) if n == n.to_integral_value() else float(n)
+
+
+def text(f: Fact) -> str:
+    """The CSV `value` column: a number, an ISO date for a bulletin cutoff, or empty."""
+    return f.value.date.isoformat() if isinstance(f.value, Cutoff) else _fmt(number(f))
 
 
 def _sort_key(f: Fact):
@@ -52,7 +63,7 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
     for ds, facts in sorted(facts_by_ds.items()):
         facts.sort(key=_sort_key)
         out[f"{ds}/facts.csv"] = _csv(FACT_COLUMNS, ([f.key.series, str(f.key.period), f.key.measure, f.key.window,
-                                                     _fmt(number(f)), status(f), f.cell.source_id, f.cell.address,
+                                                     text(f), status(f), f.cell.source_id, f.cell.address,
                                                      f.cell.raw] for f in facts))
 
     # Site-facing compact JSON for the forms report: one object per series, values keyed for direct lookup.
@@ -76,6 +87,8 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
              for f in sorted(facts_by_ds.get("state-iv", []), key=_sort_key) for s in [ledger.series[f.key.series]]]
     out["state-iv/compact.json"] = _json(state)
 
+    out.update(_visa_bulletin(ledger, facts_by_ds.get("state-vb", [])))
+
     sources = sorted(ledger.sources.values(), key=lambda f: (f.dataset, f.original_name))
     out["sources.json"] = _json([{**asdict(f), "archive_url": GITHUB_BLOB + f.archive_path,
                                   "publisher": DATASETS[f.dataset].publisher} for f in sources])
@@ -86,12 +99,79 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
     out["revisions.csv"] = _csv(
         ["series_id", "period", "measure", "window", "old_value", "old_source_id", "old_cell", "new_value",
          "new_source_id", "new_cell"],
-        ([r.key.series, str(r.key.period), r.key.measure, r.key.window, _fmt(number(r.superseded)),
-          r.superseded.cell.source_id, r.superseded.cell.address, _fmt(number(r.current)), r.current.cell.source_id,
+        ([r.key.series, str(r.key.period), r.key.measure, r.key.window, text(r.superseded),
+          r.superseded.cell.source_id, r.superseded.cell.address, text(r.current), r.current.cell.source_id,
           r.current.cell.address] for r in ledger.revisions))
     out["checks.json"] = _json([asdict(c) for c in checks])
     out["datapackage.json"] = _json(_datapackage(sorted(facts_by_ds)))
     return out
+
+
+HISTORY_MONTHS = 120
+
+
+def _visa_bulletin(ledger: Ledger, facts: list[Fact]) -> dict[str, str]:
+    """visa-bulletin/forecast.json indexes every series with its backtest; each series still printed in the
+    latest bulletin gets visa-bulletin/forecast/<chart>/<category>/<area>.json with history, bands and crossings."""
+    if not facts:
+        return {}
+    by_series: dict[str, list[Fact]] = defaultdict(list)
+    for f in facts:
+        by_series[f.key.series].append(f)
+    histories = {sid: fc.History.of([(f.key.period, f.value if isinstance(f.value, (Cutoff, Current)) else None)
+                                     for f in fs]) for sid, fs in by_series.items()}
+    results = fc.run(histories)
+    latest = max(f.key.period for f in facts)
+    out: dict[str, str] = {}
+    index = []
+    for sid, fs in sorted(by_series.items()):
+        s = ledger.series[sid]
+        fs = sorted(fs, key=lambda f: f.key.period)
+        r = results.series[sid]
+        fcst = r.forecast if fs[-1].key.period == latest else None
+        path = f"forecast/{sid.removeprefix('vb/')}.json" if fcst else None
+        index.append({"id": sid, **s.dims, "title": s.title, "description": s.note, "first": str(fs[0].key.period),
+                      "latest": _vb_row(fs[-1]), "path": path,
+                      "backtest": {m: asdict(fit) for m, fit in r.fits.items()}})
+        if path and fcst:
+            out[f"visa-bulletin/{path}"] = _json({
+                "id": sid,
+                "history": [_vb_row(f) for f in fs if fc.months_between(f.key.period, latest) < HISTORY_MONTHS],
+                "forecast": {"model": fcst.model, "spread": fcst.spread, "origin": str(fcst.origin),
+                             "cutoff": _iso(fcst.cutoff), "bands": fcst.bands,
+                             "crossings": [[p, *q] for p, q in fcst.crossings]},
+            })
+    out["visa-bulletin/forecast.json"] = _json({
+        "latest": str(latest), "model": results.model, "spread": results.pooled[results.model].spread,
+        "method": {"horizon_months": fc.HORIZON, "bootstrap_paths": fc.N_PATHS, "pace_levels": fc.PACE_LEVELS,
+                   "backtest_bootstrap_paths": fc.BACKTEST_PATHS, "band_levels": fc.BAND_LEVELS,
+                   "backtest_from": str(fc.BACKTEST_FROM), "backtest_leads_months": fc.BACKTEST_LEADS,
+                   "spreads": fc.SPREADS, "worst_year_target": fc.WORST_YEAR_TARGET,
+                   "min_year_judged": fc.MIN_YEAR_JUDGED, "average_target": fc.AVERAGE_TARGET,
+                   "calibration_before": str(fc.CALIBRATE_BEFORE), "min_judged": fc.MIN_JUDGED,
+                   "dates": "days since 1970-01-01"},
+        "pooled": {m: _pooled(fit) for m, fit in results.pooled.items()},
+        "by_chart": {c: _pooled(fit) for c, fit in results.by_chart.items()},
+        "first_rule": {m: asdict(fit) for m, fit in results.first_rule.items()},
+        "calibration_curve": {m: [list(pt) for pt in curve] for m, curve in results.calibration_curve.items()},
+        "series": index,
+    })
+    return out
+
+
+def _pooled(f: fc.PooledFit) -> dict:
+    worst = f.worst_held_out
+    return {"spread": f.spread, "calibration": asdict(f.calibration), "held_out": asdict(f.held_out),
+            "worst_held_out": {"year": worst[0], **asdict(worst[1])} if worst else None,
+            "by_year": [{"year": y, **asdict(s)} for y, s in f.by_year.items()]}
+
+
+def _vb_row(f: Fact) -> list:
+    return [str(f.key.period), text(f) or None, status(f), f.cell.source_id, f.cell.address, f.cell.raw]
+
+
+def _iso(d: int) -> str:
+    return date.fromordinal(d + date(1970, 1, 1).toordinal()).isoformat()
 
 
 def write(ledger: Ledger, checks: list[CheckResult], out_dir: Path = DATA) -> None:
@@ -144,27 +224,36 @@ def _wide(ledger: Ledger) -> str:
                   *(_fmt(m.get(x)) for x in measures)] for (sid, p), m in sorted(rows.items(), key=lambda x: (x[0][0], str(x[0][1])))))
 
 
-def _datapackage(datasets: list[str]) -> dict:
-    fields = [
+def _fields(ds: str) -> list[dict]:
+    if ds == "state-vb":
+        value = {"name": "value", "type": "date", "description": "The printed cutoff date; empty when status is "
+                                                                  "current (C) or unavailable (U)"}
+    else:
+        value = {"name": "value", "type": "number", "description": "Empty when the source printed no number; see status"}
+    return [
         {"name": "series_id", "type": "string", "description": "Stable series identifier (see uscis-forms/series.json)"},
         {"name": "period", "type": "string", "description": "FY2026Q3 (federal fiscal quarter) or 2024-09 (month)"},
         {"name": "measure", "type": "string"},
         {"name": "window", "type": "string", "description": "quarter | fytd | month | snapshot (stocks such as pending)"},
-        {"name": "value", "type": "number", "description": "Empty when the source printed no number; see status"},
+        value,
         {"name": "status", "type": "string",
          "description": "reported | estimate (fractional count) | dash (USCIS: zero or rounds to 0) | na | null | "
-                        "blank | withheld (USCIS D/H privacy suppression)"},
+                        "blank | withheld (USCIS D/H privacy suppression) | date | current (Visa Bulletin C) | "
+                        "unavailable (Visa Bulletin U)"},
         {"name": "source_id", "type": "string", "description": "Join to sources.csv"},
         {"name": "cell", "type": "string", "description": "Exact cell in the archived source file"},
         {"name": "raw", "type": "string", "description": "Cell text exactly as printed"},
     ]
+
+
+def _datapackage(datasets: list[str]) -> dict:
     return {
         "name": "us-immigration-ledger",
         "title": "US immigration ledger: USCIS caseload and State Department visa issuances, cell-level provenance",
         "licenses": [{"name": "CC0-1.0", "title": "Public domain dedication (source data are U.S. government works)"}],
         "resources": [{"name": ds, "path": f"{ds}/facts.csv", "format": "csv",
                        "title": DATASETS[ds].title, "sources": [{"title": DATASETS[ds].publisher, "path": DATASETS[ds].listing}],
-                       "schema": {"fields": fields}} for ds in datasets]
+                       "schema": {"fields": _fields(ds)}} for ds in datasets]
                + [{"name": "sources", "path": "sources.csv", "format": "csv"},
                   {"name": "revisions", "path": "revisions.csv", "format": "csv"}],
     }

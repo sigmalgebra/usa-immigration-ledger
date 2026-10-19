@@ -162,3 +162,29 @@ value = "51657"
 file = "March_2017_-_IV_Issuances_by_FSC_and_Visa_Class_-_Worldwide.pdf"
 cell = "page 60!C467"
 pdf_text = "51,657"
+
+# Visa Bulletin pins: `cell` is "table N!<col><row>" counting every <table> on the page and every <tr>/<td|th>
+# inside it. The test re-finds the cell by splitting the raw HTML on tags (not with our HTML parser) and checks
+# that `html_text` is the cell's text.
+
+[[pin]]
+what = "F4 Philippines cutoff, May 2002 bulletin (one chart per section, before October 2015)"
+series = "vb/final/f4/philippines"
+period = "2002-05"
+measure = "final_action_date"
+window = "month"
+value = "1980-06-01"
+file = "visa-bulletin-for-may-2002.html"
+cell = "table 1!E7"
+html_text = "01JUN80"
+
+[[pin]]
+what = "F4 Philippines final action date, July 2026 bulletin (final action and filing charts)"
+series = "vb/final/f4/philippines"
+period = "2026-07"
+measure = "final_action_date"
+window = "month"
+value = "2007-08-01"
+file = "visa-bulletin-for-july-2026.html"
+cell = "table 1!F6"
+html_text = "01AUG07"

@@ -1,0 +1,250 @@
+# Visa Bulletin labels -> canonical ids. The single source of truth for which printed rows and columns are the
+# same series across bulletins. Matching ignores case and runs of whitespace; everything else must be listed,
+# typos included, so a new label fails the build instead of being guessed.
+# Series id: vb/<chart>/<category>/<area>, e.g. vb/final/f4/philippines (chart is final | filing).
+
+# Section titles that some 2003 bulletins print as a data row with values.
+ignore = ["Employment-Based"]
+
+[[category]]
+id = "f1"
+section = "family"
+title = "F1"
+description = "Unmarried sons and daughters (21 or older) of U.S. citizens"
+printed = ["1st", "F1"]
+
+[[category]]
+id = "f2a"
+section = "family"
+title = "F2A"
+description = "Spouses and children (under 21) of green card holders"
+printed = ["2A", "2A*", "F2A", "F2A*"]
+
+[[category]]
+id = "f2b"
+section = "family"
+title = "F2B"
+description = "Unmarried sons and daughters (21 or older) of green card holders"
+printed = ["2B", "F2B"]
+
+[[category]]
+id = "f3"
+section = "family"
+title = "F3"
+description = "Married sons and daughters of U.S. citizens"
+printed = ["3rd", "F3"]
+
+[[category]]
+id = "f4"
+section = "family"
+title = "F4"
+description = "Brothers and sisters of adult U.S. citizens"
+printed = ["4th", "F4", "4rd"]
+
+[[category]]
+id = "eb1"
+section = "employment"
+title = "EB-1"
+description = "Priority workers"
+printed = ["1st"]
+
+[[category]]
+id = "eb2"
+section = "employment"
+title = "EB-2"
+description = "Advanced degree professionals and people of exceptional ability"
+printed = ["2nd"]
+
+[[category]]
+id = "eb3"
+section = "employment"
+title = "EB-3"
+description = "Skilled workers and professionals"
+printed = ["3rd"]
+
+[[category]]
+id = "eb3-other"
+section = "employment"
+title = "EB-3 other workers"
+description = "Unskilled workers"
+printed = ["Other Workers", "Other Workers*"]
+
+[[category]]
+id = "eb4"
+section = "employment"
+title = "EB-4"
+description = "Certain special immigrants"
+printed = ["4th"]
+
+[[category]]
+id = "eb4-religious"
+section = "employment"
+title = "EB-4 religious workers"
+description = "Certain religious workers"
+printed = ["Certain Religious Workers", "Certain Religiuos Workers"]
+
+[[category]]
+id = "eb4-translators"
+section = "employment"
+title = "EB-4 Iraqi and Afghan translators"
+description = "Iraqi and Afghan translators"
+printed = ["Iraqi & Afghani Translators"]
+
+[[category]]
+id = "schedule-a"
+section = "employment"
+title = "Schedule A workers"
+description = "Schedule A workers (nurses and physical therapists)"
+printed = ["Schedule A Workers"]
+
+# EB-5 rows were renamed and regrouped several times. Each grouping stays its own series: merging them would
+# claim two different visa pools are one.
+[[category]]
+id = "eb5"
+section = "employment"
+title = "EB-5"
+description = "Immigrant investors"
+printed = ["5th"]
+
+[[category]]
+id = "eb5-tea-rc"
+section = "employment"
+title = "EB-5 targeted employment areas / regional centers"
+description = "Immigrant investors in targeted employment areas or regional centers"
+printed = [
+  "Targeted Employment Areas/Regional Centers",
+  "Targeted Employment Areas/ Regional Centers",
+  "Targeted Employment Areas / Regional Centers",
+  "Targeted Employ-ment Areas/Regional Centers",
+  "Targeted Employment Areas",
+]
+
+[[category]]
+id = "eb5-pilot"
+section = "employment"
+title = "EB-5 pilot programs"
+description = "Immigrant investors in the regional center pilot program"
+printed = ["5th Pilot Programs", "5th Pilot Progams"]
+
+[[category]]
+id = "eb5-tea-rc-pilot"
+section = "employment"
+title = "EB-5 targeted employment areas, regional centers and pilot programs"
+description = "Immigrant investors in targeted employment areas, regional centers and pilot programs"
+printed = [
+  "5th Targeted Employment Areas/Regional Centers and Pilot Programs",
+  "5th Targeted Employment Areas/ Regional Centers and Pilot Programs",
+  "5th Targeted EmploymentAreas/ Regional Centers and Pilot Programs",
+]
+
+[[category]]
+id = "eb5-non-regional"
+section = "employment"
+title = "EB-5 non-regional center"
+description = "Immigrant investors outside regional centers (C5 and T5)"
+printed = ["5th Non-Regional Center (C5 and T5)"]
+
+[[category]]
+id = "eb5-regional"
+section = "employment"
+title = "EB-5 regional center"
+description = "Immigrant investors in regional centers (I5 and R5)"
+printed = ["5th Regional Center (I5 and R5)"]
+
+[[category]]
+id = "eb5-unreserved"
+section = "employment"
+title = "EB-5 unreserved"
+description = "Immigrant investors, unreserved visas (C5, T5, I5 and R5)"
+# 2026 bulletins list more visa class codes under the same four EB-5 pools.
+printed = ["5th Unreserved (including C5, T5, I5, R5)", "5th Unreserved (including C5, T5, I5, R5, NU, RU)"]
+
+[[category]]
+id = "eb5-unreserved-c5-t5"
+section = "employment"
+title = "EB-5 unreserved (C5, T5)"
+description = "Immigrant investors, unreserved visas outside regional centers (C5, T5 and all others)"
+printed = ["5th Unreserved (C5, T5, and all others)"]
+
+[[category]]
+id = "eb5-unreserved-i5-r5"
+section = "employment"
+title = "EB-5 unreserved (I5, R5)"
+description = "Immigrant investors, unreserved visas in regional centers (I5 and R5)"
+printed = ["5th Unreserved (I5 and R5)"]
+
+[[category]]
+id = "eb5-rural"
+section = "employment"
+title = "EB-5 set aside: rural"
+description = "Immigrant investors, visas set aside for rural projects (20%)"
+printed = [
+  "5th Set Aside: Rural (20%)",
+  "5th Set Aside: (Rural - 20%)",
+  "5th Set Aside: Rural (20%, including NR, RR)",
+  "5th Set Aside: (Rural: NR, RR - 20%)",
+]
+
+[[category]]
+id = "eb5-high-unemployment"
+section = "employment"
+title = "EB-5 set aside: high unemployment"
+description = "Immigrant investors, visas set aside for high-unemployment areas (10%)"
+printed = [
+  "5th Set Aside: High Unemployment (10%)",
+  "5th Set Aside: (High Unemployment - 10%)",
+  "5th Set Aside: High Unemployment (10%, including NH, RH)",
+  "5th Set Aside: (High Unemployment: NH, RH - 10%)",
+]
+
+[[category]]
+id = "eb5-infrastructure"
+section = "employment"
+title = "EB-5 set aside: infrastructure"
+description = "Immigrant investors, visas set aside for infrastructure projects (2%)"
+printed = [
+  "5th Set Aside: Infrastructure (2%)",
+  "5th Set Aside: (Infrastructure - 2%)",
+  "5th Set Aside: Infrastructure (2%, including RI)",
+  "5th Set Aside: (Infrastructure: RI - 2%)",
+]
+
+[[area]]
+id = "all"
+title = "All other countries"
+printed = ["All Chargeability Areas Except Those Listed", "All Chargeability Areas Except hose Listed"]
+
+[[area]]
+id = "china"
+title = "China (mainland born)"
+printed = ["CHINA-mainland born", "CHINA- mainland born", "CHINA - mainland born", "CHINA", "CH"]
+
+[[area]]
+id = "india"
+title = "India"
+printed = ["INDIA", "IN"]
+
+[[area]]
+id = "mexico"
+title = "Mexico"
+printed = ["MEXICO", "ME"]
+
+[[area]]
+id = "philippines"
+title = "Philippines"
+printed = ["PHILIPPINES", "PHILLIPINES", "PHILIP-PINES", "PHILIPP-INES", "PH"]
+
+[[area]]
+id = "dominican-republic"
+title = "Dominican Republic"
+printed = ["DOMINICAN REPUBLIC"]
+
+[[area]]
+id = "el-salvador-guatemala-honduras"
+title = "El Salvador, Guatemala, Honduras"
+printed = ["EL SALVADOR GUATEMALA HONDURAS"]
+
+[[area]]
+id = "vietnam"
+title = "Vietnam"
+printed = ["VIETNAM"]

@@ -177,3 +177,51 @@ export function gaps(s: string, m: Measure): string[] {
   }
   return out;
 }
+
+// ---- Visa Bulletin cutoffs and the green card wait forecast ----
+export type BulletinRow = [month: string, value: string | null, status: "date" | "current" | "unavailable" | "blank", sourceId: string, cell: string, raw: string];
+export interface Score { n: number; coverage80: number | null; n_error: number; median_abs_error: number | null }
+export type ModelName = "pace" | "bootstrap";
+export type ChartName = "final" | "filing";
+/** One model at its spread: scored on calibration origins (which picked the spread) and on held-out origins. */
+export interface Fit { spread: number; calibration: Score; held_out: Score }
+export type YearScore = Score & { year: number };
+/** A model over all series: also scored by the calendar year each forecast was made in. */
+export interface PooledFit extends Fit { worst_held_out: YearScore | null; by_year: YearScore[] }
+export interface BulletinSeries {
+  id: string;
+  chart: ChartName;
+  section: "family" | "employment";
+  category: string;
+  category_title: string;
+  area: string;
+  area_title: string;
+  title: string;
+  description: string | null;
+  first: string;
+  latest: BulletinRow;
+  path: string | null;
+  backtest: Record<ModelName, Fit>;
+}
+export interface ForecastIndex {
+  latest: string;
+  model: ModelName;
+  spread: number;
+  method: {
+    horizon_months: number; bootstrap_paths: number; pace_levels: number; backtest_bootstrap_paths: number; band_levels: number[];
+    backtest_from: string; backtest_leads_months: number[]; spreads: number[]; worst_year_target: number; min_year_judged: number;
+    average_target: number; calibration_before: string; min_judged: number; dates: string;
+  };
+  pooled: Record<ModelName, PooledFit>; // both charts together
+  by_chart: Record<ChartName, PooledFit>; // the chosen model at its spread, each chart on its own
+  first_rule: Record<ModelName, Fit>;
+  calibration_curve: Record<ModelName, [spread: number, coverage80: number | null, worstYear: number | null][]>;
+  series: BulletinSeries[];
+}
+export interface SeriesForecast {
+  id: string;
+  history: BulletinRow[];
+  forecast: { model: ModelName; spread: number; origin: string; cutoff: string; bands: number[][]; crossings: [number, number | null, number | null, number | null][] };
+}
+export const forecastIndex = (): ForecastIndex => load<ForecastIndex>("visa-bulletin/forecast.json");
+export const seriesForecast = (path: string): SeriesForecast => load<SeriesForecast>(`visa-bulletin/${path}`);

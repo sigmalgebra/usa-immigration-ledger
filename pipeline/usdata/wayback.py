@@ -32,6 +32,10 @@ PREFIXES: dict[str, list[str]] = {
         "uscis.gov/sites/default/files/document/reports/*",
     ],
     "state-iv": ["travel.state.gov/content/dam/visas/Statistics/Immigrant-Statistics/MonthlyIVIssuances/*"],
+    "state-vb": [
+        "travel.state.gov/content/travel/en/legal/visa-law0/visa-bulletin/*",
+        "travel.state.gov/content/visas/en/law-and-policy/bulletin/*",
+    ],
 }
 
 

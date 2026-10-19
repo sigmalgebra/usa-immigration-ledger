@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date, datetime
 from decimal import Decimal
 from enum import StrEnum
 from typing import Literal, Mapping, NewType, Sequence
 
-DatasetId = Literal["uscis-forms", "uscis-i130-awaiting", "state-iv"]
-DATASET_IDS: tuple[DatasetId, ...] = ("uscis-forms", "uscis-i130-awaiting", "state-iv")
+DatasetId = Literal["uscis-forms", "uscis-i130-awaiting", "state-iv", "state-vb"]
+DATASET_IDS: tuple[DatasetId, ...] = ("uscis-forms", "uscis-i130-awaiting", "state-iv", "state-vb")
 
 
 @dataclass(frozen=True, order=True)
@@ -73,6 +73,8 @@ class Measure(StrEnum):
     MEDIAN_MONTHS = "median_processing_months"
     AWAITING_VISA = "awaiting_visa"
     ISSUANCES = "issuances"
+    FINAL_ACTION_DATE = "final_action_date"
+    FILING_DATE = "filing_date"
 
 
 class Window(StrEnum):
@@ -134,12 +136,25 @@ class Reported:
 @dataclass(frozen=True)
 class Absent:
     """The source printed no number. A dash is "zero or rounds to 0.0" per the USCIS table key, but we keep
-    what was printed and let readers decide; "withheld" is USCIS's D/H privacy suppression."""
+    what was printed and let readers decide; "withheld" is USCIS's D/H privacy suppression; "unavailable" is the
+    Visa Bulletin's "U" (no visa numbers this month)."""
 
-    reason: Literal["na", "null", "dash", "blank", "withheld", "not_captured"]
+    reason: Literal["na", "null", "dash", "blank", "withheld", "not_captured", "unavailable"]
 
 
-Value = Reported | Absent
+@dataclass(frozen=True)
+class Cutoff:
+    """A Visa Bulletin date: cases with a priority date before it may proceed this month."""
+
+    date: date
+
+
+@dataclass(frozen=True)
+class Current:
+    """The Visa Bulletin printed "C": no cutoff, every priority date may proceed."""
+
+
+Value = Reported | Absent | Cutoff | Current
 
 SeriesId = NewType("SeriesId", str)
 

@@ -67,3 +67,60 @@ export function lineChart(spec: LineSpec, opts: { width: number; document?: Docu
     marks,
   });
 }
+
+// ---- Visa Bulletin fan chart: printed cutoffs, then the forecast's 10–90% and 25–75% bands and median ----
+export interface FanSpec {
+  history: { x: number; y: number | null; current: boolean; label: string; cite: string }[]; // ms; y null = unavailable
+  bands: { x: number; q10: number; q25: number; q50: number; q75: number; q90: number }[];
+  priority: number | null;
+}
+
+const monthYear = (ms: number) => new Date(ms).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
+
+export function fanChart(spec: FanSpec, opts: { width: number; document?: Document; interactive?: boolean }) {
+  const hist = spec.history.map((p) => ({ ...p, date: new Date(p.x), cut: p.y === null ? null : new Date(p.y) }));
+  const band = spec.bands.map((b) => ({
+    date: new Date(b.x), q10: new Date(b.q10), q25: new Date(b.q25), q50: new Date(b.q50), q75: new Date(b.q75), q90: new Date(b.q90),
+  }));
+  // The widened range's lower tail reaches decades below anything printed, so the view stops a little under the
+  // lowest cutoff of the last 10 years (or the priority date, if earlier) and the bands are clipped at the frame.
+  const printed = spec.history.filter((p) => p.y !== null).map((p) => ({ x: p.x, y: p.y! }));
+  const since = new Date(printed.at(-1)!.x);
+  since.setUTCFullYear(since.getUTCFullYear() - 10);
+  const floor = Math.min(...printed.filter((p) => p.x >= +since).map((p) => p.y), spec.priority ?? Infinity);
+  const all = [...printed.map((p) => p.y), ...spec.bands.flatMap((b) => [b.q10, b.q90]), ...(spec.priority === null ? [] : [spec.priority])];
+  const [lowest, top] = [Math.min(...all), Math.max(...all)];
+  const yDomain = [new Date(Math.max(lowest, floor - 0.05 * (top - floor))), new Date(top)];
+  const marks: Plot.Markish[] = [
+    Plot.gridY({ className: "grid", strokeOpacity: 1 }),
+    Plot.areaY(band, { x: "date", y1: "q10", y2: "q90", className: "wash s1", curve: "linear", clip: "frame" }),
+    Plot.areaY(band, { x: "date", y1: "q25", y2: "q75", className: "wash s1", curve: "linear", clip: "frame" }),
+    Plot.lineY(band, { x: "date", y: "q50", className: "line s1 median", strokeWidth: 2, strokeDasharray: "4 3", curve: "linear", clip: "frame" }),
+    Plot.lineY(hist, { x: "date", y: "cut", className: "line s1", strokeWidth: 2, curve: "step-after", defined: (d) => d.cut !== null, clip: "frame" }),
+  ];
+  if (spec.priority !== null) {
+    const pd = new Date(spec.priority);
+    marks.push(Plot.ruleY([pd], { className: "pd-rule", strokeWidth: 2 }));
+    marks.push(Plot.text([pd], { x: band.at(-1)?.date ?? hist.at(-1)!.date, y: (d) => d, text: () => "Your priority date", dy: -8, textAnchor: "end", className: "endlabel" }));
+  }
+  if (opts.interactive) {
+    const pts = [
+      ...hist.filter((d) => d.cut !== null).map((d) => ({ date: d.date, y: d.cut!, title: `${d.label}: ${d.current ? "Current" : monthYear(d.y!)}\nSource: ${d.cite}` })),
+      ...band.map((b) => ({ date: b.date, y: b.q50, title: `${monthYear(+b.date)} (forecast)\nMedian cutoff ${monthYear(+b.q50)}\n80% range ${monthYear(+b.q10)} – ${monthYear(+b.q90)}` })),
+    ];
+    marks.push(Plot.ruleX(pts, Plot.pointerX({ x: "date", className: "crosshair" })));
+    marks.push(Plot.tip(pts, Plot.pointerX({ x: "date", y: "y", title: "title", className: "tip" })));
+  }
+  return Plot.plot({
+    document: opts.document,
+    width: opts.width,
+    height: 300,
+    marginLeft: 48,
+    marginRight: 16,
+    marginTop: 20,
+    style: { background: "transparent", fontFamily: "inherit", fontSize: "12px", overflow: "visible" },
+    x: { type: "utc", label: null, ticks: opts.width < 500 ? 4 : 7, tickSize: 0 },
+    y: { type: "utc", label: null, ticks: 5, tickSize: 0, domain: yDomain },
+    marks,
+  });
+}
