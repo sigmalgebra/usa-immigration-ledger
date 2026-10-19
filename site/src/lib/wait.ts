@@ -20,6 +20,8 @@ const count = (n: number): string => n.toLocaleString("en-US");
 export const MODEL_LABEL: Record<ModelName, string> = { pace: "recent pace", bootstrap: "resampled history" };
 export const CHART_LABEL: Record<ChartName, string> = { final: "final action", filing: "dates for filing" };
 export const chartScope = (chart: ChartName): string => `all categories and countries, ${CHART_LABEL[chart]} chart`;
+/** Said under every dates-for-filing result: the forecast uses the later cutoff of the two charts. */
+export const FILING_EITHER_CHART = "A date can be filed once it passes either chart, so the dates-for-filing estimate is never later than the final action one.";
 export const widened = (f: Fit): string => `×${f.spread.toLocaleString("en-US")}`;
 
 /** How a series' held-out forecasts did: its own score once at least `minJudged` were judged, else every series

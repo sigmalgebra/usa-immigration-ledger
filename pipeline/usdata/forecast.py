@@ -13,6 +13,11 @@ Two models produce `paths`, an (n, horizon) array of simulated cutoffs for month
 Both are overconfident as simulated, so every path is widened around the per-month median by one factor per model
 (`widen`). The factor is fit on backtest origins before CALIBRATE_BEFORE, as the smallest that keeps every
 calibration year's coverage at WORST_YEAR_TARGET, and judged on origins from it on.
+
+A date can be filed once it is current under either chart, so a dates-for-filing series is forecast and scored
+against its effective cutoff: each widened filing path is raised to a widened final action path simulated at the
+same origin with the final series' own seed (`effective`). Raising after widening keeps every filing path at or
+above the final path it is paired with, so the filing bands and crossings are never behind final action's.
 """
 from __future__ import annotations
 
@@ -107,6 +112,11 @@ class History:
         return out
 
 
+def final_of(series_id: str) -> str | None:
+    """The final action series a dates-for-filing series is effective against; None for any other series."""
+    return "vb/final/" + series_id.removeprefix("vb/filing/") if series_id.startswith("vb/filing/") else None
+
+
 def _seed(*parts: object) -> int:
     return int.from_bytes(hashlib.sha256("|".join(map(str, parts)).encode()).digest()[:8], "big")
 
@@ -173,6 +183,15 @@ def widen(paths: np.ndarray, spreads: Sequence[float]) -> Iterator[np.ndarray]:
         yield paths if s == 1 else med + s * dev
 
 
+def effective(filing: np.ndarray, final: np.ndarray) -> np.ndarray:
+    """Path by path, the later cutoff of the two charts, pairing paths by the rank of their mean cutoff: a
+    comonotonic coupling. Pace paths are already in that order. Pairing bootstrap paths by index would pair
+    independent draws, and the larger of two independent draws runs early."""
+    def ranked(p: np.ndarray) -> np.ndarray:
+        return p[np.argsort(p.mean(axis=1), kind="stable")]
+    return np.maximum(ranked(filing), ranked(final))
+
+
 def first_crossings(paths: np.ndarray, priority: Sequence[int]) -> np.ndarray:
     """(n_paths, len(priority)) month of the first simulated cutoff after each priority date; horizon+1 if none.
 
@@ -219,10 +238,9 @@ class Forecast:
     crossings: tuple[tuple[int, Crossing], ...]  # (priority date days, crossing quantiles), monthly steps
 
 
-def forecast(series_id: str, h: History, model: ModelName, spread: float) -> Forecast | None:
-    """From the latest bulletin, or the last printed cutoff when the latest says "U" (None once that is more than
-    a year old). Crossings are tabulated for priority dates on the first of each month from that cutoff to the
-    bulletin month, the only dates still waiting."""
+def _latest(series_id: str, h: History, model: ModelName, spread: float) -> tuple[Month, int, np.ndarray] | None:
+    """(origin month, last printed cutoff, widened paths) from the latest bulletin, or from the last printed cutoff
+    when the latest says "U". None once that is more than a year old, or with too little history."""
     origin = len(h.cutoff) - 1
     printed = [i for i, c in enumerate(h.cutoff) if c is not None]
     if not printed or origin - printed[-1] > STALE_MONTHS:
@@ -230,10 +248,23 @@ def forecast(series_id: str, h: History, model: ModelName, spread: float) -> For
     raw = simulate(h, origin, model, HORIZON, _seed(series_id, h.month(origin), model))
     if raw is None:
         return None
-    paths = next(widen(raw, [spread]))
-    om = h.month(origin)
     cutoff = h.cutoff[printed[-1]]
     assert cutoff is not None
+    return h.month(origin), cutoff, next(widen(raw, [spread]))
+
+
+def forecast(series_id: str, h: History, model: ModelName, spread: float, final: History | None = None
+             ) -> Forecast | None:
+    """Crossings are tabulated for priority dates on the first of each month from the cutoff to the bulletin month,
+    the only dates still waiting. With `final` (the series' final action chart), cutoff and paths are the effective
+    ones: the later of the two charts, path by path."""
+    own = _latest(series_id, h, model, spread)
+    if own is None:
+        return None
+    om, cutoff, paths = own
+    fin = _latest(str(final_of(series_id)), final, model, spread) if final is not None else None
+    if fin is not None and fin[0] == om:
+        cutoff, paths = max(cutoff, fin[1]), effective(paths, fin[2])
     c = date.fromordinal(cutoff + _EPOCH)
     first = add_months(Month(c.year, c.month), 1) if c.day > 1 else Month(c.year, c.month)
     pds = [month_start(add_months(first, i)) for i in range(months_between(first, om) + 1)]
@@ -259,18 +290,31 @@ class Score:
     median_abs_error: float | None  # months
 
 
-def _actual(h: History, origin: int, priority: int) -> int | None:
-    for t in range(origin + 1, len(h.cutoff)):
-        c = h.cutoff[t]
+def _either(h: History, final: History) -> tuple[int | None, ...]:
+    """Per month of `h`: the later of its printed cutoff and `final`'s; None where neither printed one."""
+    out = []
+    for i, c in enumerate(h.cutoff):
+        j = final.index(h.month(i))
+        printed = [x for x in (c, final.cutoff[j] if 0 <= j < len(final.cutoff) else None) if x is not None]
+        out.append(max(printed) if printed else None)
+    return tuple(out)
+
+
+def _actual(cutoffs: Sequence[int | None], origin: int, priority: int) -> int | None:
+    for t in range(origin + 1, len(cutoffs)):
+        c = cutoffs[t]
         if c is not None and c > priority:
             return t - origin
     return None
 
 
-def backtest(series_id: str, h: History, model: ModelName) -> dict[float, list[Trial]]:
-    """Trials at every spread in SPREADS, all from one simulation per origin."""
+def backtest(series_id: str, h: History, model: ModelName, final: History | None = None
+             ) -> dict[float, list[Trial]]:
+    """Trials at every spread in SPREADS, all from one simulation per origin. With `final`, both the forecast and
+    the actual crossing use the effective cutoff, each from data up to the origin only (see `forecast`)."""
     trials: dict[float, list[Trial]] = {s: [] for s in SPREADS}
     last = len(h.cutoff) - 1
+    printed = _either(h, final) if final is not None else h.cutoff
     for origin in range(max(0, h.index(BACKTEST_FROM)), last - MIN_HISTORY + 1):
         c = h.cutoff[origin]
         if c is None:
@@ -288,15 +332,20 @@ def backtest(series_id: str, h: History, model: ModelName) -> dict[float, list[T
         raw = simulate(h, origin, model, last - origin, _seed(series_id, om, model), BACKTEST_PATHS)
         if raw is None:
             continue
-        actual = [_actual(h, origin, p) for _, p in pds]
-        for s, paths in zip(SPREADS, widen(raw, SPREADS)):
+        widened: Iterator[np.ndarray] = widen(raw, SPREADS)
+        if final is not None and 0 <= (j := final.index(om)) < len(final.cutoff):
+            fraw = simulate(final, j, model, last - origin, _seed(final_of(series_id), om, model), BACKTEST_PATHS)
+            if fraw is not None:
+                widened = map(effective, widened, widen(fraw, SPREADS))
+        actual = [_actual(printed, origin, p) for _, p in pds]
+        for s, paths in zip(SPREADS, widened):
             predicted = _crossings(first_crossings(paths, [p for _, p in pds]), paths.shape[1])
             for (lead, _), q, a in zip(pds, predicted, actual):
                 trials[s].append(Trial(om, lead, q, a, last - origin))
     return trials
 
 
-def _backtest(task: tuple[str, History, ModelName]) -> dict[float, list[Trial]]:
+def _backtest(task: tuple[str, History, ModelName, History | None]) -> dict[float, list[Trial]]:
     return backtest(*task)
 
 
@@ -411,9 +460,10 @@ def run(histories: dict[str, History]) -> Results:
     """Backtest both models on every series; fit each model's spread on the calibration origins; choose the model
     by its held-out scores; then forecast with it."""
     series = sorted(histories.items())
-    tasks = [(sid, h, m) for m in MODELS for sid, h in series]
+    final = {sid: histories.get(str(final_of(sid))) for sid, _ in series}
+    tasks = [(sid, h, m, final[sid]) for m in MODELS for sid, h in series]
     with ProcessPoolExecutor() as pool:  # one simulation per (model, series, origin); the work is CPU-bound
-        done = dict(zip(((m, sid) for sid, _, m in tasks), pool.map(_backtest, tasks, chunksize=4)))
+        done = dict(zip(((m, sid) for sid, _, m, _ in tasks), pool.map(_backtest, tasks, chunksize=4)))
     trials = {m: {sid: done[m, sid] for sid, _ in series} for m in MODELS}
     calib = {m: {s: [t for ts in trials[m].values() for t in ts[s] if not held_out(t)] for s in SPREADS}
              for m in MODELS}
@@ -428,6 +478,6 @@ def run(histories: dict[str, History]) -> Results:
     by_chart = {c: _pooled([t for sid, ts in trials[chosen].items() if sid.startswith(f"vb/{c}/")
                             for t in ts[spread[chosen]]], spread[chosen]) for c in CHARTS}
     return Results(chosen, pooled, by_chart, first, curve,
-                   {sid: SeriesResult(forecast(sid, h, chosen, spread[chosen]),
+                   {sid: SeriesResult(forecast(sid, h, chosen, spread[chosen], final[sid]),
                                       {m: _fit(trials[m][sid][spread[m]], spread[m]) for m in MODELS})
                     for sid, h in series})
