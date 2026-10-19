@@ -256,7 +256,7 @@ const payload = {
   import { fanChart } from "../lib/chart";
   import type { BulletinSeries, ChartName, Score, SeriesForecast } from "../lib/ledger";
   import {
-    addMonths, chartScope, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, trackRecord, wait, type Wait,
+    addMonths, chartScope, dateLabel, fanSpec, FILING_EITHER_CHART, horizonFor, monthLabel, months, otherMethod, trackRecord, wait, type Wait,
   } from "../lib/wait";
 
   type Live = Pick<BulletinSeries, "id" | "chart" | "section" | "category" | "category_title" | "area" | "area_title" | "title" | "latest" | "path" | "backtest">;
@@ -322,6 +322,7 @@ const payload = {
       answer.textContent = w.q50 === null
         ? `Most likely more than 20 years away: fewer than half of the simulated futures reach your priority date within 20 years.`
         : `Most likely around ${when(w.q50)}. The likely range runs from ${when(w.q10)} to ${when(w.q90)}.`;
+      if (s.chart === "filing") note.append(` ${FILING_EITHER_CHART}`);
       const r = trackRecord(name(s), s.chart, s.backtest[payload.model].held_out, payload.judge.pooled[s.chart], payload.judge.min);
       note.append(` On forecasts made from ${payload.judge.checkFrom} on, ranges like this held the real date ${r.coverage} of the time `
         + (r.enough ? `for ${name(s)}.` : `across ${chartScope(s.chart)} (${name(s)} has too few cases to judge).`));

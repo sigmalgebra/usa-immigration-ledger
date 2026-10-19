@@ -122,8 +122,8 @@ month, over trials whose crossing has happened.
 
 ### Calibration
 
-As simulated, both models are overconfident: over all origins their nominal 80% ranges held the real date 63.0%
-(pace, n 29,763) and 61.8% (bootstrap, n 32,957) of the time. So every simulated path is widened around the
+As simulated, both models are overconfident: over all origins their nominal 80% ranges held the real date 63.9%
+(pace, n 29,787) and 63.4% (bootstrap, n 33,053) of the time. So every simulated path is widened around the
 per-month median, `paths' = median + s * (paths - median)`, by one scalar `s` per model (`forecast.widen`). Forecast
 bands, the crossing table and the backtest all go through `widen`, so they stay consistent; `s = 1` is the paths
 unchanged, and at `s = 1` the backtest reproduces the numbers above exactly.
@@ -163,7 +163,7 @@ unchanged, and at `s = 1` the backtest reproduces the numbers above exactly.
 The first rule fit `s` as the smallest grid value whose *pooled* 2008 to 2015 coverage reached 80%
 (`AVERAGE_TARGET`, kept as `forecast.calibrate_average` only to publish how it held up). It picked `s = 1.5` for
 pace and `s = 1.25` for bootstrap, and the old choice (held-out coverage closest to 80%) picked pace. From 2016
-on, pace's range then held the real date only 67.0% of the time (n 17,940), bootstrap's 60.9% (n 20,796). The
+on, pace's range then held the real date only 68.4% of the time (n 17,972), bootstrap's 63.5% (n 20,927). The
 pooled 2008 to 2015 average hides weak years: at pace `s = 1.5`, 2010 scored 61.0% while 2014 scored 92.4%.
 Bulletins after 2019 move much more than before, and a fit to the average of calmer years does not carry over. A
 recent window does not fix it either: fitting the same 80% average on final action origins from 2016 to 2019 picks
@@ -190,10 +190,10 @@ match `by_chart.final` in `forecast.json`.
 
 | Model | s | Calibration (n) | Held-out, both charts (n) | Worst held-out year, both charts | Held-out error | Held-out, final (n) | Worst held-out year, final | Held-out error, final |
 |---|---|---|---|---|---|---|---|---|
-| pace (chosen) | 4 | 93.7% (11,602) | 84.8% (17,500) | 74.0% (2023) | 10.0 | 91.0% (12,060) | 80.1% (2023) | 9.0 |
-| bootstrap | 3 | 92.6% (11,946) | 80.8% (20,391) | 66.7% (2021) | 8.0 | 82.1% (12,414) | 59.2% (2021) | 8.0 |
+| pace (chosen) | 4 | 93.7% (11,602) | 86.4% (17,500) | 76.8% (2023) | 10.0 | 91.0% (12,060) | 80.1% (2023) | 9.0 |
+| bootstrap | 3 | 92.6% (11,946) | 81.1% (20,474) | 62.4% (2021) | 8.0 | 82.1% (12,414) | 59.2% (2021) | 8.0 |
 
-**Chosen model: `pace` with `s = 4`.** Its worst held-out year (74.0%) beats bootstrap's (66.7%), so the
+**Chosen model: `pace` with `s = 4`.** Its worst held-out year (76.8%) beats bootstrap's (62.4%), so the
 median-error tiebreak, which would favor bootstrap, does not come into play. The same choice holds on the final
 action chart alone (80.1% against 59.2%). `s = 4` is the top of the grid: pace's worst calibration year only
 clears 75% there. Like the model, the spread is recomputed on every build, so the page and `forecast.json` state
@@ -207,12 +207,12 @@ Pace at `s = 4`, coverage by origin year (judged n), as published:
 
 | Year | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 |
 |---|---|---|---|---|---|---|---|---|---|
-| Both charts (check) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 90.6% (1,843) | 85.5% (2,615) | 76.3% (2,013) | 85.4% (1,918) | 74.0% (2,894) | 84.7% (1,606) |
+| Both charts (check) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 91.6% (1,843) | 90.6% (2,615) | 77.1% (2,013) | 85.9% (1,918) | 76.8% (2,894) | 85.6% (1,606) |
 | Final action (`by_chart.final`) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 90.2% (1,542) | 96.5% (1,428) | 94.4% (1,010) | 98.6% (978) | 80.1% (1,615) | 84.3% (876) |
-| Dates for filing (`by_chart.filing`) | | | | 92.4% (301) | 72.3% (1,187) | 58.2% (1,003) | 71.6% (940) | 66.3% (1,279) | 85.2% (730) |
+| Dates for filing (`by_chart.filing`) | | | | 98.7% (301) | 83.5% (1,187) | 59.8% (1,003) | 72.7% (940) | 72.6% (1,279) | 87.3% (730) |
 
 Through 2019 the filing chart adds few trials and the rows agree. From 2020 on it is close to half of each year's
-trials and scores well below the final action chart, which pulls the pooled years down. The filing chart has no
+trials and scores below the final action chart in every year but 2024, which pulls the pooled years down. The filing chart has no
 judged held-out trials before 2019.
 
 Pooled held-out scores as published, pace at `s = 4`, and what the page shows for each chart:
@@ -220,8 +220,57 @@ Pooled held-out scores as published, pace at `s = 4`, and what the page shows fo
 | Scope | Held-out (n) | Worst held-out year | Held-out error | Shown |
 |---|---|---|---|---|
 | Final action | 91.0% (12,060) | 80.1% (2023) | 9.0 | headline, tile and year table when the final action chart is selected |
-| Dates for filing | 71.0% (5,440) | 58.2% (2021) | 13.0 | the same when the filing chart is selected, with the sentence on why it is weaker |
-| Both charts | 84.8% (17,500) | 74.0% (2023) | 10.0 | methods table only |
+| Dates for filing | 76.0% (5,440) | 59.8% (2021) | 13.0 | the same when the filing chart is selected, with the sentence on why it is weaker |
+| Both charts | 86.4% (17,500) | 76.8% (2023) | 10.0 | methods table only |
+
+### Dates for filing: the effective cutoff
+
+**Bug.** Each chart was forecast on its own, from its own trailing 36-month pace. The dates-for-filing forecast
+could then come out later than the final action forecast for the same category, country and priority date. F1,
+all other countries, priority date 2021-12-12, from the July 2026 bulletin: final action (cutoff 2018-02-01) said
+most likely April 2030, range May 2027 to beyond 20 years. Dates for filing (cutoff 2019-01-01, ahead of final
+action) said most likely July 2037, range December 2026 to beyond 20 years. The F1 filing cutoff stood at
+2017-09-01 from mid-2023 to March 2026 while final action moved from December 2014 to February 2018, so the
+filing pace was the slower one and its projection fell behind final action's.
+
+**Rule.** A date can be filed once it is current under either chart. If the final action date passes it, it can
+certainly be filed. So a filing series is forecast against its effective cutoff, the later of the two charts in
+each month. Printed history mostly agrees already. In 5,352 category, country and month cells the filing chart
+prints a date and final action prints a date or Current. The filing date is behind final action in 183 of them,
+177 where final action is Current and 6 where it prints a later date.
+
+**As built.**
+- `forecast.effective(filing, final)` takes the larger cutoff, path by path. It runs on the *widened* paths of
+  each chart, each widened around its own median by the model's `s`. Taking the maximum first and then widening
+  the result around its own median could push a filing path below the final action path it was paired with, and
+  the published filing range could again start later than final action's. Taking it after widening keeps every
+  filing path at or above a published final action path. So every filing band quantile is at or above final
+  action's, and every crossing quantile is at or before it.
+- The final action paths are those of the final series' own forecast: same origin, same seed
+  (`_seed(<final id>, origin, model)`), same path count. The filing forecast's `cutoff` is the later of the two
+  printed cutoffs, so a date already passed by final action reads as current for filing too, and the crossing
+  table starts there.
+- **Pairing.** Paths are paired by the rank of their mean cutoff, a comonotonic coupling. Pace paths are quantile
+  paths ordered by error rank, so this pairs path k with path k. Pace's results are identical to pairing by
+  index (checked: the build gave the same pace numbers both ways). Bootstrap paths are independent draws.
+  Pairing them by index takes the larger of two independent futures, which runs early. Bootstrap's held-out
+  filing coverage fell from 78.6% to 61.2% that way (worst year 36.0%). Pairing by rank gives 79.6% (n 8,060,
+  worst year 65.9%). The coupling assumes the two charts move together, which their history supports.
+- **Backtest.** For a filing series, the actual crossing is the first later month in which either chart's
+  printed cutoff passes the priority date (`_either`). The simulation at each origin takes the same maximum, with
+  final action paths simulated from final action data up to that origin only.
+- **Unchanged.** Model choice and spread calibration logic. Calibration has no filing trials (the chart began in
+  October 2015), so both spreads, the calibration curve and every final action number stay as they were. Final
+  action held out: 91.0% (n 12,060), worst year 80.1% (2023), median error 9.0 months. Pace is still chosen.
+
+**Result.** Filing held out, pace at `s = 4`, is now 76.0% (n 5,440, was 71.0%). The worst year is 2021 at 59.8%
+(was 58.2%). The median error is 13.0 months, unchanged, over 3,743 known crossings (was 3,110, since a crossing
+on either chart now counts). The reported case now reads most likely April 2030, range December 2026 to beyond
+20 years, for dates for filing. Final action reads April 2030, range May 2027 to beyond 20 years. The page says
+under every filing forecast that a date can be filed once it passes either chart.
+`test_published_filing_forecasts_are_never_later_than_final_action` checks every published filing series against
+its final action series. Bands must be at or above, and crossing quantiles at or before, at every priority date
+both tables hold, with beyond the horizon counted as infinity.
 
 ### Fan chart view
 
@@ -239,7 +288,7 @@ Held-out scores by series and chart, at each model's `s`:
 | Series | pace calibration (n) | pace held-out (n) | pace held-out error | bootstrap calibration (n) | bootstrap held-out (n) | bootstrap held-out error |
 |---|---|---|---|---|---|---|
 | Final action chart, all series | 93.7% (11,602) | 91.0% (12,060) | 9.0 | 92.6% (11,946) | 82.1% (12,414) | 8.0 |
-| Dates for filing chart, all series | none | 71.0% (5,440) | | none | 78.6% (7,977) | |
+| Dates for filing chart, all series | none | 76.0% (5,440) | | none | 79.6% (8,060) | |
 | F2A, all other countries (final) | 96.9% (228) | 98.7% (148) | 6.0 | 89.5% (228) | 83.8% (148) | 5.0 |
 | F4, Philippines (final) | 91.3% (356) | 82.2% (409) | 9.0 | 93.5% (356) | 85.6% (409) | 7.0 |
 | EB-2, India (final) | 96.4% (330) | 100.0% (358) | 15.0 | 78.5% (330) | 91.2% (363) | 12.0 |
@@ -248,21 +297,23 @@ Held-out scores by series and chart, at each model's `s`:
 What the numbers say:
 
 - **The range is wide on purpose.** At `s = 4`, pace's range is four times as wide around the median as
-  simulated. That is what it took for every year from 2008 to 2015 to reach 75%. From 2016 on it held 84.8%
-  pooled, with no year below 74.0%. The page states the measured numbers for the selected chart instead of
+  simulated. That is what it took for every year from 2008 to 2015 to reach 75%. From 2016 on it held 86.4%
+  pooled, with no year below 76.8%. The page states the measured numbers for the selected chart instead of
   promising 80%.
 - **Not a censoring artifact.** Held-out origins have shorter observation windows, so more of their trials stay
   unjudged. Judging calibration trials as if only 36 months had been observed leaves pace's calibration coverage at
-  `s = 1` at 74.1% (against 74.9% with the full window), while held-out trials with the same window score 54.9%.
+  `s = 1` at 74.1% (against 74.9% with the full window), while held-out trials with the same window score 54.9% (measured before the filing fix below, which
+  changed only filing trials).
   Bulletins since 2016 are harder to forecast than those before.
 - **The dates-for-filing chart has no calibration trials.** It begins in October 2015, and both models need two
-  years of history, so its spread comes entirely from the final action chart. It scores worst held out (71.0% for
-  pace) and is why the pooled worst year (2023, 74.0%) sits under the 75% target. That is why the page reports
-  each chart on its own: final action holds 91.0% with no year below 80.1%, filing 71.0% with 2021 at 58.2%.
+  years of history, so its spread comes entirely from the final action chart. It scores worst held out (76.0% for
+  pace) and pulls the pooled worst year (2023) down to 76.8%, against 80.1% for final action alone. That is why
+  the page reports each chart on its own: final action holds 91.0% with no year below 80.1%, filing 76.0% with
+  2021 at 59.8%.
 - **The median error moves a little with `s`.** The median path is the same for every `s`, but the median of
   first-crossing months over paths is not exactly the first crossing of the median path. Pooled held-out median
-  error for pace is 10.0 months at every grid value. For bootstrap it is 9.0 from `s = 1` to `s = 1.5`, then 8.0
-  from 1.75 on. Pooled n also shifts with `s`, because an unresolved trial is judged only once its range's upper
+  error for pace is 10.0 months at every grid value. For bootstrap it is 9.0 at `s = 1` and 1.25, then 8.0
+  from 1.5 on. Pooled n also shifts with `s`, because an unresolved trial is judged only once its range's upper
   end has passed, and a wider range passes later.
 
 Deviations from the spec above, and why:

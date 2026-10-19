@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import json
 from datetime import date, timedelta
+from pathlib import Path
 
 import numpy as np
 import pytest
 
 from usdata.forecast import (HORIZON, MODELS, SPREADS, History, Trial, add_months, backtest, calibrate, choose,
                              crossing_quantiles, days, forecast, score, simulate, widen, Score)
+from usdata.publish import DATA
 from usdata.model import Current, Cutoff, Month
 
 START = Month(2000, 1)
@@ -113,3 +116,87 @@ def test_unavailable_latest_bulletin_projects_from_the_last_printed_cutoff():
     f = forecast("vb/final/x/all", History.of(rows), "pace", 1.0)
     assert f is not None and f.origin == add_months(START, 60)
     assert f.cutoff == days(date(1995, 1, 1) + timedelta(days=30 * 59))
+
+
+def _crossing(f, priority: date):
+    return dict(f.crossings)[days(priority)]
+
+
+@pytest.mark.parametrize("model", MODELS)
+def test_a_filing_date_ahead_of_final_but_slower_is_filed_once_final_action_passes_it(model):
+    final = series(60, date(1990, 1, 1), 60)   # 1999-09-11 at the origin, 60 days a month
+    filing = series(60, date(2000, 1, 1), 10)  # 2001-08-13 at the origin, 10 days a month
+    alone = forecast("vb/filing/x/all", filing, model, 1.0)
+    effective = forecast("vb/filing/x/all", filing, model, 1.0, final)
+    approval = forecast("vb/final/x/all", final, model, 1.0)
+    assert alone and effective and approval
+    assert _crossing(alone, date(2003, 1, 1)) == (51, 51, 51)
+    assert _crossing(approval, date(2003, 1, 1)) == (21, 21, 21)
+    assert _crossing(effective, date(2003, 1, 1)) == (21, 21, 21)
+    assert effective.cutoff == days(date(2001, 8, 13))
+
+
+def test_filing_backtest_counts_a_crossing_on_either_chart_without_looking_ahead():
+    final = series(132, date(1985, 1, 1), 60)   # 2000-10-09 at the first origin, January 2008
+    filing = series(132, date(2000, 1, 1), 10)  # 2002-08-18 there
+    alone = backtest("vb/filing/x/all", filing, "pace")[1.0]
+    effective = backtest("vb/filing/x/all", filing, "pace", final)[1.0]
+    first = Month(2008, 1)
+    assert [(t.lead, t.predicted, t.actual) for t in alone if t.origin == first][:2] == [
+        (6, (19, 19, 19), 19), (12, (None, None, None), None)]
+    assert [(t.lead, t.predicted, t.actual) for t in effective if t.origin == first][:2] == [
+        (6, (15, 15, 15), 15), (12, (18, 18, 18), 18)]
+    # Changing final action after an origin changes what happened next, never what was forecast there.
+    cut = final.index(Month(2009, 1))
+    moved = History(final.start, final.cutoff[:cut] + tuple(c + 9000 for c in final.cutoff[cut:]))
+    later = backtest("vb/filing/x/all", filing, "pace", moved)[1.0]
+    assert [t.predicted for t in later if t.origin < Month(2009, 1)] ==         [t.predicted for t in effective if t.origin < Month(2009, 1)]
+    assert [t.actual for t in later if t.origin < Month(2009, 1)] !=         [t.actual for t in effective if t.origin < Month(2009, 1)]
+
+
+def _published(chart: str, category: str, area: str) -> dict | None:
+    p = DATA / "visa-bulletin" / "forecast" / chart / category / f"{area}.json"
+    return json.loads(p.read_text(encoding="utf-8"))["forecast"] if p.exists() else None
+
+
+def _wait(f: dict, priority: date) -> tuple[float, float, float]:
+    """The page's lookup (site/src/lib/wait.ts): interpolate the crossing table; beyond the horizon is +inf."""
+    p, rows = days(priority), f["crossings"]
+    i = next((k for k, r in enumerate(rows) if r[0] > p), len(rows))
+    lo, hi = rows[max(0, i - 1)], rows[min(len(rows) - 1, i)]
+    frac = 0 if hi[0] == lo[0] else (p - lo[0]) / (hi[0] - lo[0])
+    out = []
+    for k in (1, 2, 3):
+        a, b = lo[k], hi[k]
+        m = b if a is None or b is None else round(a + (b - a) * frac)
+        out.append(float("inf") if m is None else m)
+    return out[0], out[1], out[2]
+
+
+def test_published_f1_filing_forecast_for_december_2021_is_not_later_than_final_action():
+    final, filing = _published("final", "f1", "all"), _published("filing", "f1", "all")
+    assert final and filing
+    pd = date(2021, 12, 12)
+    assert days(pd) >= days(date.fromisoformat(filing["cutoff"]))  # still waiting under both charts
+    (f10, f50, _), (a10, a50, _) = _wait(filing, pd), _wait(final, pd)
+    assert f50 <= a50 and f10 <= a10
+
+
+def test_published_filing_forecasts_are_never_later_than_final_action():
+    pairs = [(p, p.parents[2] / "final" / p.parent.name / p.name)
+             for p in (DATA / "visa-bulletin" / "forecast" / "filing").glob("*/*.json")]
+    pairs = [(fl, fn) for fl, fn in pairs if fn.exists()]
+    assert len(pairs) > 20
+    inf = float("inf")
+    checked = 0
+    for fl, fn in pairs:
+        filing, final = (json.loads(p.read_text(encoding="utf-8"))["forecast"] for p in (fl, fn))
+        assert filing["origin"] == final["origin"], fl
+        assert filing["cutoff"] >= final["cutoff"], fl
+        later = {r[0]: [inf if q is None else q for q in r[1:]] for r in final["crossings"]}
+        for pd, *q in filing["crossings"]:
+            if pd in later:
+                assert all(x <= y for x, y in zip((inf if v is None else v for v in q), later[pd])), (fl, pd)
+                checked += 1
+        assert all(x >= y for a, b in zip(filing["bands"], final["bands"]) for x, y in zip(a, b)), fl
+    assert checked > 1000

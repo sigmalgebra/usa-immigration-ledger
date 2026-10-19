@@ -123,7 +123,7 @@ def test_forecast_track_record_is_published_per_chart(rendered):
     assert final["held_out"]["coverage80"] == 0.9104
     assert final["worst_held_out"] == {"year": 2023, "n": 1615, "coverage80": 0.8012, "n_error": 758,
                                        "median_abs_error": 9.0}
-    assert filing["held_out"]["coverage80"] == 0.7101
+    assert filing["held_out"]["coverage80"] == 0.7603
     assert filing["calibration"]["n"] == 0  # the filing chart starts too late to help fit the spread
     for chart, fit in by_chart.items():
         series = [s["backtest"][model]["held_out"] for s in index["series"] if s["chart"] == chart]
