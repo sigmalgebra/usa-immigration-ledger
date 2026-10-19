@@ -10,9 +10,11 @@ import os
 import shutil
 from collections import defaultdict
 from dataclasses import asdict
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+from . import forecast as fc
 from .archive import REPO
 from .checks import CheckResult
 from .datasets import DATASETS
@@ -85,6 +87,8 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
              for f in sorted(facts_by_ds.get("state-iv", []), key=_sort_key) for s in [ledger.series[f.key.series]]]
     out["state-iv/compact.json"] = _json(state)
 
+    out.update(_visa_bulletin(ledger, facts_by_ds.get("state-vb", [])))
+
     sources = sorted(ledger.sources.values(), key=lambda f: (f.dataset, f.original_name))
     out["sources.json"] = _json([{**asdict(f), "archive_url": GITHUB_BLOB + f.archive_path,
                                   "publisher": DATASETS[f.dataset].publisher} for f in sources])
@@ -101,6 +105,59 @@ def render(ledger: Ledger, checks: list[CheckResult]) -> dict[str, str]:
     out["checks.json"] = _json([asdict(c) for c in checks])
     out["datapackage.json"] = _json(_datapackage(sorted(facts_by_ds)))
     return out
+
+
+HISTORY_MONTHS = 120
+
+
+def _visa_bulletin(ledger: Ledger, facts: list[Fact]) -> dict[str, str]:
+    """visa-bulletin/forecast.json indexes every series with its backtest; each series still printed in the
+    latest bulletin gets visa-bulletin/forecast/<chart>/<category>/<area>.json with history, bands and crossings."""
+    if not facts:
+        return {}
+    by_series: dict[str, list[Fact]] = defaultdict(list)
+    for f in facts:
+        by_series[f.key.series].append(f)
+    histories = {sid: fc.History.of([(f.key.period, f.value if isinstance(f.value, (Cutoff, Current)) else None)
+                                     for f in fs]) for sid, fs in by_series.items()}
+    results = fc.run(histories)
+    latest = max(f.key.period for f in facts)
+    out: dict[str, str] = {}
+    index = []
+    for sid, fs in sorted(by_series.items()):
+        s = ledger.series[sid]
+        fs = sorted(fs, key=lambda f: f.key.period)
+        r = results.series[sid]
+        fcst = r.forecast if fs[-1].key.period == latest else None
+        path = f"forecast/{sid.removeprefix('vb/')}.json" if fcst else None
+        index.append({"id": sid, **s.dims, "title": s.title, "description": s.note, "first": str(fs[0].key.period),
+                      "latest": _vb_row(fs[-1]), "path": path,
+                      "backtest": {m: asdict(sc) for m, sc in r.scores.items()}})
+        if path and fcst:
+            out[f"visa-bulletin/{path}"] = _json({
+                "id": sid,
+                "history": [_vb_row(f) for f in fs if fc.months_between(f.key.period, latest) < HISTORY_MONTHS],
+                "forecast": {"model": fcst.model, "origin": str(fcst.origin), "cutoff": _iso(fcst.cutoff),
+                             "bands": fcst.bands, "crossings": [[p, *q] for p, q in fcst.crossings]},
+            })
+    out["visa-bulletin/forecast.json"] = _json({
+        "latest": str(latest), "model": results.model,
+        "method": {"horizon_months": fc.HORIZON, "bootstrap_paths": fc.N_PATHS, "pace_levels": fc.PACE_LEVELS,
+                   "backtest_bootstrap_paths": fc.BACKTEST_PATHS, "band_levels": fc.BAND_LEVELS,
+                   "backtest_from": str(fc.BACKTEST_FROM), "backtest_leads_months": fc.BACKTEST_LEADS,
+                   "dates": "days since 1970-01-01"},
+        "pooled": {m: asdict(sc) for m, sc in results.pooled.items()},
+        "series": index,
+    })
+    return out
+
+
+def _vb_row(f: Fact) -> list:
+    return [str(f.key.period), text(f) or None, status(f), f.cell.source_id, f.cell.address, f.cell.raw]
+
+
+def _iso(d: int) -> str:
+    return date.fromordinal(d + date(1970, 1, 1).toordinal()).isoformat()
 
 
 def write(ledger: Ledger, checks: list[CheckResult], out_dir: Path = DATA) -> None:

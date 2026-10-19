@@ -111,3 +111,51 @@ Site page `/green-card-wait/`: pick category and country, type a priority date, 
   the forecast.
 - Straight-line extrapolation alone: kept as the `pace` candidate so the backtest can show whether the bootstrap
   earns its complexity.
+
+## Implementation reconciliation
+
+Backtest, as built on 291 archived bulletins (December 2001 to July 2026; 2009-03, 2009-09 to 2009-11 and 2012-10
+were never captured by the Internet Archive). Origins every month from January 2008 with at least 24 later months,
+synthetic priority dates 6/12/24/48 months past the origin cutoff. Coverage is the share of judged trials whose real
+first crossing fell inside the 10th to 90th percentile range; the error is the median absolute miss of the median
+month, over trials whose crossing has happened.
+
+| Series | pace n | pace coverage80 | pace median error (months) | bootstrap n | bootstrap coverage80 | bootstrap median error (months) |
+|---|---|---|---|---|---|---|
+| Pooled, all 275 series (both charts) | 29,763 | 63.0% | 8.0 | 32,957 | 61.8% | 9.0 |
+| F2A, all other countries (final) | 376 | 76.3% | 3.0 | 376 | 73.1% | 4.0 |
+| F4, Philippines (final) | 765 | 58.2% | 6.0 | 765 | 70.1% | 5.0 |
+| EB-2, India (final) | 696 | 90.4% | 16.0 | 696 | 86.2% | 10.0 |
+| EB-3, all other countries (final) | 321 | 86.6% | 6.0 | 321 | 76.6% | 8.0 |
+
+**Chosen model: `pace`**, by the rule pooled coverage closest to 80% (17 points away against 18), with median error
+as the tiebreak (not needed). The choice is recomputed on every build (`forecast.choose`), so the page and
+`forecast.json` always state the model the data picked. Both models are overconfident: their nominal 80% ranges held
+the real date about 62% of the time. The page shows that number next to every forecast instead of hiding it. The
+pooled n differ because pace needs 12 past errors at a horizon before it forecasts (about four years of history),
+so it skips early origins that bootstrap scores.
+
+Deviations from the spec above, and why:
+
+- **Two output folders.** Facts are at `state-vb/facts.csv` (the normal per-dataset path), the forecast at
+  `visa-bulletin/forecast.json`. The forecast index holds every series with its backtest; each series printed in the
+  latest bulletin also gets `visa-bulletin/forecast/<chart>/<category>/<area>.json` (history, bands, crossing
+  table), which the page fetches on selection. One file would be about 2.7 MB; split, the page loads about 20 KB per
+  series. The folder totals 2.7 MB, over the ~2 MB target, because every series keeps 240 monthly bands.
+- **Pace paths.** Pace has no simulation, so its "paths" are 200 quantile paths: path k adds the k-th quantile of
+  past errors at every horizon. First crossings over them give the same crossing quantiles as reading the bands.
+  Beyond the longest horizon with 12 past errors, the last error quantiles are widened in proportion to the horizon.
+- **Backtest paths.** The bootstrap backtest uses 500 paths per origin (2,000 for the published forecast), which
+  keeps a rebuild near one minute; 500 resolve a 10th or 90th percentile to well under a month.
+- **Gaps.** A month printed "U", or with no archived bulletin, carries the last printed cutoff forward in model input
+  (movement 0, then a jump). For actual crossings it counts as not crossed. When the latest bulletin prints "U"
+  (EB-2 India in July 2026), the forecast starts from the last printed cutoff if that is under a year old.
+- **Current** at a priority date counts as crossed. Backtest priority dates later than the origin month are skipped
+  (they would still be in the future), so a Current series contributes no trials while it stays Current.
+- **Live series only.** Series not printed in the latest bulletin (old EB-5 groupings, Schedule A) are backtested
+  but not forecast.
+- **Blank cell.** One cell is printed empty (March 2011, 5th Pilot Programs, Philippines). It is published as
+  `Absent("blank")` with a `bulletin-blank-cell` warning instead of failing the build.
+- **Section rows.** Three 2003 bulletins print "Employment-Based" as a row with values; the catalog lists it under
+  `ignore`.
+- **Dependency.** The pipeline now needs numpy (pinned in `pipeline/requirements.txt`).
