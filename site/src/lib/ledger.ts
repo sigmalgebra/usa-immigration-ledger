@@ -177,3 +177,37 @@ export function gaps(s: string, m: Measure): string[] {
   }
   return out;
 }
+
+// ---- Visa Bulletin cutoffs and the green card wait forecast ----
+export type BulletinRow = [month: string, value: string | null, status: "date" | "current" | "unavailable" | "blank", sourceId: string, cell: string, raw: string];
+export interface Score { n: number; coverage80: number | null; n_error: number; median_abs_error: number | null }
+export type ModelName = "pace" | "bootstrap";
+export interface BulletinSeries {
+  id: string;
+  chart: "final" | "filing";
+  section: "family" | "employment";
+  category: string;
+  category_title: string;
+  area: string;
+  area_title: string;
+  title: string;
+  description: string | null;
+  first: string;
+  latest: BulletinRow;
+  path: string | null;
+  backtest: Record<ModelName, Score>;
+}
+export interface ForecastIndex {
+  latest: string;
+  model: ModelName;
+  method: { horizon_months: number; bootstrap_paths: number; pace_levels: number; backtest_bootstrap_paths: number; band_levels: number[]; backtest_from: string; backtest_leads_months: number[]; dates: string };
+  pooled: Record<ModelName, Score>;
+  series: BulletinSeries[];
+}
+export interface SeriesForecast {
+  id: string;
+  history: BulletinRow[];
+  forecast: { model: ModelName; origin: string; cutoff: string; bands: number[][]; crossings: [number, number | null, number | null, number | null][] };
+}
+export const forecastIndex = (): ForecastIndex => load<ForecastIndex>("visa-bulletin/forecast.json");
+export const seriesForecast = (path: string): SeriesForecast => load<SeriesForecast>(`visa-bulletin/${path}`);

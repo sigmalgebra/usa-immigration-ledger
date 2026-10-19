@@ -121,7 +121,8 @@ def resolve_bulletin(cat: BulletinCatalog, row: RowKey) -> Series | Unmapped | N
                         f'add "{area}" to `printed` of the right [[area]]')
     sid = SeriesId(f"vb/{chart}/{c.id}/{a.id}")
     return Series(sid, "state-vb", None, "Visa Bulletin", f"{CHART_TITLE[chart]}: {c.title}, {a.title}",
-                  {"chart": chart, "section": section, "category": c.id, "area": a.id}, c.description)
+                  {"chart": chart, "section": section, "category": c.id, "category_title": c.title, "area": a.id,
+                   "area_title": a.title}, c.description)
 
 
 def split_label(label: str, codes: frozenset[str], aliases: dict[str, str], footnotes: frozenset[str]) -> str | None:

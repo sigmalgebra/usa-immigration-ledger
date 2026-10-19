@@ -1,0 +1,303 @@
+---
+import { parseHTML } from "linkedom";
+import Base from "../layouts/Base.astro";
+import { fanChart } from "../lib/chart";
+import {
+  fact, forecastIndex, periods, quarterLabel, seriesForecast, source, sources, type BulletinSeries, type Score,
+} from "../lib/ledger";
+import { dateLabel, fanSpec, horizonFor, monthLabel } from "../lib/wait";
+
+const index = forecastIndex();
+const live = index.series.filter((s) => s.path !== null);
+const final = live.filter((s) => s.chart === "final");
+const categories = [...new Map(final.map((s) => [s.category, s])).values()];
+const areas = [...new Map(final.map((s) => [s.area, s.area_title])).entries()];
+const name = (s: BulletinSeries) => `${s.category_title}, ${s.area_title}`;
+const defaultSeries = final.find((s) => s.category === "f4" && s.area === "philippines") ?? final[0];
+const defaultForecast = seriesForecast(defaultSeries.path!);
+
+const bulletinSources = Object.fromEntries(
+  sources().filter((s) => s.dataset === "state-vb").map((s) => [s.source_id, [s.original_name, s.archive_url]]),
+);
+const cite = (sourceId: string, cell: string) => `${source(sourceId).original_name}, ${cell}`;
+
+// The step after the bulletin: USCIS's own latest median time to decide an I-485 in that section.
+const i485 = Object.fromEntries((["family", "employment"] as const).map((section) => {
+  const id = `i-485-${section}`;
+  const p = periods(id, "median_processing_months").at(-1)!;
+  const f = fact(id, p, "median_processing_months");
+  return [section, { months: f.value, quarter: quarterLabel(p), href: source(f.sourceId).archive_url, cite: `${source(f.sourceId).original_name}, ${f.cell}` }];
+}));
+
+const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
+const months = (x: number | null) => (x === null ? "—" : `${x.toLocaleString("en-US", { maximumFractionDigits: 1 })}`);
+const pooled = index.pooled[index.model];
+const other = index.model === "pace" ? "bootstrap" : "pace";
+const MODEL_LABEL = { pace: "recent pace", bootstrap: "resampled history" } as const;
+
+const { document } = parseHTML("<!doctype html><html><body></body></html>");
+const staticSvg = (fanChart(fanSpec(defaultForecast, null, cite, horizonFor(defaultForecast, null)), { width: 720, document }) as unknown as Element).outerHTML;
+const latestMonth = monthLabel(index.latest);
+const payload = {
+  series: live.map(({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest }) =>
+    ({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest })),
+  model: index.model, sources: bulletinSources, i485,
+};
+const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("en-US")} past forecasts`;
+---
+<Base title="Green card wait" description={`When will your priority date be current? A forecast for every Visa Bulletin category and country, built from ${latestMonth} and every archived bulletin before it, with its track record.`}>
+  <p class="kicker">Forecast · Visa Bulletin through {latestMonth}</p>
+  <h1>When will your priority date be current?</h1>
+  <p class="dek">
+    A family or employment green card case can be approved only once the State Department's Visa Bulletin moves
+    past its priority date. We forecast when that happens from how each cutoff has moved since {monthLabel(index.series.reduce((a, s) => (s.first < a ? s.first : a), index.latest))}, and we show how often the same method was right in the past.
+  </p>
+
+  <form class="wait-form" id="wait-form" data-payload={JSON.stringify(payload)} onsubmit="return false">
+    <label>Category
+      <select name="category">
+        <optgroup label="Family">
+          {categories.filter((c) => c.section === "family").map((c) => <option value={c.category} selected={c.category === defaultSeries.category}>{c.category_title} · {c.description}</option>)}
+        </optgroup>
+        <optgroup label="Employment">
+          {categories.filter((c) => c.section === "employment").map((c) => <option value={c.category}>{c.category_title} · {c.description}</option>)}
+        </optgroup>
+      </select>
+    </label>
+    <label>Country of chargeability
+      <select name="area">
+        {areas.map(([id, title]) => <option value={id} selected={id === defaultSeries.area}>{title}</option>)}
+      </select>
+    </label>
+    <label>Priority date
+      <input type="date" name="priority" max={`${index.latest}-28`} />
+    </label>
+    <label>Chart
+      <select name="chart">
+        <option value="final" selected>Final action dates (approval)</option>
+        <option value="filing">Dates for filing (when an I-485 may be filed, if USCIS allows it)</option>
+      </select>
+    </label>
+  </form>
+
+  <section class="wait-result" id="wait-result" aria-live="polite">
+    <p class="answer">Enter your priority date to see the forecast.</p>
+    <p class="note">The {latestMonth} bulletin's final action date for {name(defaultSeries)} is <a href={source(defaultSeries.latest[3]).archive_url} title={cite(defaultSeries.latest[3], defaultSeries.latest[4])}>{defaultSeries.latest[1] ? dateLabel(defaultSeries.latest[1]) : defaultSeries.latest[2]}</a>.</p>
+  </section>
+
+  <figure class="chart">
+    <figcaption>
+      <span class="chart-title" id="fan-title">{defaultSeries.title}</span>
+      <span class="chart-sub">Printed cutoffs (solid), then the forecast median (dashed) with the middle half and 8 in 10 simulated futures shaded.</span>
+    </figcaption>
+    <div class="plot" id="fan" set:html={staticSvg} />
+    <details class="table-view">
+      <summary>Show the numbers</summary>
+      <div class="table-scroll"><table id="fan-table"></table></div>
+    </details>
+  </figure>
+
+  <h2>How often this was right</h2>
+  <div class="tiles" id="backtest">
+    <div class="tile">
+      <div class="label">Real date inside the 80% range, <span data-bt="title">{name(defaultSeries)}</span></div>
+      <div class="value" data-bt="coverage">{pct(defaultSeries.backtest[index.model].coverage80)}</div>
+      <div class="delta" data-bt="coverage-n">of {defaultSeries.backtest[index.model].n.toLocaleString("en-US")} past forecasts</div>
+    </div>
+    <div class="tile">
+      <div class="label">Typical miss of the median month</div>
+      <div class="value" data-bt="error">{months(defaultSeries.backtest[index.model].median_abs_error)} months</div>
+      <div class="delta" data-bt="error-n">median over {defaultSeries.backtest[index.model].n_error.toLocaleString("en-US")} forecasts whose date has arrived</div>
+    </div>
+    <div class="tile">
+      <div class="label">All categories and countries</div>
+      <div class="value">{pct(pooled.coverage80)}</div>
+      <div class="delta">inside the 80% range; typical miss {months(pooled.median_abs_error)} months</div>
+    </div>
+  </div>
+  <p>
+    We replayed the forecast from every month since {monthLabel(index.method.backtest_from)} that has at least two
+    years of later bulletins, for made-up priority dates {index.method.backtest_leads_months.join(", ")} months past
+    that month's cutoff, and compared it with what the bulletins then printed. A forecast whose date hasn't arrived
+    counts only once its whole range has passed. Two methods were tested; the page uses the one whose 80% range held
+    the real date closest to 8 times in 10:
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Method</th><th class="num">Forecasts judged</th><th class="num">Inside 80% range</th><th class="num">Typical miss (months)</th></tr></thead>
+      <tbody>
+        {([index.model, other] as const).map((m) => (
+          <tr>
+            <td>{m === "pace" ? "Recent pace" : "Resampled history"}{m === index.model ? " (used)" : ""}</td>
+            <td class="num">{index.pooled[m].n.toLocaleString("en-US")}</td>
+            <td class="num">{pct(index.pooled[m].coverage80)}</td>
+            <td class="num">{months(index.pooled[m].median_abs_error)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <ul class="note">
+    <li>Recent pace: the last 36 months' average advance, with the errors that rule made in this series before as the range.</li>
+    <li>Resampled history: {index.method.bootstrap_paths.toLocaleString("en-US")} futures built from 12-month stretches of the last 10 years of bulletin movements.</li>
+  </ul>
+  <p class="note" data-bt="other">For this series the other method ({MODEL_LABEL[other]}) scored {scoreText(defaultSeries.backtest[other])}.</p>
+
+  <h2>Read this with care</h2>
+  <ul>
+    <li>This is not legal advice. It is a statistical extrapolation of the bulletin's own history, blind to how many people are waiting.</li>
+    <li>Per-country limits and visas left over from other categories make bulletins jump. The State Department can also move dates backwards (retrogression), and has.</li>
+    <li>"Current" means a visa number is available. The case still needs USCIS or a consulate: USCIS's median time to decide an I-485 was <a href={i485.family.href} title={i485.family.cite}>{months(i485.family.months)} months</a> for family cases and <a href={i485.employment.href} title={i485.employment.cite}>{months(i485.employment.months)} months</a> for employment cases in {i485.family.quarter}.</li>
+    <li>Cross-chargeability (using a spouse's country), changing category (for example F2B to F1 on a parent's naturalization) and the child age-out rules are out of scope.</li>
+    <li>The forecast runs {index.method.horizon_months / 12} years ahead. Beyond that we say so instead of guessing.</li>
+    <li>Every printed date comes from an archived copy of the bulletin; the history table links each one. Download all of them as <a href="/data/v1/state-vb/facts.csv">facts.csv</a> and the forecast as <a href="/data/v1/visa-bulletin/forecast.json">forecast.json</a>.</li>
+  </ul>
+</Base>
+
+<style>
+  .wait-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 16px; margin: 28px 0 8px; max-width: 820px; }
+  .wait-form label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; color: var(--ink-2); min-width: 0; }
+  .wait-form select, .wait-form input { font: inherit; font-weight: 400; color: var(--ink); background: var(--surface); border: 1px solid var(--axis); border-radius: 6px; padding: 8px 10px; width: 100%; min-width: 0; }
+  .wait-form select:focus-visible, .wait-form input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .wait-result { margin: 16px 0; max-width: 720px; }
+  .wait-result .answer { font-size: 22px; line-height: 1.4; font-weight: 600; margin: 8px 0; }
+  :global(.plot .pd-rule) { stroke: var(--series-2); }
+  :global(.plot .median) { fill: none; }
+  :global(.plot .wash.s1) { fill-opacity: 0.14; }
+</style>
+
+<script>
+  import { fanChart } from "../lib/chart";
+  import type { BulletinSeries, SeriesForecast } from "../lib/ledger";
+  import { addMonths, dateLabel, fanSpec, horizonFor, monthLabel, wait, type Wait } from "../lib/wait";
+
+  type Live = Pick<BulletinSeries, "id" | "chart" | "section" | "category" | "category_title" | "area" | "area_title" | "title" | "latest" | "path" | "backtest">;
+  const form = document.getElementById("wait-form") as HTMLFormElement;
+  const payload = JSON.parse(form.dataset.payload!) as {
+    series: Live[]; model: "pace" | "bootstrap"; sources: Record<string, [string, string]>;
+    i485: Record<string, { months: number; quarter: string; href: string; cite: string }>;
+  };
+  const result = document.getElementById("wait-result")!;
+  const fan = document.getElementById("fan")!;
+  const table = document.getElementById("fan-table")!;
+  const cache = new Map<string, Promise<SeriesForecast>>();
+  const load = (path: string) => {
+    if (!cache.has(path)) cache.set(path, fetch(`/data/v1/visa-bulletin/${path}`).then((r) => r.json()));
+    return cache.get(path)!;
+  };
+  const cite = (sourceId: string, cell: string) => `${payload.sources[sourceId]?.[0] ?? sourceId}, ${cell}`;
+  const link = (sourceId: string, cell: string, text: string) => {
+    const a = document.createElement("a");
+    a.href = payload.sources[sourceId]?.[1] ?? "#";
+    a.title = cite(sourceId, cell);
+    a.textContent = text;
+    return a;
+  };
+  const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
+  const months = (x: number | null) => (x === null ? "—" : x.toLocaleString("en-US", { maximumFractionDigits: 1 }));
+  const name = (s: Live) => `${s.category_title}, ${s.area_title}`;
+  const when = (m: string | null) => (m === null ? "beyond 20 years" : monthLabel(m));
+
+  let current: { s: Live; f: SeriesForecast | null; w: Wait | null } | null = null;
+
+  function setText(sel: string, text: string) {
+    const el = document.querySelector(`[data-bt="${sel}"]`);
+    if (el) el.textContent = text;
+  }
+
+  function renderResult(s: Live, f: SeriesForecast | null, pd: string, w: Wait | null) {
+    result.replaceChildren();
+    const answer = document.createElement("p");
+    answer.className = "answer";
+    const note = document.createElement("p");
+    note.className = "note";
+    const [month, value, status, sourceId, cell] = s.latest;
+    const printed = status === "current" ? "Current" : status === "date" ? dateLabel(value!) : "U (no visa numbers this month)";
+    note.append(`The ${monthLabel(month)} bulletin prints `, link(sourceId, cell, printed), ` for ${name(s)}.`);
+    if (f && status === "unavailable") note.append(` The forecast starts from the last printed date, ${dateLabel(f.forecast.cutoff)}.`);
+    if (!f) {
+      answer.textContent = status === "unavailable"
+        ? `No visa numbers are available for ${name(s)} this month, so there is nothing to project from.`
+        : `There isn't enough bulletin history for ${name(s)} to forecast it.`;
+    } else if (!pd || !w) {
+      answer.textContent = "Enter your priority date to see the forecast.";
+    } else if (w.kind === "current") {
+      answer.textContent = `Your priority date is current now.`;
+      const step = payload.i485[s.section];
+      note.append(" The next step is USCIS or consular processing. USCIS's median time to decide ",
+        `${s.section === "employment" ? "an" : "a"} ${s.section}-based I-485 was `, (() => { const a = document.createElement("a"); a.href = step.href; a.title = step.cite; a.textContent = `${months(step.months)} months`; return a; })(),
+        ` in ${step.quarter}.`);
+    } else if (w.kind === "unavailable") {
+      answer.textContent = "Your priority date was current in the last bulletin that printed a date, but this month's bulletin has no visa numbers for this category.";
+    } else if (w.kind === "future") {
+      answer.textContent = "That priority date is after the latest bulletin. Enter the date your petition or labor certification was filed.";
+    } else {
+      answer.textContent = w.q50 === null
+        ? `Most likely more than 20 years away: fewer than half of the simulated futures reach your priority date within 20 years.`
+        : `Most likely around ${when(w.q50)}. 8 in 10 simulated futures put it between ${when(w.q10)} and ${when(w.q90)}.`;
+      const step = payload.i485[s.section];
+      note.append(` After that, USCIS's median time to decide ${s.section === "employment" ? "an" : "a"} ${s.section}-based I-485 was `,
+        (() => { const a = document.createElement("a"); a.href = step.href; a.title = step.cite; a.textContent = `${months(step.months)} months`; return a; })(),
+        ` in ${step.quarter}.`);
+    }
+    result.append(answer, note);
+  }
+
+  function renderTable(f: SeriesForecast) {
+    const rows: string[][] = [];
+    for (let k = 12; k <= f.forecast.bands.length; k += 12) {
+      const [q10, , q50, , q90] = f.forecast.bands[k - 1];
+      const d = (x: number) => dateLabel(new Date(x * 864e5).toISOString().slice(0, 10));
+      rows.push([monthLabel(addMonths(f.forecast.origin, k)), d(q50), `${d(q10)} – ${d(q90)}`]);
+    }
+    table.replaceChildren();
+    const head = table.createTHead().insertRow();
+    for (const h of ["Bulletin", "Median cutoff", "80% range"]) { const th = document.createElement("th"); th.textContent = h; head.append(th); }
+    const body = table.createTBody();
+    for (const r of rows) { const tr = body.insertRow(); r.forEach((c, i) => { const td = tr.insertCell(); td.textContent = c; if (i) td.className = "num"; }); }
+  }
+
+  function renderChart() {
+    if (!current?.f) { fan.replaceChildren(); return; }
+    const pd = (form.elements.namedItem("priority") as HTMLInputElement).value || null;
+    const spec = fanSpec(current.f, pd, cite, horizonFor(current.f, current.w));
+    fan.replaceChildren(fanChart(spec, { width: Math.max(300, Math.floor(fan.clientWidth)), interactive: true }) as unknown as Node);
+  }
+
+  function renderBacktest(s: Live) {
+    const b = s.backtest[payload.model];
+    const other = payload.model === "pace" ? "bootstrap" : "pace";
+    setText("title", name(s));
+    setText("coverage", pct(b.coverage80));
+    setText("coverage-n", `of ${b.n.toLocaleString("en-US")} past forecasts`);
+    setText("error", `${months(b.median_abs_error)} months`);
+    setText("error-n", `median over ${b.n_error.toLocaleString("en-US")} forecasts whose date has arrived`);
+    const o = s.backtest[other];
+    setText("other", `For this series the other method (${other === "pace" ? "recent pace" : "resampled history"}) scored ${pct(o.coverage80)} of ${o.n.toLocaleString("en-US")} past forecasts.`);
+  }
+
+  async function update() {
+    const data = new FormData(form);
+    const id = `vb/${data.get("chart")}/${data.get("category")}/${data.get("area")}`;
+    const pd = String(data.get("priority") ?? "");
+    const s = payload.series.find((x) => x.id === id);
+    document.getElementById("fan-title")!.textContent = s ? s.title : "Not printed in the latest bulletin";
+    if (!s) {
+      result.replaceChildren(Object.assign(document.createElement("p"), { className: "answer", textContent: "The latest bulletin doesn't print this combination." }));
+      current = null; renderChart(); table.replaceChildren();
+      return;
+    }
+    const f = s.path ? await load(s.path) : null;
+    const w = f && pd ? wait(f, pd) : null;
+    current = { s, f, w };
+    renderResult(s, f, pd, w);
+    renderBacktest(s);
+    renderChart();
+    if (f) renderTable(f);
+  }
+
+  form.addEventListener("input", update);
+  let lastWidth = 0;
+  new ResizeObserver(() => { const w = Math.floor(fan.clientWidth); if (w !== lastWidth) { lastWidth = w; renderChart(); } }).observe(fan);
+  update();
+</script>
