@@ -132,63 +132,106 @@ unchanged, and at `s = 1` the backtest reproduces the numbers above exactly.
   widens those same paths for every `s`.
 - **Split by origin.** Calibration: origins before 2016-01 (`CALIBRATE_BEFORE`). Held out: origins from 2016-01
   on. The split is on when a forecast was made. A calibration trial's outcome can be printed after 2016.
-- **Fit.** For each model, `s` is the smallest grid value whose pooled calibration coverage reaches 80%, or the
-  largest if none does (`forecast.calibrate`).
-- **Choice.** The model whose held-out pooled coverage at its `s` is closest to 80%, to the whole point; then the
-  lower held-out median error (`forecast.choose`).
-- **Published.** `forecast.json` gives, per model, `s`, the calibration score and the held-out score, plus the
-  calibration coverage at every grid value (`calibration_curve`). Each series carries its own calibration and
-  held-out scores at each model's `s`. The page shows a series' held-out coverage when at least 30 of its held-out
-  trials were judged (`MIN_JUDGED`); below that it says "too few cases to judge" and shows the pooled held-out
-  score. 30 judged trials puts a 95% interval on an 80% hit rate at about 14 points either side. Below that a
-  series' own number says little. 55 of the 150 live series fall under 30, 35 of them dates-for-filing series.
+- **Fit.** For each model, `s` is the smallest grid value at which every calibration origin year (2008 to 2015)
+  reaches 75% coverage (`WORST_YEAR_TARGET`), or the largest if none does (`forecast.calibrate`). A year's
+  coverage is over the judged trials whose origin falls in that calendar year, final action and filing charts
+  pooled, the same pooling as the published held-out scores. A year with fewer than 200 judged trials
+  (`MIN_YEAR_JUDGED`) is ignored: at 200, a 95% interval on a 75% hit rate is about 6 points either side. Every
+  origin year from 2008 to 2024 has more than 1,000 judged trials at the fitted `s`, so none is ignored today.
+- **Choice.** The model whose worst held-out year (2016 on, same 200-trial minimum) has the higher coverage at its
+  `s`; then the lower held-out pooled median error (`forecast.choose`).
+- **Published.** `forecast.json` gives, per model, `s`, the calibration and held-out pooled scores, the worst
+  held-out year (`worst_held_out`), and the score for every origin year at that `s` (`by_year`, each with its
+  judged n). `first_rule` gives each model at the spread the first rule picked, with its scores, and
+  `calibration_curve` gives, per grid value, the pooled calibration coverage and the worst calibration year's
+  coverage. Each series carries its own calibration and held-out scores at each model's `s`. The page shows a
+  series' held-out coverage when at least 30 of its held-out trials were judged (`MIN_JUDGED`); below that it says
+  "too few cases to judge" and shows the pooled held-out score. 30 judged trials puts a 95% interval on an 80% hit
+  rate at about 14 points either side. 55 of the 150 live series fall under 30.
 
-Calibration coverage by `s` (pooled):
+#### The first rule, and why it was replaced
+
+The first rule fit `s` as the smallest grid value whose *pooled* 2008 to 2015 coverage reached 80%
+(`AVERAGE_TARGET`, kept as `forecast.calibrate_average` only to publish how it held up). It picked `s = 1.5` for
+pace and `s = 1.25` for bootstrap, and the old choice (held-out coverage closest to 80%) picked pace. From 2016
+on, pace's range then held the real date only 67.0% of the time (n 17,940), bootstrap's 60.9% (n 20,796). The
+pooled 2008 to 2015 average hides weak years: at pace `s = 1.5`, 2010 scored 61.0% while 2014 scored 92.4%.
+Bulletins after 2019 move much more than before, and a fit to the average of calmer years does not carry over. A
+recent window does not fix it either: fitting the same 80% average on final action origins from 2016 to 2019 picks
+pace `s = 1.25`, which holds 61.7% on origins from 2020 on (n 6,143).
+
+After seeing those held-out numbers we switched to the worst-year rule, and chose between the models by their
+worst held-out year. Both decisions used results from 2016 on, so the 2016-onward figures below are not a fully
+blind test. The page says so.
+
+Calibration coverage by `s`, pooled and worst calibration year (2008 to 2015):
 
 | s | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.5 | 3 | 4 |
 |---|---|---|---|---|---|---|---|---|
-| pace | 74.9% | 79.7% | 82.8% | 85.2% | 87.2% | 90.0% | 91.5% | 93.7% |
-| bootstrap | 75.5% | 80.3% | 83.6% | 86.6% | 88.5% | 91.4% | 92.6% | 94.4% |
+| pace, pooled | 74.9% | 79.7% | 82.8% | 85.2% | 87.2% | 90.0% | 91.5% | 93.7% |
+| pace, worst year | 52.1% | 58.3% | 61.0% | 63.6% | 66.2% | 70.8% | 73.7% | 78.3% |
+| bootstrap, pooled | 75.5% | 80.3% | 83.6% | 86.6% | 88.5% | 91.4% | 92.6% | 94.4% |
+| bootstrap, worst year | 51.1% | 56.8% | 60.6% | 64.9% | 68.1% | 74.5% | 78.0% | 83.2% |
 
-Result per model, at its fitted `s` (median error in months):
+The worst calibration year is 2010 at every grid value for both models.
 
-| Model | s | Calibration coverage (n) | Held-out coverage (n) | Held-out median error |
-|---|---|---|---|---|
-| pace (chosen) | 1.5 | 82.8% (11,606) | 67.0% (17,940) | 10.0 |
-| bootstrap | 1.25 | 80.3% (11,948) | 60.9% (20,796) | 9.0 |
+Result per model at its worst-year `s`, from this build (median error in months). The "final" columns score only
+the final action chart, the scope of the reviewer's experiment, and reproduce it exactly. The published figures
+pool both charts.
 
-**Chosen model: `pace` with `s = 1.5`.** Its held-out coverage is 13 points from 80%, against 19 for bootstrap.
-Like the model, the spread is recomputed on every build, so the page and `forecast.json` state what the data
-picked.
+| Model | s | Calibration (n) | Held-out, both charts (n) | Worst held-out year, both charts | Held-out error | Held-out, final (n) | Worst held-out year, final | Held-out error, final |
+|---|---|---|---|---|---|---|---|---|
+| pace (chosen) | 4 | 93.7% (11,602) | 84.8% (17,500) | 74.0% (2023) | 10.0 | 91.0% (12,060) | 80.1% (2023) | 9.0 |
+| bootstrap | 3 | 92.6% (11,946) | 80.8% (20,391) | 66.7% (2021) | 8.0 | 82.1% (12,414) | 59.2% (2021) | 8.0 |
+
+**Chosen model: `pace` with `s = 4`.** Its worst held-out year (74.0%) beats bootstrap's (66.7%), so the
+median-error tiebreak, which would favor bootstrap, does not come into play. The same choice holds on the final
+action chart alone (80.1% against 59.2%). `s = 4` is the top of the grid: pace's worst calibration year only
+clears 75% there. Like the model, the spread is recomputed on every build, so the page and `forecast.json` state
+what the data picked.
+
+Pace at `s = 4`, coverage by origin year (judged n), as published:
+
+| Year | 2008 | 2009 | 2010 | 2011 | 2012 | 2013 | 2014 | 2015 |
+|---|---|---|---|---|---|---|---|---|
+| Both charts (fit) | 91.8% (1,200) | 89.2% (1,020) | 78.3% (1,526) | 96.9% (1,721) | 96.1% (1,556) | 99.2% (1,610) | 97.8% (1,543) | 97.9% (1,426) |
+
+| Year | 2016 | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|---|---|---|---|---|
+| Both charts (check) | 94.0% (1,515) | 93.1% (1,518) | 90.3% (1,578) | 90.6% (1,843) | 85.5% (2,615) | 76.3% (2,013) | 85.4% (1,918) | 74.0% (2,894) | 84.7% (1,606) |
+| Final action only | 94% | 93% | 90% | 90% | 96% | 94% | 99% | 80% | 84% |
+
+Through 2019 the filing chart adds few trials and the rows agree. From 2020 on it is close to half of each year's
+trials and scores well below the final action chart, which pulls the pooled years down.
 
 Held-out scores by series and chart, at each model's `s`:
 
 | Series | pace calibration (n) | pace held-out (n) | pace held-out error | bootstrap calibration (n) | bootstrap held-out (n) | bootstrap held-out error |
 |---|---|---|---|---|---|---|
-| Final action chart, all series | 82.8% (11,606) | 75.7% (12,259) | 9.0 | 80.3% (11,948) | 65.5% (12,568) | 8.0 |
-| Dates for filing chart, all series | none | 48.2% (5,681) | 12.0 | none | 53.8% (8,228) | 10.0 |
-| F2A, all other countries (final) | 89.0% (228) | 79.7% (148) | 6.0 | 75.4% (228) | 77.7% (148) | 5.0 |
-| F4, Philippines (final) | 75.0% (356) | 56.2% (409) | 9.0 | 84.6% (356) | 67.7% (409) | 8.0 |
-| EB-2, India (final) | 90.3% (330) | 99.4% (358) | 15.0 | 81.2% (330) | 92.8% (363) | 10.0 |
-| EB-3, all other countries (final) | 98.5% (263) | 79.3% (58) | 17.0 | 89.0% (263) | 67.2% (58) | 9.0 |
+| Final action chart, all series | 93.7% (11,602) | 91.0% (12,060) | 9.0 | 92.6% (11,946) | 82.1% (12,414) | 8.0 |
+| Dates for filing chart, all series | none | 71.0% (5,440) | | none | 78.6% (7,977) | |
+| F2A, all other countries (final) | 96.9% (228) | 98.7% (148) | 6.0 | 89.5% (228) | 83.8% (148) | 5.0 |
+| F4, Philippines (final) | 91.3% (356) | 82.2% (409) | 9.0 | 93.5% (356) | 85.6% (409) | 7.0 |
+| EB-2, India (final) | 96.4% (330) | 100.0% (358) | 15.0 | 78.5% (330) | 91.2% (363) | 12.0 |
+| EB-3, all other countries (final) | 99.6% (263) | 98.3% (58) | 18.0 | 95.4% (263) | 82.8% (58) | 8.0 |
 
 What the numbers say:
 
-- **Widening helps, but the 2008 to 2015 factor does not carry over to 2016 on.** Held-out coverage at `s = 1` is
-  55.4% (pace) and 54.1% (bootstrap). At the fitted `s` it is 67.0% and 60.9%, still short of 80%. On the
-  held-out origins pace would need about `s = 3` (81.2%), bootstrap about `s = 3` (80.8%).
+- **The range is wide on purpose.** At `s = 4`, pace's range is four times as wide around the median as
+  simulated. That is what it took for every year from 2008 to 2015 to reach 75%. From 2016 on it held 84.8%
+  pooled, with no year below 74.0%. The page states those measured numbers instead of promising 80%.
 - **Not a censoring artifact.** Held-out origins have shorter observation windows, so more of their trials stay
   unjudged. Judging calibration trials as if only 36 months had been observed leaves pace's calibration coverage at
-  74.1% (against 74.9% with the full window), while held-out trials with the same window score 54.9%. Bulletins
-  since 2016 are harder to forecast than those before.
+  `s = 1` at 74.1% (against 74.9% with the full window), while held-out trials with the same window score 54.9%.
+  Bulletins since 2016 are harder to forecast than those before.
 - **The dates-for-filing chart has no calibration trials.** It begins in October 2015, and both models need two
-  years of history, so its spread comes entirely from the final action chart. It scores worst held out (48.2% for
-  pace). On the final action chart alone, pace's held-out coverage is 75.7%.
+  years of history, so its spread comes entirely from the final action chart. It scores worst held out (71.0% for
+  pace) and is why the pooled worst year (2023, 74.0%) sits under the 75% target.
 - **The median error moves a little with `s`.** The median path is the same for every `s`, but the median of
-  first-crossing months over paths is not exactly the first crossing of the median path. Held-out median error for
-  pace is 10.0 months at every grid value. For bootstrap it is 9.0 from `s = 1` to `s = 1.5`, then 8.0 from 1.75 on.
-  The published error is the one at the fitted `s`. Pooled n also shifts with `s`, because an unresolved trial is
-  judged only once its range's upper end has passed, and a wider range passes later.
+  first-crossing months over paths is not exactly the first crossing of the median path. Pooled held-out median
+  error for pace is 10.0 months at every grid value. For bootstrap it is 9.0 from `s = 1` to `s = 1.5`, then 8.0
+  from 1.75 on. Pooled n also shifts with `s`, because an unresolved trial is judged only once its range's upper
+  end has passed, and a wider range passes later.
 
 Deviations from the spec above, and why:
 
@@ -220,3 +263,6 @@ Deviations from the spec above, and why:
 - **Section rows.** Three 2003 bulletins print "Employment-Based" as a row with values; the catalog lists it under
   `ignore`.
 - **Dependency.** The pipeline now needs numpy (pinned in `pipeline/requirements.txt`).
+- **No 80% promise.** The spec above says "an 80% range". The range is still the 10th to 90th percentile of the
+  widened paths, but the page calls it "the range" or "the likely range" and states its measured coverage since
+  2016 instead, with a year-by-year table for the chosen model and the disclosure above.

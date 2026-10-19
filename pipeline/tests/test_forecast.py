@@ -81,17 +81,30 @@ def test_score_counts_known_and_overdue_outcomes_only():
     assert score(trials) == Score(n=4, coverage80=0.5, n_error=2, median_abs_error=3.0)
 
 
-def test_calibrate_picks_the_smallest_spread_reaching_80_percent():
-    def judged(hits: int) -> list[Trial]:  # 10 judged trials, `hits` of them inside the range
-        return [Trial(START, 6, (2, 4, 6), 5 if i < hits else 9, 30) for i in range(10)]
-
-    assert calibrate({1.0: judged(5), 1.25: judged(7), 1.5: judged(8), 2.0: judged(9)}) == 1.5
-    assert calibrate({1.0: judged(5), 1.25: judged(7)}) == 1.25
+def _year(year: int, judged: int, hits: int) -> list[Trial]:
+    """`judged` trials from origins in `year`, `hits` of them inside the range."""
+    return [Trial(Month(year, 1 + i % 12), 6, (2, 4, 6), 5 if i < hits else 9, 30) for i in range(judged)]
 
 
-def test_choose_prefers_calibrated_coverage_then_error():
-    assert choose({"pace": Score(100, 0.62, 90, 3.0), "bootstrap": Score(100, 0.78, 90, 9.0)}) == "bootstrap"
-    assert choose({"pace": Score(100, 0.804, 90, 3.0), "bootstrap": Score(100, 0.796, 90, 9.0)}) == "pace"
+def test_calibrate_picks_the_smallest_spread_where_every_year_reaches_75_percent():
+    thin = _year(2015, 199, 0)  # under MIN_YEAR_JUDGED: ignored however badly it does
+    grid = {
+        1.0: _year(2010, 200, 190) + _year(2011, 200, 140) + thin,   # 2011 at 70%
+        1.5: _year(2010, 200, 150) + _year(2011, 200, 160) + thin,   # 75% and 80%: the first to qualify
+        2.0: _year(2010, 200, 200) + _year(2011, 200, 200) + thin,
+    }
+    assert calibrate(grid) == 1.5
+    assert calibrate({1.0: _year(2010, 200, 100), 2.0: _year(2010, 200, 149)}) == 2.0
+    assert calibrate({1.0: thin, 3.0: thin}) == 3.0
+
+
+def test_choose_prefers_the_higher_worst_year_then_the_lower_error():
+    steady = _year(2016, 200, 170) + _year(2017, 200, 170)       # 85% every year
+    lumpy = _year(2016, 200, 200) + _year(2017, 200, 150)        # higher pooled, worst year 75%
+    assert choose({"pace": lumpy, "bootstrap": steady}) == "bootstrap"
+    late = [Trial(t.origin, t.lead, (2, 4, 6), 6 if t.actual == 5 else 9, 30) for t in steady]  # inside, error 2
+    assert choose({"pace": late, "bootstrap": steady}) == "bootstrap"
+    assert choose({"pace": steady, "bootstrap": late}) == "pace"
 
 
 def test_unavailable_latest_bulletin_projects_from_the_last_printed_cutoff():

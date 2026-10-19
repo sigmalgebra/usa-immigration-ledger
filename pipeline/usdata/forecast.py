@@ -11,7 +11,8 @@ Two models produce `paths`, an (n, horizon) array of simulated cutoffs for month
   latest cutoff, with a seeded generator.
 
 Both are overconfident as simulated, so every path is widened around the per-month median by one factor per model
-(`widen`). The factor is fit on backtest origins before CALIBRATE_BEFORE and judged on origins from it on.
+(`widen`). The factor is fit on backtest origins before CALIBRATE_BEFORE, as the smallest that keeps every
+calibration year's coverage at WORST_YEAR_TARGET, and judged on origins from it on.
 """
 from __future__ import annotations
 
@@ -41,7 +42,9 @@ BACKTEST_FROM = Month(2008, 1)
 BACKTEST_LEADS = (6, 12, 24, 48)  # synthetic priority date = origin cutoff + this many months
 BAND_LEVELS = (0.10, 0.25, 0.50, 0.75, 0.90)
 SPREADS = (1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0)
-TARGET_COVERAGE = 0.80
+WORST_YEAR_TARGET = 0.75  # every calibration year's coverage must reach this
+MIN_YEAR_JUDGED = 200  # an origin year with fewer judged trials than this is too thin to count
+AVERAGE_TARGET = 0.80  # the first rule tried: pooled calibration coverage; kept only to publish how it held up
 CALIBRATE_BEFORE = Month(2016, 1)  # origins before this fit the spread; origins from it on judge it
 MIN_JUDGED = 30  # fewer judged trials than this in a series: too few to report its own coverage
 _EPOCH = date(1970, 1, 1).toordinal()
@@ -313,21 +316,51 @@ def score(trials: Sequence[Trial]) -> Score:
                  float(np.median(errors)) if errors else None)
 
 
+def by_year(trials: Sequence[Trial]) -> dict[int, Score]:
+    """Scores by the calendar year of each trial's origin."""
+    years: dict[int, list[Trial]] = {}
+    for t in trials:
+        years.setdefault(t.origin.year, []).append(t)
+    return {y: score(ts) for y, ts in sorted(years.items())}
+
+
+def worst_year(trials: Sequence[Trial]) -> tuple[int, Score] | None:
+    """The origin year with the lowest coverage among those with at least MIN_YEAR_JUDGED judged trials; the
+    earliest on a tie. None if no year has that many."""
+    years = [(s.coverage80, y, s) for y, s in by_year(trials).items() if s.n >= MIN_YEAR_JUDGED]
+    if not years:
+        return None
+    _, y, s = min(years, key=lambda c: (c[0], c[1]))
+    return y, s
+
+
 def calibrate(trials: Mapping[float, Sequence[Trial]]) -> float:
-    """The smallest spread whose coverage on these trials reaches TARGET_COVERAGE; the largest if none does."""
+    """The smallest spread at which every origin year with enough judged trials reaches WORST_YEAR_TARGET; the
+    largest if none does."""
     for s in sorted(trials):
-        cov = score(trials[s]).coverage80
-        if cov is not None and cov >= TARGET_COVERAGE:
+        worst = worst_year(trials[s])
+        if worst is not None and worst[1].coverage80 >= WORST_YEAR_TARGET:
             return s
     return max(trials)
 
 
-def choose(held: dict[ModelName, Score]) -> ModelName:
-    """Held-out coverage closest to TARGET_COVERAGE (to the whole percentage point); then the lower median error."""
+def calibrate_average(trials: Mapping[float, Sequence[Trial]]) -> float:
+    """The first rule tried: the smallest spread whose pooled coverage reaches AVERAGE_TARGET; the largest if none
+    does. It held far less than that on held-out origins, so it is published only as a disclosure."""
+    for s in sorted(trials):
+        cov = score(trials[s]).coverage80
+        if cov is not None and cov >= AVERAGE_TARGET:
+            return s
+    return max(trials)
+
+
+def choose(held: Mapping[ModelName, Sequence[Trial]]) -> ModelName:
+    """From each model's held-out trials at its spread: the higher worst-year coverage; then the lower pooled
+    median error."""
     def key(m: ModelName):
-        s = held[m]
-        cov = round(abs((s.coverage80 if s.coverage80 is not None else 0) - TARGET_COVERAGE) * 100)
-        return (cov, s.median_abs_error if s.median_abs_error is not None else float("inf"), m)
+        worst = worst_year(held[m])
+        err = score(held[m]).median_abs_error
+        return (-(worst[1].coverage80 if worst else 0), err if err is not None else float("inf"), m)
     return min(MODELS, key=key)
 
 
@@ -340,6 +373,13 @@ class Fit:
 
 
 @dataclass(frozen=True)
+class PooledFit(Fit):
+    """A model's fit over all series, with its scores by origin year and its worst held-out year."""
+    by_year: dict[int, Score]
+    worst_held_out: tuple[int, Score] | None
+
+
+@dataclass(frozen=True)
 class SeriesResult:
     forecast: Forecast | None  # with the chosen model; None when the series has too little history
     fits: dict[ModelName, Fit]  # this series' trials, at each model's pooled spread
@@ -348,8 +388,10 @@ class SeriesResult:
 @dataclass(frozen=True)
 class Results:
     model: ModelName
-    pooled: dict[ModelName, Fit]
-    calibration_curve: dict[ModelName, tuple[tuple[float, float | None], ...]]  # (spread, calibration coverage)
+    pooled: dict[ModelName, PooledFit]
+    first_rule: dict[ModelName, Fit]  # each model at the spread calibrate_average picks
+    # (spread, pooled calibration coverage, worst calibration year's coverage)
+    calibration_curve: dict[ModelName, tuple[tuple[float, float | None, float | None], ...]]
     series: dict[str, SeriesResult]
 
 
@@ -368,10 +410,15 @@ def run(histories: dict[str, History]) -> Results:
     calib = {m: {s: [t for ts in trials[m].values() for t in ts[s] if not held_out(t)] for s in SPREADS}
              for m in MODELS}
     spread = {m: calibrate(calib[m]) for m in MODELS}
-    pooled = {m: _fit([t for ts in trials[m].values() for t in ts[spread[m]]], spread[m]) for m in MODELS}
-    curve = {m: tuple((s, score(calib[m][s]).coverage80) for s in SPREADS) for m in MODELS}
-    chosen = choose({m: f.held_out for m, f in pooled.items()})
-    return Results(chosen, pooled, curve,
+    every = {m: {s: [t for ts in trials[m].values() for t in ts[s]] for s in SPREADS} for m in MODELS}
+    held = {m: [t for t in every[m][spread[m]] if held_out(t)] for m in MODELS}
+    pooled = {m: PooledFit(**vars(_fit(every[m][spread[m]], spread[m])), by_year=by_year(every[m][spread[m]]),
+                           worst_held_out=worst_year(held[m])) for m in MODELS}
+    first = {m: _fit(every[m][s], s) for m in MODELS for s in [calibrate_average(calib[m])]}
+    curve = {m: tuple((s, score(calib[m][s]).coverage80, w[1].coverage80 if (w := worst_year(calib[m][s])) else None)
+                      for s in SPREADS) for m in MODELS}
+    chosen = choose(held)
+    return Results(chosen, pooled, first, curve,
                    {sid: SeriesResult(forecast(sid, h, chosen, spread[chosen]),
                                       {m: _fit(trials[m][sid][spread[m]], spread[m]) for m in MODELS})
                     for sid, h in series})

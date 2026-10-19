@@ -146,14 +146,23 @@ def _visa_bulletin(ledger: Ledger, facts: list[Fact]) -> dict[str, str]:
         "method": {"horizon_months": fc.HORIZON, "bootstrap_paths": fc.N_PATHS, "pace_levels": fc.PACE_LEVELS,
                    "backtest_bootstrap_paths": fc.BACKTEST_PATHS, "band_levels": fc.BAND_LEVELS,
                    "backtest_from": str(fc.BACKTEST_FROM), "backtest_leads_months": fc.BACKTEST_LEADS,
-                   "spreads": fc.SPREADS, "target_coverage": fc.TARGET_COVERAGE,
+                   "spreads": fc.SPREADS, "worst_year_target": fc.WORST_YEAR_TARGET,
+                   "min_year_judged": fc.MIN_YEAR_JUDGED, "average_target": fc.AVERAGE_TARGET,
                    "calibration_before": str(fc.CALIBRATE_BEFORE), "min_judged": fc.MIN_JUDGED,
                    "dates": "days since 1970-01-01"},
-        "pooled": {m: asdict(fit) for m, fit in results.pooled.items()},
+        "pooled": {m: _pooled(fit) for m, fit in results.pooled.items()},
+        "first_rule": {m: asdict(fit) for m, fit in results.first_rule.items()},
         "calibration_curve": {m: [list(pt) for pt in curve] for m, curve in results.calibration_curve.items()},
         "series": index,
     })
     return out
+
+
+def _pooled(f: fc.PooledFit) -> dict:
+    worst = f.worst_held_out
+    return {"spread": f.spread, "calibration": asdict(f.calibration), "held_out": asdict(f.held_out),
+            "worst_held_out": {"year": worst[0], **asdict(worst[1])} if worst else None,
+            "by_year": [{"year": y, **asdict(s)} for y, s in f.by_year.items()]}
 
 
 def _vb_row(f: Fact) -> list:

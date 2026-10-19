@@ -184,6 +184,9 @@ export interface Score { n: number; coverage80: number | null; n_error: number; 
 export type ModelName = "pace" | "bootstrap";
 /** One model at its spread: scored on calibration origins (which picked the spread) and on held-out origins. */
 export interface Fit { spread: number; calibration: Score; held_out: Score }
+export type YearScore = Score & { year: number };
+/** A model over all series: also scored by the calendar year each forecast was made in. */
+export interface PooledFit extends Fit { worst_held_out: YearScore | null; by_year: YearScore[] }
 export interface BulletinSeries {
   id: string;
   chart: "final" | "filing";
@@ -205,11 +208,12 @@ export interface ForecastIndex {
   spread: number;
   method: {
     horizon_months: number; bootstrap_paths: number; pace_levels: number; backtest_bootstrap_paths: number; band_levels: number[];
-    backtest_from: string; backtest_leads_months: number[]; spreads: number[]; target_coverage: number; calibration_before: string;
-    min_judged: number; dates: string;
+    backtest_from: string; backtest_leads_months: number[]; spreads: number[]; worst_year_target: number; min_year_judged: number;
+    average_target: number; calibration_before: string; min_judged: number; dates: string;
   };
-  pooled: Record<ModelName, Fit>;
-  calibration_curve: Record<ModelName, [spread: number, coverage80: number | null][]>;
+  pooled: Record<ModelName, PooledFit>;
+  first_rule: Record<ModelName, Fit>;
+  calibration_curve: Record<ModelName, [spread: number, coverage80: number | null, worstYear: number | null][]>;
   series: BulletinSeries[];
 }
 export interface SeriesForecast {
