@@ -1,6 +1,6 @@
 // Pure lookups for /green-card-wait/, shared by the build (default view) and the browser. No fetching here.
 import type { FanSpec } from "./chart";
-import type { SeriesForecast } from "./ledger";
+import type { Fit, ModelName, Score, SeriesForecast } from "./ledger";
 
 const DAY = 864e5;
 export const toDays = (iso: string): number => Math.round(Date.parse(iso + "T00:00:00Z") / DAY);
@@ -13,6 +13,36 @@ export const monthLabel = (m: string): string =>
   new Date(monthMs(m)).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
 export const dateLabel = (iso: string): string =>
   new Date(iso + "T00:00:00Z").toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+export const pct = (x: number | null): string => (x === null ? "—" : `${Math.round(x * 100)}%`);
+export const months = (x: number | null): string => (x === null ? "—" : x.toLocaleString("en-US", { maximumFractionDigits: 1 }));
+const count = (n: number): string => n.toLocaleString("en-US");
+export const MODEL_LABEL: Record<ModelName, string> = { pace: "recent pace", bootstrap: "resampled history" };
+export const widened = (f: Fit): string => `×${f.spread.toLocaleString("en-US")}`;
+
+/** How a series' held-out forecasts did: its own score once at least `minJudged` were judged, else all series
+ * pooled, said as such. */
+export function trackRecord(name: string, own: Score, pooled: Score, minJudged: number) {
+  const enough = own.n >= minJudged;
+  const s = enough ? own : pooled;
+  return {
+    enough,
+    title: enough ? name : "all categories and countries",
+    coverage: pct(s.coverage80),
+    coverageNote: enough
+      ? `of ${count(own.n)} forecasts judged`
+      : `${name} has too few cases to judge (${count(own.n)} judged, under ${minJudged})`,
+    error: `${months(s.median_abs_error)} months`,
+    errorNote: `median over ${count(s.n_error)} forecasts whose date has arrived`,
+  };
+}
+
+export function otherMethod(model: ModelName, f: Fit, minJudged: number, checkFrom: string): string {
+  const label = `${MODEL_LABEL[model]}, widened ${widened(f)}`;
+  return f.held_out.n < minJudged
+    ? `For this series the other method (${label}) has too few cases to judge.`
+    : `For this series the other method (${label}) held the real date ${pct(f.held_out.coverage80)} of the time, over ${count(f.held_out.n)} forecasts made from ${checkFrom} on.`;
+}
 
 export type Wait =
   | { kind: "current" }

@@ -9,13 +9,17 @@ Two models produce `paths`, an (n, horizon) array of simulated cutoffs for month
   horizon from earlier origins in the same series. Path k takes the k-th quantile of the error at every horizon.
 - `bootstrap`: 12-month blocks of monthly movements resampled from the trailing 120 months, applied to the
   latest cutoff, with a seeded generator.
+
+Both are overconfident as simulated, so every path is widened around the per-month median by one factor per model
+(`widen`). The factor is fit on backtest origins before CALIBRATE_BEFORE and judged on origins from it on.
 """
 from __future__ import annotations
 
 import hashlib
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
 from datetime import date
-from typing import Literal, Sequence
+from typing import Iterator, Literal, Mapping, Sequence
 
 import numpy as np
 
@@ -36,6 +40,10 @@ MIN_HISTORY = 24
 BACKTEST_FROM = Month(2008, 1)
 BACKTEST_LEADS = (6, 12, 24, 48)  # synthetic priority date = origin cutoff + this many months
 BAND_LEVELS = (0.10, 0.25, 0.50, 0.75, 0.90)
+SPREADS = (1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0)
+TARGET_COVERAGE = 0.80
+CALIBRATE_BEFORE = Month(2016, 1)  # origins before this fit the spread; origins from it on judge it
+MIN_JUDGED = 30  # fewer judged trials than this in a series: too few to report its own coverage
 _EPOCH = date(1970, 1, 1).toordinal()
 
 Crossing = tuple[int | None, int | None, int | None]  # months after origin (q10, q50, q90); None = beyond horizon
@@ -151,32 +159,39 @@ def _bootstrap(f: np.ndarray, horizon: int, seed: int, n_paths: int) -> np.ndarr
     return f[-1] + np.cumsum(moves[idx], axis=1)
 
 
+def widen(paths: np.ndarray, spreads: Sequence[float]) -> Iterator[np.ndarray]:
+    """For each spread s: median + s * (paths - median), the median taken per month across paths. s = 1 is the
+    paths unchanged. The median path, and so each month's median cutoff, is the same for every s."""
+    med = np.median(paths, axis=0)
+    dev = paths - med
+    for s in spreads:
+        yield paths if s == 1 else med + s * dev
+
+
 def first_crossings(paths: np.ndarray, priority: Sequence[int]) -> np.ndarray:
     """(n_paths, len(priority)) month of the first simulated cutoff after each priority date; horizon+1 if none.
 
     A path that retrogresses after crossing still counts as crossed: that month was the first approval
-    opportunity. The running maximum is only a device to find the first crossing with a binary search.
+    opportunity.
     """
-    runmax = np.maximum.accumulate(paths, axis=1)
+    rows = np.arange(len(paths))
     out = np.empty((len(paths), len(priority)), dtype=int)
     for i, p in enumerate(priority):
-        hit = runmax > p
-        out[:, i] = np.where(hit[:, -1], hit.argmax(axis=1) + 1, paths.shape[1] + 1)
+        hit = paths > p
+        first = hit.argmax(axis=1)
+        out[:, i] = np.where(hit[rows, first], first + 1, paths.shape[1] + 1)
     return out
 
 
-def _q(sorted_vals: np.ndarray, level: float) -> int:
-    return int(sorted_vals[min(len(sorted_vals) - 1, int(level * len(sorted_vals)))])
-
-
 def crossing_quantiles(paths: np.ndarray, priority: int) -> Crossing:
-    return _crossing(first_crossings(paths, [priority])[:, 0], paths.shape[1])
+    return _crossings(first_crossings(paths, [priority]), paths.shape[1])[0]
 
 
-def _crossing(months: np.ndarray, horizon: int) -> Crossing:
-    s = np.sort(months)
-    q = [_q(s, x) for x in (0.10, 0.50, 0.90)]
-    return tuple(None if v > horizon else v for v in q)  # type: ignore[return-value]
+def _crossings(table: np.ndarray, horizon: int) -> list[Crossing]:
+    """Per column of a first-crossing table: its 10th, 50th and 90th percentile month."""
+    n = len(table)
+    rows = np.sort(table, axis=0)[[min(n - 1, int(x * n)) for x in (0.10, 0.50, 0.90)]]
+    return [tuple(None if v > horizon else int(v) for v in col) for col in rows.T]  # type: ignore[misc]
 
 
 def bands(paths: np.ndarray, origin: Month) -> list[tuple[int, ...]]:
@@ -192,13 +207,14 @@ def bands(paths: np.ndarray, origin: Month) -> list[tuple[int, ...]]:
 @dataclass(frozen=True)
 class Forecast:
     model: ModelName
+    spread: float
     origin: Month
     cutoff: int
     bands: tuple[tuple[int, ...], ...]  # months 1..HORIZON: cutoff days at BAND_LEVELS
     crossings: tuple[tuple[int, Crossing], ...]  # (priority date days, crossing quantiles), monthly steps
 
 
-def forecast(series_id: str, h: History, model: ModelName) -> Forecast | None:
+def forecast(series_id: str, h: History, model: ModelName, spread: float) -> Forecast | None:
     """From the latest bulletin, or the last printed cutoff when the latest says "U" (None once that is more than
     a year old). Crossings are tabulated for priority dates on the first of each month from that cutoff to the
     bulletin month, the only dates still waiting."""
@@ -206,9 +222,10 @@ def forecast(series_id: str, h: History, model: ModelName) -> Forecast | None:
     printed = [i for i, c in enumerate(h.cutoff) if c is not None]
     if not printed or origin - printed[-1] > STALE_MONTHS:
         return None
-    paths = simulate(h, origin, model, HORIZON, _seed(series_id, h.month(origin), model))
-    if paths is None:
+    raw = simulate(h, origin, model, HORIZON, _seed(series_id, h.month(origin), model))
+    if raw is None:
         return None
+    paths = next(widen(raw, [spread]))
     om = h.month(origin)
     cutoff = h.cutoff[printed[-1]]
     assert cutoff is not None
@@ -216,9 +233,8 @@ def forecast(series_id: str, h: History, model: ModelName) -> Forecast | None:
     first = add_months(Month(c.year, c.month), 1) if c.day > 1 else Month(c.year, c.month)
     pds = [month_start(add_months(first, i)) for i in range(months_between(first, om) + 1)]
     pds = [p for p in pds if p >= cutoff]
-    table = first_crossings(paths, pds) if pds else np.empty((len(paths), 0))
-    return Forecast(model, om, cutoff, tuple(bands(paths, om)),
-                    tuple((p, _crossing(table[:, i], HORIZON)) for i, p in enumerate(pds)))
+    table = first_crossings(paths, pds) if pds else np.empty((len(paths), 0), dtype=int)
+    return Forecast(model, spread, om, cutoff, tuple(bands(paths, om)), tuple(zip(pds, _crossings(table, HORIZON))))
 
 
 @dataclass(frozen=True)
@@ -246,8 +262,9 @@ def _actual(h: History, origin: int, priority: int) -> int | None:
     return None
 
 
-def backtest(series_id: str, h: History, model: ModelName) -> list[Trial]:
-    trials = []
+def backtest(series_id: str, h: History, model: ModelName) -> dict[float, list[Trial]]:
+    """Trials at every spread in SPREADS, all from one simulation per origin."""
+    trials: dict[float, list[Trial]] = {s: [] for s in SPREADS}
     last = len(h.cutoff) - 1
     for origin in range(max(0, h.index(BACKTEST_FROM)), last - MIN_HISTORY + 1):
         c = h.cutoff[origin]
@@ -263,13 +280,23 @@ def backtest(series_id: str, h: History, model: ModelName) -> list[Trial]:
                 pds.append((lead, p))
         if not pds:
             continue
-        paths = simulate(h, origin, model, last - origin, _seed(series_id, om, model), BACKTEST_PATHS)
-        if paths is None:
+        raw = simulate(h, origin, model, last - origin, _seed(series_id, om, model), BACKTEST_PATHS)
+        if raw is None:
             continue
-        table = first_crossings(paths, [p for _, p in pds])
-        for i, (lead, p) in enumerate(pds):
-            trials.append(Trial(om, lead, _crossing(table[:, i], paths.shape[1]), _actual(h, origin, p), last - origin))
+        actual = [_actual(h, origin, p) for _, p in pds]
+        for s, paths in zip(SPREADS, widen(raw, SPREADS)):
+            predicted = _crossings(first_crossings(paths, [p for _, p in pds]), paths.shape[1])
+            for (lead, _), q, a in zip(pds, predicted, actual):
+                trials[s].append(Trial(om, lead, q, a, last - origin))
     return trials
+
+
+def _backtest(task: tuple[str, History, ModelName]) -> dict[float, list[Trial]]:
+    return backtest(*task)
+
+
+def held_out(t: Trial) -> bool:
+    return t.origin >= CALIBRATE_BEFORE
 
 
 def score(trials: Sequence[Trial]) -> Score:
@@ -286,33 +313,65 @@ def score(trials: Sequence[Trial]) -> Score:
                  float(np.median(errors)) if errors else None)
 
 
-def choose(pooled: dict[ModelName, Score]) -> ModelName:
-    """Pooled 80% coverage closest to 80% (to the whole percentage point); then the lower median error."""
+def calibrate(trials: Mapping[float, Sequence[Trial]]) -> float:
+    """The smallest spread whose coverage on these trials reaches TARGET_COVERAGE; the largest if none does."""
+    for s in sorted(trials):
+        cov = score(trials[s]).coverage80
+        if cov is not None and cov >= TARGET_COVERAGE:
+            return s
+    return max(trials)
+
+
+def choose(held: dict[ModelName, Score]) -> ModelName:
+    """Held-out coverage closest to TARGET_COVERAGE (to the whole percentage point); then the lower median error."""
     def key(m: ModelName):
-        s = pooled[m]
-        cov = round(abs((s.coverage80 if s.coverage80 is not None else 0) - 0.8) * 100)
+        s = held[m]
+        cov = round(abs((s.coverage80 if s.coverage80 is not None else 0) - TARGET_COVERAGE) * 100)
         return (cov, s.median_abs_error if s.median_abs_error is not None else float("inf"), m)
     return min(MODELS, key=key)
 
 
 @dataclass(frozen=True)
+class Fit:
+    """One model's scores at its spread: on calibration origins (which chose the spread) and held-out origins."""
+    spread: float
+    calibration: Score
+    held_out: Score
+
+
+@dataclass(frozen=True)
 class SeriesResult:
     forecast: Forecast | None  # with the chosen model; None when the series has too little history
-    scores: dict[ModelName, Score]
+    fits: dict[ModelName, Fit]  # this series' trials, at each model's pooled spread
 
 
 @dataclass(frozen=True)
 class Results:
     model: ModelName
-    pooled: dict[ModelName, Score]
+    pooled: dict[ModelName, Fit]
+    calibration_curve: dict[ModelName, tuple[tuple[float, float | None], ...]]  # (spread, calibration coverage)
     series: dict[str, SeriesResult]
 
 
+def _fit(trials: Sequence[Trial], spread: float) -> Fit:
+    return Fit(spread, score([t for t in trials if not held_out(t)]), score([t for t in trials if held_out(t)]))
+
+
 def run(histories: dict[str, History]) -> Results:
-    """Backtest both models on every series, choose one by the pooled scores, then forecast with it."""
-    trials = {m: {sid: backtest(sid, h, m) for sid, h in sorted(histories.items())} for m in MODELS}
-    pooled = {m: score([t for ts in trials[m].values() for t in ts]) for m in MODELS}
-    chosen = choose(pooled)
-    return Results(chosen, pooled, {sid: SeriesResult(forecast(sid, h, chosen),
-                                                      {m: score(trials[m][sid]) for m in MODELS})
-                                    for sid, h in sorted(histories.items())})
+    """Backtest both models on every series; fit each model's spread on the calibration origins; choose the model
+    by its held-out scores; then forecast with it."""
+    series = sorted(histories.items())
+    tasks = [(sid, h, m) for m in MODELS for sid, h in series]
+    with ProcessPoolExecutor() as pool:  # one simulation per (model, series, origin); the work is CPU-bound
+        done = dict(zip(((m, sid) for sid, _, m in tasks), pool.map(_backtest, tasks, chunksize=4)))
+    trials = {m: {sid: done[m, sid] for sid, _ in series} for m in MODELS}
+    calib = {m: {s: [t for ts in trials[m].values() for t in ts[s] if not held_out(t)] for s in SPREADS}
+             for m in MODELS}
+    spread = {m: calibrate(calib[m]) for m in MODELS}
+    pooled = {m: _fit([t for ts in trials[m].values() for t in ts[spread[m]]], spread[m]) for m in MODELS}
+    curve = {m: tuple((s, score(calib[m][s]).coverage80) for s in SPREADS) for m in MODELS}
+    chosen = choose({m: f.held_out for m, f in pooled.items()})
+    return Results(chosen, pooled, curve,
+                   {sid: SeriesResult(forecast(sid, h, chosen, spread[chosen]),
+                                      {m: _fit(trials[m][sid][spread[m]], spread[m]) for m in MODELS})
+                    for sid, h in series})

@@ -3,9 +3,11 @@ import { parseHTML } from "linkedom";
 import Base from "../layouts/Base.astro";
 import { fanChart } from "../lib/chart";
 import {
-  fact, forecastIndex, periods, quarterLabel, seriesForecast, source, sources, type BulletinSeries, type Score,
+  fact, forecastIndex, periods, quarterLabel, seriesForecast, source, sources, type BulletinSeries,
 } from "../lib/ledger";
-import { dateLabel, fanSpec, horizonFor, monthLabel } from "../lib/wait";
+import {
+  addMonths, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, pct, trackRecord, widened,
+} from "../lib/wait";
 
 const index = forecastIndex();
 const live = index.series.filter((s) => s.path !== null);
@@ -29,11 +31,21 @@ const i485 = Object.fromEntries((["family", "employment"] as const).map((section
   return [section, { months: f.value, quarter: quarterLabel(p), href: source(f.sourceId).archive_url, cite: `${source(f.sourceId).original_name}, ${f.cell}` }];
 }));
 
-const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
-const months = (x: number | null) => (x === null ? "—" : `${x.toLocaleString("en-US", { maximumFractionDigits: 1 })}`);
 const pooled = index.pooled[index.model];
 const other = index.model === "pace" ? "bootstrap" : "pace";
-const MODEL_LABEL = { pace: "recent pace", bootstrap: "resampled history" } as const;
+const target = pct(index.method.target_coverage);
+const fitFrom = monthLabel(index.method.backtest_from);
+const fitTo = monthLabel(addMonths(index.method.calibration_before, -1));
+const checkFrom = monthLabel(index.method.calibration_before);
+const minJudged = index.method.min_judged;
+const filing = index.series.filter((s) => s.chart === "filing");
+const filingFit = filing.reduce((n, s) => n + s.backtest[index.model].calibration.n, 0);
+const filingFirst = monthLabel(filing.reduce((a, s) => (s.first < a ? s.first : a), index.latest));
+const filingNote = filingFit === 0
+  ? `The dates-for-filing chart began in ${filingFirst}, too late for any forecast before ${checkFrom}, so it played no part in choosing the factor. `
+  : "";
+const spreads = index.method.spreads.map((x) => `×${x}`).join(", ");
+const record = trackRecord(name(defaultSeries), defaultSeries.backtest[index.model].held_out, pooled.held_out, minJudged);
 
 const { document } = parseHTML("<!doctype html><html><body></body></html>");
 const staticSvg = (fanChart(fanSpec(defaultForecast, null, cite, horizonFor(defaultForecast, null)), { width: 720, document }) as unknown as Element).outerHTML;
@@ -42,8 +54,8 @@ const payload = {
   series: live.map(({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest }) =>
     ({ id, chart, section, category, category_title, area, area_title, title, latest, path, backtest })),
   model: index.model, sources: bulletinSources, i485,
+  judge: { min: minJudged, pooled: pooled.held_out, checkFrom, target },
 };
-const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("en-US")} past forecasts`;
 ---
 <Base title="Green card wait" description={`When will your priority date be current? A forecast for every Visa Bulletin category and country, built from ${latestMonth} and every archived bulletin before it, with its track record.`}>
   <p class="kicker">Forecast · Visa Bulletin through {latestMonth}</p>
@@ -88,7 +100,7 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
   <figure class="chart">
     <figcaption>
       <span class="chart-title" id="fan-title">{defaultSeries.title}</span>
-      <span class="chart-sub">Printed cutoffs (solid), then the forecast median (dashed) with the middle half and 8 in 10 simulated futures shaded.</span>
+      <span class="chart-sub">Printed cutoffs (solid), then the forecast median (dashed) with the middle half and the {target} range shaded, both widened as explained below.</span>
     </figcaption>
     <div class="plot" id="fan" set:html={staticSvg} />
     <details class="table-view">
@@ -98,40 +110,55 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
   </figure>
 
   <h2>How often this was right</h2>
+  <p>
+    As simulated, the ranges came out too narrow. So each one is widened around its median by a factor learned from
+    the bulletins of {fitFrom} to {fitTo} ({widened(pooled)} for the method used here), then checked on forecasts
+    made from {checkFrom} on, which played no part in choosing it. The scores below are from that check.
+  </p>
   <div class="tiles" id="backtest">
     <div class="tile">
-      <div class="label">Real date inside the 80% range, <span data-bt="title">{name(defaultSeries)}</span></div>
-      <div class="value" data-bt="coverage">{pct(defaultSeries.backtest[index.model].coverage80)}</div>
-      <div class="delta" data-bt="coverage-n">of {defaultSeries.backtest[index.model].n.toLocaleString("en-US")} past forecasts</div>
+      <div class="label">Real date inside the {target} range from {checkFrom} on, <span data-bt="title">{record.title}</span></div>
+      <div class="value" data-bt="coverage">{record.coverage}</div>
+      <div class="delta" data-bt="coverage-n">{record.coverageNote}</div>
     </div>
     <div class="tile">
       <div class="label">Typical miss of the median month</div>
-      <div class="value" data-bt="error">{months(defaultSeries.backtest[index.model].median_abs_error)} months</div>
-      <div class="delta" data-bt="error-n">median over {defaultSeries.backtest[index.model].n_error.toLocaleString("en-US")} forecasts whose date has arrived</div>
+      <div class="value" data-bt="error">{record.error}</div>
+      <div class="delta" data-bt="error-n">{record.errorNote}</div>
     </div>
     <div class="tile">
       <div class="label">All categories and countries</div>
-      <div class="value">{pct(pooled.coverage80)}</div>
-      <div class="delta">inside the 80% range; typical miss {months(pooled.median_abs_error)} months</div>
+      <div class="value">{pct(pooled.held_out.coverage80)}</div>
+      <div class="delta">inside the {target} range from {checkFrom} on; typical miss {months(pooled.held_out.median_abs_error)} months</div>
     </div>
   </div>
   <p>
-    We replayed the forecast from every month since {monthLabel(index.method.backtest_from)} that has at least two
-    years of later bulletins, for made-up priority dates {index.method.backtest_leads_months.join(", ")} months past
-    that month's cutoff, and compared it with what the bulletins then printed. A forecast whose date hasn't arrived
-    counts only once its whole range has passed. Two methods were tested; the page uses the one whose 80% range held
-    the real date closest to 8 times in 10:
+    We replayed the forecast from every month since {fitFrom} that has at least two years of later bulletins, for
+    made-up priority dates {index.method.backtest_leads_months.join(", ")} months past that month's cutoff, and
+    compared it with what the bulletins then printed. A forecast whose date hasn't arrived counts only once its whole
+    range has passed. Each method's widening factor is the smallest of {spreads} whose range held the real date at
+    least {target} of the time on forecasts made from {fitFrom} to {fitTo}. The page uses the method whose widened
+    range came closest to {target} on forecasts made from {checkFrom} on. {filingNote}A series gets its own score once
+    at least {minJudged} of its forecasts have been judged. Below that it has too few cases to judge, and the page shows all series together.
   </p>
   <div class="table-scroll">
     <table>
-      <thead><tr><th>Method</th><th class="num">Forecasts judged</th><th class="num">Inside 80% range</th><th class="num">Typical miss (months)</th></tr></thead>
+      <thead><tr>
+        <th>Method</th><th class="num">Widened</th>
+        <th class="num">Inside {target} range, {fitFrom} to {fitTo} (fit)</th>
+        <th class="num">Inside {target} range, from {checkFrom} (check)</th>
+        <th class="num">Forecasts judged from {checkFrom}</th>
+        <th class="num">Typical miss from {checkFrom} (months)</th>
+      </tr></thead>
       <tbody>
         {([index.model, other] as const).map((m) => (
           <tr>
             <td>{m === "pace" ? "Recent pace" : "Resampled history"}{m === index.model ? " (used)" : ""}</td>
-            <td class="num">{index.pooled[m].n.toLocaleString("en-US")}</td>
-            <td class="num">{pct(index.pooled[m].coverage80)}</td>
-            <td class="num">{months(index.pooled[m].median_abs_error)}</td>
+            <td class="num">{widened(index.pooled[m])}</td>
+            <td class="num">{pct(index.pooled[m].calibration.coverage80)}</td>
+            <td class="num">{pct(index.pooled[m].held_out.coverage80)}</td>
+            <td class="num">{index.pooled[m].held_out.n.toLocaleString("en-US")}</td>
+            <td class="num">{months(index.pooled[m].held_out.median_abs_error)}</td>
           </tr>
         ))}
       </tbody>
@@ -141,7 +168,7 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
     <li>Recent pace: the last 36 months' average advance, with the errors that rule made in this series before as the range.</li>
     <li>Resampled history: {index.method.bootstrap_paths.toLocaleString("en-US")} futures built from 12-month stretches of the last 10 years of bulletin movements.</li>
   </ul>
-  <p class="note" data-bt="other">For this series the other method ({MODEL_LABEL[other]}) scored {scoreText(defaultSeries.backtest[other])}.</p>
+  <p class="note" data-bt="other">{otherMethod(other, defaultSeries.backtest[other], minJudged, checkFrom)}</p>
 
   <h2>Read this with care</h2>
   <ul>
@@ -168,14 +195,17 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
 
 <script>
   import { fanChart } from "../lib/chart";
-  import type { BulletinSeries, SeriesForecast } from "../lib/ledger";
-  import { addMonths, dateLabel, fanSpec, horizonFor, monthLabel, wait, type Wait } from "../lib/wait";
+  import type { BulletinSeries, Score, SeriesForecast } from "../lib/ledger";
+  import {
+    addMonths, dateLabel, fanSpec, horizonFor, monthLabel, months, otherMethod, trackRecord, wait, type Wait,
+  } from "../lib/wait";
 
   type Live = Pick<BulletinSeries, "id" | "chart" | "section" | "category" | "category_title" | "area" | "area_title" | "title" | "latest" | "path" | "backtest">;
   const form = document.getElementById("wait-form") as HTMLFormElement;
   const payload = JSON.parse(form.dataset.payload!) as {
     series: Live[]; model: "pace" | "bootstrap"; sources: Record<string, [string, string]>;
     i485: Record<string, { months: number; quarter: string; href: string; cite: string }>;
+    judge: { min: number; pooled: Score; checkFrom: string; target: string };
   };
   const result = document.getElementById("wait-result")!;
   const fan = document.getElementById("fan")!;
@@ -193,8 +223,6 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
     a.textContent = text;
     return a;
   };
-  const pct = (x: number | null) => (x === null ? "—" : `${Math.round(x * 100)}%`);
-  const months = (x: number | null) => (x === null ? "—" : x.toLocaleString("en-US", { maximumFractionDigits: 1 }));
   const name = (s: Live) => `${s.category_title}, ${s.area_title}`;
   const when = (m: string | null) => (m === null ? "beyond 20 years" : monthLabel(m));
 
@@ -234,7 +262,10 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
     } else {
       answer.textContent = w.q50 === null
         ? `Most likely more than 20 years away: fewer than half of the simulated futures reach your priority date within 20 years.`
-        : `Most likely around ${when(w.q50)}. 8 in 10 simulated futures put it between ${when(w.q10)} and ${when(w.q90)}.`;
+        : `Most likely around ${when(w.q50)}. The ${payload.judge.target} range runs from ${when(w.q10)} to ${when(w.q90)}.`;
+      const r = trackRecord(name(s), s.backtest[payload.model].held_out, payload.judge.pooled, payload.judge.min);
+      note.append(` On forecasts made from ${payload.judge.checkFrom} on, ranges like this held the real date ${r.coverage} of the time `
+        + (r.enough ? `for ${name(s)}.` : `across all categories and countries (${name(s)} has too few cases to judge).`));
       const step = payload.i485[s.section];
       note.append(` After that, USCIS's median time to decide ${s.section === "employment" ? "an" : "a"} ${s.section}-based I-485 was `,
         (() => { const a = document.createElement("a"); a.href = step.href; a.title = step.cite; a.textContent = `${months(step.months)} months`; return a; })(),
@@ -252,7 +283,7 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
     }
     table.replaceChildren();
     const head = table.createTHead().insertRow();
-    for (const h of ["Bulletin", "Median cutoff", "80% range"]) { const th = document.createElement("th"); th.textContent = h; head.append(th); }
+    for (const h of ["Bulletin", "Median cutoff", `${payload.judge.target} range`]) { const th = document.createElement("th"); th.textContent = h; head.append(th); }
     const body = table.createTBody();
     for (const r of rows) { const tr = body.insertRow(); r.forEach((c, i) => { const td = tr.insertCell(); td.textContent = c; if (i) td.className = "num"; }); }
   }
@@ -265,15 +296,14 @@ const scoreText = (s: Score) => `${pct(s.coverage80)} of ${s.n.toLocaleString("e
   }
 
   function renderBacktest(s: Live) {
-    const b = s.backtest[payload.model];
+    const r = trackRecord(name(s), s.backtest[payload.model].held_out, payload.judge.pooled, payload.judge.min);
+    setText("title", r.title);
+    setText("coverage", r.coverage);
+    setText("coverage-n", r.coverageNote);
+    setText("error", r.error);
+    setText("error-n", r.errorNote);
     const other = payload.model === "pace" ? "bootstrap" : "pace";
-    setText("title", name(s));
-    setText("coverage", pct(b.coverage80));
-    setText("coverage-n", `of ${b.n.toLocaleString("en-US")} past forecasts`);
-    setText("error", `${months(b.median_abs_error)} months`);
-    setText("error-n", `median over ${b.n_error.toLocaleString("en-US")} forecasts whose date has arrived`);
-    const o = s.backtest[other];
-    setText("other", `For this series the other method (${other === "pace" ? "recent pace" : "resampled history"}) scored ${pct(o.coverage80)} of ${o.n.toLocaleString("en-US")} past forecasts.`);
+    setText("other", otherMethod(other, s.backtest[other], payload.judge.min, payload.judge.checkFrom));
   }
 
   async function update() {

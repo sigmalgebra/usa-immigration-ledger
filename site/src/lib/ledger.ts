@@ -182,6 +182,8 @@ export function gaps(s: string, m: Measure): string[] {
 export type BulletinRow = [month: string, value: string | null, status: "date" | "current" | "unavailable" | "blank", sourceId: string, cell: string, raw: string];
 export interface Score { n: number; coverage80: number | null; n_error: number; median_abs_error: number | null }
 export type ModelName = "pace" | "bootstrap";
+/** One model at its spread: scored on calibration origins (which picked the spread) and on held-out origins. */
+export interface Fit { spread: number; calibration: Score; held_out: Score }
 export interface BulletinSeries {
   id: string;
   chart: "final" | "filing";
@@ -195,19 +197,25 @@ export interface BulletinSeries {
   first: string;
   latest: BulletinRow;
   path: string | null;
-  backtest: Record<ModelName, Score>;
+  backtest: Record<ModelName, Fit>;
 }
 export interface ForecastIndex {
   latest: string;
   model: ModelName;
-  method: { horizon_months: number; bootstrap_paths: number; pace_levels: number; backtest_bootstrap_paths: number; band_levels: number[]; backtest_from: string; backtest_leads_months: number[]; dates: string };
-  pooled: Record<ModelName, Score>;
+  spread: number;
+  method: {
+    horizon_months: number; bootstrap_paths: number; pace_levels: number; backtest_bootstrap_paths: number; band_levels: number[];
+    backtest_from: string; backtest_leads_months: number[]; spreads: number[]; target_coverage: number; calibration_before: string;
+    min_judged: number; dates: string;
+  };
+  pooled: Record<ModelName, Fit>;
+  calibration_curve: Record<ModelName, [spread: number, coverage80: number | null][]>;
   series: BulletinSeries[];
 }
 export interface SeriesForecast {
   id: string;
   history: BulletinRow[];
-  forecast: { model: ModelName; origin: string; cutoff: string; bands: number[][]; crossings: [number, number | null, number | null, number | null][] };
+  forecast: { model: ModelName; spread: number; origin: string; cutoff: string; bands: number[][]; crossings: [number, number | null, number | null, number | null][] };
 }
 export const forecastIndex = (): ForecastIndex => load<ForecastIndex>("visa-bulletin/forecast.json");
 export const seriesForecast = (path: string): SeriesForecast => load<SeriesForecast>(`visa-bulletin/${path}`);

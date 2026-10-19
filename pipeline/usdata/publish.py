@@ -132,21 +132,25 @@ def _visa_bulletin(ledger: Ledger, facts: list[Fact]) -> dict[str, str]:
         path = f"forecast/{sid.removeprefix('vb/')}.json" if fcst else None
         index.append({"id": sid, **s.dims, "title": s.title, "description": s.note, "first": str(fs[0].key.period),
                       "latest": _vb_row(fs[-1]), "path": path,
-                      "backtest": {m: asdict(sc) for m, sc in r.scores.items()}})
+                      "backtest": {m: asdict(fit) for m, fit in r.fits.items()}})
         if path and fcst:
             out[f"visa-bulletin/{path}"] = _json({
                 "id": sid,
                 "history": [_vb_row(f) for f in fs if fc.months_between(f.key.period, latest) < HISTORY_MONTHS],
-                "forecast": {"model": fcst.model, "origin": str(fcst.origin), "cutoff": _iso(fcst.cutoff),
-                             "bands": fcst.bands, "crossings": [[p, *q] for p, q in fcst.crossings]},
+                "forecast": {"model": fcst.model, "spread": fcst.spread, "origin": str(fcst.origin),
+                             "cutoff": _iso(fcst.cutoff), "bands": fcst.bands,
+                             "crossings": [[p, *q] for p, q in fcst.crossings]},
             })
     out["visa-bulletin/forecast.json"] = _json({
-        "latest": str(latest), "model": results.model,
+        "latest": str(latest), "model": results.model, "spread": results.pooled[results.model].spread,
         "method": {"horizon_months": fc.HORIZON, "bootstrap_paths": fc.N_PATHS, "pace_levels": fc.PACE_LEVELS,
                    "backtest_bootstrap_paths": fc.BACKTEST_PATHS, "band_levels": fc.BAND_LEVELS,
                    "backtest_from": str(fc.BACKTEST_FROM), "backtest_leads_months": fc.BACKTEST_LEADS,
+                   "spreads": fc.SPREADS, "target_coverage": fc.TARGET_COVERAGE,
+                   "calibration_before": str(fc.CALIBRATE_BEFORE), "min_judged": fc.MIN_JUDGED,
                    "dates": "days since 1970-01-01"},
-        "pooled": {m: asdict(sc) for m, sc in results.pooled.items()},
+        "pooled": {m: asdict(fit) for m, fit in results.pooled.items()},
+        "calibration_curve": {m: [list(pt) for pt in curve] for m, curve in results.calibration_curve.items()},
         "series": index,
     })
     return out
