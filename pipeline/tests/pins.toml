@@ -188,3 +188,28 @@ value = "2007-08-01"
 file = "visa-bulletin-for-july-2026.html"
 cell = "table 1!F6"
 html_text = "01AUG07"
+
+# PDF bulletins (fetched from State's file store from August 2026): `cell` is "page P table T!<col><row>" counting
+# the tables pdfplumber finds on that page. The test checks that `pdf_text` is printed on that page.
+
+[[pin]]
+what = "F4 Philippines final action date, October 2026 bulletin (PDF edition)"
+series = "vb/final/f4/philippines"
+period = "2026-10"
+measure = "final_action_date"
+window = "month"
+value = "2008-05-15"
+file = "visabulletin_October2026.pdf"
+cell = "page 2 table 2!F6"
+pdf_text = "15MAY08"
+
+[[pin]]
+what = "EB-3 India final action date, October 2026 bulletin (PDF edition)"
+series = "vb/final/eb3/india"
+period = "2026-10"
+measure = "final_action_date"
+window = "month"
+value = "2014-01-01"
+file = "visabulletin_October2026.pdf"
+cell = "page 4 table 2!D4"
+pdf_text = "01JAN14"

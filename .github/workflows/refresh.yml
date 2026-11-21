@@ -1,14 +1,24 @@
-# Weekly: look for new USCIS files. If any appear, rebuild the data and open a pull request for a human to review.
-# Never pushes to main. Never crawls travel.state.gov (State Dept files are added by hand: see README).
+# New source files in, published site out, with no human step when everything checks.
+# - Weekly: crawl uscis.gov.
+# - On push to data/state: State Dept files fetched by scripts/fetch-state.ps1 (State refuses GitHub's runners).
+# Either way: rebuild, run the tests and the site build (CI doesn't run on PRs this token opens), open a pull request
+# as the audit trail, and squash-merge it if everything passed; Vercel then deploys main. If anything failed, the PR
+# stays open and the run fails, so GitHub emails the owner.
+# Weekly it also fails if the newest archived Visa Bulletin is older than the one in force: that means the fetch
+# machine has stopped or a data/state PR is waiting for a fix.
 name: Refresh data
 on:
   schedule:
     - cron: "17 13 * * 1"
   workflow_dispatch:
+  push:
+    branches: [data/state]
 
 permissions:
   contents: write
   pull-requests: write
+
+concurrency: refresh-data
 
 jobs:
   refresh:
@@ -18,35 +28,63 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
       - run: pip install -r pipeline/requirements.txt
       - name: Crawl uscis.gov
+        if: github.event_name != 'push'
         id: crawl
         run: |
-          PYTHONPATH=pipeline python -m usdata crawl | tee crawl.txt
+          PYTHONPATH=pipeline python -m usdata crawl | tee new.txt
           if git status --porcelain archive | grep -q .; then echo "new=true" >> "$GITHUB_OUTPUT"; fi
-      - name: Build and test
-        if: steps.crawl.outputs.new == 'true'
+      - name: State Dept files pushed by the fetch machine
+        if: github.event_name == 'push'
+        id: pushed
+        run: |
+          git log -1 --format=%s | tee new.txt
+          echo "new=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v4
+        if: steps.crawl.outputs.new == 'true' || steps.pushed.outputs.new == 'true'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Build, test, build the site
+        if: steps.crawl.outputs.new == 'true' || steps.pushed.outputs.new == 'true'
         id: build
         continue-on-error: true
         run: |
           set -o pipefail
           PYTHONPATH=pipeline python -m usdata build 2>&1 | tee build.txt
           python -m pytest -q 2>&1 | tee -a build.txt
-      - name: Open pull request
-        if: steps.crawl.outputs.new == 'true'
+          (cd site && npm ci && npm run build) 2>&1 | tail -n 20 | tee -a build.txt
+      - name: Pull request, merged if everything passed
+        if: steps.crawl.outputs.new == 'true' || steps.pushed.outputs.new == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          branch="data/refresh-$(date -u +%Y%m%d)"
+          branch="${{ github.event_name == 'push' && 'data/state' || 'data/uscis' }}"
           git config user.name "immigration-ledger-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$branch"
+          git checkout -B "$branch"
           git add archive site/public/data
           git commit -m "Data refresh $(date -u +%Y-%m-%d)"
-          git push -u origin "$branch"
+          git push --force -u origin "$branch"
           {
-            echo "New files from uscis.gov:"; echo '```'; cat crawl.txt; echo '```'
-            echo "Build and tests (${{ steps.build.outcome }}):"; echo '```'; tail -n 60 build.txt; echo '```'
-            echo "If the build failed on unmapped rows, add them to catalog/uscis-forms.toml in this branch."
+            echo "New source files:"; echo '```'; cat new.txt; echo '```'
+            echo "Build, tests and site build (${{ steps.build.outcome }}):"; echo '```'; tail -n 60 build.txt; echo '```'
+            echo "If the build failed on unmapped rows, add them to the catalog/ file it names, in this branch."
           } > body.md
-          gh pr create --title "Data refresh $(date -u +%Y-%m-%d)" --body-file body.md
+          if gh pr view "$branch" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$branch" --body-file body.md
+          else
+            gh pr create --head "$branch" --title "Data refresh $(date -u +%Y-%m-%d)" --body-file body.md
+          fi
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            echo "::error::build or tests failed; the pull request is left open for a fix"
+            exit 1
+          fi
+          gh pr merge "$branch" --squash --delete-branch
+      - name: Visa Bulletin is current
+        if: github.event_name == 'schedule'
+        run: PYTHONPATH=pipeline python -m usdata check-fresh

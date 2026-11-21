@@ -1,13 +1,14 @@
 """Parser for U.S. Department of State "Immigrant Visa Issuances by Foreign State of Chargeability or
 Place of Birth and Visa Class" (monthly). These are consular visas issued abroad, not USCIS decisions.
 
-travel.state.gov refuses automated clients, so these files only enter through `usdata add` by a human.
+Months up to September 2025 entered by hand (`usdata add`) or from the Internet Archive. Newer months enter through
+`usdata fetch-state`, which asks State's file store for the file name State has used since FY2025.
 The month is read from the title cell and cross-checked against the file name.
 """
 from __future__ import annotations
 
 import re
-from urllib.parse import unquote
+from urllib.parse import quote, unquote
 
 from ..model import CellRef, Measure, Month, ParsedFile, RawObservation, RowKey, SourceFile, Window
 from ._cells import clean_value, norm, read_grids
@@ -19,6 +20,13 @@ LISTING = ("https://travel.state.gov/content/travel/en/legal/visa-law0/visa-stat
 _MONTHS = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER",
            "NOVEMBER", "DECEMBER"]
 _TITLE_MONTH = re.compile(r"(" + "|".join(_MONTHS) + r")\s+(\d{4})\s*\(FY", re.I)
+FILE_STORE = "https://travel.state.gov/content/dam/visas/Statistics/Immigrant-Statistics/MonthlyIVIssuances/Excel/"
+
+
+def file_url(month: Month) -> str:
+    fiscal_year = month.year + (month.month >= 10)
+    name = f"{_MONTHS[month.month - 1]} {month.year} - IV Issuances by FSC or Place of Birth and Visa Class.xlsx"
+    return f"{FILE_STORE}FY{fiscal_year}/{quote(name)}"
 
 
 def matches(url: str) -> bool:

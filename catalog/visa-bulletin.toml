@@ -183,6 +183,7 @@ printed = [
   "5th Set Aside: (Rural - 20%)",
   "5th Set Aside: Rural (20%, including NR, RR)",
   "5th Set Aside: (Rural: NR, RR - 20%)",
+  "5th Set Aside: Rural (20%) (including NR, RR)",
 ]
 
 [[category]]
@@ -195,6 +196,7 @@ printed = [
   "5th Set Aside: (High Unemployment - 10%)",
   "5th Set Aside: High Unemployment (10%, including NH, RH)",
   "5th Set Aside: (High Unemployment: NH, RH - 10%)",
+  "5th Set Aside: High Unemployment (10%) (including NH, RH)",
 ]
 
 [[category]]
@@ -207,6 +209,7 @@ printed = [
   "5th Set Aside: (Infrastructure - 2%)",
   "5th Set Aside: Infrastructure (2%, including RI)",
   "5th Set Aside: (Infrastructure: RI - 2%)",
+  "5th Set Aside: Infrastructure (2%) (including RI)",
 ]
 
 [[area]]
