@@ -52,7 +52,7 @@ def _raw_cell(pin: dict) -> str:
         return printed
     if "pdf_text" in pin:
         import pdfplumber
-        page = int(pin["cell"].split("!")[0].removeprefix("page "))
+        page = int(pin["cell"].split("!")[0].split()[1])
         with pdfplumber.open(io.BytesIO(data)) as pdf:
             text = pdf.pages[page - 1].extract_text() or ""
         # The PDF's text layer splits digits ("7 8,008"), so compare with spaces removed.
@@ -76,7 +76,7 @@ def test_pin(pin, built):
     ledger, _ = built
     raw = _raw_cell(pin)
     fact = ledger.get(FactKey(pin["series"], parse_period(pin["period"]), pin["measure"], pin["window"]))
-    if "html_text" in pin:
+    if pin["series"].startswith("vb/"):
         assert fact.value == Cutoff(date.fromisoformat(pin["value"]))
         assert fact.cell.raw == raw
     else:
@@ -119,11 +119,7 @@ def test_forecast_track_record_is_published_per_chart(rendered):
     index = json.loads(rendered["visa-bulletin/forecast.json"])
     model, by_chart = index["model"], index["by_chart"]
     final, filing = by_chart["final"], by_chart["filing"]
-    assert (model, final["spread"]) == ("pace", 4.0)
-    assert final["held_out"]["coverage80"] == 0.9104
-    assert final["worst_held_out"] == {"year": 2023, "n": 1615, "coverage80": 0.8012, "n_error": 758,
-                                       "median_abs_error": 9.0}
-    assert filing["held_out"]["coverage80"] == 0.7603
+    # Coverage, spread and model are refit on every new bulletin, so only how they're published is pinned here.
     assert filing["calibration"]["n"] == 0  # the filing chart starts too late to help fit the spread
     for chart, fit in by_chart.items():
         series = [s["backtest"][model]["held_out"] for s in index["series"] if s["chart"] == chart]
@@ -243,3 +239,33 @@ def test_bulletin_cell_value(raw, expected):
 def test_bulletin_cell_refuses_to_guess():
     with pytest.raises(UnparseableCell):
         bulletin_cell("01MAR99*", Month(2004, 2))
+
+
+def test_issuance_file_url_uses_the_fiscal_year_folder():
+    from usdata.datasets.state_iv import file_url
+    assert file_url(Month(2026, 10)) == (
+        "https://travel.state.gov/content/dam/visas/Statistics/Immigrant-Statistics/MonthlyIVIssuances/Excel/"
+        "FY2027/OCTOBER%202026%20-%20IV%20Issuances%20by%20FSC%20or%20Place%20of%20Birth%20and%20Visa%20Class.xlsx")
+    assert "/FY2026/SEPTEMBER%202026%20" in file_url(Month(2026, 9))
+
+
+def test_bulletin_pdf_name_round_trips():
+    from usdata.datasets.visa_bulletin import bulletin_month, pdf_name
+    assert pdf_name(Month(2026, 12)) == "visabulletin_December2026.pdf"
+    assert bulletin_month("visabulletin_December2026.pdf") == Month(2026, 12)
+
+
+def test_fetch_state_asks_for_next_months_bulletin_across_the_year_end(monkeypatch):
+    from usdata import crawl
+    latest = {"state-vb": Month(2026, 11), "state-iv": Month(2026, 11)}
+    monkeypatch.setattr(crawl, "latest_month", latest.__getitem__)
+    assert [u.rsplit("/", 1)[1] for _, u in crawl.state_candidates(date(2026, 12, 20))] == [
+        "visabulletin_December2026.pdf", "visabulletin_January2027.pdf",
+        "DECEMBER%202026%20-%20IV%20Issuances%20by%20FSC%20or%20Place%20of%20Birth%20and%20Visa%20Class.xlsx"]
+
+
+def test_bulletin_is_stale_once_the_month_in_force_is_missing(monkeypatch):
+    from usdata import crawl
+    monkeypatch.setattr(crawl, "latest_month", lambda dataset: Month(2026, 11))
+    assert crawl.stale_bulletin(date(2026, 12, 5)) is None
+    assert "2026-12 bulletin is out" in crawl.stale_bulletin(date(2026, 12, 15))

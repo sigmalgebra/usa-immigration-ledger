@@ -43,7 +43,7 @@ facts.query("series_id == 'n-400' and measure == 'pending'")
 ```
 uscis.gov listing ──crawl────▶ archive/raw/  (byte-exact, SHA-256 named, never edited)
 Internet Archive ──wayback──▶      │   (deleted files; each records the capture it came from)
-State Dept files ──add──────▶      │
+State Dept files ──fetch-state▶   │
                                  ▼
       parsers (one per report family, every layout era; PDFs read by word position)
                                  │  verbatim labels + exact cell of every value
@@ -74,13 +74,13 @@ python -m pytest                              # hand-verified pins, parsers, det
 cd site && npm install && npm run dev         # http://localhost:4321
 ```
 
-**Adding State Department files.** travel.state.gov blocks automated downloads, and we don't work around that. Older months come from the Internet Archive (`wayback --dataset state-iv`). For new months, download the monthly "IV Issuances by FSC or Place of Birth and Visa Class" files in a browser, then:
+**State Department files.** travel.state.gov's pages refuse automated clients, and we don't work around that. Its file store serves the Visa Bulletin PDFs and monthly issuance spreadsheets to an identified client, but not to GitHub's runners. So `usdata fetch-state` runs on a maintainer's Windows machine, once a day, from its own clone: `scripts/install-fetch-task.ps1` registers it. It asks for the next months' files by their published names and pushes anything new to the `data/state` branch. Older months come from the Internet Archive (`wayback --dataset state-vb`, `--dataset state-iv`). A file downloaded in a browser can still be added by hand:
 
 ```bash
 PYTHONPATH=pipeline python -m usdata add ~/Downloads/*.xlsx --dataset state-iv
 ```
 
-**Automation.** A weekly GitHub Action crawls uscis.gov and opens a pull request when new files appear. It never pushes to `main`. CI runs the tests, checks that the committed data equals a fresh build, and builds the site. Vercel deploys `main` from the `site/` directory.
+**Automation.** The "Refresh data" GitHub Action crawls uscis.gov weekly and also runs whenever the fetch machine pushes `data/state`. It rebuilds the data, runs the tests and builds the site, opens a pull request as the record, and squash-merges it when everything passed. Vercel then deploys `main` from the `site/` directory. When anything fails, such as a row label the catalog doesn't know, the pull request stays open and the run fails, so GitHub emails the owner. The weekly run also fails if the newest archived Visa Bulletin is older than the one in force, which catches a fetch machine that has stopped. CI runs the same checks on every human pull request.
 
 ## Contributing
 

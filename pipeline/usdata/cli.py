@@ -1,4 +1,4 @@
-"""usdata: crawl | wayback | add | build [--check]
+"""usdata: crawl | fetch-state | check-fresh | wayback | add | build [--check]
 
 Run from the repo root:  python -m usdata <command>   (with PYTHONPATH=pipeline, or `cd pipeline`)
 """
@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import date
 from pathlib import Path
 
 from . import archive
@@ -16,6 +17,8 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="usdata")
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("crawl", help="download new files from the open USCIS data listing into archive/")
+    sub.add_parser("fetch-state", help="download new Visa Bulletins and issuance files from State's file store")
+    sub.add_parser("check-fresh", help="fail if the newest archived Visa Bulletin is older than the one in force")
     a = sub.add_parser("add", help="archive files a human downloaded (e.g. State Dept, which blocks crawlers)")
     a.add_argument("paths", nargs="+", type=Path)
     a.add_argument("--dataset", required=True, choices=DATASET_IDS)
@@ -33,6 +36,22 @@ def main(argv: list[str] | None = None) -> int:
               f"{len(r.unclassified)} links not in a tracked dataset")
         for path in r.added:
             print("  +", path)
+        return 0
+
+    if args.cmd == "fetch-state":
+        from .crawl import fetch_state
+        added = fetch_state(date.today())
+        print(f"added {len(added)} State Dept file(s)")
+        for path in added:
+            print("  +", path)
+        return 0
+
+    if args.cmd == "check-fresh":
+        from .crawl import stale_bulletin
+        if why := stale_bulletin(date.today()):
+            print(why, file=sys.stderr)
+            return 1
+        print("Visa Bulletin archive is current")
         return 0
 
     if args.cmd == "wayback":

@@ -28,8 +28,9 @@ const firstQ = (() => { const p = periods("total", "received")[0]; return `${qua
     <p>
       <strong>The State Department</strong> issues immigrant visas at consulates abroad. Its monthly issuance files are at
       {" "}<a href="https://travel.state.gov/content/travel/en/legal/visa-law0/visa-statistics/immigrant-visa-statistics/monthly-immigrant-visa-issuances.html">travel.state.gov</a>.
-      That site refuses automated downloads, and we don't work around that. Its files are downloaded by a person and
-      added by hand, so they can lag. These are visas issued abroad, a different step from USCIS decisions.
+      Its pages refuse automated clients, and we don't work around that. Its file store serves the files to our
+      identified fetcher, which runs daily from a maintainer's machine because GitHub's servers are refused. These
+      are visas issued abroad, a different step from USCIS decisions.
     </p>
     <p>
       Each file is stored in the <a href="https://github.com/sigmalgebra/usa-immigration-ledger/tree/main/archive">public archive</a>
